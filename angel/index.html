@@ -1,0 +1,1501 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!--APP-START-->
+<title>Angel Fund Ledger</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  color-scheme: light;
+  --bg:#f4f5f2; --surface:#ffffff; --surface-2:#eceee9; --line:#dadcd5; --line-2:#c9ccc3;
+  --ink:#131915; --ink-2:#4a524c; --ink-3:#737b75;
+  --accent:#4a3aa7; --accent-hover:#3d2f90; --accent-ink:#ffffff; --accent-soft:#ebe8f8;
+  --good:#0b7a3e; --good-soft:#e1f1e7; --bad:#bf3a30; --bad-soft:#f8e4e1; --warn:#9a5c00; --warn-soft:#faeed6;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100; --s5:#e87ba4; --s6:#008300; --s7:#4a3aa7; --s8:#e34948;
+  --cost:#b7bbb2; --div-neg:#e34948; --div-mid:#f0efec; --div-pos:#2a78d6;
+  --shadow:0 12px 40px rgba(20,25,21,.18);
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --cond:"IBM Plex Sans Condensed","Arial Narrow",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --bg:#0f1211; --surface:#171b19; --surface-2:#1f2421; --line:#2c322e; --line-2:#3a413c;
+    --ink:#edf0ed; --ink-2:#b2b9b4; --ink-3:#848c86;
+    --accent:#9085e9; --accent-hover:#a59cf0; --accent-ink:#14111f; --accent-soft:#29244a;
+    --good:#52c486; --good-soft:#15301f; --bad:#f07c72; --bad-soft:#3a1b19; --warn:#e5a54a; --warn-soft:#382a12;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --s6:#008300; --s7:#9085e9; --s8:#e66767;
+    --cost:#4d534f; --div-neg:#e66767; --div-mid:#383835; --div-pos:#3987e5;
+    --shadow:0 12px 40px rgba(0,0,0,.5);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --bg:#0f1211; --surface:#171b19; --surface-2:#1f2421; --line:#2c322e; --line-2:#3a413c;
+  --ink:#edf0ed; --ink-2:#b2b9b4; --ink-3:#848c86;
+  --accent:#9085e9; --accent-hover:#a59cf0; --accent-ink:#14111f; --accent-soft:#29244a;
+  --good:#52c486; --good-soft:#15301f; --bad:#f07c72; --bad-soft:#3a1b19; --warn:#e5a54a; --warn-soft:#382a12;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --s6:#008300; --s7:#9085e9; --s8:#e66767;
+  --cost:#4d534f; --div-neg:#e66767; --div-mid:#383835; --div-pos:#3987e5;
+  --shadow:0 12px 40px rgba(0,0,0,.5);
+}
+*{box-sizing:border-box}
+html,body{background:var(--bg)}
+body{margin:0;color:var(--ink);font:14px/1.5 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+button,input,select,textarea{font:inherit;color:inherit}
+.num,.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.wrap{max-width:1320px;margin:0 auto;padding-inline:20px}
+@media (max-width:640px){.wrap{padding-inline:16px}}
+
+/* header */
+.top{background:var(--surface);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:16px;padding-block:14px;flex-wrap:wrap}
+.brand{display:flex;flex-direction:column;gap:1px;min-width:0;flex:1}
+.eyebrow{font:600 11px/1.2 var(--cond);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+.brand h1{margin:0;font:700 24px/1.1 var(--cond);letter-spacing:-.01em;text-wrap:balance}
+.top-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.status{font-size:12px;color:var(--ink-3);display:flex;align-items:center;gap:6px}
+.status i{width:7px;height:7px;border-radius:50%;background:var(--good);display:inline-block}
+.status.err i{background:var(--bad)} .status.busy i{background:var(--warn)}
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--line)}
+.tabs .wrap{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.tabs .wrap::-webkit-scrollbar{display:none}
+.tab{appearance:none;border:0;background:none;padding:11px 12px 10px;font:600 13px/1 var(--cond);letter-spacing:.04em;text-transform:uppercase;color:var(--ink-3);border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+
+/* buttons */
+.btn{appearance:none;border:1px solid var(--line-2);background:var(--surface);border-radius:6px;padding:7px 12px;font-weight:500;font-size:13px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;line-height:1.2}
+.btn:hover{border-color:var(--ink-3)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.primary:hover{background:var(--accent-hover);border-color:var(--accent-hover)}
+.btn.ghost{border-color:transparent;background:none}
+.btn.ghost:hover{background:var(--surface-2)}
+.btn.danger{color:var(--bad);border-color:var(--bad)}
+.btn.sm{padding:4px 8px;font-size:12px}
+.btn:focus-visible,.tab:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+
+main{padding-block:22px 60px}
+.view{display:flex;flex-direction:column;gap:20px}
+.banner{display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:var(--warn-soft);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:13px}
+.banner b{color:var(--warn)}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.section-head h2{margin:0;font:700 19px/1.2 var(--cond);letter-spacing:-.005em}
+.section-head p{margin:2px 0 0;color:var(--ink-2);font-size:13px;max-width:75ch}
+h3{margin:0;font:600 13px/1.2 var(--cond);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-2)}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.panel-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.panel-head .sub{font-size:12px;color:var(--ink-3)}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g-main{grid-template-columns:minmax(0,2fr) minmax(0,1fr)}
+.g-side{grid-template-columns:minmax(220px,300px) minmax(0,1fr)}
+@media (max-width:980px){.g2,.g3,.g-main,.g-side{grid-template-columns:minmax(0,1fr)}}
+
+/* KPI strip */
+.kpis{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));background:var(--surface);border:1px solid var(--line);border-radius:10px}
+.kpi{padding:14px 16px;display:flex;flex-direction:column;gap:4px;border-left:1px solid var(--line);min-width:0}
+.kpi:first-child{border-left:0}
+.kpi .l{font:600 11px/1.2 var(--cond);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.kpi .v{font:500 24px/1.1 var(--mono);font-variant-numeric:tabular-nums;letter-spacing:-.02em;white-space:nowrap}
+.kpi .s{font-size:12px;color:var(--ink-2)}
+@media (max-width:1100px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.kpi:nth-child(4){border-left:0}.kpi:nth-child(n+4){border-top:1px solid var(--line)}}
+@media (max-width:560px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.kpi{border-left:0!important;border-top:1px solid var(--line)}.kpi:nth-child(-n+2){border-top:0}.kpi:nth-child(even){border-left:1px solid var(--line)!important}.kpi .v{font-size:20px}}
+
+.up{color:var(--good)} .down{color:var(--bad)} .muted{color:var(--ink-3)}
+.pill{display:inline-flex;align-items:center;gap:5px;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:600;letter-spacing:.02em;white-space:nowrap}
+.pill::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.pill.Active{background:var(--good-soft);color:var(--good)}
+.pill.Dead{background:var(--bad-soft);color:var(--bad)}
+.pill.Exited{background:var(--accent-soft);color:var(--accent)}
+.tag{display:inline-block;padding:1px 7px;border-radius:4px;background:var(--surface-2);color:var(--ink-2);font-size:11px;font-weight:500;white-space:nowrap}
+.tag.acc{background:var(--accent-soft);color:var(--accent)}
+
+/* tables */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th{font:600 11px/1.2 var(--cond);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);text-align:left;padding:10px 10px;border-bottom:1px solid var(--line);white-space:nowrap;background:var(--surface);position:sticky;top:0}
+th.r,td.r{text-align:right}
+td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+tbody tr:last-child td{border-bottom:0}
+tbody tr.click{cursor:pointer}
+tbody tr.click:hover td{background:var(--surface-2)}
+tr.child td{background:color-mix(in oklab,var(--surface-2) 45%,var(--surface))}
+tr.child td:first-child{padding-left:30px}
+tfoot td{font-weight:600;border-top:1px solid var(--line-2);border-bottom:0;background:var(--surface-2)}
+td .co{font-weight:600}
+td .meta{font-size:12px;color:var(--ink-3)}
+td input,td select{width:100%;min-width:74px;padding:5px 7px;border:1px solid var(--line);border-radius:5px;background:var(--surface);font-family:var(--mono);font-size:12.5px;text-align:right}
+td input::placeholder{color:var(--ink-3);opacity:.9}
+td input.set{border-color:var(--accent);background:var(--accent-soft)}
+
+/* toolbar */
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.toolbar .grow{flex:1}
+.field{display:flex;flex-direction:column;gap:4px;min-width:0}
+.field>span{font:600 11px/1.2 var(--cond);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3)}
+.field input,.field select,.field textarea,.toolbar input,.toolbar select{padding:7px 9px;border:1px solid var(--line-2);border-radius:6px;background:var(--surface);min-width:0;width:100%}
+.toolbar input,.toolbar select{width:auto}
+.toolbar input[type=search]{min-width:200px}
+.field textarea{min-height:70px;resize:vertical}
+.seg{display:inline-flex;border:1px solid var(--line-2);border-radius:6px;overflow:hidden}
+.seg button{appearance:none;border:0;background:var(--surface);padding:6px 10px;font-size:12.5px;cursor:pointer;color:var(--ink-2)}
+.seg button+button{border-left:1px solid var(--line-2)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+
+/* bars */
+.bars{display:flex;flex-direction:column;gap:7px}
+.bar-row{display:grid;grid-template-columns:minmax(90px,150px) minmax(0,1fr) auto;gap:10px;align-items:center;font-size:12.5px}
+.bar-row .name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar-track{position:relative;height:16px}
+.bar-track .b{position:absolute;left:0;height:8px;border-radius:0 4px 4px 0;min-width:2px}
+.bar-track .b.cost{top:0;background:var(--cost)}
+.bar-track .b.val{top:9px;background:var(--s1)}
+.bar-track .b.one{top:3px;height:10px;background:var(--s1)}
+.bar-row .v{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:10px;height:10px;border-radius:2px;display:inline-block}
+.legend i.line{height:2px;border-radius:0;width:14px}
+.chart{position:relative;width:100%}
+.chart svg{display:block;overflow:visible}
+.chart text{font:11px var(--mono);fill:var(--ink-3)}
+.chart .grid-l{stroke:var(--line);stroke-width:1}
+.chart .axis-l{stroke:var(--line-2);stroke-width:1}
+
+/* tooltip */
+#tip{position:fixed;z-index:100;pointer-events:none;background:var(--ink);color:var(--bg);padding:7px 10px;border-radius:6px;font-size:12px;line-height:1.45;max-width:280px;box-shadow:var(--shadow);opacity:0;transition:opacity .1s}
+#tip.on{opacity:1}
+#tip b{font-weight:600}
+
+/* lists */
+.list{display:flex;flex-direction:column}
+.list .it{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);font-size:13px;align-items:center}
+.list .it:last-child{border-bottom:0}
+.empty{color:var(--ink-3);font-size:13px;padding:6px 0}
+.flag{display:flex;gap:10px;align-items:flex-start;font-size:13px;padding:8px 0;border-bottom:1px solid var(--line)}
+.flag:last-child{border-bottom:0}
+.flag .ic{flex:none;width:18px;height:18px;border-radius:50%;display:grid;place-items:center;font:700 11px/1 var(--mono);background:var(--warn-soft);color:var(--warn)}
+.flag .ic.bad{background:var(--bad-soft);color:var(--bad)}
+
+/* heatmap */
+.hm{border-collapse:separate;border-spacing:2px;width:100%;font-family:var(--mono);font-size:12.5px}
+.hm th{position:static;border:0;text-align:center;padding:6px 4px;background:none}
+.hm th.rh{text-align:right;padding-right:8px}
+.hm td{text-align:center;padding:9px 4px;border:0;border-radius:4px;color:var(--ink);font-variant-numeric:tabular-nums}
+.hm td.strong{color:#fff}
+.hm td.base{outline:2px solid var(--ink);outline-offset:-2px;font-weight:600}
+.axis-cap{font:600 11px/1.2 var(--cond);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3)}
+
+/* tornado */
+.tor{display:flex;flex-direction:column;gap:6px}
+.tor-row{display:grid;grid-template-columns:minmax(90px,140px) minmax(0,1fr) 120px;gap:10px;align-items:center;font-size:12.5px}
+.tor-track{position:relative;height:16px}
+.tor-track .mid{position:absolute;top:-3px;bottom:-3px;width:1px;background:var(--ink-3)}
+.tor-track .lo,.tor-track .hi{position:absolute;top:2px;height:12px}
+.tor-track .lo{background:var(--div-neg);border-radius:4px 0 0 4px}
+.tor-track .hi{background:var(--div-pos);border-radius:0 4px 4px 0}
+
+/* scenario cards */
+.scn{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:900px){.scn{grid-template-columns:minmax(0,1fr)}}
+.scn .panel.sel{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.scn-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat-line{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;padding:5px 0;border-top:1px solid var(--line)}
+.stat-line b{font:500 16px var(--mono);font-variant-numeric:tabular-nums}
+
+/* ideas */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.card.done{opacity:.6}
+.card h4{margin:0;font:600 15px/1.3 var(--sans)}
+.card p{margin:0;color:var(--ink-2);font-size:13px;white-space:pre-wrap}
+.card .row{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:auto}
+
+/* drawer */
+.scrim{position:fixed;inset:0;background:rgba(10,12,11,.45);z-index:60;display:flex;justify-content:flex-end}
+.drawer{background:var(--bg);width:min(720px,100%);height:100%;overflow-y:auto;box-shadow:var(--shadow);display:flex;flex-direction:column}
+.drawer-head{position:sticky;top:0;background:var(--surface);border-bottom:1px solid var(--line);padding:calc(14px + env(safe-area-inset-top,0px)) 20px 14px;display:flex;justify-content:space-between;align-items:center;gap:10px;z-index:2}
+.drawer-head h2{margin:0;font:700 20px/1.2 var(--cond)}
+.drawer-body{padding:18px 20px 30px;display:flex;flex-direction:column;gap:18px}
+.fs{display:flex;flex-direction:column;gap:10px}
+.fs-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.fs-grid .full{grid-column:1/-1}
+@media (max-width:560px){.fs-grid{grid-template-columns:minmax(0,1fr)}}
+.check{display:flex;gap:8px;align-items:center;font-size:13px;padding-top:18px}
+.preview{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.preview div{background:var(--surface);padding:10px 12px;display:flex;flex-direction:column;gap:2px}
+.preview .l{font:600 10.5px/1.2 var(--cond);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3)}
+.preview .v{font:500 16px var(--mono)}
+@media (max-width:560px){.preview{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.drawer-foot{position:sticky;bottom:0;margin-top:auto;background:var(--surface);border-top:1px solid var(--line);padding:12px 20px calc(12px + env(safe-area-inset-bottom,0px));display:flex;gap:8px;justify-content:space-between;flex-wrap:wrap}
+.err-msg{color:var(--bad);font-size:13px}
+.menu{position:absolute;right:0;top:calc(100% + 6px);background:var(--surface);border:1px solid var(--line-2);border-radius:8px;box-shadow:var(--shadow);padding:6px;display:flex;flex-direction:column;min-width:230px;z-index:50}
+.menu button{appearance:none;border:0;background:none;text-align:left;padding:8px 10px;border-radius:5px;cursor:pointer;font-size:13px}
+.menu button:hover{background:var(--surface-2)}
+.menu hr{border:0;border-top:1px solid var(--line);margin:4px 0}
+.rel{position:relative}
+.note{font-size:12px;color:var(--ink-3);max-width:80ch}
+.loading{padding:80px 0;text-align:center;color:var(--ink-3)}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <span class="eyebrow">Angel portfolio · run like a fund</span>
+      <h1 id="fundName">Angel Fund Ledger</h1>
+    </div>
+    <div class="top-actions">
+      <span class="status" id="status"><i></i><span>Loading</span></span>
+      <div class="rel">
+        <button class="btn" id="dataBtn" data-act="menu" aria-haspopup="true">Data ▾</button>
+      </div>
+      <button class="btn" data-act="mark-new">Update valuation</button>
+      <button class="btn primary" data-act="deal-new">+ Add investment</button>
+    </div>
+  </div>
+</header>
+<nav class="tabs" aria-label="Sections">
+  <div class="wrap" role="tablist" id="tabs"></div>
+</nav>
+<main class="wrap" id="view"><div class="loading">Loading your portfolio…</div></main>
+<div id="tip" role="tooltip"></div>
+<div id="drawerRoot"></div>
+<input type="file" id="fileIn" accept=".csv,.json,text/csv,application/json" hidden>
+
+<script>
+(() => {
+'use strict';
+/* ---------------- constants ---------------- */
+const TODAY = new Date();
+const DAY = 864e5, YEAR = 365.25 * DAY;
+const STAGES = ['Pre-Seed','Seed','Series A','Series B','Series C','Series D+'];
+const TABS = [
+  ['dashboard','Dashboard'],['holdings','Holdings'],['marks','Marks'],['projections','Projections'],
+  ['scenarios','Scenarios'],['sensitivity','Sensitivity'],['construction','Construction'],['pipeline','Pipeline'],['ideas','Ideas']
+];
+const DEFAULT_SETTINGS = {
+  fundName: 'Angel Fund Ledger',
+  commitment: 150000, targetCompanies: 35, targetCheck: 3500, reservePct: 0.25,
+  startYear: 2021, periodYears: 6, staleMonths: 12,
+  stageDefaults: {
+    'Pre-Seed': {p:.15, mult:20, dil:.60, years:8, rec:0},
+    'Seed':     {p:.20, mult:15, dil:.50, years:7, rec:0},
+    'Series A': {p:.30, mult:8,  dil:.40, years:6, rec:.10},
+    'Series B': {p:.40, mult:5,  dil:.30, years:5, rec:.20},
+    'Series C': {p:.50, mult:3.5,dil:.20, years:4, rec:.30},
+    'Series D+':{p:.60, mult:2.5,dil:.15, years:3, rec:.50}
+  }
+};
+const DEFAULT_SCENARIOS = [
+  {id:'bear', name:'Bear', pMult:.6, exitMult:.5, dilAdd:10, delay:2, recMult:.5},
+  {id:'base', name:'Base', pMult:1, exitMult:1, dilAdd:0, delay:0, recMult:1},
+  {id:'bull', name:'Bull', pMult:1.3, exitMult:1.75, dilAdd:-5, delay:-1, recMult:1.2}
+];
+const VIEWS = {};
+const COLLS = {deals:'deals', marks:'marks', proj:'projections', notes:'notes', pipeline:'pipeline'};
+
+/* ---------------- state ---------------- */
+const S = { deals:{}, marks:{}, proj:{}, notes:{}, pipeline:{}, settings: clone(DEFAULT_SETTINGS), scenarios: clone(DEFAULT_SCENARIOS), example:false };
+const UI = { tab: 'dashboard', hold: {q:'', status:'all', group:true, sort:'value'}, mark: null, scn: 'base', mc: null, ideaTag:'all', pipeStatus:'all' };
+let _dv = 0;
+let backend = 'local', db = null, downloads = null, ready = false;
+
+function clone(o){ return JSON.parse(JSON.stringify(o)); }
+function uid(p){ return p + '_' + Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
+const $ = (s, r=document) => r.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const isNum = v => v !== null && v !== undefined && v !== '' && isFinite(+v);
+const slug = s => String(s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'') || 'x';
+const clamp = (v,a,b) => Math.max(a, Math.min(b, v));
+
+/* ---------------- formatting ---------------- */
+const fC = new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',notation:'compact',maximumFractionDigits:1});
+const fF = new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});
+const fN = new Intl.NumberFormat('en-US',{maximumFractionDigits:0});
+const money = v => !isNum(v) ? '—' : (Math.abs(v) < 100000 ? fF.format(v) : fC.format(v));
+const moneyFull = v => !isNum(v) ? '—' : fF.format(v);
+const big = v => !isNum(v) ? '—' : fC.format(v);
+const mult = v => !isNum(v) ? '—' : (v >= 100 ? v.toFixed(0) : v.toFixed(v >= 10 ? 1 : 2)) + 'x';
+const pct = (v, d=1) => !isNum(v) ? '—' : (v*100).toFixed(d) + '%';
+const ownPct = v => !isNum(v) || v <= 0 ? '—' : (v*100 < 0.0001 ? '<0.0001%' : (v*100).toFixed(v*100 < 0.01 ? 4 : 3) + '%');
+const signed = v => !isNum(v) ? '—' : (v >= 0 ? '+' : '−') + money(Math.abs(v));
+const cls = v => v > 0.0001 ? 'up' : v < -0.0001 ? 'down' : '';
+function pd(s){ if(!s) return null; const m = String(s).match(/^(\d{4})-(\d{2})(?:-(\d{2}))?/); if(!m) return null; return new Date(+m[1], +m[2]-1, +(m[3]||1)); }
+function iso(d){ return d ? d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0') : ''; }
+const fmtD = s => { const d = pd(s); return d ? d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '—'; };
+const fmtM = s => { const d = pd(s); return d ? d.toLocaleDateString('en-US',{month:'short',year:'numeric'}) : '—'; };
+function parseMoney(s){
+  if (s === null || s === undefined) return null;
+  if (typeof s === 'number') return s;
+  let t = String(s).trim().replace(/[$,\s]/g,'').toLowerCase();
+  if (!t || t === '-' ) return null;
+  let m = 1;
+  if (/[kmbt]$/.test(t)) { m = {k:1e3,m:1e6,b:1e9,t:1e12}[t.slice(-1)]; t = t.slice(0,-1); }
+  const v = parseFloat(t); return isFinite(v) ? v*m : null;
+}
+
+/* ---------------- math ---------------- */
+function xirr(flows){
+  flows = flows.filter(f => f.t && isFinite(f.v) && f.v !== 0);
+  if (!flows.some(f => f.v < 0)) return null;
+  if (!flows.some(f => f.v > 0)) return -1;
+  const t0 = Math.min(...flows.map(f => +f.t));
+  const npv = r => flows.reduce((s,f) => s + f.v / Math.pow(1+r, (f.t - t0)/YEAR), 0);
+  let lo = -0.9999, hi = 10, flo = npv(lo), fhi = npv(hi);
+  while (flo*fhi > 0 && hi < 1e5) { hi *= 5; fhi = npv(hi); }
+  if (flo*fhi > 0) return null;
+  for (let i=0;i<200;i++){ const mid=(lo+hi)/2, fm=npv(mid); if (Math.abs(fm) < 1e-6) return mid; if (flo*fm < 0){hi=mid;fhi=fm;} else {lo=mid;flo=fm;} }
+  return (lo+hi)/2;
+}
+function niceMax(v){ if (v <= 0) return 1; const e = Math.pow(10, Math.floor(Math.log10(v))); const f = v/e; const st = [1,1.2,1.5,2,2.5,3,4,5,6,8,10].find(x => f <= x + 1e-9); return st*e; }
+function ticks(max, n=4){ const step = niceMax(max/n); const out=[]; for(let v=0; v<=max*1.0001; v+=step) out.push(v); return out; }
+function rng(seed){ let a = seed >>> 0; return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+
+/* ---------------- derived: deals, companies, fund ---------------- */
+function dealsArr(){ return Object.values(S.deals).sort((a,b) => (a.date||'').localeCompare(b.date||'')); }
+function calcDeal(d){
+  const amount = +d.amount || 0;
+  const own = d.postMoney > 0 ? amount / d.postMoney : 0;
+  const alive = (d.status || 'Active') === 'Active';
+  const valuation = isNum(d.currentValuation) ? +d.currentValuation : (+d.postMoney || 0);
+  const val = alive ? own * valuation : 0;
+  const dist = +d.distributions || 0;
+  const tv = val + dist;
+  const start = pd(d.date);
+  const yrs = start ? (TODAY - start)/YEAR : 0;
+  const flows = [{t:start, v:-amount}];
+  if (dist) flows.push({t: pd(d.exitDate) || TODAY, v: dist});
+  if (val) flows.push({t: TODAY, v: val});
+  return { own, val, dist, tv, gain: tv - amount, moic: amount ? tv/amount : null, yrs, irr: yrs >= 1 ? xirr(flows) : null, flows, alive, valuation };
+}
+let _cos = null;
+function companies(){
+  if (_cos) return _cos;
+  const map = new Map();
+  for (const d of dealsArr()){
+    const k = slug(d.company);
+    if (!map.has(k)) map.set(k, { key:k, name:d.company, deals:[] });
+    map.get(k).deals.push(d);
+  }
+  const out = [];
+  for (const c of map.values()){
+    let cost=0, val=0, dist=0, own=0, flows=[], firstDate=null;
+    for (const d of c.deals){
+      const x = calcDeal(d); d._c = x;
+      cost += +d.amount||0; val += x.val; dist += x.dist; if (x.alive) own += x.own; flows = flows.concat(x.flows);
+      const t = pd(d.date); if (t && (!firstDate || t < firstDate)) firstDate = t;
+    }
+    const last = c.deals[c.deals.length-1];
+    const first = c.deals[0];
+    const alive = c.deals.some(d => (d.status||'Active') === 'Active');
+    const status = alive ? 'Active' : (c.deals.some(d => d.status === 'Exited') ? 'Exited' : 'Dead');
+    const liveDeals = c.deals.filter(d => (d.status||'Active') === 'Active');
+    const latestLive = liveDeals[liveDeals.length-1] || last;
+    const valuation = isNum(latestLive.currentValuation) ? +latestLive.currentValuation : +latestLive.postMoney || 0;
+    const markDates = Object.values(S.marks).filter(m => slug(m.company) === c.key).map(m => m.date);
+    const lastMark = [...c.deals.map(d => d.valuationDate), ...c.deals.map(d => d.date), ...markDates].filter(Boolean).sort().pop();
+    const yrs = firstDate ? (TODAY - firstDate)/YEAR : 0;
+    out.push({
+      ...c, cost, val, dist, tv: val+dist, gain: val+dist-cost, moic: cost ? (val+dist)/cost : null,
+      own, flows, irr: yrs >= 1 ? xirr(flows) : null, yrs, status, alive,
+      stage: latestLive.currentStage || latestLive.round || 'Seed',
+      industry: first.industry, url: first.url || '', location: first.location, source: first.source,
+      entryDate: first.date, entryPost: +first.postMoney || null, valuation, lastMark,
+      checks: c.deals.length, ur: first.ur
+    });
+  }
+  _cos = out;
+  return out;
+}
+function fundStats(cos){
+  cos = cos || companies();
+  const PI = cos.reduce((s,c)=>s+c.cost,0), D = cos.reduce((s,c)=>s+c.dist,0), NAV = cos.reduce((s,c)=>s+c.val,0);
+  const flows = cos.flatMap(c => c.flows);
+  return {
+    PI, D, NAV, TV: NAV + D, gain: NAV + D - PI,
+    TVPI: PI ? (NAV+D)/PI : null, DPI: PI ? D/PI : null, RVPI: PI ? NAV/PI : null,
+    irr: xirr(flows), n: cos.length, active: cos.filter(c=>c.alive).length,
+    dead: cos.filter(c=>c.status==='Dead').length, exited: cos.filter(c=>c.status==='Exited').length,
+    up: cos.filter(c=>c.alive && c.moic > 1.001).length, flat: cos.filter(c=>c.alive && Math.abs(c.moic-1) <= .001).length,
+    below: cos.filter(c=>c.moic < .999).reduce((s,c)=>s+c.cost,0), checks: dealsArr().length
+  };
+}
+
+/* ---------------- projections ---------------- */
+function stageKey(s){
+  s = String(s||'').toLowerCase();
+  if (s.includes('pre')) return 'Pre-Seed';
+  if (s.includes('seed')) return 'Seed';
+  if (/series a\b|^a$/.test(s)) return 'Series A';
+  if (/series b\b/.test(s)) return 'Series B';
+  if (/series c\b/.test(s)) return 'Series C';
+  if (/series [d-z]|growth|late|public|ipo/.test(s)) return 'Series D+';
+  return 'Seed';
+}
+function assumptions(c){
+  const def = S.settings.stageDefaults[stageKey(c.stage)] || S.settings.stageDefaults.Seed;
+  const o = S.proj[c.key] || {};
+  return {
+    p: isNum(o.p) ? +o.p : def.p,
+    exitVal: isNum(o.exitVal) ? +o.exitVal : def.mult * c.valuation,
+    dil: isNum(o.dil) ? +o.dil : def.dil,
+    years: isNum(o.years) ? +o.years : def.years,
+    rec: isNum(o.rec) ? +o.rec : def.rec,
+    def, o
+  };
+}
+function scenarioById(id){ return S.scenarios.find(s => s.id === id) || DEFAULT_SCENARIOS[1]; }
+function projectCompany(c, sc, tw){
+  const a = assumptions(c);
+  sc = sc || DEFAULT_SCENARIOS[1]; tw = tw || {};
+  let p = clamp(a.p * sc.pMult * (tw.pMult ?? 1), 0, 1);
+  if (tw.p !== undefined) p = tw.p;
+  const exitVal = a.exitVal * sc.exitMult * (tw.exitMult ?? 1);
+  const dil = clamp(a.dil + (sc.dilAdd + (tw.dilAdd ?? 0))/100, 0, .95);
+  const years = Math.max(.25, a.years + sc.delay + (tw.delay ?? 0));
+  const rec = clamp(a.rec * (sc.recMult ?? 1), 0, 1);
+  const success = c.own * (1 - dil) * exitVal;
+  const down = rec * c.val;
+  const ev = p * success + (1 - p) * down;
+  const t = new Date(+TODAY + years*YEAR);
+  return { c, p, exitVal, dil, years, rec, success, down, ev, t, a };
+}
+function projectPortfolio(scId, twFn){
+  const sc = typeof scId === 'object' ? scId : scenarioById(scId);
+  const cos = companies();
+  const f = fundStats(cos);
+  const rows = cos.filter(c => c.alive).map(c => projectCompany(c, sc, twFn ? twFn(c) : null));
+  const EV = f.D + rows.reduce((s,r)=>s+r.ev,0);
+  const flows = [];
+  for (const d of dealsArr()){ flows.push({t:pd(d.date), v:-(+d.amount||0)}); if (+d.distributions) flows.push({t:pd(d.exitDate)||TODAY, v:+d.distributions}); }
+  for (const r of rows) flows.push({t:r.t, v:r.ev});
+  return { rows, EV, moic: f.PI ? EV/f.PI : null, irr: xirr(flows), f, sc };
+}
+function monteCarlo(scId, n=4000, seed=7){
+  const P = projectPortfolio(scId);
+  const R = rng(seed), sig = 0.9;
+  const out = new Float64Array(n);
+  const base = P.f.D;
+  for (let i=0;i<n;i++){
+    let tot = base;
+    for (const r of P.rows){
+      if (R() < r.p){
+        const u1 = Math.max(R(), 1e-12), u2 = R();
+        const z = Math.sqrt(-2*Math.log(u1)) * Math.cos(2*Math.PI*u2);
+        tot += r.success * Math.exp(sig*z - sig*sig/2);
+      } else tot += r.down;
+    }
+    out[i] = P.f.PI ? tot / P.f.PI : 0;
+  }
+  const sorted = Array.from(out).sort((a,b)=>a-b);
+  const q = x => sorted[Math.min(n-1, Math.floor(x*n))];
+  const mean = sorted.reduce((s,v)=>s+v,0)/n;
+  const share = th => sorted.filter(v => v >= th).length / n;
+  return { sorted, n, p10:q(.1), p25:q(.25), p50:q(.5), p75:q(.75), p90:q(.9), mean, pLoss: 1-share(1), p2:share(2), p3:share(3), p5:share(5), p10x:share(10), P };
+}
+
+/* ---------------- persistence ---------------- */
+const LS_KEY = 'angel-fund-ledger-v1';
+const writeChains = {};
+function setStatus(text, kind){ const el = $('#status'); if (!el) return; el.className = 'status' + (kind ? ' ' + kind : ''); el.querySelector('span').textContent = text; }
+function savedLabel(){ return backend === 'db' ? 'Saved to your tracker' : (S.example ? 'Example data · not saved' : 'Saved in this browser'); }
+function saveLocal(){
+  try { localStorage.setItem(LS_KEY, JSON.stringify({deals:S.example ? {} : S.deals, marks:S.marks, proj:S.proj, notes:S.notes, pipeline:S.pipeline, settings:S.settings, scenarios:S.scenarios})); setStatus(savedLabel()); }
+  catch(e){ setStatus('Could not save in this browser', 'err'); }
+}
+function strip(o){ const r = {}; for (const [k,v] of Object.entries(o)) if (!k.startsWith('_') && v !== undefined) r[k] = v; return r; }
+function queue(key, fn){
+  const prev = writeChains[key] || Promise.resolve();
+  const next = prev.then(fn, fn);
+  writeChains[key] = next.catch(()=>{});
+  return next;
+}
+async function dbWrite(path, fn){
+  setStatus('Saving…', 'busy');
+  try { await queue(path, fn); setStatus(savedLabel()); }
+  catch(e){ setStatus(e && e.code === 'invalid_argument' ? 'You have view-only access' : 'Save failed · ' + (e && e.message || 'try again'), 'err'); }
+}
+function put(coll, obj){
+  _dv++; _cos = null;
+  if (S.example && coll === 'deals' && !String(obj.id).startsWith('ex')){ S.deals = {}; S.example = false; }
+  S[coll][obj.id] = obj; render();
+  if (backend === 'db') dbWrite(COLLS[coll] + '/' + obj.id, () => db.collection(COLLS[coll]).doc(obj.id).set(strip(obj)));
+  else saveLocal();
+}
+function del(coll, id){
+  _dv++; _cos = null;
+  delete S[coll][id]; render();
+  if (backend === 'db') dbWrite(COLLS[coll] + '/' + id, () => db.collection(COLLS[coll]).doc(id).delete());
+  else saveLocal();
+}
+function putConfig(){
+  _dv++; _cos = null;
+  render();
+  if (backend === 'db'){
+    dbWrite('config/settings', () => db.doc('config/settings').set(clone(S.settings)));
+    dbWrite('config/scenarios', () => db.doc('config/scenarios').set({list: clone(S.scenarios)}));
+  } else saveLocal();
+}
+async function replaceAll(data){
+  const colls = Object.keys(COLLS);
+  if (backend === 'db'){
+    setStatus('Saving…','busy');
+    try {
+      for (const c of colls){ for (const id of Object.keys(S[c])) await db.collection(COLLS[c]).doc(id).delete(); }
+      for (const c of colls){ for (const [id,o] of Object.entries(data[c]||{})) await db.collection(COLLS[c]).doc(id).set(strip({...o, id})); }
+      if (data.settings) { S.settings = {...clone(DEFAULT_SETTINGS), ...data.settings}; await db.doc('config/settings').set(clone(S.settings)); }
+      if (data.scenarios) { S.scenarios = data.scenarios; await db.doc('config/scenarios').set({list: clone(S.scenarios)}); }
+      setStatus(savedLabel());
+    } catch(e){ setStatus('Import failed · ' + (e.message||''), 'err'); }
+  } else {
+    for (const c of colls) S[c] = data[c] || {};
+    if (data.settings) S.settings = {...clone(DEFAULT_SETTINGS), ...data.settings};
+    if (data.scenarios) S.scenarios = data.scenarios;
+    S.example = false; saveLocal(); render();
+  }
+}
+async function initStore(){
+  let ns = null;
+  try { if (window.claude && typeof window.claude.use === 'function') ns = await window.claude.use('db'); } catch(e){ ns = null; }
+  try { if (window.claude && typeof window.claude.use === 'function') downloads = await window.claude.use('downloads'); } catch(e){ downloads = null; }
+  if (ns){
+    db = ns; backend = 'db';
+    let pending = new Set([...Object.keys(COLLS), 'settings', 'scenarios']);
+    const done = k => { if (pending.delete(k) && pending.size === 0){ ready = true; setStatus(savedLabel()); } scheduleRender(); };
+    for (const [k, path] of Object.entries(COLLS)){
+      db.collection(path).onSnapshot(snap => {
+        const m = {}; snap.docs.forEach(d => { m[d.id] = {...d.data(), id:d.id}; }); S[k] = m; _dv++; _cos = null; done(k);
+      }, err => { setStatus('Live sync stopped · reload the page', 'err'); done(k); });
+    }
+    db.doc('config/settings').onSnapshot(s => { if (s.exists) S.settings = {...clone(DEFAULT_SETTINGS), ...s.data(), stageDefaults: {...clone(DEFAULT_SETTINGS.stageDefaults), ...(s.data().stageDefaults||{})}}; done('settings'); }, () => done('settings'));
+    db.doc('config/scenarios').onSnapshot(s => { if (s.exists && Array.isArray(s.data().list)) S.scenarios = s.data().list.map(x => ({...x})); done('scenarios'); }, () => done('scenarios'));
+    setTimeout(() => { if (!ready){ ready = true; scheduleRender(); } }, 8000);
+  } else {
+    backend = 'local';
+    let raw = null; try { raw = localStorage.getItem(LS_KEY); } catch(e){}
+    if (raw){ try { const d = JSON.parse(raw); for (const k of Object.keys(COLLS)) S[k] = d[k] || {}; S.settings = {...clone(DEFAULT_SETTINGS), ...(d.settings||{})}; if (d.scenarios) S.scenarios = d.scenarios; } catch(e){} }
+    if (!Object.keys(S.deals).length) loadExample();
+    ready = true; setStatus(savedLabel()); render();
+  }
+}
+function loadExample(){
+  // Fictional companies used only when no portfolio has been saved yet.
+  const ex = [
+    ['Northwind Robotics','Deep Tech / Hardware','2021-06-10','Pre-Seed','SAFE',6e6,5000,'Series A',38e6,'2024-09-01','Active',0],
+    ['Tidepool Health','Healthcare','2021-11-02','Seed','SAFE',12e6,5000,'Series B',140e6,'2025-06-01','Active',0],
+    ['Ledgerly','Fintech','2022-04-19','Seed','Priced Round',18e6,4000,'Seed',18e6,'','Dead',0],
+    ['Brightside AI','AI / ML','2023-02-27','Pre-Seed','SAFE',9e6,3000,'Seed',30e6,'2025-02-01','Active',0],
+    ['Cartwheel','E-Commerce / Retail Tech','2023-08-14','Seed','SAFE',15e6,3000,'Seed',15e6,'','Exited',4800],
+    ['Solstice Grid','Climate / Clean Energy','2024-05-06','Series A','Priced Round',60e6,5000,'Series A',60e6,'','Active',0],
+    ['Brightside AI','AI / ML','2025-03-11','Seed','SAFE',30e6,2500,'Seed',30e6,'2025-02-01','Active',0],
+    ['Paperplane','AI / ML','2025-09-22','Seed','SAFE',20e6,3000,'Seed',20e6,'','Active',0]
+  ];
+  S.deals = {};
+  ex.forEach((r,i) => { const id = 'ex' + i; S.deals[id] = {id, company:r[0], industry:r[1], date:r[2], round:r[3], instrument:r[4], postMoney:r[5], amount:r[6], currentStage:r[7], currentValuation:r[8], valuationDate:r[9], status:r[10], distributions:r[11], exitDate: r[10]==='Exited' ? '2025-10-01' : '', followOn: i===6, source: i%2 ? 'Syndicate' : 'Direct', location:'Example', ur:'Unknown'}; });
+  S.marks = {}; S.proj = {};
+  S.example = true;
+}
+
+/* ---------------- charts ---------------- */
+let charts = [];
+function chartSlot(fn, h){ const id = 'ch' + charts.length; charts.push({id, fn, h}); return `<div class="chart" id="${id}" style="height:${h}px"></div>`; }
+function drawCharts(){ for (const c of charts){ const el = document.getElementById(c.id); if (el && el.clientWidth) c.fn(el, el.clientWidth, c.h); } }
+function barPath(x, y, w, h, r){ r = Math.min(r, w/2, Math.max(h,0)); if (h <= 0) return ''; return `M${x},${y+h}V${y+r}Q${x},${y} ${x+r},${y}H${x+w-r}Q${x+w},${y} ${x+w},${y+r}V${y+h}Z`; }
+
+function lineChart(el, W, H, o){
+  const pad = {l:62, r:18, t:10, b:26};
+  const all = o.series.flatMap(s => s.pts);
+  if (!all.length){ el.innerHTML = '<div class="empty">No data yet.</div>'; return; }
+  const x0 = Math.min(...all.map(p=>+p.x)), x1 = Math.max(...all.map(p=>+p.x)) || x0+1;
+  const ymax = niceMax(Math.max(...all.map(p=>p.y)) * 1.05);
+  const X = t => pad.l + (W-pad.l-pad.r) * ((+t - x0) / Math.max(1, x1 - x0));
+  const Y = v => pad.t + (H-pad.t-pad.b) * (1 - v/ymax);
+  let g = '';
+  for (const t of ticks(ymax, 4)) g += `<line class="grid-l" x1="${pad.l}" x2="${W-pad.r}" y1="${Y(t)}" y2="${Y(t)}"/><text x="${pad.l-8}" y="${Y(t)+4}" text-anchor="end">${o.yFmt(t)}</text>`;
+  const y0 = new Date(x0).getFullYear(), y1 = new Date(x1).getFullYear();
+  const every = Math.max(1, Math.ceil((y1-y0+1) / Math.max(2, Math.floor((W-pad.l)/70))));
+  for (let y = y0 + 1; y <= y1; y += every){ const xx = X(new Date(y,0,1)); if (xx > pad.l+10 && xx < W-pad.r-10) g += `<line class="axis-l" x1="${xx}" x2="${xx}" y1="${H-pad.b}" y2="${H-pad.b+4}"/><text x="${xx}" y="${H-8}" text-anchor="middle">${y}</text>`; }
+  g += `<line class="axis-l" x1="${pad.l}" x2="${W-pad.r}" y1="${H-pad.b}" y2="${H-pad.b}"/>`;
+  for (const s of o.series){
+    const d = s.pts.map((p,i) => (i?'L':'M') + X(p.x).toFixed(1) + ',' + Y(p.y).toFixed(1)).join('');
+    if (s.area) g += `<path d="${d}L${X(s.pts[s.pts.length-1].x)},${Y(0)}L${X(s.pts[0].x)},${Y(0)}Z" fill="${s.color}" opacity=".12"/>`;
+    g += `<path d="${d}" fill="none" stroke="${s.color}" stroke-width="2" stroke-linejoin="round" ${s.dash?'stroke-dasharray="5 4"':''}/>`;
+    if (s.dots) s.pts.forEach(p => { g += `<circle cx="${X(p.x)}" cy="${Y(p.y)}" r="4" fill="${s.color}" stroke="var(--surface)" stroke-width="2" data-tip="${esc(p.tip||'')}"/>`; });
+    const lp = s.pts[s.pts.length-1];
+    g += `<circle cx="${X(lp.x)}" cy="${Y(lp.y)}" r="4.5" fill="${s.color}" stroke="var(--surface)" stroke-width="2"/>`;
+  }
+  if (!o.noHover) g += `<line id="${el.id}-x" x1="0" x2="0" y1="${pad.t}" y2="${H-pad.b}" stroke="var(--ink-3)" stroke-width="1" opacity="0"/><rect x="${pad.l}" y="${pad.t}" width="${W-pad.l-pad.r}" height="${H-pad.t-pad.b}" fill="transparent" class="hov"/>`;
+  el.innerHTML = `<svg width="${W}" height="${H}" role="img" aria-label="${esc(o.label||'Line chart')}">${g}</svg>`;
+  if (o.noHover) return;
+  const hov = el.querySelector('.hov'), xl = document.getElementById(el.id + '-x');
+  const xs = [...new Set(all.map(p=>+p.x))].sort((a,b)=>a-b);
+  hov.addEventListener('mousemove', ev => {
+    const r = el.getBoundingClientRect(); const mx = ev.clientX - r.left;
+    let best = xs[0]; for (const t of xs) if (Math.abs(X(t)-mx) < Math.abs(X(best)-mx)) best = t;
+    xl.setAttribute('x1', X(best)); xl.setAttribute('x2', X(best)); xl.setAttribute('opacity', .6);
+    const rows = o.series.map(s => { let p = null; for (const q of s.pts) if (+q.x <= best) p = q; return p ? `<div><span style="color:${s.color}">■</span> ${esc(s.name)}: <b>${o.yFmt(p.y, true)}</b></div>` : ''; }).join('');
+    showTip(`<div class="muted" style="color:inherit;opacity:.75">${new Date(best).toLocaleDateString('en-US',{month:'short',year:'numeric'})}</div>${rows}`, ev.clientX, ev.clientY);
+  });
+  hov.addEventListener('mouseleave', () => { xl.setAttribute('opacity', 0); hideTip(); });
+}
+function colChart(el, W, H, o){
+  const pad = {l:58, r:12, t:12, b:28};
+  const n = o.cats.length; if (!n){ el.innerHTML = '<div class="empty">No data yet.</div>'; return; }
+  const totals = o.cats.map((_,i) => o.stacked ? o.series.reduce((s,se)=>s+(se.vals[i]||0),0) : Math.max(...o.series.map(se=>se.vals[i]||0)));
+  const ymax = niceMax(Math.max(...totals, o.ref ? o.ref.v : 0) * 1.08);
+  const Y = v => pad.t + (H-pad.t-pad.b) * (1 - v/ymax);
+  const bw = (W-pad.l-pad.r) / n, gap = Math.min(bw*.3, 14);
+  let g = '';
+  for (const t of ticks(ymax, 4)) g += `<line class="grid-l" x1="${pad.l}" x2="${W-pad.r}" y1="${Y(t)}" y2="${Y(t)}"/><text x="${pad.l-8}" y="${Y(t)+4}" text-anchor="end">${o.yFmt(t)}</text>`;
+  const labelEvery = Math.max(1, Math.ceil(n / Math.max(1, Math.floor((W-pad.l)/(o.labelW||44)))));
+  o.cats.forEach((c, i) => {
+    const x = pad.l + i*bw + gap/2, w = bw - gap;
+    if (o.stacked){
+      let acc = 0; const segs = o.series.map(se => ({se, v: se.vals[i]||0})).filter(s => s.v > 0);
+      segs.forEach((s, j) => {
+        const y = Y(acc + s.v), h = Y(acc) - Y(acc + s.v) - (j ? 2 : 0);
+        const top = j === segs.length - 1;
+        const tip = `<b>${esc(c)}</b><br>${esc(s.se.name)}: ${o.yFmt(s.v, true)}`;
+        g += top ? `<path d="${barPath(x, y, w, h, 4)}" fill="${s.se.color}" data-tip="${esc(tip)}"/>` : `<rect x="${x}" y="${y}" width="${w}" height="${Math.max(0,h)}" fill="${s.se.color}" data-tip="${esc(tip)}"/>`;
+        acc += s.v;
+      });
+    } else {
+      const sw = (w - (o.series.length-1)*2) / o.series.length;
+      o.series.forEach((se, j) => { const v = se.vals[i]||0; const tip = `<b>${esc(c)}</b><br>${esc(se.name)}: ${o.yFmt(v, true)}${o.tipExtra ? o.tipExtra(i) : ''}`; g += `<path d="${barPath(x + j*(sw+2), Y(v), sw, Y(0)-Y(v), 4)}" fill="${se.color}" data-tip="${esc(tip)}"/>`; if (v === 0) g += `<rect x="${x+j*(sw+2)}" y="${pad.t}" width="${sw}" height="${H-pad.t-pad.b}" fill="transparent" data-tip="${esc(tip)}"/>`; });
+    }
+    if (i % labelEvery === 0) g += `<text x="${x + w/2}" y="${H-9}" text-anchor="middle">${esc(c)}</text>`;
+  });
+  if (o.ref){ g += `<line x1="${pad.l}" x2="${W-pad.r}" y1="${Y(o.ref.v)}" y2="${Y(o.ref.v)}" stroke="var(--ink-2)" stroke-dasharray="4 4"/><text x="${W-pad.r}" y="${Y(o.ref.v)-5}" text-anchor="end" style="fill:var(--ink-2)">${esc(o.ref.label)}</text>`; }
+  g += `<line class="axis-l" x1="${pad.l}" x2="${W-pad.r}" y1="${Y(0)}" y2="${Y(0)}"/>`;
+  el.innerHTML = `<svg width="${W}" height="${H}" role="img" aria-label="${esc(o.label||'Column chart')}">${g}</svg>`;
+}
+function barList(rows, o={}){
+  if (!rows.length) return '<div class="empty">Nothing to show yet.</div>';
+  const max = Math.max(...rows.map(r => Math.max(r.a||0, r.b||0))) || 1;
+  return `<div class="bars">${rows.map(r => {
+    const tip = o.tip ? o.tip(r) : '';
+    return `<div class="bar-row" data-tip="${esc(tip)}"><span class="name" title="${esc(r.label)}">${esc(r.label)}</span><div class="bar-track">${o.two ? `<div class="b cost" style="width:${(r.a/max*100).toFixed(2)}%"></div><div class="b val" style="width:${((r.b||0)/max*100).toFixed(2)}%"></div>` : `<div class="b one" style="width:${(r.a/max*100).toFixed(2)}%;${o.color?'background:'+o.color:''}"></div>`}</div><span class="v">${r.v}</span></div>`;
+  }).join('')}</div>`;
+}
+
+/* tooltip */
+const tip = $('#tip');
+function showTip(html, x, y){ tip.innerHTML = html; tip.classList.add('on'); const r = tip.getBoundingClientRect(); let L = x + 14, T = y + 14; if (L + r.width > innerWidth - 8) L = x - r.width - 14; if (T + r.height > innerHeight - 8) T = y - r.height - 14; tip.style.left = Math.max(8,L) + 'px'; tip.style.top = Math.max(8,T) + 'px'; }
+function hideTip(){ tip.classList.remove('on'); }
+document.addEventListener('mouseover', e => { const t = e.target.closest && e.target.closest('[data-tip]'); if (t && t.getAttribute('data-tip')) showTip(t.getAttribute('data-tip'), e.clientX, e.clientY); });
+document.addEventListener('mousemove', e => { const t = e.target.closest && e.target.closest('[data-tip]'); if (t && t.getAttribute('data-tip')) showTip(t.getAttribute('data-tip'), e.clientX, e.clientY); else if (!(e.target.classList && e.target.classList.contains('hov'))) hideTip(); });
+
+/* ---------------- rendering ---------------- */
+let renderQueued = false;
+function scheduleRender(){ if (renderQueued) return; renderQueued = true; requestAnimationFrame(() => { renderQueued = false; render(); }); }
+function renderTabs(){
+  $('#tabs').innerHTML = TABS.map(([k,l]) => `<button class="tab" role="tab" data-tab="${k}" aria-selected="${UI.tab===k}">${l}</button>`).join('');
+}
+function render(){
+  if (!ready){ return; }
+  _cos = null;
+  $('#fundName').textContent = S.settings.fundName || 'Angel Fund Ledger';
+  renderTabs();
+  const active = document.activeElement; const focusId = active && active.id; const selStart = active && active.selectionStart;
+  charts = [];
+  const v = VIEWS[UI.tab] || VIEWS.dashboard;
+  let banner = '';
+  if (S.example) banner = `<div class="banner"><b>Example data.</b> These companies are fictional. Import your spreadsheet (Data ▾ → Import) or add an investment to start your own ledger.<button class="btn sm" data-act="clear-example">Start empty</button></div>`;
+  $('#view').innerHTML = `<div class="view">${banner}${v()}</div>`;
+  drawCharts();
+  if (focusId){ const el = document.getElementById(focusId); if (el && el !== document.activeElement){ el.focus(); try { if (selStart != null) el.setSelectionRange(selStart, selStart); } catch(e){} } }
+}
+let rz; addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(drawCharts, 120); });
+
+/* ======== DASHBOARD ======== */
+function valueHistory(){
+  // Company valuation timeline from entry post-money, marks and dated current valuations.
+  const deals = dealsArr().filter(d => pd(d.date)); if (!deals.length) return {paid:[], total:[]};
+  const tl = {};
+  const addPt = (co, t, v) => { if (!t || !isNum(v) || v <= 0) return; (tl[slug(co)] = tl[slug(co)] || []).push({t:+t, v:+v}); };
+  for (const d of deals){ addPt(d.company, pd(d.date), d.postMoney); if (d.valuationDate) addPt(d.company, pd(d.valuationDate), d.currentValuation); }
+  for (const m of Object.values(S.marks)) addPt(m.company, pd(m.date), m.valuation);
+  Object.values(tl).forEach(a => a.sort((x,y)=>x.t-y.t));
+  const start = pd(deals[0].date); const pts = [];
+  for (let t = new Date(start.getFullYear(), start.getMonth(), 1); t < TODAY; t = new Date(t.getFullYear(), t.getMonth()+1, 1)) pts.push(t < start ? start : t);
+  pts.push(TODAY);
+  const paid = [], total = [];
+  for (const t of pts){
+    let pi = 0, v = 0;
+    for (const d of deals){
+      const dt = pd(d.date); if (dt > t) continue;
+      pi += +d.amount || 0;
+      const endT = pd(d.exitDate) || (d.status === 'Dead' ? pd(d.valuationDate) : null);
+      if ((d.status || 'Active') !== 'Active' && endT && endT <= t){ v += +d.distributions || 0; continue; }
+      const own = d.postMoney > 0 ? d.amount / d.postMoney : 0;
+      v += own > 0 ? own * valAt(tl[slug(d.company)], t, d.postMoney) : (+d.amount || 0);
+    }
+    paid.push({x:t, y:pi}); total.push({x:t, y:v});
+  }
+  total[total.length-1].y = fundStats().TV;
+  return {paid, total};
+}
+function valAt(arr, t, fallback){ let v = +fallback || 0; if (arr) for (const p of arr) if (p.t <= +t) v = p.v; return v; }
+function dataChecks(cos){
+  const out = [];
+  for (const d of dealsArr()){
+    if (isNum(d.preMoney) && isNum(d.postMoney) && +d.postMoney < +d.preMoney) out.push({bad:true, t:`<b>${esc(d.company)}</b> (${fmtM(d.date)}): post-money ${big(d.postMoney)} is below pre-money ${big(d.preMoney)}. Implied value uses post-money, so check which is right.`, id:d.id});
+    if ((d.status||'Active') === 'Active' && !(+d.postMoney > 0)) out.push({bad:true, t:`<b>${esc(d.company)}</b> (${fmtM(d.date)}) has no post-money or cap, so ownership and value can't be computed.`, id:d.id});
+  }
+  for (const c of cos){
+    const vals = [...new Set(c.deals.filter(d => (d.status||'Active')==='Active').map(d => +d.currentValuation).filter(v => v > 0))];
+    if (vals.length > 1) out.push({t:`<b>${esc(c.name)}</b> checks carry different current valuations (${vals.map(big).join(' vs ')}). Use Update valuation to mark the company once.`, co:c.key});
+  }
+  return out;
+}
+function staleList(cos){
+  const lim = (S.settings.staleMonths || 12) * 30.44 * DAY;
+  return cos.filter(c => c.alive && c.lastMark && (TODAY - pd(c.lastMark)) > lim).sort((a,b) => a.lastMark.localeCompare(b.lastMark));
+}
+VIEWS.dashboard = () => {
+  const cos = companies(); const f = fundStats(cos);
+  if (!cos.length) return emptyState();
+  const irrTxt = isNum(f.irr) ? pct(f.irr) : '—';
+  const kpis = `<div class="kpis">
+    <div class="kpi"><span class="l">Paid-in capital</span><span class="v">${moneyFull(f.PI)}</span><span class="s">${f.checks} checks · ${f.n} companies</span></div>
+    <div class="kpi"><span class="l">Net asset value</span><span class="v">${money(f.NAV)}</span><span class="s">Implied from latest marks</span></div>
+    <div class="kpi"><span class="l">Total value</span><span class="v">${money(f.TV)}</span><span class="s ${cls(f.gain)}">${signed(f.gain)} gain</span></div>
+    <div class="kpi"><span class="l">TVPI</span><span class="v">${mult(f.TVPI)}</span><span class="s">DPI ${mult(f.DPI)} · RVPI ${mult(f.RVPI)}</span></div>
+    <div class="kpi"><span class="l">IRR (gross)</span><span class="v ${cls(f.irr)}">${irrTxt}</span><span class="s">Cash-flow weighted, to today</span></div>
+    <div class="kpi"><span class="l">Companies</span><span class="v">${f.active}<span class="muted" style="font-size:15px"> / ${f.n}</span></span><span class="s">${f.up} marked up · ${f.dead} dead${f.exited?` · ${f.exited} exited`:''}</span></div>
+  </div>`;
+  const hist = valueHistory();
+  const lc = chartSlot((el,W,H) => lineChart(el,W,H,{label:'Paid-in capital versus total value over time', yFmt:(v)=>big(v), series:[
+    {name:'Total value (NAV + distributions)', color:'var(--s1)', pts:hist.total, area:true},
+    {name:'Paid-in capital', color:'var(--s2)', pts:hist.paid}
+  ]}), 260);
+  const byVal = [...cos].sort((a,b) => b.tv - a.tv);
+  const top = byVal.slice(0, 12);
+  const rest = byVal.slice(12);
+  const rows = top.map(c => ({label:c.name, a:c.cost, b:c.tv, v: `${mult(c.moic)}`, c}));
+  if (rest.length) rows.push({label:`${rest.length} others`, a: rest.reduce((s,c)=>s+c.cost,0), b: rest.reduce((s,c)=>s+c.tv,0), v: mult(rest.reduce((s,c)=>s+c.tv,0)/rest.reduce((s,c)=>s+c.cost,0))});
+  const topShare = f.TV ? byVal.slice(0,3).reduce((s,c)=>s+c.tv,0) / f.TV : 0;
+  const winners = [...cos].filter(c=>c.alive).sort((a,b)=>b.moic-a.moic).slice(0,5);
+  const checks = dataChecks(cos), stale = staleList(cos);
+  return `
+  ${kpis}
+  <div class="grid g-main">
+    <section class="panel">
+      <div class="panel-head"><h3>Capital in vs value created</h3><span class="sub">Monthly, rebuilt from entry prices and marks</span></div>
+      <div class="legend"><span><i style="background:var(--s1)"></i>Total value (NAV + distributions)</span><span><i class="line" style="background:var(--s2)"></i>Paid-in capital</span></div>
+      ${lc}
+    </section>
+    <section class="panel">
+      <div class="panel-head"><h3>Power law check</h3></div>
+      <div class="list">
+        <div class="it"><span>Top 3 companies' share of value</span><b class="num">${pct(topShare,0)}</b></div>
+        <div class="it"><span>Capital in companies below cost</span><b class="num">${money(f.below)} <span class="muted">(${pct(f.PI? f.below/f.PI : 0,0)})</span></b></div>
+        <div class="it"><span>Marked up / flat / written off</span><b class="num">${f.up} / ${f.flat} / ${f.dead}</b></div>
+        <div class="it"><span>Average check</span><b class="num">${money(f.PI / Math.max(1,f.checks))}</b></div>
+      </div>
+      <h3 style="margin-top:6px">Top multiples</h3>
+      <div class="list">${winners.map(c => `<div class="it"><span><b>${esc(c.name)}</b> <span class="muted">${esc(c.stage)}</span></span><span class="num"><span class="up">${mult(c.moic)}</span> · ${money(c.tv)}</span></div>`).join('')}</div>
+    </section>
+  </div>
+  <div class="grid g-main">
+    <section class="panel">
+      <div class="panel-head"><h3>Cost vs value by company</h3><span class="sub">Sorted by total value</span></div>
+      <div class="legend"><span><i style="background:var(--cost)"></i>Cost</span><span><i style="background:var(--s1)"></i>Total value</span></div>
+      ${barList(rows, {two:true, tip: r => `<b>${esc(r.label)}</b><br>Cost ${moneyFull(r.a)}<br>Value ${moneyFull(r.b)}<br>Multiple ${r.v}`})}
+    </section>
+    <section class="panel">
+      <div class="panel-head"><h3>Needs attention</h3><span class="sub">${checks.length + stale.length} items</span></div>
+      <div>
+        ${checks.map(x => `<div class="flag"><span class="ic ${x.bad?'bad':''}">${x.bad?'×':'!'}</span><span>${x.t} ${x.id?`<button class="btn sm ghost" data-act="deal-edit" data-id="${esc(x.id)}">Fix</button>`:''}</span></div>`).join('')}
+        ${stale.length ? `<div class="flag"><span class="ic">!</span><span><b>${stale.length} stale ${stale.length===1?'mark':'marks'}</b>: no valuation update in ${S.settings.staleMonths} months. Click one to update it.<br>${stale.map(c => `<button class="btn sm ghost" style="padding:2px 6px" data-act="mark-new" data-co="${esc(c.name)}">${esc(c.name)} <span class="muted">${fmtM(c.lastMark)}</span></button>`).join(' ')}</span></div>` : ''}
+        ${!checks.length && !stale.length ? '<div class="empty">Everything is marked and consistent.</div>' : ''}
+      </div>
+    </section>
+  </div>`;
+};
+function emptyState(){
+  return `<section class="panel" style="padding:28px;align-items:flex-start">
+    <h2 style="margin:0;font:700 22px var(--cond)">Start your ledger</h2>
+    <p class="muted" style="margin:0;max-width:60ch">Add your first check, or import your tracker spreadsheet. In Google Sheets use File → Download → CSV, then choose Data ▾ → Import.</p>
+    <div class="toolbar"><button class="btn primary" data-act="deal-new">+ Add investment</button><button class="btn" data-act="import">Import CSV or backup</button><button class="btn" data-act="load-example">Load example data</button></div>
+  </section>`;
+}
+
+/* ======== HOLDINGS ======== */
+VIEWS.holdings = () => {
+  const H = UI.hold;
+  let cos = companies();
+  if (!cos.length) return emptyState();
+  const f = fundStats(cos);
+  const q = H.q.trim().toLowerCase();
+  cos = cos.filter(c => (H.status === 'all' || c.status === H.status) && (!q || [c.name, c.industry, c.location, c.source, c.stage].join(' ').toLowerCase().includes(q)));
+  const sorters = { value: (a,b)=>b.tv-a.tv, moic:(a,b)=>(b.moic||0)-(a.moic||0), date:(a,b)=>(b.entryDate||'').localeCompare(a.entryDate||''), name:(a,b)=>a.name.localeCompare(b.name), cost:(a,b)=>b.cost-a.cost };
+  cos.sort(sorters[H.sort] || sorters.value);
+  const irrCell = (v, yrs) => yrs < 1 ? '<span class="muted" data-tip="IRR is not meaningful for holdings under a year">n/m</span>' : `<span class="${cls(v)}">${pct(v)}</span>`;
+  const dealRow = (d, child) => { const x = d._c || calcDeal(d); return `<tr class="click ${child?'child':''}" data-act="deal-edit" data-id="${esc(d.id)}">
+      <td><div class="co">${child ? (d.followOn ? 'Follow-on' : 'Initial') : esc(d.company)}</div><div class="meta">${esc(d.industry||'')}</div></td>
+      <td>${esc(d.round||'—')}<div class="meta">${fmtD(d.date)} · ${esc(d.instrument||'')}</div></td>
+      <td class="r num">${big(d.postMoney)}</td>
+      <td class="r num">${moneyFull(d.amount)}</td>
+      <td class="r num">${ownPct(x.own)}</td>
+      <td class="r num">${big(x.valuation)}<div class="meta">${d.valuationDate ? fmtM(d.valuationDate) : 'at entry'}</div></td>
+      <td class="r num">${money(x.tv)}</td>
+      <td class="r num ${cls(x.gain)}">${signed(x.gain)}</td>
+      <td class="r num"><b>${mult(x.moic)}</b></td>
+      <td class="r num">${irrCell(x.irr, x.yrs)}</td>
+      <td><span class="pill ${esc(d.status||'Active')}">${esc(d.status||'Active')}</span></td>
+    </tr>`; };
+  let body = '';
+  for (const c of cos){
+    if (H.group && c.deals.length > 1){
+      body += `<tr class="click" data-act="mark-new" data-co="${esc(c.name)}" data-tip="Click to update this company's valuation">
+        <td><div class="co">${esc(c.name)} <span class="tag">${c.deals.length} checks</span></div><div class="meta">${esc(c.industry||'')}</div></td>
+        <td>${esc(c.stage)}<div class="meta">since ${fmtM(c.entryDate)}</div></td>
+        <td class="r num">${big(c.entryPost)}</td><td class="r num">${moneyFull(c.cost)}</td><td class="r num">${ownPct(c.own)}</td>
+        <td class="r num">${big(c.valuation)}</td><td class="r num">${money(c.tv)}</td><td class="r num ${cls(c.gain)}">${signed(c.gain)}</td>
+        <td class="r num"><b>${mult(c.moic)}</b></td><td class="r num">${irrCell(c.irr, c.yrs)}</td><td><span class="pill ${c.status}">${c.status}</span></td></tr>`;
+      body += c.deals.map(d => dealRow(d, true)).join('');
+    } else if (H.group) body += dealRow(c.deals[0], false);
+    else body += c.deals.map(d => dealRow(d, false)).join('');
+  }
+  const tot = cos.reduce((s,c)=>({cost:s.cost+c.cost, tv:s.tv+c.tv}), {cost:0, tv:0});
+  return `
+  <div class="section-head"><div><h2>Holdings</h2><p>Every check you've written. Click a row to edit it; click a multi-check company to post a new valuation for all its checks.</p></div>
+    <button class="btn primary" data-act="deal-new">+ Add investment</button></div>
+  <div class="toolbar">
+    <input type="search" id="hq" placeholder="Search company, sector, city, syndicate" value="${esc(H.q)}" data-f="hold.q">
+    <select id="hs" data-f="hold.status"><option value="all">All statuses</option>${['Active','Exited','Dead'].map(s=>`<option ${H.status===s?'selected':''}>${s}</option>`).join('')}</select>
+    <select id="hsort" data-f="hold.sort">${[['value','Sort: total value'],['moic','Sort: multiple'],['cost','Sort: cost'],['date','Sort: newest'],['name','Sort: name']].map(([k,l])=>`<option value="${k}" ${H.sort===k?'selected':''}>${l}</option>`).join('')}</select>
+    <span class="grow"></span>
+    <div class="seg"><button data-act="hold-group" data-v="1" aria-pressed="${H.group}">By company</button><button data-act="hold-group" data-v="0" aria-pressed="${!H.group}">By check</button></div>
+  </div>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Company</th><th>Round</th><th class="r">Entry post</th><th class="r">Invested</th><th class="r">Ownership</th><th class="r">Current val.</th><th class="r">Value</th><th class="r">Gain</th><th class="r">MOIC</th><th class="r">IRR</th><th>Status</th></tr></thead>
+    <tbody>${body || '<tr><td colspan="11" class="empty">No holdings match.</td></tr>'}</tbody>
+    <tfoot><tr><td>${cos.length} companies</td><td></td><td></td><td class="r num">${moneyFull(tot.cost)}</td><td></td><td></td><td class="r num">${money(tot.tv)}</td><td class="r num ${cls(tot.tv-tot.cost)}">${signed(tot.tv-tot.cost)}</td><td class="r num">${mult(tot.cost? tot.tv/tot.cost : null)}</td><td class="r num">${cos.length === f.n ? pct(f.irr) : ''}</td><td></td></tr></tfoot>
+  </table></div>`;
+};
+
+/* ======== MARKS ======== */
+VIEWS.marks = () => {
+  const cos = companies().filter(c => c.alive);
+  if (!cos.length) return emptyState();
+  if (!UI.mark || !cos.find(c => c.key === UI.mark)) UI.mark = [...cos].sort((a,b)=>b.tv-a.tv)[0].key;
+  const c = cos.find(x => x.key === UI.mark);
+  const events = [];
+  for (const d of c.deals) events.push({date:d.date, v:+d.postMoney, kind: d.followOn ? 'Follow-on check' : 'Your entry', note: `${d.round||''} ${d.instrument||''} · ${moneyFull(d.amount)} in`, id:d.id});
+  for (const m of Object.values(S.marks).filter(m => slug(m.company) === c.key)) events.push({date:m.date, v:+m.valuation, kind:m.round || 'Mark', note:m.note||'', mid:m.id});
+  const hasMark = events.some(e => e.mid);
+  if (!hasMark) for (const d of c.deals) if (d.valuationDate && +d.currentValuation !== +d.postMoney) events.push({date:d.valuationDate, v:+d.currentValuation, kind:'Current mark', note:'From holding record'});
+  events.sort((a,b) => (a.date||'').localeCompare(b.date||''));
+  const pts = events.filter(e => e.date && e.v > 0).map(e => ({x:pd(e.date), y:e.v, tip:`<b>${fmtD(e.date)}</b><br>${esc(e.kind)}: ${big(e.v)}`}));
+  if (pts.length) pts.push({x:TODAY, y:c.valuation, tip:`<b>Today</b><br>Carried at ${big(c.valuation)}`});
+  const lc = chartSlot((el,W,H) => lineChart(el,W,H,{label:`${c.name} valuation history`, noHover:true, yFmt:v=>big(v), series:[{name:'Valuation', color:'var(--s1)', pts, dots:true}]}), 220);
+  const stale = staleList(cos).map(x => x.key);
+  const list = [...cos].sort((a,b) => (a.lastMark||'').localeCompare(b.lastMark||'')).map(x => `<button class="it btn ghost" style="justify-content:space-between;width:100%;border-radius:6px;${x.key===c.key?'background:var(--accent-soft)':''}" data-act="mark-pick" data-k="${x.key}"><span style="text-align:left"><b>${esc(x.name)}</b><br><span class="muted" style="font-size:12px">last ${fmtM(x.lastMark)}${stale.includes(x.key)?' · <span style="color:var(--warn)">stale</span>':''}</span></span><span class="num ${cls(x.moic-1)}">${mult(x.entryPost ? x.valuation/x.entryPost : null)}</span></button>`).join('');
+  return `
+  <div class="section-head"><div><h2>Marks</h2><p>Your valuation log. Record each new round, 409A, secondary or write-down; every active check in that company re-marks at once. Oldest marks sit at the top so stale ones get attention.</p></div>
+    <button class="btn primary" data-act="mark-new" data-co="${esc(c.name)}">+ New mark for ${esc(c.name)}</button></div>
+  <div class="grid g-side">
+    <section class="panel" style="padding:8px;gap:2px;max-height:620px;overflow:auto"><div class="list">${list}</div></section>
+    <div class="view" style="gap:16px">
+      <section class="panel">
+        <div class="panel-head"><h3>${esc(c.name)} valuation</h3><span class="sub">Entry ${big(c.entryPost)} → now ${big(c.valuation)} · step-up ${mult(c.entryPost? c.valuation/c.entryPost : null)}</span></div>
+        ${lc}
+      </section>
+      <div class="tbl-wrap"><table><thead><tr><th>Date</th><th>Event</th><th class="r">Company valuation</th><th>Note</th><th></th></tr></thead><tbody>
+        ${events.map(e => `<tr><td class="num">${fmtD(e.date)}</td><td>${esc(e.kind)}</td><td class="r num">${big(e.v)}</td><td class="meta">${esc(e.note)}</td><td class="r">${e.mid?`<button class="btn sm ghost" data-act="mark-del" data-id="${esc(e.mid)}">Remove</button>`: e.id ? `<button class="btn sm ghost" data-act="deal-edit" data-id="${esc(e.id)}">Edit check</button>`:''}</td></tr>`).join('')}
+      </tbody></table></div>
+    </div>
+  </div>`;
+};
+
+/* ======== PROJECTIONS ======== */
+VIEWS.projections = () => {
+  const P = projectPortfolio('base');
+  if (!P.rows.length) return emptyState();
+  const f = P.f;
+  const sd = S.settings.stageDefaults;
+  const inp = (id, key, val, ph, kind) => `<input id="${id}" data-f="${key}" value="${val}" placeholder="${ph}" class="${val!==''?'set':''}" inputmode="decimal" aria-label="${kind}">`;
+  const rows = [...P.rows].sort((a,b)=>b.ev-a.ev);
+  const returners = rows.filter(r => r.success >= f.PI);
+  const byYear = {};
+  for (const r of P.rows){ const y = r.t.getFullYear(); byYear[y] = (byYear[y]||0) + r.ev; }
+  const yrs = Object.keys(byYear).sort();
+  const cc = chartSlot((el,W,H) => colChart(el,W,H,{label:'Expected distributions by year', cats:yrs, series:[{name:'Expected distributions', color:'var(--s1)', vals:yrs.map(y=>byYear[y])}], yFmt:v=>big(v)}), 220);
+  let cum = f.D; const cumPts = [];
+  for (const y of yrs){ cum += byYear[y]; cumPts.push({y, dpi: cum/f.PI}); }
+  return `
+  <div class="section-head"><div><h2>Projections</h2><p>An exit model for every live company. Each gets a probability of a successful exit, an exit valuation, dilution between now and exit, and timing. If it doesn't succeed, it returns a recovery share of today's value. Blank cells use the stage defaults below. Type a value to override it; clear it to go back.</p></div></div>
+  <div class="kpis">
+    <div class="kpi"><span class="l">Expected value</span><span class="v">${money(P.EV)}</span><span class="s">Probability-weighted, base case</span></div>
+    <div class="kpi"><span class="l">Expected MOIC</span><span class="v">${mult(P.moic)}</span><span class="s">vs ${mult(f.TVPI)} marked today</span></div>
+    <div class="kpi"><span class="l">Expected IRR</span><span class="v">${pct(P.irr)}</span><span class="s">On expected cash flows</span></div>
+    <div class="kpi"><span class="l">Fund returners</span><span class="v">${returners.length}</span><span class="s">Would return ${money(f.PI)} alone if they hit</span></div>
+    <div class="kpi"><span class="l">Expected gain</span><span class="v ${cls(P.EV-f.PI)}">${signed(P.EV - f.PI)}</span><span class="s">Over paid-in capital</span></div>
+    <div class="kpi"><span class="l">Last exit</span><span class="v">${yrs[yrs.length-1]||'—'}</span><span class="s">Weighted exit year ${(P.rows.reduce((s,r)=>s+r.ev*r.t.getFullYear(),0)/Math.max(1,P.rows.reduce((s,r)=>s+r.ev,0))).toFixed(0)}</span></div>
+  </div>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Company</th><th>Stage</th><th class="r">Value today</th><th class="r">P(success)</th><th class="r">Exit valuation</th><th class="r">Dilution to exit</th><th class="r">Years</th><th class="r">Recovery</th><th class="r">If it hits</th><th class="r">Expected</th><th class="r">Exp. MOIC</th><th class="r" data-tip="Exit valuation this company alone needs to return all paid-in capital">Exit to return fund</th></tr></thead>
+    <tbody>${rows.map(r => { const c = r.c, a = r.a, o = a.o, k = c.key; const need = c.own > 0 ? f.PI / (c.own * (1 - r.dil)) : null; return `<tr>
+      <td><div class="co">${esc(c.name)}</div><div class="meta">${moneyFull(c.cost)} in · ${ownPct(c.own)}</div></td>
+      <td><span class="tag">${esc(stageKey(c.stage))}</span></td>
+      <td class="r num">${money(c.val)}</td>
+      <td class="r">${inp('p-'+k+'-p', 'proj.'+k+'.p', isNum(o.p)? +(o.p*100).toFixed(1):'', (a.def.p*100).toFixed(0)+'%', 'Probability %')}</td>
+      <td class="r">${inp('p-'+k+'-e', 'proj.'+k+'.exitVal', isNum(o.exitVal)? big(o.exitVal).replace('$',''):'', big(a.def.mult*c.valuation), 'Exit valuation')}</td>
+      <td class="r">${inp('p-'+k+'-d', 'proj.'+k+'.dil', isNum(o.dil)? +(o.dil*100).toFixed(1):'', (a.def.dil*100).toFixed(0)+'%', 'Dilution %')}</td>
+      <td class="r">${inp('p-'+k+'-y', 'proj.'+k+'.years', isNum(o.years)? o.years:'', a.def.years, 'Years to exit')}</td>
+      <td class="r">${inp('p-'+k+'-r', 'proj.'+k+'.rec', isNum(o.rec)? +(o.rec*100).toFixed(1):'', (a.def.rec*100).toFixed(0)+'%', 'Recovery %')}</td>
+      <td class="r num">${money(r.success)}<div class="meta">${mult(c.cost ? r.success/c.cost : null)}</div></td>
+      <td class="r num"><b>${money(r.ev)}</b></td>
+      <td class="r num">${mult(c.cost ? r.ev/c.cost : null)}</td>
+      <td class="r num">${big(need)}${r.success >= f.PI ? ' <span class="tag acc">returner</span>' : ''}</td></tr>`; }).join('')}</tbody>
+  </table></div>
+  <div class="grid g2">
+    <section class="panel">
+      <div class="panel-head"><h3>Expected distributions by year</h3><span class="sub">Cumulative DPI reaches ${mult(cumPts.length ? cumPts[cumPts.length-1].dpi : f.DPI)}</span></div>
+      ${cc}
+    </section>
+    <section class="panel">
+      <div class="panel-head"><h3>Stage defaults</h3><span class="sub">Applied wherever a company cell is blank</span></div>
+      <div style="overflow-x:auto"><table>
+        <thead><tr><th>Stage</th><th class="r">P(success)</th><th class="r">Exit × current val.</th><th class="r">Dilution</th><th class="r">Years</th><th class="r">Recovery</th></tr></thead>
+        <tbody>${STAGES.map(s => { const d = sd[s]; const k = slug(s); return `<tr><td>${s}</td>
+          <td class="r"><input id="sd-${k}-p" data-f="sd.${s}.p" value="${+(d.p*100).toFixed(1)}" inputmode="decimal" aria-label="${s} probability %"></td>
+          <td class="r"><input id="sd-${k}-m" data-f="sd.${s}.mult" value="${d.mult}" inputmode="decimal" aria-label="${s} exit multiple"></td>
+          <td class="r"><input id="sd-${k}-d" data-f="sd.${s}.dil" value="${+(d.dil*100).toFixed(1)}" inputmode="decimal" aria-label="${s} dilution %"></td>
+          <td class="r"><input id="sd-${k}-y" data-f="sd.${s}.years" value="${d.years}" inputmode="decimal" aria-label="${s} years"></td>
+          <td class="r"><input id="sd-${k}-r" data-f="sd.${s}.rec" value="${+(d.rec*100).toFixed(1)}" inputmode="decimal" aria-label="${s} recovery %"></td></tr>`; }).join('')}</tbody>
+      </table></div>
+      <p class="note">Percent fields take whole numbers (20 = 20%). Exit valuations accept shorthand like 250m or 1.2b. The exit multiple applies to the company's current valuation.</p>
+    </section>
+  </div>`;
+};
+
+/* ======== SCENARIOS ======== */
+VIEWS.scenarios = () => {
+  const cos = companies(); if (!cos.length) return emptyState();
+  const results = S.scenarios.map(sc => ({sc, P: projectPortfolio(sc)}));
+  if (!UI.mc || UI.mc.id !== UI.scn || UI.mc.v !== dataVersion()) UI.mc = {id: UI.scn, v: dataVersion(), r: monteCarlo(UI.scn)};
+  const mc = UI.mc.r;
+  const bins = [0,.5,1,1.5,2,3,4,5,7.5,10,15,20,Infinity];
+  const labels = bins.slice(0,-1).map((b,i) => bins[i+1] === Infinity ? `${b}x+` : `${b}–${bins[i+1]}x`);
+  const counts = new Array(labels.length).fill(0);
+  for (const v of mc.sorted){ for (let i=0;i<labels.length;i++){ if (v >= bins[i] && v < bins[i+1]){ counts[i]++; break; } } }
+  const scName = scenarioById(UI.scn).name;
+  const hc = chartSlot((el,W,H) => colChart(el,W,H,{label:'Distribution of simulated portfolio multiples', labelW:52, cats:labels, series:[{name:'Share of simulations', color:'var(--s1)', vals:counts.map(c=>c/mc.n)}], yFmt:(v)=>pct(v,0)}), 240);
+  const fld = (sc, k, label, unit) => `<label class="field"><span>${label}</span><input id="sc-${sc.id}-${k}" data-f="scn.${sc.id}.${k}" value="${sc[k]}" inputmode="decimal" aria-label="${sc.name} ${label}"></label>`;
+  const best = Math.max(...results.map(r => r.P.moic || 0));
+  const bc = chartSlot((el,W,H) => colChart(el,W,H,{label:'Expected multiple by scenario', cats:results.map(r=>r.sc.name), series:[{name:'Expected MOIC', color:'var(--s1)', vals:results.map(r=>r.P.moic||0)}], ref:{v:results[0].P.f.TVPI||0, label:'Marked today '+mult(results[0].P.f.TVPI)}, yFmt:(v,full)=>full? mult(v) : v.toFixed(1)+'x'}), 200);
+  return `
+  <div class="section-head"><div><h2>Scenarios</h2><p>Three views of the whole book. Each scenario scales every company's projection: success odds (×), exit values (×), extra dilution in points, and timing shifts in years. Select a scenario to simulate it.</p></div>
+    <button class="btn" data-act="scn-reset">Reset scenarios</button></div>
+  <div class="scn">${results.map(({sc, P}) => `<section class="panel ${UI.scn===sc.id?'sel':''}">
+      <div class="panel-head"><h3>${esc(sc.name)} case</h3><button class="btn sm ${UI.scn===sc.id?'primary':''}" data-act="scn-pick" data-id="${sc.id}">${UI.scn===sc.id?'Simulating':'Simulate'}</button></div>
+      <div class="scn-fields">${fld(sc,'pMult','Success odds ×')}${fld(sc,'exitMult','Exit values ×')}${fld(sc,'dilAdd','Extra dilution (pts)')}${fld(sc,'delay','Timing shift (yrs)')}</div>
+      <div>
+        <div class="stat-line"><span>Expected value</span><b>${money(P.EV)}</b></div>
+        <div class="stat-line"><span>Expected MOIC</span><b>${mult(P.moic)}</b></div>
+        <div class="stat-line"><span>Expected IRR</span><b class="${cls(P.irr)}">${pct(P.irr)}</b></div>
+        <div class="stat-line"><span>Gain over paid-in</span><b class="${cls(P.EV-P.f.PI)}">${signed(P.EV-P.f.PI)}</b></div>
+      </div></section>`).join('')}</div>
+  <div class="grid g-main">
+    <section class="panel">
+      <div class="panel-head"><h3>Monte Carlo · ${esc(scName)} case</h3><span class="sub">${fN.format(mc.n)} simulated portfolios</span></div>
+      <p class="note" style="margin:0">Each run flips a weighted coin for every company. Winners exit at a random draw around their exit value (lognormal, σ 0.9); the rest return their recovery value. The spread shows how much of your result depends on luck.</p>
+      ${hc}
+    </section>
+    <section class="panel">
+      <div class="panel-head"><h3>Outcome odds</h3></div>
+      <div class="list">
+        <div class="it"><span>Median multiple (P50)</span><b class="num">${mult(mc.p50)}</b></div>
+        <div class="it"><span>Downside (P10) · upside (P90)</span><b class="num">${mult(mc.p10)} · ${mult(mc.p90)}</b></div>
+        <div class="it"><span>Mean multiple</span><b class="num">${mult(mc.mean)}</b></div>
+        <div class="it"><span>Chance of losing money</span><b class="num ${mc.pLoss>.2?'down':''}">${pct(mc.pLoss,0)}</b></div>
+        <div class="it"><span>Chance of 3x or better</span><b class="num">${pct(mc.p3,0)}</b></div>
+        <div class="it"><span>Chance of 5x or better</span><b class="num">${pct(mc.p5,0)}</b></div>
+        <div class="it"><span>Chance of 10x or better</span><b class="num">${pct(mc.p10x,0)}</b></div>
+      </div>
+      <h3>Expected MOIC by scenario</h3>
+      ${bc}
+    </section>
+  </div>`;
+};
+function dataVersion(){ return _dv; }
+
+/* ======== SENSITIVITY ======== */
+VIEWS.sensitivity = () => {
+  const cos = companies(); if (!cos.filter(c=>c.alive).length) return emptyState();
+  const base = projectPortfolio('base');
+  const exitM = [.25,.5,.75,1,1.5,2,3], pM = [.5,.75,1,1.25,1.5];
+  const cell = (v, center, span, fmt, isBase) => { if (!isNum(v)) return `<td>—</td>`; const d = clamp((v - center)/span, -1, 1); const w = Math.round(Math.abs(d)*100); const col = d >= 0 ? 'var(--div-pos)' : 'var(--div-neg)'; return `<td class="${w>55?'strong':''} ${isBase?'base':''}" style="background:color-mix(in oklab, ${col} ${w}%, var(--div-mid))" data-tip="${esc(fmt(v))}">${fmt(v)}</td>`; };
+  const t1 = exitM.map(em => pM.map(pm => projectPortfolio({...scenarioById('base'), pMult:pm, exitMult:em}).moic));
+  const center1 = base.f.TVPI || 1;
+  const dilA = [-10,0,10,20,30], delays = [-1,0,1,2,3];
+  const t2 = dilA.map(da => delays.map(dl => projectPortfolio({...scenarioById('base'), dilAdd:da, delay:dl}).irr));
+  // Tornado: portfolio expected MOIC if one company fails vs hits
+  const tor = base.rows.map(r => {
+    const lo = projectPortfolio('base', c => c.key === r.c.key ? {p:0} : null).moic;
+    const hi = projectPortfolio('base', c => c.key === r.c.key ? {p:1} : null).moic;
+    return {name:r.c.name, lo, hi, swing: hi - lo};
+  }).sort((a,b)=>b.swing-a.swing).slice(0,10);
+  const tmin = Math.min(...tor.map(t=>t.lo), base.moic), tmax = Math.max(...tor.map(t=>t.hi), base.moic);
+  const Xp = v => ((v - tmin) / Math.max(1e-9, tmax - tmin) * 100);
+  // Power law: only top N hit
+  const bySuccess = [...base.rows].sort((a,b)=>b.success-a.success);
+  const PI = base.f.PI;
+  const topN = [1,2,3,5].map(n => { const set = new Set(bySuccess.slice(0,n).map(r=>r.c.key)); const EV = base.f.D + bySuccess.reduce((s,r)=> s + (set.has(r.c.key) ? r.success : 0), 0); return {n, moic: EV/PI, names: bySuccess.slice(0,n).map(r=>r.c.name)}; });
+  return `
+  <div class="section-head"><div><h2>Sensitivity</h2><p>Which assumptions move your outcome, and by how much. All tables start from the base case, with its cell outlined. Blue is better than your current marked TVPI (${mult(center1)}); red is worse.</p></div></div>
+  <div class="grid g2">
+    <section class="panel">
+      <div class="panel-head"><h3>Expected MOIC</h3><span class="sub">Exit values × success odds</span></div>
+      <div style="overflow-x:auto"><table class="hm"><thead><tr><th class="rh axis-cap">Exit ×  ·  Odds ×</th>${pM.map(p=>`<th>${p}x</th>`).join('')}</tr></thead>
+      <tbody>${exitM.map((em,i) => `<tr><th class="rh">${em}x</th>${pM.map((pm,j) => cell(t1[i][j], center1, center1*1.5, mult, em===1 && pm===1)).join('')}</tr>`).join('')}</tbody></table></div>
+    </section>
+    <section class="panel">
+      <div class="panel-head"><h3>Expected IRR</h3><span class="sub">Extra dilution × exit timing</span></div>
+      <div style="overflow-x:auto"><table class="hm"><thead><tr><th class="rh axis-cap">Dilution · Delay</th>${delays.map(d=>`<th>${d>0?'+':''}${d} yr</th>`).join('')}</tr></thead>
+      <tbody>${dilA.map((da,i) => `<tr><th class="rh">${da>0?'+':''}${da} pts</th>${delays.map((dl,j) => cell(t2[i][j], base.irr||0, .3, v=>pct(v,1), da===0 && dl===0)).join('')}</tr>`).join('')}</tbody></table></div>
+    </section>
+  </div>
+  <div class="grid g-main">
+    <section class="panel">
+      <div class="panel-head"><h3>Swing by company</h3><span class="sub">Expected MOIC if a company fails (left) or hits (right)</span></div>
+      <div class="legend"><span><i style="background:var(--div-neg)"></i>If it fails</span><span><i style="background:var(--div-pos)"></i>If it hits</span><span><i class="line" style="background:var(--ink-3)"></i>Base ${mult(base.moic)}</span></div>
+      <div class="tor">${tor.map(t => `<div class="tor-row" data-tip="<b>${esc(t.name)}</b><br>Fails: ${mult(t.lo)}<br>Hits: ${mult(t.hi)}<br>Swing: ${(t.swing).toFixed(2)}x"><span class="name" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(t.name)}</span>
+        <div class="tor-track"><div class="lo" style="left:${Xp(t.lo)}%;width:${Math.max(.5, Xp(base.moic)-Xp(t.lo))}%"></div><div class="hi" style="left:${Xp(base.moic)}%;width:${Math.max(.5, Xp(t.hi)-Xp(base.moic))}%"></div><div class="mid" style="left:${Xp(base.moic)}%"></div></div>
+        <span class="num" style="text-align:right">${mult(t.lo)} – ${mult(t.hi)}</span></div>`).join('')}</div>
+    </section>
+    <section class="panel">
+      <div class="panel-head"><h3>Power law test</h3></div>
+      <p class="note" style="margin:0">What you'd make if only your N biggest potential outcomes hit and every other live company went to zero.</p>
+      <div class="list">${topN.map(t => `<div class="it"><span><b>Top ${t.n}</b><br><span class="muted" style="font-size:12px">${esc(t.names.join(', '))}</span></span><b class="num ${t.moic>=1?'up':'down'}">${mult(t.moic)}</b></div>`).join('')}</div>
+    </section>
+  </div>`;
+};
+
+/* ======== CONSTRUCTION ======== */
+VIEWS.construction = () => {
+  const cos = companies(); const deals = dealsArr(); const st = S.settings;
+  if (!deals.length) return emptyState();
+  const f = fundStats(cos);
+  const initial = deals.filter(d=>!d.followOn).reduce((s,d)=>s+(+d.amount||0),0), follow = f.PI - initial;
+  const reserve = st.commitment * st.reservePct, initialBudget = st.commitment - reserve;
+  const checksLeft = Math.max(0, Math.floor((initialBudget - initial) / Math.max(1, st.targetCheck)));
+  const yr = d => (pd(d.date) || TODAY).getFullYear();
+  const years = []; const y0 = Math.min(st.startYear, ...deals.map(yr)), y1 = Math.max(TODAY.getFullYear(), st.startYear + st.periodYears - 1);
+  for (let y = y0; y <= y1; y++) years.push(y);
+  const iv = years.map(y => deals.filter(d=>!d.followOn && yr(d)===y).reduce((s,d)=>s+(+d.amount||0),0));
+  const fv = years.map(y => deals.filter(d=>d.followOn && yr(d)===y).reduce((s,d)=>s+(+d.amount||0),0));
+  const pace = st.commitment / Math.max(1, st.periodYears);
+  const dc = chartSlot((el,W,H) => colChart(el,W,H,{label:'Capital deployed by year', stacked:true, cats:years.map(String), series:[{name:'Initial checks', color:'var(--s1)', vals:iv},{name:'Follow-ons', color:'var(--s2)', vals:fv}], ref:{v:pace, label:'Target pace ' + big(pace)+'/yr'}, yFmt:(v,full)=> full? moneyFull(v) : big(v)}), 230);
+  const group = (keyFn) => { const m = {}; for (const d of deals){ const k = keyFn(d) || 'Unknown'; m[k] = m[k] || {cost:0, val:0, n:new Set()}; m[k].cost += +d.amount||0; m[k].val += (d._c||calcDeal(d)).tv; m[k].n.add(slug(d.company)); } return Object.entries(m).map(([label,x]) => ({label, a:x.cost, v:`${pct(x.cost/f.PI,0)} · ${mult(x.val/x.cost)}`, n:x.n.size, val:x.val})).sort((a,b)=>b.a-a.a); };
+  const geo = d => { const l = String(d.location||''); if (!l || /unknown/i.test(l)) return 'Unknown'; const p = l.split(',').map(s=>s.trim()); const last = p[p.length-1]; return /^[A-Z]{2}$/.test(last) ? 'US · ' + last : last.replace(/\s*\(.*\)/,''); };
+  const tip = r => `<b>${esc(r.label)}</b><br>${moneyFull(r.a)} across ${r.n} ${r.n===1?'company':'companies'}<br>Value ${money(r.val)}`;
+  const hhi = cos.reduce((s,c) => s + Math.pow(c.tv/(f.TV||1),2), 0);
+  const ur = cos.filter(c => /yes/i.test(c.ur||'')).length;
+  const fieldIn = (k, label, val, hint) => `<label class="field"><span>${label}</span><input id="st-${k}" data-f="st.${k}" value="${esc(val)}" inputmode="decimal">${hint?`<small class="muted">${hint}</small>`:''}</label>`;
+  return `
+  <div class="section-head"><div><h2>Portfolio construction</h2><p>Treat your angel checks as a fund: set a commitment, a reserve for follow-ons and a deployment pace, then see where the money has gone.</p></div></div>
+  <section class="panel">
+    <div class="panel-head"><h3>Fund plan</h3><span class="sub">Edit to model your strategy</span></div>
+    <div class="fs-grid" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">
+      <label class="field"><span>Fund name</span><input id="st-fundName" data-f="st.fundName" value="${esc(st.fundName)}"></label>
+      ${fieldIn('commitment','Total commitment', moneyFull(st.commitment))}
+      ${fieldIn('targetCompanies','Target companies', st.targetCompanies)}
+      ${fieldIn('targetCheck','Initial check size', moneyFull(st.targetCheck))}
+      ${fieldIn('reservePct','Follow-on reserve %', +(st.reservePct*100).toFixed(1))}
+      ${fieldIn('startYear','First vintage', st.startYear)}
+      ${fieldIn('periodYears','Deploy over (yrs)', st.periodYears)}
+      ${fieldIn('staleMonths','Stale mark after (mo)', st.staleMonths)}
+    </div>
+  </section>
+  <div class="kpis">
+    <div class="kpi"><span class="l">Deployed</span><span class="v">${pct(f.PI/st.commitment,0)}</span><span class="s">${moneyFull(f.PI)} of ${moneyFull(st.commitment)}</span></div>
+    <div class="kpi"><span class="l">Dry powder</span><span class="v">${money(st.commitment - f.PI)}</span><span class="s">Uncommitted</span></div>
+    <div class="kpi"><span class="l">Initial checks left</span><span class="v">${checksLeft}</span><span class="s">at ${money(st.targetCheck)} · ${money(Math.max(0,initialBudget-initial))} budget</span></div>
+    <div class="kpi"><span class="l">Reserves used</span><span class="v">${pct(reserve? follow/reserve : 0,0)}</span><span class="s">${money(follow)} of ${money(reserve)}</span></div>
+    <div class="kpi"><span class="l">Companies</span><span class="v">${f.n}<span class="muted" style="font-size:15px"> / ${st.targetCompanies}</span></span><span class="s">${pct(f.n/st.targetCompanies,0)} of target</span></div>
+    <div class="kpi"><span class="l">Concentration</span><span class="v">${(1/Math.max(hhi,1e-9)).toFixed(1)}</span><span class="s" data-tip="Inverse Herfindahl index of value weights: how many equally sized positions your value behaves like">Effective # of positions</span></div>
+  </div>
+  <section class="panel">
+    <div class="panel-head"><h3>Deployment pacing</h3><span class="sub">Stacked by initial vs follow-on</span></div>
+    <div class="legend"><span><i style="background:var(--s1)"></i>Initial checks</span><span><i style="background:var(--s2)"></i>Follow-ons</span><span><i class="line" style="background:var(--ink-2)"></i>Target pace</span></div>
+    ${dc}
+  </section>
+  <div class="grid g3">
+    <section class="panel"><div class="panel-head"><h3>By sector</h3><span class="sub">% of cost · multiple</span></div>${barList(group(d=>d.industry), {tip})}</section>
+    <section class="panel"><div class="panel-head"><h3>By entry stage</h3></div>${barList(group(d=>stageKey(d.round)), {tip})}</section>
+    <section class="panel"><div class="panel-head"><h3>By source</h3></div>${barList(group(d=>d.source), {tip})}</section>
+    <section class="panel"><div class="panel-head"><h3>By instrument</h3></div>${barList(group(d=>d.instrument), {tip})}</section>
+    <section class="panel"><div class="panel-head"><h3>By geography</h3></div>${barList(group(geo), {tip})}</section>
+    <section class="panel"><div class="panel-head"><h3>By vintage</h3></div>${barList(group(d=>String(yr(d))).sort((a,b)=>a.label.localeCompare(b.label)), {tip})}
+      <p class="note" style="margin:0">${ur} of ${f.n} companies have an underrepresented founder (${pct(ur/Math.max(1,f.n),0)}).</p></section>
+  </div>`;
+};
+
+/* ======== PIPELINE ======== */
+const PIPE_STAGES = ['Sourced','Diligence','Committed','Passed'];
+VIEWS.pipeline = () => {
+  const items = Object.values(S.pipeline).filter(p => UI.pipeStatus === 'all' || p.status === UI.pipeStatus).sort((a,b) => PIPE_STAGES.indexOf(a.status) - PIPE_STAGES.indexOf(b.status) || (b.added||'').localeCompare(a.added||''));
+  const counts = PIPE_STAGES.map(s => [s, Object.values(S.pipeline).filter(p=>p.status===s).length]);
+  const committed = Object.values(S.pipeline).filter(p=>p.status==='Committed' || p.status==='Diligence').reduce((s,p)=>s+(+p.check||0),0);
+  return `
+  <div class="section-head"><div><h2>Deal pipeline</h2><p>Companies you're looking at before you wire. Move them through diligence, then convert a committed deal into a holding in one click.</p></div>
+    <button class="btn primary" data-act="pipe-new">+ Add prospect</button></div>
+  <div class="toolbar">
+    <div class="seg"><button data-act="pipe-filter" data-v="all" aria-pressed="${UI.pipeStatus==='all'}">All ${Object.keys(S.pipeline).length}</button>${counts.map(([s,n])=>`<button data-act="pipe-filter" data-v="${s}" aria-pressed="${UI.pipeStatus===s}">${s} ${n}</button>`).join('')}</div>
+    <span class="grow"></span><span class="muted">${money(committed)} in diligence or committed</span>
+  </div>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Company</th><th>Stage</th><th class="r">Valuation / cap</th><th class="r">Planned check</th><th>Source</th><th>Next step</th><th>Status</th><th></th></tr></thead>
+    <tbody>${items.map(p => `<tr class="click" data-act="pipe-edit" data-id="${esc(p.id)}">
+      <td><div class="co">${esc(p.company)}</div><div class="meta">${esc(p.industry||'')}</div></td>
+      <td>${esc(p.stage||'—')}</td><td class="r num">${big(p.valuation)}</td><td class="r num">${money(p.check)}</td>
+      <td>${esc(p.source||'')}</td><td class="meta">${esc(p.next||'')}</td>
+      <td><span class="tag ${p.status==='Committed'?'acc':''}">${esc(p.status)}</span></td>
+      <td class="r">${p.status!=='Passed'?`<button class="btn sm" data-act="pipe-convert" data-id="${esc(p.id)}">Record investment</button>`:''}</td></tr>`).join('') || '<tr><td colspan="8" class="empty" style="padding:18px 10px">No prospects yet. Add the deals you are evaluating.</td></tr>'}</tbody>
+  </table></div>`;
+};
+
+/* ======== IDEAS ======== */
+const IDEA_TAGS = ['Idea','To build','Question','Diligence'];
+VIEWS.ideas = () => {
+  const notes = Object.values(S.notes).filter(n => UI.ideaTag === 'all' || n.tag === UI.ideaTag).sort((a,b) => (a.done?1:0)-(b.done?1:0) || (b.created||'').localeCompare(a.created||''));
+  return `
+  <div class="section-head"><div><h2>Ideas</h2><p>A working board for what this tracker should do next, questions for founders, and investing theses. Add a card and we can build it out as a new tab.</p></div></div>
+  <section class="panel">
+    <div class="fs-grid" style="grid-template-columns:minmax(0,2fr) minmax(0,1fr)">
+      <label class="field"><span>Title</span><input id="idea-t" placeholder="e.g. Track QSBS eligibility dates"></label>
+      <label class="field"><span>Type</span><select id="idea-g">${IDEA_TAGS.map(t=>`<option>${t}</option>`).join('')}</select></label>
+      <label class="field full"><span>Details</span><textarea id="idea-b" placeholder="What it should do, why it matters"></textarea></label>
+    </div>
+    <div class="toolbar"><button class="btn primary" data-act="idea-add">Add card</button><span class="grow"></span>
+      <div class="seg"><button data-act="idea-filter" data-v="all" aria-pressed="${UI.ideaTag==='all'}">All</button>${IDEA_TAGS.map(t=>`<button data-act="idea-filter" data-v="${t}" aria-pressed="${UI.ideaTag===t}">${t}</button>`).join('')}</div></div>
+  </section>
+  <div class="cards">${notes.map(n => `<article class="card ${n.done?'done':''}">
+      <div class="row" style="margin:0"><span class="tag ${n.tag==='To build'?'acc':''}">${esc(n.tag||'Idea')}</span><span class="muted" style="font-size:12px">${fmtD(n.created)}</span></div>
+      <h4>${esc(n.title)}</h4>${n.body?`<p>${esc(n.body)}</p>`:''}
+      <div class="row"><button class="btn sm" data-act="idea-done" data-id="${esc(n.id)}">${n.done?'Reopen':'Mark done'}</button><button class="btn sm ghost" data-act="idea-del" data-id="${esc(n.id)}">Delete</button></div>
+    </article>`).join('') || '<div class="empty">No cards yet.</div>'}</div>`;
+};
+
+/* ---------------- drawers ---------------- */
+function closeDrawer(){ $('#drawerRoot').innerHTML = ''; }
+function drawer(title, body, foot){
+  $('#drawerRoot').innerHTML = `<div class="scrim" data-act="scrim"><aside class="drawer" role="dialog" aria-modal="true" aria-label="${esc(title)}">
+    <div class="drawer-head"><h2>${esc(title)}</h2><button class="btn ghost" data-act="close" aria-label="Close">✕</button></div>
+    <div class="drawer-body">${body}</div><div class="drawer-foot">${foot}</div></aside></div>`;
+  const first = $('#drawerRoot input, #drawerRoot select'); if (first) first.focus();
+}
+const DEAL_FIELDS = [
+  ['Company & founders', [
+    ['company','Company','text',{req:1}], ['url','Website','url'], ['industry','Industry','text',{list:'dl-ind'}], ['location','Location','text'],
+    ['founders','Founders','text',{full:1}], ['ur','Underrepresented founder','select',{opts:['Yes','No','Unknown']}], ['source','Source / SPV / angel group','text',{list:'dl-src'}],
+    ['coInvestors','Co-investors','textarea',{full:1}]
+  ]],
+  ['Deal terms', [
+    ['date','Investment date','date',{req:1}], ['round','Round','select',{opts:STAGES.concat(['Other'])}], ['instrument','Instrument','select',{opts:['SAFE','Priced Round','Convertible Note','Direct','SPV','Other']}],
+    ['amount','Amount invested','money',{req:1}], ['roundSize','Round size','money'], ['preMoney','Pre-money valuation','money'], ['postMoney','Post-money valuation or cap','money',{hint:'Leave blank to use pre-money + round size'}],
+    ['proRata','Pro rata rights','select',{opts:['Unknown','Yes','No']}], ['followOn','This is a follow-on check','check'], ['referral','Referred by','text'], ['memo','Deal memo link','url']
+  ]],
+  ['Status & valuation', [
+    ['status','Status','select',{opts:['Active','Exited','Dead']}], ['currentStage','Current stage','select',{opts:STAGES}], ['currentValuation','Current company valuation','money',{hint:'Blank = carried at entry post-money'}], ['valuationDate','Valuation date','date'],
+    ['distributions','Distributions received','money'], ['exitDate','Exit / distribution date','date'], ['lastContact','Last founder contact','date'], ['notes','Notes & next milestone','textarea',{full:1}]
+  ]]
+];
+function fieldHtml(prefix, [k, label, type, o={}], val){
+  const id = prefix + '-' + k; const cl = o.full ? 'field full' : 'field';
+  if (type === 'check') return `<label class="check"><input type="checkbox" id="${id}" ${val?'checked':''}> ${label}</label>`;
+  if (type === 'select') return `<label class="${cl}"><span>${label}</span><select id="${id}">${o.opts.map(x=>`<option ${String(val)===x?'selected':''}>${x}</option>`).join('')}</select></label>`;
+  if (type === 'textarea') return `<label class="${cl}"><span>${label}</span><textarea id="${id}">${esc(val)}</textarea></label>`;
+  const v = type === 'money' ? (isNum(val) ? fN.format(val) : '') : (val ?? '');
+  return `<label class="${cl}"><span>${label}${o.req?' *':''}</span><input id="${id}" type="${type==='money'?'text':type}" ${type==='money'?'inputmode="decimal" placeholder="$"':''} ${o.list?`list="${o.list}"`:''} value="${esc(v)}">${o.hint?`<small class="muted">${o.hint}</small>`:''}</label>`;
+}
+function readFields(prefix, groups){
+  const out = {};
+  for (const [, fs] of groups) for (const [k,,type] of fs){
+    const el = document.getElementById(prefix + '-' + k); if (!el) continue;
+    out[k] = type === 'check' ? el.checked : type === 'money' ? parseMoney(el.value) : el.value.trim();
+  }
+  return out;
+}
+function datalists(){
+  const ind = [...new Set(dealsArr().map(d=>d.industry).filter(Boolean))], src = [...new Set(dealsArr().map(d=>d.source).filter(Boolean))];
+  return `<datalist id="dl-ind">${ind.map(x=>`<option value="${esc(x)}">`).join('')}</datalist><datalist id="dl-src">${src.map(x=>`<option value="${esc(x)}">`).join('')}</datalist><datalist id="dl-co">${[...new Set(dealsArr().map(d=>d.company))].map(x=>`<option value="${esc(x)}">`).join('')}</datalist>`;
+}
+function openDeal(id, prefill){
+  const d = id ? S.deals[id] : {status:'Active', instrument:'SAFE', round:'Seed', currentStage:'Seed', ur:'Unknown', proRata:'Unknown', date: iso(TODAY), ...prefill};
+  if (!d) return;
+  const body = `${datalists()}<div class="preview" id="dprev"></div>` + DEAL_FIELDS.map(([title, fs]) => `<div class="fs"><h3>${title}</h3><div class="fs-grid">${fs.map(f => fieldHtml('df', f, d[f[0]])).join('')}</div></div>`).join('') + '<div class="err-msg" id="derr"></div>';
+  const foot = `<div class="toolbar">${id?`<button class="btn danger" data-act="deal-del" data-id="${esc(id)}" id="delBtn">Delete</button>`:''}</div><div class="toolbar"><button class="btn" data-act="close">Cancel</button><button class="btn primary" data-act="deal-save" data-id="${esc(id||'')}" data-pipe="${esc(prefill && prefill._pipe || '')}">${id?'Save changes':'Add investment'}</button></div>`;
+  drawer(id ? 'Edit ' + d.company : 'New investment', body, foot);
+  const upd = () => {
+    const x = readFields('df', DEAL_FIELDS);
+    const post = isNum(x.postMoney) ? x.postMoney : (isNum(x.preMoney) && isNum(x.roundSize) ? x.preMoney + x.roundSize : null);
+    const c = calcDeal({...x, postMoney: post});
+    $('#dprev').innerHTML = `<div><span class="l">Ownership</span><span class="v">${ownPct(c.own)}</span></div><div><span class="l">Value</span><span class="v">${money(c.tv)}</span></div><div><span class="l">MOIC</span><span class="v">${mult(c.moic)}</span></div><div><span class="l">Post-money</span><span class="v">${big(post)}</span></div>`;
+  };
+  $('#drawerRoot .drawer').addEventListener('input', upd); upd();
+}
+function saveDeal(id, pipeId){
+  const x = readFields('df', DEAL_FIELDS);
+  if (!x.company || !isNum(x.amount) || !x.date){ $('#derr').textContent = 'Company, investment date and amount are required.'; return; }
+  if (!isNum(x.postMoney) && isNum(x.preMoney) && isNum(x.roundSize)) x.postMoney = x.preMoney + x.roundSize;
+  const prev = id ? S.deals[id] : {};
+  const obj = {...prev, ...x, id: id || uid('d'), updated: iso(TODAY)};
+  if (!id) obj.created = iso(TODAY);
+  put('deals', obj); _dv++;
+  if (pipeId && S.pipeline[pipeId]) put('pipeline', {...S.pipeline[pipeId], status:'Committed', converted: obj.id});
+  closeDrawer();
+}
+function openMark(company){
+  const names = [...new Set(companies().filter(c=>c.alive).map(c=>c.name))].sort();
+  const c = companies().find(x => x.name === company);
+  const body = `${datalists()}<p class="note" style="margin:0">A mark sets the company's current valuation. Every active check in the company is re-valued from its own ownership. Use the latest priced round, a secondary price, or a write-down.</p>
+    <div class="fs-grid">
+      <label class="field full"><span>Company *</span><select id="mk-company">${names.map(n=>`<option ${n===company?'selected':''}>${esc(n)}</option>`).join('')}</select></label>
+      <label class="field"><span>Valuation date *</span><input type="date" id="mk-date" value="${iso(TODAY)}"></label>
+      <label class="field"><span>Company valuation (post-money) *</span><input id="mk-val" inputmode="decimal" placeholder="e.g. 45m" value=""></label>
+      <label class="field"><span>Event</span><select id="mk-round">${['New priced round','SAFE / note round','Secondary sale','409A / internal','Down round','Write-down to zero','Acquisition offer'].map(o=>`<option>${o}</option>`).join('')}</select></label>
+      <label class="field"><span>Company stage now</span><select id="mk-stage">${STAGES.map(s=>`<option ${c && stageKey(c.stage)===s?'selected':''}>${s}</option>`).join('')}</select></label>
+      <label class="field full"><span>Note</span><textarea id="mk-note" placeholder="Lead investor, round size, source of the price"></textarea></label>
+    </div><div class="preview" id="mprev"></div><div class="err-msg" id="merr"></div>`;
+  drawer('Update valuation', body, `<span></span><div class="toolbar"><button class="btn" data-act="close">Cancel</button><button class="btn primary" data-act="mark-save">Save mark</button></div>`);
+  const upd = () => {
+    const co = companies().find(x => x.name === $('#mk-company').value); const v = parseMoney($('#mk-val').value);
+    const wz = $('#mk-round').value === 'Write-down to zero';
+    const nv = wz ? 0 : (isNum(v) ? co.own * v : null);
+    $('#mprev').innerHTML = co ? `<div><span class="l">Carried at</span><span class="v">${big(co.valuation)}</span></div><div><span class="l">Your value now</span><span class="v">${money(co.val)}</span></div><div><span class="l">After mark</span><span class="v">${nv==null?'—':money(nv)}</span></div><div><span class="l">New MOIC</span><span class="v">${nv==null?'—':mult((nv+co.dist)/co.cost)}</span></div>` : '';
+  };
+  const dr = $('#drawerRoot .drawer'); dr.addEventListener('input', upd); dr.addEventListener('change', upd); upd();
+}
+function saveMark(){
+  const company = $('#mk-company').value, date = $('#mk-date').value, round = $('#mk-round').value, stage = $('#mk-stage').value, note = $('#mk-note').value.trim();
+  const wz = round === 'Write-down to zero';
+  let v = parseMoney($('#mk-val').value); if (wz) v = 0;
+  if (!company || !date || !isNum(v)){ $('#merr').textContent = 'Pick a company, a date and a valuation.'; return; }
+  put('marks', {id: uid('m'), company, date, valuation: v, round, stage, note, created: iso(TODAY)});
+  for (const d of dealsArr().filter(d => slug(d.company) === slug(company) && (d.status||'Active') === 'Active')){
+    const nd = {...d, currentValuation: v, valuationDate: date, currentStage: stage};
+    if (wz) nd.status = 'Dead';
+    put('deals', nd);
+  }
+  _dv++; UI.mark = slug(company); closeDrawer();
+}
+const PIPE_FIELDS = [['Prospect', [
+  ['company','Company','text',{req:1}], ['industry','Industry','text',{list:'dl-ind'}], ['stage','Round','select',{opts:STAGES}], ['instrument','Instrument','select',{opts:['SAFE','Priced Round','Convertible Note','SPV','Other']}],
+  ['valuation','Valuation or cap','money'], ['check','Planned check','money'], ['source','Source / syndicate','text',{list:'dl-src'}], ['status','Status','select',{opts:PIPE_STAGES}],
+  ['deadline','Close date','date'], ['next','Next step','text'], ['notes','Thesis & concerns','textarea',{full:1}]
+]]];
+function openPipe(id){
+  const p = id ? S.pipeline[id] : {status:'Sourced', stage:'Seed', instrument:'SAFE'};
+  const body = datalists() + PIPE_FIELDS.map(([t, fs]) => `<div class="fs-grid">${fs.map(f => fieldHtml('pf', f, p[f[0]])).join('')}</div>`).join('') + '<div class="err-msg" id="perr"></div>';
+  drawer(id ? p.company : 'New prospect', body, `<div class="toolbar">${id?`<button class="btn danger" data-act="pipe-del" data-id="${esc(id)}">Delete</button>`:''}</div><div class="toolbar"><button class="btn" data-act="close">Cancel</button><button class="btn primary" data-act="pipe-save" data-id="${esc(id||'')}">Save</button></div>`);
+}
+
+/* ---------------- import / export ---------------- */
+function parseCSV(text){
+  const rows = []; let row = [], cur = '', q = false;
+  for (let i=0;i<text.length;i++){
+    const ch = text[i];
+    if (q){ if (ch === '"'){ if (text[i+1] === '"'){ cur += '"'; i++; } else q = false; } else cur += ch; }
+    else if (ch === '"') q = true;
+    else if (ch === ','){ row.push(cur); cur = ''; }
+    else if (ch === '\n' || ch === '\r'){ if (ch === '\r' && text[i+1] === '\n') i++; row.push(cur); rows.push(row); row = []; cur = ''; }
+    else cur += ch;
+  }
+  if (cur || row.length){ row.push(cur); rows.push(row); }
+  return rows;
+}
+function parseDateLoose(s){
+  s = String(s||'').trim(); if (!s || s === '-') return '';
+  if (/^\d{4}-\d{2}(-\d{2})?$/.test(s)) return s.length === 7 ? s + '-01' : s;
+  let d = new Date(s); if (isNaN(d)) d = new Date('1 ' + s); if (isNaN(d)) return '';
+  return iso(d);
+}
+function importSpreadsheetCSV(text){
+  const rows = parseCSV(text);
+  const hi = rows.findIndex(r => r.some(c => /^\s*company\s*$/i.test(c)));
+  if (hi < 0) throw new Error('No "Company" column found. Export the Portfolio Tracker sheet as CSV.');
+  const H = rows[hi].map(h => h.trim().toLowerCase());
+  const col = (...names) => { for (const n of names){ const i = H.findIndex(h => h === n || h.startsWith(n)); if (i >= 0) return i; } return -1; };
+  const C = { company:col('company'), url:col('url','website'), industry:col('industry','sector'), location:col('location'), founders:col('founder'), ur:col('underrepresented'), co:col('co-investors'), date:col('investment date'), round:col('round'), instrument:col('instrument'), roundSize:col('round size'), pre:col('pre-money'), post:col('post-money'), amount:col('amount invested'), proRata:col('pro rata'), source:col('investment source','source'), referral:col('referral'), memo:col('deal memo'), status:col('status'), stage:col('current stage'), curVal:col('current valuation'), valDate:col('valuation date'), follow:col('follow-on investment','follow-on'), exitDate:col('exit date'), dist:col('distributions'), contact:col('last contact'), notes:col('next milestone','notes') };
+  const g = (r, k) => C[k] >= 0 ? String(r[C[k]] ?? '').trim() : '';
+  const out = [];
+  for (const r of rows.slice(hi + 1)){
+    let name = g(r,'company'); const amt = parseMoney(g(r,'amount'));
+    if (!name || !isNum(amt) || amt <= 0) continue;
+    let followOn = /^yes/i.test(g(r,'follow'));
+    if (/\(follow-?on\)/i.test(name)){ followOn = true; name = name.replace(/\s*\(follow-?on\)\s*/i,'').trim(); }
+    const st = g(r,'status'); const status = /dead|defunct|written/i.test(st) ? 'Dead' : /exit|acquired/i.test(st) ? 'Exited' : 'Active';
+    const cv = parseMoney(g(r,'curVal'));
+    out.push({ id: uid('d'), company:name, url:g(r,'url'), industry:g(r,'industry'), location:g(r,'location'), founders:g(r,'founders'), ur:g(r,'ur')||'Unknown', coInvestors:g(r,'co'),
+      date:parseDateLoose(g(r,'date')), round:g(r,'round'), instrument:g(r,'instrument'), roundSize:parseMoney(g(r,'roundSize')), preMoney:parseMoney(g(r,'pre')), postMoney:parseMoney(g(r,'post')), amount:amt,
+      proRata:g(r,'proRata')||'Unknown', source:g(r,'source'), referral:g(r,'referral'), memo:g(r,'memo'), status, currentStage:g(r,'stage'), currentValuation: status === 'Dead' ? 0 : cv, valuationDate:parseDateLoose(g(r,'valDate')),
+      followOn, exitDate:parseDateLoose(g(r,'exitDate')), distributions:parseMoney(g(r,'dist')) || 0, lastContact:parseDateLoose(g(r,'contact')), notes:g(r,'notes'), created: iso(TODAY) });
+  }
+  return out;
+}
+async function saveFile(filename, data, mime){
+  if (downloads){ try { await downloads.save({filename, data}); return; } catch(e){ if (e && e.code === 'declined') return; } }
+  try { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([data], {type:mime})); a.download = filename; document.body.appendChild(a); a.click(); a.remove(); }
+  catch(e){ setStatus('Download is not available here', 'err'); }
+}
+function exportCSV(){
+  const cols = [['Company','company'],['URL','url'],['Industry','industry'],['Location','location'],['Founder(s)','founders'],['Underrepresented Founder','ur'],['Co-Investors / Notable Investors','coInvestors'],['Investment Date','date'],['Round','round'],['Instrument Type','instrument'],['Round Size','roundSize'],['Pre-Money Valuation','preMoney'],['Post-Money Valuation','postMoney'],['Amount Invested','amount'],['Ownership %',d=>(calcDeal(d).own*100).toFixed(4)+'%'],['Pro Rata Rights','proRata'],['Investment Source / SPV / Angel Group','source'],['Referral Source','referral'],['Deal Memo Link','memo'],['Status','status'],['Current Stage','currentStage'],['Current Valuation','currentValuation'],['Valuation Date','valuationDate'],['Follow-on Investment',d=>d.followOn?'Yes':'No'],['Implied Current Value',d=>calcDeal(d).val.toFixed(0)],['MOIC',d=>(calcDeal(d).moic||0).toFixed(2)],['Exit Date','exitDate'],['Distributions Received','distributions'],['Last Contact Date','lastContact'],['Next Milestone / Notes','notes']];
+  const q = v => { v = v == null ? '' : String(v); return /[",\n]/.test(v) ? '"' + v.replace(/"/g,'""') + '"' : v; };
+  const lines = [cols.map(c=>q(c[0])).join(',')].concat(dealsArr().map(d => cols.map(([,k]) => q(typeof k === 'function' ? k(d) : d[k])).join(',')));
+  saveFile('angel-portfolio-' + iso(TODAY) + '.csv', lines.join('\n'), 'text/csv');
+}
+function exportJSON(){
+  const strip2 = m => Object.fromEntries(Object.entries(m).map(([k,v]) => [k, strip(v)]));
+  const data = {app:'angel-fund-ledger', version:1, exported: new Date().toISOString(), deals:strip2(S.deals), marks:strip2(S.marks), proj:strip2(S.proj), notes:strip2(S.notes), pipeline:strip2(S.pipeline), settings:S.settings, scenarios:S.scenarios};
+  saveFile('angel-portfolio-backup-' + iso(TODAY) + '.json', JSON.stringify(data, null, 2), 'application/json');
+}
+let pendingImport = null;
+function handleFile(file){
+  const rd = new FileReader();
+  rd.onload = () => {
+    const text = String(rd.result || '');
+    try {
+      if (/\.json$/i.test(file.name) || /^\s*\{/.test(text)){
+        const d = JSON.parse(text); if (!d.deals) throw new Error('This JSON is not a ledger backup.');
+        pendingImport = {kind:'json', data:d};
+        drawer('Restore backup', `<p>This backup has <b>${Object.keys(d.deals).length}</b> checks, ${Object.keys(d.marks||{}).length} marks and ${Object.keys(d.notes||{}).length} idea cards. Restoring replaces everything currently in the tracker.</p>`, `<span></span><div class="toolbar"><button class="btn" data-act="close">Cancel</button><button class="btn primary" data-act="import-confirm" data-mode="replace">Replace everything</button></div>`);
+      } else {
+        const deals = importSpreadsheetCSV(text);
+        if (!deals.length) throw new Error('No rows with a company and an amount invested were found.');
+        const have = new Set(dealsArr().map(d => slug(d.company) + '|' + d.date + '|' + (+d.amount)));
+        const fresh = deals.filter(d => !have.has(slug(d.company) + '|' + d.date + '|' + (+d.amount)));
+        pendingImport = {kind:'csv', deals, fresh};
+        const tot = deals.reduce((s,d)=>s+d.amount,0);
+        drawer('Import spreadsheet', `<p>Found <b>${deals.length}</b> checks in ${new Set(deals.map(d=>slug(d.company))).size} companies, totalling <b>${moneyFull(tot)}</b>. ${fresh.length < deals.length ? `${deals.length - fresh.length} already exist in the tracker and will be skipped if you add.` : ''}</p>
+          <div class="tbl-wrap"><table><thead><tr><th>Company</th><th>Date</th><th class="r">Amount</th><th class="r">Post</th><th>Status</th></tr></thead><tbody>${deals.slice(0,40).map(d=>`<tr><td>${esc(d.company)}${d.followOn?' <span class="tag">follow-on</span>':''}</td><td class="num">${fmtD(d.date)}</td><td class="r num">${moneyFull(d.amount)}</td><td class="r num">${big(d.postMoney)}</td><td>${d.status}</td></tr>`).join('')}</tbody></table></div>`,
+          `<span></span><div class="toolbar"><button class="btn" data-act="close">Cancel</button>${S.example || !dealsArr().length ? '' : `<button class="btn" data-act="import-confirm" data-mode="add">Add ${fresh.length} new</button>`}<button class="btn primary" data-act="import-confirm" data-mode="replace">${S.example || !dealsArr().length ? 'Import' : 'Replace holdings'}</button></div>`);
+      }
+    } catch(e){ drawer('Import failed', `<p class="err-msg">${esc(e.message)}</p><p class="note">Accepted: a CSV export of the Portfolio Tracker sheet (File → Download → Comma-separated values), or a JSON backup from Data ▾ → Export backup.</p>`, `<span></span><button class="btn" data-act="close">Close</button>`); }
+  };
+  rd.readAsText(file);
+}
+async function confirmImport(mode){
+  const p = pendingImport; pendingImport = null; closeDrawer(); if (!p) return;
+  if (p.kind === 'json'){ const d = p.data; await replaceAll({deals:d.deals, marks:d.marks||{}, proj:d.proj||{}, notes:d.notes||{}, pipeline:d.pipeline||{}, settings:d.settings, scenarios:d.scenarios}); }
+  else if (mode === 'add'){ for (const d of p.fresh) put('deals', d); }
+  else { const deals = {}; p.deals.forEach(d => deals[d.id] = d); await replaceAll({deals, marks: S.example ? {} : S.marks, proj: S.example ? {} : S.proj, notes:S.notes, pipeline:S.pipeline}); }
+  _dv++; UI.tab = 'dashboard'; render();
+}
+function openMenu(){
+  const btn = $('#dataBtn'); const ex = $('.menu'); if (ex){ ex.remove(); return; }
+  const m = document.createElement('div'); m.className = 'menu';
+  m.innerHTML = `<button data-act="import">Import spreadsheet CSV or backup…</button><button data-act="export-csv">Export holdings as CSV</button><button data-act="export-json">Export full backup (JSON)</button><hr><button data-act="load-example">Load example data</button><button data-act="reset-ask" style="color:var(--bad)">Clear all data…</button>
+  <hr><span class="note" style="padding:4px 10px">${backend==='db' ? 'Changes save to this tracker automatically and sync across your devices.' : 'Changes save in this browser only. Export a backup to move them.'}</span>`;
+  btn.parentElement.appendChild(m);
+}
+
+/* ---------------- events ---------------- */
+document.addEventListener('click', async e => {
+  const menu = $('.menu'); if (menu && !e.target.closest('.menu') && !e.target.closest('#dataBtn')) menu.remove();
+  const t = e.target.closest('[data-act],[data-tab]'); if (!t) return;
+  if (t.dataset.tab){ UI.tab = t.dataset.tab; try { history.replaceState(null, '', '#' + UI.tab); } catch(_){} render(); scrollTo({top:0}); return; }
+  const a = t.dataset.act, id = t.dataset.id;
+  if (a === 'scrim' && e.target !== t) return;
+  if (a !== 'menu' && menu) menu.remove();
+  switch (a){
+    case 'menu': openMenu(); break;
+    case 'scrim': case 'close': closeDrawer(); break;
+    case 'deal-new': openDeal(null); break;
+    case 'deal-edit': openDeal(id); break;
+    case 'deal-save': saveDeal(t.dataset.id || null, t.dataset.pipe || null); break;
+    case 'deal-del': if (t.dataset.armed){ del('deals', id); _dv++; closeDrawer(); } else { t.dataset.armed = 1; t.textContent = 'Click again to delete'; } break;
+    case 'mark-new': openMark(t.dataset.co || (companies().find(c=>c.key===UI.mark)||{}).name || ''); break;
+    case 'mark-save': saveMark(); break;
+    case 'mark-pick': UI.mark = t.dataset.k; render(); break;
+    case 'mark-del': if (t.dataset.armed){ del('marks', id); } else { t.dataset.armed = 1; t.textContent = 'Confirm'; } break;
+    case 'hold-group': UI.hold.group = t.dataset.v === '1'; render(); break;
+    case 'scn-pick': UI.scn = id; render(); break;
+    case 'scn-reset': S.scenarios = clone(DEFAULT_SCENARIOS); _dv++; putConfig(); break;
+    case 'pipe-new': openPipe(null); break;
+    case 'pipe-edit': if (!e.target.closest('button')) openPipe(id); break;
+    case 'pipe-filter': UI.pipeStatus = t.dataset.v; render(); break;
+    case 'pipe-save': { const x = readFields('pf', PIPE_FIELDS); if (!x.company){ $('#perr').textContent = 'Company is required.'; break; } put('pipeline', {...(id ? S.pipeline[id] : {added: iso(TODAY)}), ...x, id: id || uid('p')}); closeDrawer(); break; }
+    case 'pipe-del': if (t.dataset.armed){ del('pipeline', id); closeDrawer(); } else { t.dataset.armed = 1; t.textContent = 'Click again to delete'; } break;
+    case 'pipe-convert': { const p = S.pipeline[id]; openDeal(null, {company:p.company, industry:p.industry, round:p.stage, currentStage:p.stage, instrument:p.instrument, postMoney:p.valuation, amount:p.check, source:p.source, notes:p.notes, _pipe:id}); break; }
+    case 'idea-add': { const title = $('#idea-t').value.trim(); if (!title){ $('#idea-t').focus(); break; } put('notes', {id: uid('n'), title, body: $('#idea-b').value.trim(), tag: $('#idea-g').value, done:false, created: iso(TODAY)}); break; }
+    case 'idea-done': put('notes', {...S.notes[id], done: !S.notes[id].done}); break;
+    case 'idea-del': if (t.dataset.armed){ del('notes', id); } else { t.dataset.armed = 1; t.textContent = 'Confirm'; } break;
+    case 'idea-filter': UI.ideaTag = t.dataset.v; render(); break;
+    case 'import': $('#fileIn').value = ''; $('#fileIn').click(); break;
+    case 'import-confirm': confirmImport(t.dataset.mode); break;
+    case 'export-csv': exportCSV(); break;
+    case 'export-json': exportJSON(); break;
+    case 'load-example':
+      if (backend === 'db' && dealsArr().length){ drawer('Load example data', '<p>Your tracker already has holdings. Example data would replace them, so this is only available on an empty tracker.</p>', '<span></span><button class="btn" data-act="close">Close</button>'); break; }
+      if (backend === 'db'){ const keep = {...S}; loadExample(); const data = {deals:S.deals, marks:{}, proj:{}, notes:keep.notes, pipeline:keep.pipeline}; S.example = false; await replaceAll(data); }
+      else { loadExample(); render(); }
+      break;
+    case 'clear-example': S.deals = {}; S.example = false; saveLocal(); render(); break;
+    case 'reset-ask': drawer('Clear all data', '<p>This deletes every check, mark, projection override, prospect and idea card in this tracker. Export a backup first if you might want them back.</p>', `<span></span><div class="toolbar"><button class="btn" data-act="close">Cancel</button><button class="btn danger" data-act="reset-do">Delete everything</button></div>`); break;
+    case 'reset-do': closeDrawer(); await replaceAll({deals:{}, marks:{}, proj:{}, notes:{}, pipeline:{}, settings: clone(DEFAULT_SETTINGS), scenarios: clone(DEFAULT_SCENARIOS)}); _dv++; render(); break;
+  }
+});
+$('#fileIn').addEventListener('change', e => { const f = e.target.files && e.target.files[0]; if (f) handleFile(f); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape'){ if ($('#drawerRoot').innerHTML) closeDrawer(); const m = $('.menu'); if (m) m.remove(); } });
+
+const pctIn = v => { const n = parseFloat(String(v).replace('%','')); return isFinite(n) ? n/100 : null; };
+document.addEventListener('input', e => {
+  const f = e.target.dataset && e.target.dataset.f; if (!f) return;
+  if (f === 'hold.q'){ UI.hold.q = e.target.value; render(); }
+});
+document.addEventListener('change', e => {
+  const el = e.target, f = el.dataset && el.dataset.f; if (!f) return;
+  const parts = f.split('.'); const v = el.value.trim();
+  if (parts[0] === 'hold'){ UI.hold[parts[1]] = v; render(); return; }
+  if (parts[0] === 'proj'){
+    const key = parts[1], fld = parts[2];
+    const cur = {...(S.proj[key] || {company: (companies().find(c=>c.key===key)||{}).name || key})};
+    let val = null;
+    if (v !== ''){ val = (fld === 'p' || fld === 'dil' || fld === 'rec') ? pctIn(v) : fld === 'exitVal' ? parseMoney(v) : parseFloat(v); if (!isFinite(val)) val = null; }
+    if (val !== null && (fld === 'p' || fld === 'dil' || fld === 'rec')) val = clamp(val, 0, 1);
+    cur[fld] = val; cur.id = key; _dv++;
+    put('proj', cur); return;
+  }
+  if (parts[0] === 'sd'){
+    const s = parts[1], fld = parts[2]; let val = (fld === 'p' || fld === 'dil' || fld === 'rec') ? pctIn(v) : parseFloat(v);
+    if (!isFinite(val)) { render(); return; }
+    if (fld === 'p' || fld === 'dil' || fld === 'rec') val = clamp(val, 0, 1);
+    S.settings.stageDefaults[s] = {...S.settings.stageDefaults[s], [fld]: val}; _dv++; putConfig(); return;
+  }
+  if (parts[0] === 'scn'){
+    const sc = S.scenarios.find(x => x.id === parts[1]); const n = parseFloat(v);
+    if (sc && isFinite(n)){ sc[parts[2]] = n; _dv++; } putConfig(); return;
+  }
+  if (parts[0] === 'st'){
+    const k = parts[1];
+    if (k === 'fundName'){ S.settings.fundName = v || 'Angel Fund Ledger'; }
+    else if (k === 'reservePct'){ const n = pctIn(v); if (n !== null) S.settings.reservePct = clamp(n,0,1); }
+    else { const n = (k === 'commitment' || k === 'targetCheck') ? parseMoney(v) : parseFloat(v); if (isNum(n) && n > 0) S.settings[k] = n; }
+    putConfig(); return;
+  }
+});
+
+/* ---------------- boot ---------------- */
+const h = (location.hash || '').replace('#','');
+if (TABS.some(t => t[0] === h)) UI.tab = h;
+renderTabs();
+setStatus('Loading', 'busy');
+initStore();
+})();
+</script>
+<!--APP-END-->
+</html>
