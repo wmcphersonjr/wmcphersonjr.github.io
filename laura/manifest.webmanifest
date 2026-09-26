@@ -1,0 +1,9 @@
+{
+  "name": "Laurita",
+  "short_name": "Laurita",
+  "description": "Stories and memories from Laura's friends and family.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f6efe6",
+  "theme_color": "#f6efe6"
+}
