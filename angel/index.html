@@ -45,6 +45,7 @@
   --shadow:0 12px 40px rgba(0,0,0,.5);
 }
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html,body{background:var(--bg)}
 body{margin:0;color:var(--ink);font:14px/1.5 var(--sans);-webkit-font-smoothing:antialiased}
 a{color:var(--accent)}
@@ -236,6 +237,12 @@ td input.set{border-color:var(--accent);background:var(--accent-soft)}
 .sig{display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:var(--accent-soft);border-radius:6px;padding:6px 10px;font-size:12.5px;margin-top:2px}
 .digest{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;max-width:90ch}
 @media (max-width:700px){.co-news{grid-template-columns:minmax(0,1fr);gap:8px}}
+/* lock */
+#lock{position:fixed;inset:0;z-index:90;background:var(--bg);display:grid;place-items:center;padding:24px 16px}
+#lock form{width:min(380px,100%);background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:26px 24px;display:flex;flex-direction:column;gap:14px;box-shadow:var(--shadow)}
+#lock h2{margin:0;font:700 22px/1.2 var(--cond)}
+#lock p{margin:0;color:var(--ink-2);font-size:13px}
+#lock input{padding:10px 12px;border:1px solid var(--line-2);border-radius:8px;background:var(--surface);font-size:16px;letter-spacing:.08em}
 /* drawer */
 .scrim{position:fixed;inset:0;background:rgba(10,12,11,.45);z-index:60;display:flex;justify-content:flex-end}
 .drawer{background:var(--bg);width:min(720px,100%);height:100%;overflow-y:auto;box-shadow:var(--shadow);display:flex;flex-direction:column}
@@ -275,6 +282,7 @@ td input.set{border-color:var(--accent);background:var(--accent-soft)}
       <div class="rel">
         <button class="btn" id="dataBtn" data-act="menu" aria-haspopup="true">Data ▾</button>
       </div>
+      <button class="btn" data-act="lock-now" id="lockBtn" hidden>Lock</button>
       <button class="btn" data-act="mark-new">Update valuation</button>
       <button class="btn primary" data-act="deal-new">+ Add investment</button>
     </div>
@@ -286,6 +294,7 @@ td input.set{border-color:var(--accent);background:var(--accent-soft)}
 <main class="wrap" id="view"><div class="loading">Loading your portfolio…</div></main>
 <div id="tip" role="tooltip"></div>
 <div id="drawerRoot"></div>
+<div id="lock" hidden></div>
 <input type="file" id="fileIn" accept=".csv,.json,text/csv,application/json" hidden>
 
 <script>
@@ -524,11 +533,113 @@ function monteCarlo(scId, n=4000, seed=7){
 const LS_KEY = 'angel-fund-ledger-v1';
 const writeChains = {};
 function setStatus(text, kind){ const el = $('#status'); if (!el) return; el.className = 'status' + (kind ? ' ' + kind : ''); el.querySelector('span').textContent = text; }
-function savedLabel(){ return backend === 'db' ? 'Saved to your tracker' : (S.example ? 'Example data · not saved' : 'Saved in this browser'); }
+function savedLabel(){ return backend === 'db' ? 'Saved to your tracker' : (S.example ? 'Example data · not saved' : lock.key ? 'Encrypted in this browser' : 'Saved in this browser'); }
+function localPayload(){ return JSON.stringify({deals:S.example ? {} : S.deals, marks:S.marks, proj:S.proj, notes:S.notes, pipeline:S.pipeline, news:S.news, runs:S.runs, settings:S.settings, scenarios:S.scenarios}); }
+let saveChain = Promise.resolve();
 function saveLocal(){
-  try { localStorage.setItem(LS_KEY, JSON.stringify({deals:S.example ? {} : S.deals, marks:S.marks, proj:S.proj, notes:S.notes, pipeline:S.pipeline, news:S.news, runs:S.runs, settings:S.settings, scenarios:S.scenarios})); setStatus(savedLabel()); }
+  if (locked) return;
+  const payload = localPayload();
+  if (lock.key){
+    const key = lock.key, salt = lock.salt;
+    saveChain = saveChain.then(() => encryptText(key, salt, payload)).then(blob => {
+      localStorage.setItem(LOCK_KEY, JSON.stringify(blob)); localStorage.removeItem(LS_KEY); setStatus(savedLabel());
+    }).catch(() => setStatus('Could not save in this browser', 'err'));
+    return;
+  }
+  try { localStorage.setItem(LS_KEY, payload); setStatus(savedLabel()); }
   catch(e){ setStatus('Could not save in this browser', 'err'); }
 }
+
+/* ---------------- passcode lock (browser-only copy) ---------------- */
+// Encrypts the browser-saved ledger with AES-GCM using a key derived from the passcode (PBKDF2-SHA-256).
+const LOCK_KEY = 'angel-fund-ledger-locked-v1';
+const IDLE_MS = 15 * 60 * 1000;
+const lock = { key: null, salt: null };
+let locked = false, lastActive = Date.now();
+const b64 = buf => btoa(String.fromCharCode(...new Uint8Array(buf)));
+const unb64 = str => Uint8Array.from(atob(str), c => c.charCodeAt(0));
+async function deriveKey(pass, salt){
+  const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(pass), 'PBKDF2', false, ['deriveKey']);
+  return crypto.subtle.deriveKey({name:'PBKDF2', salt, iterations:310000, hash:'SHA-256'}, base, {name:'AES-GCM', length:256}, false, ['encrypt','decrypt']);
+}
+async function encryptText(key, salt, text){
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const ct = await crypto.subtle.encrypt({name:'AES-GCM', iv}, key, new TextEncoder().encode(text));
+  return {v:1, salt:b64(salt), iv:b64(iv), ct:b64(ct)};
+}
+async function decryptBlob(pass, blob){
+  const salt = unb64(blob.salt), key = await deriveKey(pass, salt);
+  const pt = await crypto.subtle.decrypt({name:'AES-GCM', iv:unb64(blob.iv)}, key, unb64(blob.ct));
+  return {key, salt, text: new TextDecoder().decode(pt)};
+}
+function storedBlob(){ try { const r = localStorage.getItem(LOCK_KEY); return r ? JSON.parse(r) : null; } catch(e){ return null; } }
+function applyLocal(d){
+  for (const k of Object.keys(COLLS)) S[k] = d[k] || {};
+  S.settings = {...clone(DEFAULT_SETTINGS), ...(d.settings||{})};
+  if (d.scenarios) S.scenarios = d.scenarios;
+}
+function showLock(msg){
+  locked = true; closeDrawer(); hideTip();
+  for (const k of Object.keys(COLLS)) S[k] = {};
+  $('#view').innerHTML = '';
+  const el = $('#lock'); el.hidden = false;
+  el.innerHTML = `<form id="unlockForm" autocomplete="off">
+    <span class="eyebrow">Angel Fund Ledger</span>
+    <h2>Enter passcode</h2>
+    <p>Your portfolio in this browser is encrypted. Enter your passcode to open it.</p>
+    <input type="password" id="unlockPass" aria-label="Passcode" autocomplete="current-password" required>
+    <div class="err-msg" id="unlockErr">${esc(msg||'')}</div>
+    <button class="btn primary" type="submit" style="justify-content:center;padding:10px">Unlock</button>
+    <button class="btn ghost sm" type="button" data-act="lock-forgot" style="align-self:center">Forgot passcode?</button>
+  </form>`;
+  $('#unlockPass').focus();
+}
+async function tryUnlock(pass){
+  const blob = storedBlob(); if (!blob){ locked = false; $('#lock').hidden = true; return; }
+  $('#unlockErr').textContent = 'Checking…';
+  try {
+    const r = await decryptBlob(pass, blob);
+    lock.key = r.key; lock.salt = r.salt; locked = false; lastActive = Date.now();
+    applyLocal(JSON.parse(r.text)); S.example = false;
+    if (!Object.keys(S.deals).length) loadExample();
+    $('#lock').hidden = true; $('#lock').innerHTML = '';
+    ready = true; setStatus(savedLabel()); render();
+  } catch(e){ $('#unlockErr').textContent = 'That passcode is not right. Try again.'; $('#unlockPass').select(); }
+}
+function lockNow(){ if (lock.key){ lock.key = null; lock.salt = null; showLock(); } }
+function openPasscode(mode){
+  const needCurrent = mode !== 'set';
+  const title = {set:'Protect with a passcode', change:'Change passcode', remove:'Remove passcode'}[mode];
+  const body = `<p class="note" style="margin:0">${mode === 'remove' ? 'Your portfolio will be saved unencrypted in this browser again.' : 'Your portfolio will be encrypted in this browser. You will need the passcode each time you open the tracker, and it locks after 15 minutes without activity. If you forget the passcode, the saved data cannot be recovered, so keep a JSON backup somewhere safe.'}</p>
+    <div class="fs-grid">
+      ${needCurrent ? `<label class="field full"><span>Current passcode</span><input type="password" id="pc-cur" autocomplete="current-password"></label>` : ''}
+      ${mode !== 'remove' ? `<label class="field"><span>New passcode</span><input type="password" id="pc-new" autocomplete="new-password" minlength="4"></label><label class="field"><span>Confirm passcode</span><input type="password" id="pc-conf" autocomplete="new-password"></label>` : ''}
+    </div><div class="err-msg" id="pc-err"></div>`;
+  drawer(title, body, `<span></span><div class="toolbar"><button class="btn" data-act="close">Cancel</button><button class="btn primary" data-act="pc-save" data-mode="${mode}">${mode === 'remove' ? 'Remove passcode' : 'Save passcode'}</button></div>`);
+}
+async function savePasscode(mode){
+  const err = t => { $('#pc-err').textContent = t; };
+  if (mode !== 'set'){
+    const blob = storedBlob();
+    try { await decryptBlob($('#pc-cur').value, blob); } catch(e){ return err('The current passcode is not right.'); }
+  }
+  if (mode === 'remove'){
+    lock.key = null; lock.salt = null;
+    try { localStorage.setItem(LS_KEY, localPayload()); localStorage.removeItem(LOCK_KEY); } catch(e){ return err('Could not save in this browser.'); }
+    closeDrawer(); setStatus(savedLabel()); render(); return;
+  }
+  const np = $('#pc-new').value, cp = $('#pc-conf').value;
+  if (np.length < 4) return err('Use at least 4 characters.');
+  if (np !== cp) return err('The two passcodes do not match.');
+  err('Encrypting…');
+  const salt = crypto.getRandomValues(new Uint8Array(16));
+  lock.key = await deriveKey(np, salt); lock.salt = salt; lastActive = Date.now();
+  saveLocal(); await saveChain;
+  closeDrawer(); render();
+}
+['pointerdown','keydown','wheel','touchstart'].forEach(ev => addEventListener(ev, () => { lastActive = Date.now(); }, {passive:true}));
+setInterval(() => { if (lock.key && !locked && Date.now() - lastActive > IDLE_MS) lockNow(); }, 30000);
+document.addEventListener('submit', e => { if (e.target.id === 'unlockForm'){ e.preventDefault(); tryUnlock($('#unlockPass').value); } });
 function strip(o){ const r = {}; for (const [k,v] of Object.entries(o)) if (!k.startsWith('_') && v !== undefined) r[k] = v; return r; }
 function queue(key, fn){
   const prev = writeChains[key] || Promise.resolve();
@@ -598,8 +709,9 @@ async function initStore(){
     setTimeout(() => { if (!ready){ ready = true; scheduleRender(); } }, 8000);
   } else {
     backend = 'local';
+    if (storedBlob()){ setStatus('Locked', 'busy'); showLock(); return; }
     let raw = null; try { raw = localStorage.getItem(LS_KEY); } catch(e){}
-    if (raw){ try { const d = JSON.parse(raw); for (const k of Object.keys(COLLS)) S[k] = d[k] || {}; S.settings = {...clone(DEFAULT_SETTINGS), ...(d.settings||{})}; if (d.scenarios) S.scenarios = d.scenarios; } catch(e){} }
+    if (raw){ try { applyLocal(JSON.parse(raw)); } catch(e){} }
     if (!Object.keys(S.deals).length) loadExample();
     ready = true; setStatus(savedLabel()); render();
   }
@@ -718,9 +830,10 @@ function renderTabs(){
   $('#tabs').innerHTML = TABS.map(([k,l]) => `<button class="tab" role="tab" data-tab="${k}" aria-selected="${UI.tab===k}">${l}</button>`).join('');
 }
 function render(){
-  if (!ready){ return; }
+  if (!ready || locked){ return; }
   _cos = null;
   $('#fundName').textContent = S.settings.fundName || 'Angel Fund Ledger';
+  $('#lockBtn').hidden = !lock.key;
   renderTabs();
   const active = document.activeElement; const focusId = active && active.id; const selStart = active && active.selectionStart;
   charts = [];
@@ -1471,7 +1584,8 @@ function openMenu(){
   const btn = $('#dataBtn'); const ex = $('.menu'); if (ex){ ex.remove(); return; }
   const m = document.createElement('div'); m.className = 'menu';
   m.innerHTML = `<button data-act="import">Import spreadsheet CSV or backup…</button><button data-act="export-csv">Export holdings as CSV</button><button data-act="export-json">Export full backup (JSON)</button><hr><button data-act="load-example">Load example data</button><button data-act="reset-ask" style="color:var(--bad)">Clear all data…</button>
-  <hr><span class="note" style="padding:4px 10px">${backend==='db' ? 'Changes save to this tracker automatically and sync across your devices.' : 'Changes save in this browser only. Export a backup to move them.'}</span>`;
+  ${backend === 'local' && window.crypto && crypto.subtle ? `<hr>${lock.key ? '<button data-act="pc-open" data-mode="change">Change passcode…</button><button data-act="pc-open" data-mode="remove">Remove passcode…</button><button data-act="lock-now">Lock now</button>' : '<button data-act="pc-open" data-mode="set">Protect with a passcode…</button>'}` : ''}
+  <hr><span class="note" style="padding:4px 10px">${backend==='db' ? 'Changes save to this tracker automatically and sync across your devices. Only your Claude account can open it.' : 'Changes save in this browser only. Export a backup to move them.'}</span>`;
   btn.parentElement.appendChild(m);
 }
 
@@ -1491,6 +1605,11 @@ document.addEventListener('click', async e => {
     case 'deal-save': saveDeal(t.dataset.id || null, t.dataset.pipe || null); break;
     case 'deal-del': if (t.dataset.armed){ del('deals', id); _dv++; closeDrawer(); } else { t.dataset.armed = 1; t.textContent = 'Click again to delete'; } break;
     case 'mark-new': openMark(t.dataset.co || (companies().find(c=>c.key===UI.mark)||{}).name || '', t.dataset.val ? {val:+t.dataset.val, date:t.dataset.date, note:t.dataset.note} : null); break;
+    case 'lock-now': lockNow(); break;
+    case 'pc-open': openPasscode(t.dataset.mode); break;
+    case 'pc-save': savePasscode(t.dataset.mode); break;
+    case 'lock-forgot': $('#unlockErr').innerHTML = 'Without the passcode the saved data cannot be decrypted. <button class="btn sm danger" type="button" data-act="lock-erase">Erase and start over</button>'; break;
+    case 'lock-erase': try { localStorage.removeItem(LOCK_KEY); localStorage.removeItem(LS_KEY); } catch(_){} location.reload(); break;
     case 'news-kind': UI.news.kind = t.dataset.v; render(); break;
     case 'mark-save': saveMark(); break;
     case 'mark-pick': UI.mark = t.dataset.k; render(); break;
