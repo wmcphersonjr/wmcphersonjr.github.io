@@ -1208,7 +1208,7 @@ VIEWS.news = () => {
     <div class="kpi"><span class="l">Quiet</span><span class="v">${quiet.length}</span><span class="s">No material news found</span></div>
     <div class="kpi"><span class="l">Coverage</span><span class="v">${cos.filter(c=>c.alive).length}</span><span class="s">Live companies scanned</span></div>
   </div>
-  ${run && run.digest && run.digest.length ? `<section class="panel"><div class="panel-head"><h3>${monthLabel(run.id)} digest</h3><span class="sub">What mattered most</span></div><ul class="digest">${run.digest.map(x => `<li>${esc(x)}</li>`).join('')}</ul></section>` : ''}
+  ${run && run.digest && run.digest.length ? `<section class="panel"><div class="panel-head"><h3>${monthLabel(run.id)} digest</h3><span class="sub">What mattered most</span></div><ul class="digest">${run.digest.map(x => `<li>${esc(x)}</li>`).join('')}</ul>${run.note ? `<p class="note" style="margin:0">${esc(run.note)}</p>` : ''}</section>` : ''}
   <section class="panel" style="gap:0">
     ${order.map(k => { const c = byKey[k]; const list = groups[k].sort((a,b)=>(b.date||'').localeCompare(a.date||'')); return `<div class="co-news"><div class="who"><b>${esc(c ? c.name : list[0].company)}</b>${c ? `<span class="muted" style="font-size:12px">${esc(c.stage)} · ${esc(c.industry||'')}</span><span class="num" style="font-size:12px">${moneyFull(c.cost)} in · ${money(c.tv)} now · ${mult(c.moic)}</span>` : ''}</div><div class="items">${list.map(item).join('')}</div></div>`; }).join('') || '<div class="empty">No stories match these filters.</div>'}
   </section>
