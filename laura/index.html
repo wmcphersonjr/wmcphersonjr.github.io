@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Laurita</title>
+  <meta name="description" content="Laura's 30th birthday book: memories, love and wishes from her family and friends.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#f6efe6" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1c1714" media="(prefers-color-scheme: dark)">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Laurita">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💛</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="#/" class="brand">Laurita</a>
+    <nav class="tabs" aria-label="Sections">
+      <a href="#/" data-tab="home"><span aria-hidden="true">🏠</span><b>Home</b></a>
+      <a href="#/contents" data-tab="contents"><span aria-hidden="true">📖</span><b>Contents</b></a>
+      <a href="#/moods" data-tab="moods"><span aria-hidden="true">💭</span><b>For When…</b></a>
+      <a href="#/categories" data-tab="categories"><span aria-hidden="true">🏷️</span><b>Categories</b></a>
+      <a href="#/wishes" data-tab="wishes"><span aria-hidden="true">🕊️</span><b>Wishes</b></a>
+      <a href="#/saved" data-tab="saved"><span aria-hidden="true">💛</span><b>Saved</b></a>
+    </nav>
+  </header>
+
+  <main id="app" tabindex="-1"></main>
+
+  <section id="gate" class="gate" hidden>
+    <form class="gate-card" autocomplete="off">
+      <p class="gate-heart" aria-hidden="true">💛</p>
+      <h1>Laurita</h1>
+      <p class="lede">Enter your passcode</p>
+      <input id="code" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="8" aria-label="Passcode" autofocus>
+      <button class="btn" type="submit">Open</button>
+      <p class="gate-msg" role="status"></p>
+    </form>
+  </section>
+
+  <div id="lightbox" class="lightbox" hidden>
+    <button class="lb-close" data-lb="close" aria-label="Close">✕</button>
+    <button class="lb-prev" data-lb="prev" aria-label="Previous photo">‹</button>
+    <img alt="">
+    <button class="lb-next" data-lb="next" aria-label="Next photo">›</button>
+    <p class="lb-count"></p>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
