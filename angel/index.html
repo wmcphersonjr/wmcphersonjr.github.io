@@ -219,6 +219,23 @@ td input.set{border-color:var(--accent);background:var(--accent-soft)}
 .card p{margin:0;color:var(--ink-2);font-size:13px;white-space:pre-wrap}
 .card .row{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:auto}
 
+/* news */
+.co-news{display:grid;grid-template-columns:minmax(160px,220px) minmax(0,1fr);gap:18px;padding:16px 0;border-top:1px solid var(--line)}
+.co-news:first-child{border-top:0;padding-top:4px}
+.co-news .who{display:flex;flex-direction:column;gap:3px}
+.co-news .who b{font:600 16px/1.2 var(--sans)}
+.co-news .items{display:flex;flex-direction:column;gap:14px;min-width:0}
+.nitem{display:flex;flex-direction:column;gap:4px;padding-left:12px;border-left:3px solid var(--line-2)}
+.nitem.positive{border-left-color:var(--good)} .nitem.negative{border-left-color:var(--bad)}
+.nitem .m{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:12px;color:var(--ink-3)}
+.nitem a.h{font-weight:600;font-size:14.5px;color:var(--ink);text-decoration:none;text-wrap:pretty}
+.nitem a.h:hover{color:var(--accent);text-decoration:underline}
+.nitem p{margin:0;color:var(--ink-2);font-size:13px;max-width:78ch}
+.imp{font-size:11px;font-weight:600;padding:1px 7px;border-radius:99px}
+.imp.positive{background:var(--good-soft);color:var(--good)} .imp.negative{background:var(--bad-soft);color:var(--bad)} .imp.neutral{background:var(--surface-2);color:var(--ink-2)}
+.sig{display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:var(--accent-soft);border-radius:6px;padding:6px 10px;font-size:12.5px;margin-top:2px}
+.digest{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;max-width:90ch}
+@media (max-width:700px){.co-news{grid-template-columns:minmax(0,1fr);gap:8px}}
 /* drawer */
 .scrim{position:fixed;inset:0;background:rgba(10,12,11,.45);z-index:60;display:flex;justify-content:flex-end}
 .drawer{background:var(--bg);width:min(720px,100%);height:100%;overflow-y:auto;box-shadow:var(--shadow);display:flex;flex-direction:column}
@@ -279,7 +296,7 @@ const TODAY = new Date();
 const DAY = 864e5, YEAR = 365.25 * DAY;
 const STAGES = ['Pre-Seed','Seed','Series A','Series B','Series C','Series D+'];
 const TABS = [
-  ['dashboard','Dashboard'],['holdings','Holdings'],['marks','Marks'],['projections','Projections'],
+  ['dashboard','Dashboard'],['holdings','Holdings'],['marks','Marks'],['news','News'],['projections','Projections'],
   ['scenarios','Scenarios'],['sensitivity','Sensitivity'],['construction','Construction'],['pipeline','Pipeline'],['ideas','Ideas']
 ];
 const DEFAULT_SETTINGS = {
@@ -301,11 +318,11 @@ const DEFAULT_SCENARIOS = [
   {id:'bull', name:'Bull', pMult:1.3, exitMult:1.75, dilAdd:-5, delay:-1, recMult:1.2}
 ];
 const VIEWS = {};
-const COLLS = {deals:'deals', marks:'marks', proj:'projections', notes:'notes', pipeline:'pipeline'};
+const COLLS = {deals:'deals', marks:'marks', proj:'projections', notes:'notes', pipeline:'pipeline', news:'news', runs:'newsRuns'};
 
 /* ---------------- state ---------------- */
-const S = { deals:{}, marks:{}, proj:{}, notes:{}, pipeline:{}, settings: clone(DEFAULT_SETTINGS), scenarios: clone(DEFAULT_SCENARIOS), example:false };
-const UI = { tab: 'dashboard', hold: {q:'', status:'all', group:true, sort:'value'}, mark: null, scn: 'base', mc: null, ideaTag:'all', pipeStatus:'all' };
+const S = { deals:{}, marks:{}, proj:{}, notes:{}, pipeline:{}, news:{}, runs:{}, settings: clone(DEFAULT_SETTINGS), scenarios: clone(DEFAULT_SCENARIOS), example:false };
+const UI = { tab: 'dashboard', hold: {q:'', status:'all', group:true, sort:'value'}, mark: null, scn: 'base', mc: null, ideaTag:'all', pipeStatus:'all', news:{run:null, kind:'all', impact:'all'} };
 let _dv = 0;
 let backend = 'local', db = null, downloads = null, ready = false;
 
@@ -509,7 +526,7 @@ const writeChains = {};
 function setStatus(text, kind){ const el = $('#status'); if (!el) return; el.className = 'status' + (kind ? ' ' + kind : ''); el.querySelector('span').textContent = text; }
 function savedLabel(){ return backend === 'db' ? 'Saved to your tracker' : (S.example ? 'Example data · not saved' : 'Saved in this browser'); }
 function saveLocal(){
-  try { localStorage.setItem(LS_KEY, JSON.stringify({deals:S.example ? {} : S.deals, marks:S.marks, proj:S.proj, notes:S.notes, pipeline:S.pipeline, settings:S.settings, scenarios:S.scenarios})); setStatus(savedLabel()); }
+  try { localStorage.setItem(LS_KEY, JSON.stringify({deals:S.example ? {} : S.deals, marks:S.marks, proj:S.proj, notes:S.notes, pipeline:S.pipeline, news:S.news, runs:S.runs, settings:S.settings, scenarios:S.scenarios})); setStatus(savedLabel()); }
   catch(e){ setStatus('Could not save in this browser', 'err'); }
 }
 function strip(o){ const r = {}; for (const [k,v] of Object.entries(o)) if (!k.startsWith('_') && v !== undefined) r[k] = v; return r; }
@@ -786,6 +803,8 @@ VIEWS.dashboard = () => {
   const topShare = f.TV ? byVal.slice(0,3).reduce((s,c)=>s+c.tv,0) / f.TV : 0;
   const winners = [...cos].filter(c=>c.alive).sort((a,b)=>b.moic-a.moic).slice(0,5);
   const checks = dataChecks(cos), stale = staleList(cos);
+  const latestRun = Object.values(S.runs).sort((a,b)=>(b.id||'').localeCompare(a.id||''))[0];
+  const badNews = latestRun ? Object.values(S.news).filter(n => n.run === latestRun.id && n.impact === 'negative') : [];
   return `
   ${kpis}
   <div class="grid g-main">
@@ -813,8 +832,9 @@ VIEWS.dashboard = () => {
       ${barList(rows, {two:true, tip: r => `<b>${esc(r.label)}</b><br>Cost ${moneyFull(r.a)}<br>Value ${moneyFull(r.b)}<br>Multiple ${r.v}`})}
     </section>
     <section class="panel">
-      <div class="panel-head"><h3>Needs attention</h3><span class="sub">${checks.length + stale.length} items</span></div>
+      <div class="panel-head"><h3>Needs attention</h3><span class="sub">${checks.length + badNews.length + (stale.length?1:0)} items</span></div>
       <div>
+        ${badNews.map(n => `<div class="flag"><span class="ic bad">↓</span><span><b>${esc(n.company)}</b>: ${esc(n.headline)} <button class="btn sm ghost" data-tab="news">Read</button></span></div>`).join('')}
         ${checks.map(x => `<div class="flag"><span class="ic ${x.bad?'bad':''}">${x.bad?'×':'!'}</span><span>${x.t} ${x.id?`<button class="btn sm ghost" data-act="deal-edit" data-id="${esc(x.id)}">Fix</button>`:''}</span></div>`).join('')}
         ${stale.length ? `<div class="flag"><span class="ic">!</span><span><b>${stale.length} stale ${stale.length===1?'mark':'marks'}</b>: no valuation update in ${S.settings.staleMonths} months. Click one to update it.<br>${stale.map(c => `<button class="btn sm ghost" style="padding:2px 6px" data-act="mark-new" data-co="${esc(c.name)}">${esc(c.name)} <span class="muted">${fmtM(c.lastMark)}</span></button>`).join(' ')}</span></div>` : ''}
         ${!checks.length && !stale.length ? '<div class="empty">Everything is marked and consistent.</div>' : ''}
@@ -1144,6 +1164,57 @@ VIEWS.construction = () => {
   </div>`;
 };
 
+/* ======== NEWS ======== */
+const NEWS_KINDS = ['Funding','Exit','Product','Customer','Partnership','Leadership','Hiring','Recognition','Regulatory','Risk','Other'];
+VIEWS.news = () => {
+  const runs = Object.values(S.runs).sort((a,b) => (b.id||'').localeCompare(a.id||''));
+  const N = UI.news;
+  const intro = `<div class="section-head"><div><h2>Portfolio news</h2><p>Recent developments for every live company, gathered from the web once a month by Claude. Each item links to its source. When a story reports a new valuation, you can record it as a mark in one click.</p></div></div>`;
+  if (!runs.length) return intro + `<section class="panel"><h3>No news yet</h3><p class="note" style="margin:0">${backend === 'db' ? 'The first monthly scan has not been saved yet. News appears here after each run.' : 'News scans run in the Claude-hosted version of this tracker, where Claude writes each month\'s findings. This copy saves only to your browser, so it has no news feed. Import a JSON backup from the hosted tracker to view its news here.'}</p></section>`;
+  if (!N.run || (N.run !== 'all' && !S.runs[N.run])) N.run = runs[0].id;
+  const run = N.run === 'all' ? null : S.runs[N.run];
+  const monthLabel = id => { const d = pd(id + '-01'); return d ? d.toLocaleDateString('en-US',{month:'long', year:'numeric'}) : id; };
+  let items = Object.values(S.news).filter(n => N.run === 'all' || n.run === N.run);
+  const kinds = NEWS_KINDS.filter(k => items.some(n => n.kind === k));
+  const pos = items.filter(n=>n.impact==='positive').length, neg = items.filter(n=>n.impact==='negative').length;
+  const sigs = items.filter(n => isNum(n.valuation));
+  if (N.kind !== 'all') items = items.filter(n => n.kind === N.kind);
+  if (N.impact !== 'all') items = items.filter(n => n.impact === N.impact);
+  const cos = companies(); const byKey = Object.fromEntries(cos.map(c => [c.key, c]));
+  const groups = {};
+  for (const n of items){ const k = slug(n.company); (groups[k] = groups[k] || []).push(n); }
+  const order = Object.keys(groups).sort((a,b) => ((byKey[b]||{}).tv||0) - ((byKey[a]||{}).tv||0));
+  const withNews = new Set(Object.values(S.news).filter(n => N.run === 'all' || n.run === N.run).map(n => slug(n.company)));
+  const quiet = cos.filter(c => c.alive && !withNews.has(c.key)).map(c => c.name);
+  const item = n => { const c = byKey[slug(n.company)]; return `<div class="nitem ${esc(n.impact||'neutral')}">
+      <div class="m"><span class="num">${fmtD(n.date)}</span><span>${esc(n.source||'')}</span><span class="tag">${esc(n.kind||'Other')}</span><span class="imp ${esc(n.impact||'neutral')}">${n.impact==='positive'?'Positive':n.impact==='negative'?'Negative':'Neutral'}</span></div>
+      ${n.url ? `<a class="h" href="${esc(n.url)}" target="_blank" rel="noopener noreferrer">${esc(n.headline)} ↗</a>` : `<span class="h" style="font-weight:600">${esc(n.headline)}</span>`}
+      ${n.summary ? `<p>${esc(n.summary)}</p>` : ''}
+      ${isNum(n.valuation) && c ? `<div class="sig"><span>Reports a <b class="num">${big(n.valuation)}</b> valuation. You carry it at <b class="num">${big(c.valuation)}</b>${c.valuation ? ` (${mult(n.valuation / c.valuation)})` : ''}.</span><button class="btn sm" data-act="mark-new" data-co="${esc(c.name)}" data-val="${n.valuation}" data-date="${esc(n.date||'')}" data-note="${esc((n.headline||'') + (n.url ? ' — ' + n.url : ''))}">Record as mark</button></div>` : ''}
+    </div>`; };
+  return intro + `
+  <div class="toolbar">
+    <select id="nrun" data-f="news.run" aria-label="Month">${runs.map(r => `<option value="${esc(r.id)}" ${N.run===r.id?'selected':''}>${monthLabel(r.id)}</option>`).join('')}<option value="all" ${N.run==='all'?'selected':''}>All months</option></select>
+    <select id="nimp" data-f="news.impact" aria-label="Impact"><option value="all">Any impact</option>${['positive','neutral','negative'].map(i=>`<option value="${i}" ${N.impact===i?'selected':''}>${i[0].toUpperCase()+i.slice(1)}</option>`).join('')}</select>
+    <div class="seg"><button data-act="news-kind" data-v="all" aria-pressed="${N.kind==='all'}">All</button>${kinds.map(k=>`<button data-act="news-kind" data-v="${k}" aria-pressed="${N.kind===k}">${k}</button>`).join('')}</div>
+    <span class="grow"></span>
+    <span class="muted" style="font-size:12px">${run ? `Scanned ${fmtD(run.runDate)}${run.windowFrom ? ` · covers ${fmtD(run.windowFrom)} – ${fmtD(run.windowTo)}` : ''}` : `${runs.length} monthly scans`}${runs[0].nextRun ? ` · next scan ${fmtD(runs[0].nextRun)}` : ''}</span>
+  </div>
+  <div class="kpis">
+    <div class="kpi"><span class="l">Stories</span><span class="v">${Object.values(S.news).filter(n => N.run === 'all' || n.run === N.run).length}</span><span class="s">${withNews.size} companies with news</span></div>
+    <div class="kpi"><span class="l">Positive</span><span class="v up">${pos}</span><span class="s">Funding, launches, wins</span></div>
+    <div class="kpi"><span class="l">Negative</span><span class="v ${neg?'down':''}">${neg}</span><span class="s">Risks to watch</span></div>
+    <div class="kpi"><span class="l">Valuation signals</span><span class="v">${sigs.length}</span><span class="s">Stories that report a price</span></div>
+    <div class="kpi"><span class="l">Quiet</span><span class="v">${quiet.length}</span><span class="s">No material news found</span></div>
+    <div class="kpi"><span class="l">Coverage</span><span class="v">${cos.filter(c=>c.alive).length}</span><span class="s">Live companies scanned</span></div>
+  </div>
+  ${run && run.digest && run.digest.length ? `<section class="panel"><div class="panel-head"><h3>${monthLabel(run.id)} digest</h3><span class="sub">What mattered most</span></div><ul class="digest">${run.digest.map(x => `<li>${esc(x)}</li>`).join('')}</ul></section>` : ''}
+  <section class="panel" style="gap:0">
+    ${order.map(k => { const c = byKey[k]; const list = groups[k].sort((a,b)=>(b.date||'').localeCompare(a.date||'')); return `<div class="co-news"><div class="who"><b>${esc(c ? c.name : list[0].company)}</b>${c ? `<span class="muted" style="font-size:12px">${esc(c.stage)} · ${esc(c.industry||'')}</span><span class="num" style="font-size:12px">${moneyFull(c.cost)} in · ${money(c.tv)} now · ${mult(c.moic)}</span>` : ''}</div><div class="items">${list.map(item).join('')}</div></div>`; }).join('') || '<div class="empty">No stories match these filters.</div>'}
+  </section>
+  ${quiet.length ? `<p class="note">No material news found for: ${quiet.map(esc).join(', ')}.</p>` : ''}`;
+};
+
 /* ======== PIPELINE ======== */
 const PIPE_STAGES = ['Sourced','Diligence','Committed','Passed'];
 VIEWS.pipeline = () => {
@@ -1259,17 +1330,18 @@ function saveDeal(id, pipeId){
   if (pipeId && S.pipeline[pipeId]) put('pipeline', {...S.pipeline[pipeId], status:'Committed', converted: obj.id});
   closeDrawer();
 }
-function openMark(company){
+function openMark(company, pre){
+  pre = pre || {};
   const names = [...new Set(companies().filter(c=>c.alive).map(c=>c.name))].sort();
   const c = companies().find(x => x.name === company);
   const body = `${datalists()}<p class="note" style="margin:0">A mark sets the company's current valuation. Every active check in the company is re-valued from its own ownership. Use the latest priced round, a secondary price, or a write-down.</p>
     <div class="fs-grid">
       <label class="field full"><span>Company *</span><select id="mk-company">${names.map(n=>`<option ${n===company?'selected':''}>${esc(n)}</option>`).join('')}</select></label>
-      <label class="field"><span>Valuation date *</span><input type="date" id="mk-date" value="${iso(TODAY)}"></label>
-      <label class="field"><span>Company valuation (post-money) *</span><input id="mk-val" inputmode="decimal" placeholder="e.g. 45m" value=""></label>
+      <label class="field"><span>Valuation date *</span><input type="date" id="mk-date" value="${esc(pre.date || iso(TODAY))}"></label>
+      <label class="field"><span>Company valuation (post-money) *</span><input id="mk-val" inputmode="decimal" placeholder="e.g. 45m" value="${isNum(pre.val) ? fN.format(pre.val) : ''}"></label>
       <label class="field"><span>Event</span><select id="mk-round">${['New priced round','SAFE / note round','Secondary sale','409A / internal','Down round','Write-down to zero','Acquisition offer'].map(o=>`<option>${o}</option>`).join('')}</select></label>
       <label class="field"><span>Company stage now</span><select id="mk-stage">${STAGES.map(s=>`<option ${c && stageKey(c.stage)===s?'selected':''}>${s}</option>`).join('')}</select></label>
-      <label class="field full"><span>Note</span><textarea id="mk-note" placeholder="Lead investor, round size, source of the price"></textarea></label>
+      <label class="field full"><span>Note</span><textarea id="mk-note" placeholder="Lead investor, round size, source of the price">${esc(pre.note || '')}</textarea></label>
     </div><div class="preview" id="mprev"></div><div class="err-msg" id="merr"></div>`;
   drawer('Update valuation', body, `<span></span><div class="toolbar"><button class="btn" data-act="close">Cancel</button><button class="btn primary" data-act="mark-save">Save mark</button></div>`);
   const upd = () => {
@@ -1360,7 +1432,7 @@ function exportCSV(){
 }
 function exportJSON(){
   const strip2 = m => Object.fromEntries(Object.entries(m).map(([k,v]) => [k, strip(v)]));
-  const data = {app:'angel-fund-ledger', version:1, exported: new Date().toISOString(), deals:strip2(S.deals), marks:strip2(S.marks), proj:strip2(S.proj), notes:strip2(S.notes), pipeline:strip2(S.pipeline), settings:S.settings, scenarios:S.scenarios};
+  const data = {app:'angel-fund-ledger', version:1, exported: new Date().toISOString(), deals:strip2(S.deals), marks:strip2(S.marks), proj:strip2(S.proj), notes:strip2(S.notes), pipeline:strip2(S.pipeline), news:strip2(S.news), runs:strip2(S.runs), settings:S.settings, scenarios:S.scenarios};
   saveFile('angel-portfolio-backup-' + iso(TODAY) + '.json', JSON.stringify(data, null, 2), 'application/json');
 }
 let pendingImport = null;
@@ -1390,7 +1462,7 @@ function handleFile(file){
 }
 async function confirmImport(mode){
   const p = pendingImport; pendingImport = null; closeDrawer(); if (!p) return;
-  if (p.kind === 'json'){ const d = p.data; await replaceAll({deals:d.deals, marks:d.marks||{}, proj:d.proj||{}, notes:d.notes||{}, pipeline:d.pipeline||{}, settings:d.settings, scenarios:d.scenarios}); }
+  if (p.kind === 'json'){ const d = p.data; await replaceAll({deals:d.deals, marks:d.marks||{}, proj:d.proj||{}, notes:d.notes||{}, pipeline:d.pipeline||{}, news:d.news||{}, runs:d.runs||{}, settings:d.settings, scenarios:d.scenarios}); }
   else if (mode === 'add'){ for (const d of p.fresh) put('deals', d); }
   else { const deals = {}; p.deals.forEach(d => deals[d.id] = d); await replaceAll({deals, marks: S.example ? {} : S.marks, proj: S.example ? {} : S.proj, notes:S.notes, pipeline:S.pipeline}); }
   _dv++; UI.tab = 'dashboard'; render();
@@ -1418,7 +1490,8 @@ document.addEventListener('click', async e => {
     case 'deal-edit': openDeal(id); break;
     case 'deal-save': saveDeal(t.dataset.id || null, t.dataset.pipe || null); break;
     case 'deal-del': if (t.dataset.armed){ del('deals', id); _dv++; closeDrawer(); } else { t.dataset.armed = 1; t.textContent = 'Click again to delete'; } break;
-    case 'mark-new': openMark(t.dataset.co || (companies().find(c=>c.key===UI.mark)||{}).name || ''); break;
+    case 'mark-new': openMark(t.dataset.co || (companies().find(c=>c.key===UI.mark)||{}).name || '', t.dataset.val ? {val:+t.dataset.val, date:t.dataset.date, note:t.dataset.note} : null); break;
+    case 'news-kind': UI.news.kind = t.dataset.v; render(); break;
     case 'mark-save': saveMark(); break;
     case 'mark-pick': UI.mark = t.dataset.k; render(); break;
     case 'mark-del': if (t.dataset.armed){ del('marks', id); } else { t.dataset.armed = 1; t.textContent = 'Confirm'; } break;
@@ -1461,6 +1534,7 @@ document.addEventListener('change', e => {
   const el = e.target, f = el.dataset && el.dataset.f; if (!f) return;
   const parts = f.split('.'); const v = el.value.trim();
   if (parts[0] === 'hold'){ UI.hold[parts[1]] = v; render(); return; }
+  if (parts[0] === 'news'){ UI.news[parts[1]] = v; render(); return; }
   if (parts[0] === 'proj'){
     const key = parts[1], fld = parts[2];
     const cur = {...(S.proj[key] || {company: (companies().find(c=>c.key===key)||{}).name || key})};
