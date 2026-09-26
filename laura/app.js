@@ -66,17 +66,43 @@
         store.set("code", code);
         gate.hidden = true;
         start(opened);
-      } catch {
-        msg.textContent = "That's not it. Try again.";
-        input.value = "";
-        form.classList.remove("shake"); void form.offsetWidth; form.classList.add("shake");
+      } catch (err) {
+        // AES-GCM rejects a wrong key with OperationError; anything else is a loading problem
+        if (err && err.name === "OperationError") {
+          msg.textContent = "That's not it. Try again.";
+          input.value = "";
+          form.classList.remove("shake"); void form.offsetWidth; form.classList.add("shake");
+        } else {
+          msg.textContent = "Couldn't open the book. Check your connection and try again.";
+        }
       }
     });
   }
 
-  const remembered = store.get("code", null);
-  if (remembered) unlock(remembered).then(start, () => { store.remove("code"); showGate(); });
-  else showGate();
+  // Decryption (crypto.subtle) only exists on secure pages, so plain http can never unlock.
+  // Move to https when it's available; otherwise say so instead of rejecting the passcode.
+  function requireHttps() {
+    if (window.isSecureContext && window.crypto && crypto.subtle) return false;
+    const secureUrl = location.href.replace(/^http:/, "https:");
+    gate.hidden = false;
+    gate.querySelector("form").innerHTML = `
+      <p class="gate-heart" aria-hidden="true">💛</p>
+      <h1>Laurita</h1>
+      <p class="lede">Opening the secure version…</p>`;
+    fetch(secureUrl.split("#")[0], { mode: "no-cors", cache: "no-store", signal: AbortSignal.timeout(6000) })
+      .then(() => location.replace(secureUrl))
+      .catch(() => {
+        gate.querySelector(".lede").innerHTML =
+          `The secure version of this site is still being set up. Try again in a few minutes at <a href="${secureUrl}">${secureUrl.split("#")[0]}</a>.`;
+      });
+    return true;
+  }
+
+  if (!requireHttps()) {
+    const remembered = store.get("code", null);
+    if (remembered) unlock(remembered).then(start, () => { store.remove("code"); showGate(); });
+    else showGate();
+  }
 
   // ---------- the book ----------
   function start({ data, key }) {
