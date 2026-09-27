@@ -1,0 +1,1638 @@
+{
+ "format": "waynesdays-recipes",
+ "version": 1,
+ "title": "Waynesdays Recipe Book",
+ "updatedAt": "2026-09-26T12:00:00.000Z",
+ "recipes": [
+  {
+   "id": "freeman-house-chai-concentrate",
+   "title": "Freeman House Chai Concentrate (Copycat)",
+   "description": "Ginger forward, demerara sweetened, restrained spice blend (no vanilla, star anise, fennel, or nutmeg).",
+   "category": "Drinks",
+   "tags": [
+    "chai",
+    "tea",
+    "copycat",
+    "make-ahead",
+    "batch"
+   ],
+   "time": "45 min",
+   "yield": "about 4 cups concentrate (8 servings)",
+   "image": "",
+   "ingredients": [
+    {
+     "name": "",
+     "note": "",
+     "items": [
+      "4 cups filtered water",
+      "2 inch piece fresh ginger (about 30g), sliced and smashed",
+      "10 to 12 green cardamom pods, cracked open",
+      "2 cinnamon sticks, broken into pieces",
+      "8 whole cloves",
+      "1 tsp whole black peppercorns, lightly crushed",
+      "4 to 5 tbsp loose Assam CTC tea (or 5 Assam tea bags)",
+      "1/4 cup demerara sugar (adjust to taste)"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Prep spices:** Crack cardamom pods, lightly crush peppercorns, slice ginger into 1/8 inch coins and smash, break cinnamon into pieces.",
+      "**Toast:** Dry toast cardamom, cinnamon, cloves, and peppercorns over medium heat 1 to 2 minutes until fragrant. Don't skip.",
+      "**Simmer:** Add water and ginger. Bring to a boil, then cover and gently simmer 25 to 30 minutes.",
+      "**Sweeten:** Stir in demerara sugar while hot until dissolved.",
+      "**Steep tea:** Off heat, add tea. Cover and steep exactly 5 minutes. Don't squeeze bags.",
+      "**Strain and store:** Strain, cool to room temp, bottle, refrigerate."
+     ]
+    }
+   ],
+   "notes": [
+    "Assam CTC tea gives the malty backbone. Fresh ginger is non-negotiable. Turbinado can sub for demerara.",
+    "Keeps 2 weeks refrigerated (best in 7 to 10 days). Freeze in ice cube trays up to 3 months.",
+    "Bitter? Tea over-steeped or boiled. Flat? Increase ginger 50%.",
+    "Dirty chai: add a shot of espresso. Stronger spice: simmer 40 minutes before adding tea. Less sweet: 2 to 3 tbsp sugar."
+   ],
+   "extras": [
+    {
+     "title": "Serving",
+     "body": "1 part concentrate to 1 part milk (oat milk works great). Heat until steaming (don't boil) or pour over ice."
+    }
+   ],
+   "sources": [
+    {
+     "label": "",
+     "url": "https://claude.ai/chat/0001c08c-328e-4a5e-9511-aa6f2f04ae8c"
+    }
+   ],
+   "createdAt": "2026-09-26T11:33:00.000Z",
+   "updatedAt": "2026-09-26T12:00:00.000Z"
+  },
+  {
+   "id": "simple-chai-concentrate",
+   "title": "Simple Chai Concentrate (Original Version)",
+   "description": "",
+   "category": "Drinks",
+   "tags": [
+    "chai",
+    "tea",
+    "make-ahead"
+   ],
+   "time": "30 min",
+   "yield": "",
+   "image": "",
+   "ingredients": [
+    {
+     "name": "",
+     "note": "simmer together 20 to 30 minutes",
+     "items": [
+      "4 cups water",
+      "4 to 5 black tea bags (or 3 tbsp loose Assam)",
+      "1 cup sugar (adjust to taste)",
+      "2 inch piece fresh ginger, sliced",
+      "6 to 8 cardamom pods, crushed",
+      "4 to 5 whole cloves",
+      "2 cinnamon sticks",
+      "1 tsp black peppercorns",
+      "1 star anise (optional)",
+      "Pinch of nutmeg"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "Simmer everything, strain, cool, refrigerate.",
+      "Keeps about 2 weeks.",
+      "Optional splash of vanilla."
+     ]
+    }
+   ],
+   "notes": [],
+   "extras": [
+    {
+     "title": "Latte ratio",
+     "body": "1 part concentrate to 2 parts oat milk (go 1:1.5 for stronger)."
+    }
+   ],
+   "sources": [
+    {
+     "label": "",
+     "url": "https://claude.ai/chat/679e42da-ce5a-413a-8eef-0e3aa285d6a3"
+    }
+   ],
+   "createdAt": "2026-09-26T11:34:00.000Z",
+   "updatedAt": "2026-09-26T12:00:00.000Z"
+  },
+  {
+   "id": "thai-milk-tea",
+   "title": "Thai Milk Tea (Cha Yen)",
+   "description": "",
+   "category": "Drinks",
+   "tags": [
+    "tea",
+    "thai",
+    "iced",
+    "quick"
+   ],
+   "time": "10 min",
+   "yield": "",
+   "image": "",
+   "ingredients": [
+    {
+     "name": "",
+     "note": "",
+     "items": [
+      "2 tbsp Thai tea mix (ChaTraMue brand)",
+      "1 cup boiling water",
+      "2 tbsp sweetened condensed milk",
+      "2 to 3 tbsp evaporated milk (or half-and-half or coconut cream)",
+      "Ice"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "Brew tea mix in boiling water 5 minutes. Strain through fine mesh or cloth.",
+      "Stir in condensed milk while hot.",
+      "Pour over a tall glass of ice.",
+      "Top with evaporated milk. Don't stir, let it cascade."
+     ]
+    }
+   ],
+   "notes": [],
+   "extras": [
+    {
+     "title": "Street style move",
+     "body": "pour back and forth between cups to aerate before serving."
+    }
+   ],
+   "sources": [
+    {
+     "label": "",
+     "url": "https://claude.ai/chat/dee22661-30dd-4922-9da2-c2a8ccc18cc4"
+    }
+   ],
+   "createdAt": "2026-09-26T11:35:00.000Z",
+   "updatedAt": "2026-09-26T12:00:00.000Z"
+  },
+  {
+   "id": "hot-toddy",
+   "title": "Hot Toddy",
+   "description": "",
+   "category": "Drinks",
+   "tags": [
+    "cocktail",
+    "whisky",
+    "warm",
+    "quick"
+   ],
+   "time": "5 min",
+   "yield": "",
+   "image": "",
+   "ingredients": [
+    {
+     "name": "",
+     "note": "",
+     "items": [
+      "2 oz whisky (bourbon or Irish)",
+      "1 tbsp honey",
+      "3/4 oz fresh lemon juice",
+      "4 to 6 oz hot water, just off boil (or lemon ginger honey tea)",
+      "Optional: cinnamon stick, 2 cloves, slice of fresh ginger"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "Honey in the mug first, dissolve with a splash of hot water.",
+      "Add lemon juice and whisky, top with remaining hot water.",
+      "Garnish with a lemon wheel and spices."
+     ]
+    }
+   ],
+   "notes": [
+    "Add whisky after steeping so you don't cook off the alcohol. Using lemon ginger honey tea as the base is an upgrade."
+   ],
+   "extras": [],
+   "sources": [
+    {
+     "label": "",
+     "url": "https://claude.ai/chat/b305ab73-66dd-4abf-8094-4889590980b3"
+    }
+   ],
+   "createdAt": "2026-09-26T11:36:00.000Z",
+   "updatedAt": "2026-09-26T12:00:00.000Z"
+  },
+  {
+   "id": "classic-spritz",
+   "title": "Classic Spritz",
+   "description": "",
+   "category": "Drinks",
+   "tags": [
+    "cocktail",
+    "aperitivo",
+    "italian",
+    "quick"
+   ],
+   "time": "2 min",
+   "yield": "",
+   "image": "",
+   "ingredients": [],
+   "steps": [],
+   "notes": [],
+   "extras": [
+    {
+     "title": "Ratio (3-2-1)",
+     "body": "3 parts prosecco, 2 parts bitter liqueur, 1 part soda water. Over ice with an orange slice."
+    },
+    {
+     "title": "Liqueur options",
+     "body": "Aperol (sweeter, lower ABV), Campari (more bitter and boozy), Select (traditional Venetian, in between), Cynar or Contratto (adventurous)."
+    }
+   ],
+   "sources": [
+    {
+     "label": "",
+     "url": "https://claude.ai/chat/3d9b0bb7-7ae3-40ba-80d3-69336df105bf"
+    }
+   ],
+   "createdAt": "2026-09-26T11:37:00.000Z",
+   "updatedAt": "2026-09-26T12:00:00.000Z"
+  },
+  {
+   "id": "reed-s-style-extra-strong-ginger-beer",
+   "title": "Reed's Style Extra Strong Ginger Beer",
+   "description": "",
+   "category": "Drinks",
+   "tags": [
+    "ginger",
+    "fermented",
+    "non-alcoholic",
+    "project"
+   ],
+   "time": "about 1 week",
+   "yield": "",
+   "image": "",
+   "ingredients": [
+    {
+     "name": "",
+     "note": "",
+     "items": [
+      "12 to 16 oz fresh ginger (3 to 4x a normal recipe)",
+      "1.5 cups sugar",
+      "Juice of 3 to 4 lemons or limes",
+      "1/4 cup honey",
+      "1/4 tsp cayenne (optional)",
+      "1/4 cup ginger bug liquid OR 1/4 tsp champagne yeast",
+      "8 cups filtered water",
+      "Optional: 1/4 cup pineapple juice"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "Grate or food process ginger (skin on). Boil in 4 cups water 15 to 20 minutes.",
+      "Off heat, add sugar, honey, and cayenne. Steep 1 to 2 hours (or overnight). Strain, pressing the pulp hard.",
+      "Add citrus juice and remaining 4 cups cold water. Cool to room temp.",
+      "Add ginger bug or champagne yeast.",
+      "Bottle in pressure-rated flip-top bottles, 1.5 inches headspace. Ferment 3 to 4 days at room temp, burping twice daily.",
+      "Refrigerate once very fizzy. Let it sit 3 to 5 days in the fridge before drinking."
+     ]
+    }
+   ],
+   "notes": [],
+   "extras": [
+    {
+     "title": "Safety",
+     "body": "This much sugar creates serious pressure. Burp bottles and refrigerate promptly."
+    }
+   ],
+   "sources": [
+    {
+     "label": "",
+     "url": "https://claude.ai/chat/1fc2f70d-408e-46b8-9afd-0adeed2e7730"
+    }
+   ],
+   "createdAt": "2026-09-26T11:38:00.000Z",
+   "updatedAt": "2026-09-26T12:00:00.000Z"
+  },
+  {
+   "id": "traditional-ginger-beer",
+   "title": "Traditional Ginger Beer (Ginger Bug Method)",
+   "description": "",
+   "category": "Drinks",
+   "tags": [
+    "ginger",
+    "fermented",
+    "ginger bug",
+    "non-alcoholic",
+    "project"
+   ],
+   "time": "about 2 weeks",
+   "yield": "",
+   "image": "",
+   "ingredients": [
+    {
+     "name": "Ginger bug (5 to 7 days)",
+     "note": "",
+     "items": [
+      "2 to 3 inches fresh ginger, unpeeled, grated",
+      "2 tbsp sugar",
+      "2 tbsp dechlorinated water"
+     ]
+    },
+    {
+     "name": "Ginger beer",
+     "note": "",
+     "items": [
+      "6 to 8 oz fresh ginger, grated",
+      "1 to 1.5 cups sugar",
+      "Juice of 2 to 3 lemons",
+      "1/4 cup strained ginger bug liquid",
+      "8 cups filtered water"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "Ginger bug (5 to 7 days)",
+     "items": [
+      "Combine in a jar, cover with cloth.",
+      "Each day add 1 tbsp grated ginger and 1 tbsp sugar, stir.",
+      "Ready when bubbly and yeasty smelling.",
+      "Feed weekly at room temp or every 2 weeks refrigerated."
+     ]
+    },
+    {
+     "name": "Ginger beer",
+     "items": [
+      "Boil ginger in 4 cups water 10 to 15 minutes. Add sugar, steep 30 to 60 minutes.",
+      "Strain. Add lemon juice and remaining 4 cups cold water. Cool to room temp.",
+      "Stir in ginger bug liquid. Bottle with 2 inches headspace.",
+      "Ferment 2 to 4 days at room temp, burping daily. Refrigerate once fizzy. Drink within 2 to 3 weeks."
+     ]
+    }
+   ],
+   "notes": [],
+   "extras": [],
+   "sources": [
+    {
+     "label": "",
+     "url": "https://claude.ai/chat/1fc2f70d-408e-46b8-9afd-0adeed2e7730"
+    }
+   ],
+   "createdAt": "2026-09-26T11:39:00.000Z",
+   "updatedAt": "2026-09-26T12:00:00.000Z"
+  },
+  {
+   "id": "fluffy-pancakes",
+   "title": "Fluffy Pancakes",
+   "description": "",
+   "category": "Breakfast",
+   "tags": [
+    "pancakes",
+    "weekend",
+    "vegetarian",
+    "quick"
+   ],
+   "time": "30 min",
+   "yield": "Serves 4 (about 8 pancakes)",
+   "image": "",
+   "ingredients": [
+    {
+     "name": "",
+     "note": "",
+     "items": [
+      "1.5 cups all-purpose flour",
+      "2 tbsp granulated sugar",
+      "2 tsp baking powder",
+      "1/2 tsp salt",
+      "1.25 cups milk",
+      "1 large egg",
+      "3 tbsp unsalted butter, melted",
+      "1 tsp vanilla extract",
+      "1 tbsp butter or oil for the pan"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "Whisk dry ingredients in one bowl, wet ingredients in another.",
+      "Pour wet into dry and stir just until no dry streaks remain. Lumps are fine.",
+      "Rest batter 5 minutes while the pan heats.",
+      "Heat nonstick skillet over medium-low, add butter.",
+      "Pour 1/4 cup batter per pancake. Cook until bubbles form and edges set (about 2.5 minutes).",
+      "Flip once, cook about 1.5 minutes more. Hold in a 200°F oven on a rack."
+     ]
+    }
+   ],
+   "notes": [
+    "Buttermilk swap: 1.25 cups buttermilk, reduce baking powder to 1 tsp and add 1/2 tsp baking soda.",
+    "Don't press pancakes after flipping. Medium-low heat is the move."
+   ],
+   "extras": [],
+   "sources": [
+    {
+     "label": "",
+     "url": "https://claude.ai/chat/e6400632-4a40-4d5d-a11a-93eabec4d4d6"
+    }
+   ],
+   "createdAt": "2026-09-26T11:40:00.000Z",
+   "updatedAt": "2026-09-26T12:00:00.000Z"
+  },
+  {
+   "id": "buttermilk-cornbread-waffles",
+   "title": "Buttermilk Cornbread Waffles (Johnny Cakes Inspired)",
+   "description": "A riff on Jeni's discontinued Johnny Cakes flavor, with toasted oat crumble and lemony blueberry preserves.",
+   "category": "Breakfast",
+   "tags": [
+    "waffles",
+    "brunch",
+    "weekend",
+    "vegetarian"
+   ],
+   "time": "45 min",
+   "yield": "Serves 4",
+   "image": "",
+   "ingredients": [
+    {
+     "name": "Waffles",
+     "note": "",
+     "items": [
+      "1 cup fine yellow cornmeal",
+      "1 cup all-purpose flour",
+      "3 tbsp light brown sugar",
+      "1.5 tsp baking powder",
+      "1/2 tsp baking soda",
+      "3/4 tsp fine salt",
+      "1.75 cups buttermilk",
+      "2 large eggs",
+      "6 tbsp unsalted butter, melted",
+      "1 tsp vanilla extract"
+     ]
+    },
+    {
+     "name": "Oat crumble",
+     "note": "",
+     "items": [
+      "1/2 cup old-fashioned rolled oats",
+      "1 tbsp unsalted butter",
+      "1 tbsp light brown sugar",
+      "Pinch of flaky salt"
+     ]
+    },
+    {
+     "name": "Topping",
+     "note": "",
+     "items": [
+      "1/2 cup blueberry preserves",
+      "1 tsp fresh lemon juice",
+      "Pinch of fine salt",
+      "1/4 cup fresh blueberries (optional)",
+      "1/2 cup pure maple syrup"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "Preheat waffle iron to medium-high. Oven to 200°F for holding.",
+      "Whisk dry ingredients. Separately whisk buttermilk, eggs, butter, vanilla.",
+      "Combine just until no flour streaks. Rest 10 minutes.",
+      "Crumble: melt butter in a skillet, add oats, sugar, salt. Toast 3 to 4 minutes until deep golden. Cool on a plate.",
+      "Warm preserves until loose, stir in lemon juice and salt. Don't cook it down.",
+      "Cook waffles (1/2 to 3/4 cup batter each) 4 to 5 minutes until deep golden. Hold on oven rack.",
+      "Plate: preserves, fresh blueberries, crumble, maple syrup. Pat of butter optional."
+     ]
+    }
+   ],
+   "notes": [
+    "Use fine cornmeal, not coarse polenta. Make crumble same day. Optional scoop of vanilla ice cream or crème fraîche."
+   ],
+   "extras": [],
+   "sources": [
+    {
+     "label": "",
+     "url": "https://claude.ai/chat/3ad3cb66-157a-47b5-ac43-0e15db897808"
+    }
+   ],
+   "createdAt": "2026-09-26T11:41:00.000Z",
+   "updatedAt": "2026-09-26T12:00:00.000Z"
+  },
+  {
+   "id": "mcdonald-s-fruit-and-maple-oatmeal",
+   "title": "McDonald's Fruit and Maple Oatmeal (Copycat)",
+   "description": "",
+   "category": "Breakfast",
+   "tags": [
+    "oats",
+    "copycat",
+    "vegetarian",
+    "quick"
+   ],
+   "time": "10 min",
+   "yield": "Serves 1",
+   "image": "",
+   "ingredients": [
+    {
+     "name": "",
+     "note": "",
+     "items": [
+      "1/2 cup rolled oats",
+      "1 cup water",
+      "Pinch of salt",
+      "1 tbsp brown sugar",
+      "1 tbsp maple syrup (plus a tiny drop of maple extract, optional)",
+      "2 tbsp half-and-half or cream",
+      "1/4 cup diced apple, skin on",
+      "Small handful dried cranberries",
+      "Small handful golden raisins"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "Cook oats with water and salt about 5 minutes until thick.",
+      "Stir in brown sugar, maple, and cream.",
+      "Top with apples, cranberries, raisins."
+     ]
+    }
+   ],
+   "notes": [
+    "Toss apples in a little lemon juice and a pinch of cinnamon for brightness."
+   ],
+   "extras": [],
+   "sources": [
+    {
+     "label": "",
+     "url": "https://claude.ai/chat/fc007a16-de0e-44dc-a60d-7d279daa7cd2"
+    }
+   ],
+   "createdAt": "2026-09-26T11:42:00.000Z",
+   "updatedAt": "2026-09-26T12:00:00.000Z"
+  },
+  {
+   "id": "sugar-moon-espresso-cornflake-cookies",
+   "title": "Sugar Moon Espresso Cornflake Cookies (Copycat)",
+   "description": "",
+   "category": "Baking and Sweets",
+   "tags": [
+    "cookies",
+    "copycat",
+    "espresso",
+    "make-ahead"
+   ],
+   "time": "1 hr 45 min (plus chilling)",
+   "yield": "Makes about 18 cookies",
+   "image": "",
+   "ingredients": [
+    {
+     "name": "Caramelized cornflakes",
+     "note": "",
+     "items": [
+      "2 cups cornflakes",
+      "3 tbsp unsalted butter",
+      "3 tbsp brown sugar",
+      "Pinch of salt"
+     ]
+    },
+    {
+     "name": "Cookie dough",
+     "note": "",
+     "items": [
+      "1 cup (2 sticks) unsalted butter, room temp",
+      "3/4 cup granulated sugar",
+      "3/4 cup light brown sugar, packed",
+      "2 eggs",
+      "1 tsp vanilla extract",
+      "2.25 cups all-purpose flour",
+      "1 tsp baking soda",
+      "1/2 tsp kosher salt",
+      "2 tbsp finely ground espresso (real grind, not instant)",
+      "1 tbsp instant espresso powder",
+      "Flaky sea salt (Maldon) to finish"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Cornflakes:** Melt butter and brown sugar in a skillet until bubbling. Add cornflakes, toss 2 to 3 minutes until golden. Cool on parchment, rough chop into clusters.",
+      "**Dough:** Cream butter and sugars 3 to 4 minutes. Add eggs one at a time, then vanilla. Whisk flour, baking soda, salt, ground espresso, and espresso powder separately. Combine until just mixed. Fold in 3/4 of the cornflakes.",
+      "**Rest:** Refrigerate at least 1 hour (overnight is better).",
+      "**Bake:** 375°F. Scoop 2 oz balls, press reserved cornflakes on top. Bake 10 to 12 minutes until edges set and centers look slightly underdone.",
+      "**Finish:** Flaky salt immediately out of the oven."
+     ]
+    }
+   ],
+   "notes": [],
+   "extras": [],
+   "sources": [
+    {
+     "label": "",
+     "url": "https://claude.ai/chat/399019e1-cc69-4fe8-9310-0affb73affd3"
+    }
+   ],
+   "createdAt": "2026-09-26T11:43:00.000Z",
+   "updatedAt": "2026-09-26T12:00:00.000Z"
+  },
+  {
+   "id": "bakery-cookie-skillet",
+   "title": "Bakery Cookie Skillet",
+   "description": "For reheating a store-bought bakery cookie into a skillet dessert.",
+   "category": "Baking and Sweets",
+   "tags": [
+    "dessert",
+    "hack",
+    "quick"
+   ],
+   "time": "10 min",
+   "yield": "",
+   "image": "",
+   "ingredients": [],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "Place cookie in a small oven-safe skillet (6 inch cast iron ideal). Optionally preheat the empty skillet 1 minute for a toasted bottom.",
+      "Add a few pats of butter and extra chocolate chips. Drizzle 1 to 2 tsp milk or cream over the top.",
+      "Warm at 300 to 325°F for 5 to 8 minutes until edges crisp and center goes soft.",
+      "Optional: broil 30 to 60 seconds for crisp edges (skip for thin, crispy cookies).",
+      "Top with vanilla ice cream and a pinch of flaky salt. Serve from the hot skillet."
+     ]
+    }
+   ],
+   "notes": [],
+   "extras": [],
+   "sources": [
+    {
+     "label": "",
+     "url": "https://claude.ai/chat/c48f17af-8056-447b-85bf-400d95c371a7"
+    }
+   ],
+   "createdAt": "2026-09-26T11:44:00.000Z",
+   "updatedAt": "2026-09-26T12:00:00.000Z"
+  },
+  {
+   "id": "jamaican-brown-stew-oxtail",
+   "title": "Jamaican Brown Stew Oxtail (5 lb Practice Batch)",
+   "description": "From the Oxtail Off competition prep. This is the home scale practice version. The full 28 lb competition recipe, shopping list, and day-of timeline live in the source chat.",
+   "category": "Mains",
+   "tags": [
+    "jamaican",
+    "oxtail",
+    "braise",
+    "competition",
+    "project",
+    "make-ahead"
+   ],
+   "time": "2 days (mostly marinating)",
+   "yield": "",
+   "image": "",
+   "ingredients": [
+    {
+     "name": "Marinade",
+     "note": "",
+     "items": [
+      "1/3 cup soy sauce",
+      "2 tbsp browning",
+      "3 tbsp dark brown sugar",
+      "1/2 bunch scallion whites, smashed",
+      "1/2 head garlic, crushed",
+      "1 inch ginger, grated",
+      "1/2 bunch thyme (stripped leaves and stems)",
+      "2 tsp peppercorns, crushed",
+      "1 tbsp allspice berries, crushed",
+      "3 tbsp Pickapeppa",
+      "1 scotch bonnet, pierced",
+      "1.5 tbsp kosher salt"
+     ]
+    },
+    {
+     "name": "Braise and finish",
+     "note": "",
+     "items": [
+      "1/4 cup light brown sugar (for blackened sugar)",
+      "Onion, garlic, ginger, scallions (split into two halves)",
+      "1 whole scotch bonnet, thyme, allspice berries, bay leaves",
+      "3 cups beef stock, plus water",
+      "2 tbsp white sugar, 1 tbsp browning (reserved)",
+      "Butter beans"
+     ]
+    },
+    {
+     "name": "Spinners",
+     "note": "",
+     "items": [
+      "1 cup AP flour, 1 tsp salt, about 1/3 cup water"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Prep:** Rinse oxtail in cold water with a splash of vinegar or lime. Pat completely dry.",
+      "**Marinate:** Combine marinade, add oxtail, massage 5 minutes. Refrigerate 24 hours (48 preferred).",
+      "**Dry:** Pull oxtail, reserve marinade. Pat each piece dry.",
+      "**Blackened sugar:** Heat Dutch oven over high, add 1/4 cup brown sugar. Stir until nearly black and smoking (about 5 minutes). Carefully add 2 tbsp boiling water (it splatters). Stir into a dark syrup.",
+      "**Brown:** Add oxtail in 2 batches, coat in caramel, brown about 10 minutes per batch. Remove. Pour off all but 2 tbsp fat.",
+      "**First aromatic add:** Half the onion, garlic, ginger, scallions, plus whole scotch bonnet, half the thyme, allspice, bay leaves. Stir 5 minutes.",
+      "**Braise 1:** Return oxtail, juices, and reserved marinade. Add stock and water to almost submerge. Bare simmer, covered, about 1 hour (300°F oven or low stovetop).",
+      "**Second aromatic add:** Remaining aromatics, 2 tbsp white sugar, 1 tbsp browning.",
+      "**Braise 2:** About 1 more hour until meat is loose on the bone. Test at 45 minutes.",
+      "**Spinners (during braise 2):** Mix flour, salt, water into a firm dough. Knead 2 minutes, rest 30 minutes. Roll about 12 tapered 2 inch cylinders.",
+      "**Pull and strain:** Cool oxtail 15 minutes. Strain sauce through a fine mesh strainer, skim fat hard.",
+      "**Debone:** Pull meat in rustic chunks. Don't shred.",
+      "**Reduce:** Reduce sauce on medium-high until visibly thicker (about 15 minutes).",
+      "**Spinners in:** Simmer 18 to 22 minutes until cooked through with no chalky center.",
+      "**Finish:** Add butter beans and meat back to the sauce. Thicken with a flour slurry (flour whisked into hot braising liquid) about 15 minutes before serving."
+     ]
+    }
+   ],
+   "notes": [],
+   "extras": [
+    {
+     "title": "Key moves",
+     "body": "long marinade, blackened sugar, two-stage aromatics, strained glossy sauce, Pickapeppa and browning over Worcestershire."
+    },
+    {
+     "title": "Competition Plating Options",
+     "body": "Presentation ideas for the same braise, from the competition plating chat.\n\n- **Pressed terrine (recommended):** Pack warm deboned meat into molds while still saturated with braising liquid. The gelatin sets it. Slice thick medallions, sear for bark, glaze with the reduction.\n- **Short rib style:** Pull meat in the largest chunks possible. Stack 3 to 4 pieces vertically in a ring mold, glazing between layers. Height wins on competition plates.\n- **Dumpling:** Wrap deboned meat in wonton wrappers or dumpling dough. Pan fry for a crispy bottom, steam the top. Serve in a shallow pool of reduced braising liquid.\n- **Croquette:** Shred meat, bind with reduced braising liquid, form cylinders or balls, bread in panko or fine cornmeal, deep fry. Serve on scotch bonnet aioli or jus.\n\n**Finishing touches**\n- Scotch bonnet oil: blend scotch bonnet with neutral oil, then strain. Color and heat without chunks.\n- Fresh thyme sprig across the top, thinly sliced scallion greens, a few whole pimento berries on the plate for aroma.\n\n**Scaling note:** For big batches, braise in two pots rather than one giant one. Even consistency matters more than time saved."
+    }
+   ],
+   "sources": [
+    {
+     "label": "",
+     "url": "https://claude.ai/chat/b60c9674-a039-4917-a05c-b9f9b5cb5439"
+    },
+    {
+     "label": "Competition Plating Options",
+     "url": "https://claude.ai/chat/99c35d72-1711-4c17-aaaf-e82250968e2d"
+    }
+   ],
+   "createdAt": "2026-09-26T11:45:00.000Z",
+   "updatedAt": "2026-09-26T12:00:00.000Z"
+  },
+  {
+   "id": "jerk-spiced-duck-tacos",
+   "title": "Jerk Spiced Duck Tacos (Bon Appétit)",
+   "description": "Build-your-own tacos. Low and slow roast renders the fat and makes the meat fall-apart tender.",
+   "category": "Mains",
+   "tags": [
+    "jamaican",
+    "tacos",
+    "duck",
+    "entertaining",
+    "holiday",
+    "project"
+   ],
+   "time": "5 hr roast (plus 12 hr marinade)",
+   "yield": "Serves 8",
+   "image": "",
+   "ingredients": [
+    {
+     "name": "",
+     "note": "",
+     "items": [
+      "2 ducks (5 to 5.5 lb each)",
+      "Kosher salt",
+      "16 habanero chiles, stems removed (keep the seeds; the duck fat tames the heat)",
+      "2 pieces (2 inch) ginger, scrubbed and crushed",
+      "1 cup soy sauce",
+      "1/2 cup unseasoned rice vinegar",
+      "2 tbsp allspice berries",
+      "2 whole nutmegs",
+      "1/2 cup spiced rum",
+      "4 tsp sugar"
+     ]
+    },
+    {
+     "name": "For serving",
+     "note": "",
+     "items": [
+      "Hoisin sauce",
+      "Small flour tortillas",
+      "Sliced napa cabbage",
+      "Sliced scallions"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Score:** With a clean razor blade or very sharp thin knife, cut through the skin and fat but not into the flesh. Salt generously. Place each duck in a large resealable bag.",
+      "**Marinade:** Finely grind allspice. Add to a blender with finely grated nutmeg, habaneros, soy sauce, rum, vinegar, and sugar. Purée smooth.",
+      "**Marinate:** Divide marinade between the bags, add ginger to each. Seal, press out air, work the marinade around. Refrigerate breast side down 12 hours.",
+      "**Roast:** About 300 to 325°F for 5 hours. Drain fat every 45 to 60 minutes.",
+      "**Serve** taco style with the fixings."
+     ]
+    }
+   ],
+   "notes": [
+    "Keep the ducks whole (don't butterfly) so they self-baste.",
+    "The roast yields 2+ cups of habanero spiced duck fat. Save it for plantains or potatoes.",
+    "Pairs well with pickled onions, cilantro, lime, and a cooling slaw."
+   ],
+   "extras": [
+    {
+     "title": "Timeline from frozen (5pm dinner)",
+     "body": "- 3 days before: move ducks from freezer to fridge.\n- Night before: score and start the 12 hour marinade.\n- Day of: into the oven by about 12pm."
+    }
+   ],
+   "sources": [
+    {
+     "label": "",
+     "url": "https://claude.ai/chat/8419ce34-555e-47d1-a9bd-d7ed8465af51"
+    },
+    {
+     "label": "Thanksgiving timeline",
+     "url": "https://claude.ai/chat/09724f6e-f3f7-4095-bd70-845ad4612ec7"
+    }
+   ],
+   "createdAt": "2026-09-26T11:46:00.000Z",
+   "updatedAt": "2026-09-26T12:00:00.000Z"
+  },
+  {
+   "id": "mexican-style-flank-steak-tacos",
+   "title": "Mexican Style Flank Steak Tacos (Stovetop + Oven)",
+   "description": "",
+   "category": "Mains",
+   "tags": [
+    "mexican",
+    "tacos",
+    "beef",
+    "steak",
+    "weeknight"
+   ],
+   "time": "45 min (plus marinating)",
+   "yield": "Serves 4",
+   "image": "",
+   "ingredients": [
+    {
+     "name": "",
+     "note": "",
+     "items": [
+      "1.5 lb flank steak",
+      "2 tbsp olive oil",
+      "2 limes, juiced",
+      "1 orange, juiced",
+      "4 garlic cloves, minced",
+      "2 tbsp soy sauce",
+      "1.5 tsp ground cumin",
+      "1 tbsp chili powder",
+      "1 tsp smoked paprika",
+      "1 tsp dried oregano (Mexican if you have it)",
+      "1.5 tsp kosher salt",
+      "1/2 tsp black pepper",
+      "1/4 cup fresh cilantro, chopped",
+      "1 tbsp neutral oil for searing",
+      "12 corn tortillas",
+      "1/2 white onion, finely diced",
+      "4 lime wedges"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "Whisk everything from olive oil through cilantro into a marinade.",
+      "Marinate steak 2 hours minimum, ideally 4 to 8. Max 12 hours.",
+      "Rest at room temp 30 minutes. Preheat oven to 400°F. Pat steak dry.",
+      "Sear in smoking hot cast iron 2 to 3 minutes per side.",
+      "Move skillet to oven 4 to 7 minutes. Pull at 130°F (medium-rare) to 135°F (medium).",
+      "Rest 10 minutes tented with foil.",
+      "Char tortillas over a gas flame 15 to 20 seconds per side. Wrap in a towel.",
+      "Slice thin (1/4 inch) against the grain on a slight bias.",
+      "Double up tortillas, add steak, onion, cilantro, lime. Salsa on the side."
+     ]
+    }
+   ],
+   "notes": [
+    "Deeper flavor: swap soy for 1 tbsp soy plus 1 tsp Worcestershire.",
+    "Smokier: add 1 minced chipotle in adobo plus 1 tsp adobo sauce to the marinade.",
+    "Extra toppings: pickled red onion, queso fresco, radish, avocado, salsa macha."
+   ],
+   "extras": [],
+   "sources": [
+    {
+     "label": "",
+     "url": "https://claude.ai/chat/f98b6c32-f1a9-43e5-8763-f48e3c67af2d"
+    }
+   ],
+   "createdAt": "2026-09-26T11:47:00.000Z",
+   "updatedAt": "2026-09-26T12:00:00.000Z"
+  },
+  {
+   "id": "short-rib-bulgogi",
+   "title": "Short Rib Bulgogi",
+   "description": "",
+   "category": "Mains",
+   "tags": [
+    "korean",
+    "beef",
+    "marinade",
+    "weeknight"
+   ],
+   "time": "30 min (plus marinating)",
+   "yield": "Serves 4",
+   "image": "",
+   "ingredients": [
+    {
+     "name": "",
+     "note": "",
+     "items": [
+      "2 lb thinly sliced boneless short rib",
+      "1/2 cup soy sauce",
+      "1/2 cup grated Asian pear (about half a pear)",
+      "1/4 cup brown sugar",
+      "2 tbsp toasted sesame oil",
+      "1 tbsp mirin or rice wine (optional)",
+      "6 garlic cloves, minced",
+      "1 tbsp fresh ginger, grated",
+      "1/2 yellow onion, grated or thinly sliced",
+      "3 green onions, chopped",
+      "1 tbsp toasted sesame seeds",
+      "1/2 tsp black pepper"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "If not pre-sliced, freeze meat 30 to 45 minutes, slice 1/8 inch against the grain. Pat dry.",
+      "Whisk everything except green onions into a marinade.",
+      "Marinate at least 30 minutes, up to overnight. Not much past 24 hours (the pear turns it mushy).",
+      "Sear in batches in a nearly smoking cast iron or grill, 1 to 2 minutes per side. Don't crowd.",
+      "Top with green onions and sesame. Serve with rice, lettuce wraps, kimchi, or ssamjang."
+     ]
+    }
+   ],
+   "notes": [
+    "Bone-in LA galbi works with the same marinade, just grill a bit longer."
+   ],
+   "extras": [],
+   "sources": [
+    {
+     "label": "",
+     "url": "https://claude.ai/chat/d34b8fa4-274c-4209-93c9-1108a04887d0"
+    }
+   ],
+   "createdAt": "2026-09-26T11:48:00.000Z",
+   "updatedAt": "2026-09-26T12:00:00.000Z"
+  },
+  {
+   "id": "thai-red-curry-with-chicken",
+   "title": "Thai Red Curry with Chicken (Gaeng Daeng Gai)",
+   "description": "",
+   "category": "Mains",
+   "tags": [
+    "thai",
+    "curry",
+    "chicken",
+    "weeknight"
+   ],
+   "time": "35 min",
+   "yield": "Serves 4",
+   "image": "",
+   "ingredients": [
+    {
+     "name": "",
+     "note": "",
+     "items": [
+      "600g boneless chicken thighs, sliced",
+      "400ml coconut milk (1 can)",
+      "200ml coconut cream",
+      "3 tbsp Thai red curry paste (Mae Ploy or Maesri)",
+      "2 tbsp fish sauce",
+      "1 tbsp palm sugar (or brown sugar)",
+      "150g bamboo shoots, sliced",
+      "1 red bell pepper, sliced",
+      "4 kaffir lime leaves, torn",
+      "1 cup Thai basil",
+      "2 Thai red chilies, sliced (optional)",
+      "1 tbsp vegetable oil"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Crack the coconut cream:** Heat oil, add coconut cream, stir 3 to 4 minutes until it splits and oil separates.",
+      "Fry curry paste in it about 2 minutes until fragrant and darker.",
+      "Add chicken, cook 3 to 4 minutes until no longer pink outside.",
+      "Add coconut milk, bring to a gentle boil. Add lime leaves, fish sauce, sugar. Simmer 10 minutes.",
+      "Add bamboo shoots and pepper, cook 3 to 4 minutes.",
+      "Off heat, stir in basil, top with chilies. Adjust with fish sauce or sugar. Serve over jasmine rice."
+     ]
+    }
+   ],
+   "notes": [],
+   "extras": [
+    {
+     "title": "Variations",
+     "body": "(from the Gaeng Phet version in the Rolodex build chat)\n- Beef: flank steak, simmer 15 to 20 minutes.\n- Shrimp: add at the end, 3 to 4 minutes.\n- Vegetarian: firm tofu, mushroom stock, light soy in place of fish sauce.\n- Duck: leftover roast duck added at the end with the basil. Good use for jerk duck leftovers.\n- Balance check: more salt, add fish sauce. Too salty or spicy, add sugar. Flat, squeeze of lime."
+    }
+   ],
+   "sources": [
+    {
+     "label": "",
+     "url": "https://claude.ai/chat/447c9ce2-27f3-4869-8477-fc648766947f"
+    },
+    {
+     "label": "Variations",
+     "url": "https://claude.ai/chat/2fb390db-fc81-4117-ba99-64ba7a638223"
+    }
+   ],
+   "createdAt": "2026-09-26T11:49:00.000Z",
+   "updatedAt": "2026-09-26T12:00:00.000Z"
+  },
+  {
+   "id": "thai-green-curry-with-chicken",
+   "title": "Thai Green Curry with Chicken (Gaeng Khiao Wan Gai)",
+   "description": "",
+   "category": "Mains",
+   "tags": [
+    "thai",
+    "curry",
+    "chicken",
+    "weeknight"
+   ],
+   "time": "35 min",
+   "yield": "Serves 4",
+   "image": "",
+   "ingredients": [
+    {
+     "name": "",
+     "note": "",
+     "items": [
+      "600g boneless chicken thighs, sliced",
+      "400ml coconut milk (1 can)",
+      "200ml coconut cream",
+      "3 tbsp Thai green curry paste",
+      "2 tbsp fish sauce",
+      "1 tbsp palm sugar (or brown sugar)",
+      "150g Thai eggplant, quartered (or Japanese eggplant, cubed)",
+      "100g pea eggplant or green beans, trimmed",
+      "4 kaffir lime leaves, torn",
+      "1 cup Thai basil",
+      "3 Thai green chilies, lightly smashed",
+      "1 tbsp vegetable oil",
+      "1/2 tbsp lime juice"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "Crack coconut cream in oil, 3 to 4 minutes until glossy and oil separates.",
+      "Fry curry paste 2 minutes. Add chilies, toss briefly.",
+      "Add chicken, cook 3 to 4 minutes.",
+      "Add coconut milk, lime leaves, fish sauce, sugar, eggplant. Simmer 10 minutes.",
+      "Add green beans, 2 to 3 minutes.",
+      "Off heat, stir in basil and lime juice. Adjust seasoning. Serve with jasmine rice or roti."
+     ]
+    }
+   ],
+   "notes": [
+    "Red and green share most of the same base, so both can be made together as a dinner spread."
+   ],
+   "extras": [],
+   "sources": [
+    {
+     "label": "",
+     "url": "https://claude.ai/chat/447c9ce2-27f3-4869-8477-fc648766947f"
+    }
+   ],
+   "createdAt": "2026-09-26T11:50:00.000Z",
+   "updatedAt": "2026-09-26T12:00:00.000Z"
+  },
+  {
+   "id": "khao-pad",
+   "title": "Khao Pad (Thai Fried Rice)",
+   "description": "",
+   "category": "Mains",
+   "tags": [
+    "thai",
+    "rice",
+    "leftovers",
+    "quick",
+    "weeknight"
+   ],
+   "time": "20 min",
+   "yield": "Serves 2",
+   "image": "",
+   "ingredients": [
+    {
+     "name": "",
+     "note": "",
+     "items": [
+      "3 cups day-old jasmine rice",
+      "2 tbsp neutral oil (peanut or vegetable)",
+      "4 garlic cloves, minced",
+      "1 shallot, thinly sliced",
+      "2 eggs",
+      "6 oz chicken thigh or shrimp, bite-sized",
+      "1.5 tbsp fish sauce",
+      "1 tbsp thin/light soy sauce",
+      "1/2 tsp white sugar",
+      "1/4 tsp white pepper",
+      "1 tomato, cut into wedges",
+      "2 scallions, sliced",
+      "1 lime, in wedges",
+      "6 cucumber slices",
+      "2 Thai bird's eye chilies (optional)"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "Break up cold rice by hand. (Fresh rice: spread on a sheet pan, refrigerate uncovered 1 hour.)",
+      "Heat wok on highest heat, oil until just smoking.",
+      "Sear protein 60 seconds untouched, stir-fry until cooked. Remove.",
+      "Garlic and shallot 15 seconds. Push aside, scramble eggs into large curds.",
+      "Add rice, press flat, let it char. Toss every 30 seconds for 2 to 3 minutes.",
+      "Return protein. Add fish sauce, soy, sugar, white pepper. Toss 30 seconds. Add tomato and scallions, toss briefly.",
+      "Serve with lime, cucumber, chilies. Squeeze lime right before eating."
+     ]
+    }
+   ],
+   "notes": [
+    "Small batches for wok hei. Golden Mountain seasoning sauce in place of soy for extra authenticity."
+   ],
+   "extras": [],
+   "sources": [
+    {
+     "label": "",
+     "url": "https://claude.ai/chat/35d07730-852f-4753-9eb0-3d033c1f4308"
+    }
+   ],
+   "createdAt": "2026-09-26T11:51:00.000Z",
+   "updatedAt": "2026-09-26T12:00:00.000Z"
+  },
+  {
+   "id": "nigerian-red-stew",
+   "title": "Nigerian Red Stew (Ata Dindin)",
+   "description": "",
+   "category": "Mains",
+   "tags": [
+    "nigerian",
+    "stew",
+    "chicken",
+    "freezer-friendly"
+   ],
+   "time": "1 hr 30 min",
+   "yield": "Serves 6",
+   "image": "",
+   "ingredients": [
+    {
+     "name": "",
+     "note": "",
+     "items": [
+      "6 Roma tomatoes, roughly chopped",
+      "2 red bell peppers, deseeded",
+      "2 scotch bonnets (to taste)",
+      "2 large onions",
+      "3 tbsp tomato paste",
+      "200ml vegetable oil",
+      "1.2 kg bone-in chicken (or beef)",
+      "4 garlic cloves, minced",
+      "1 tbsp ginger, grated",
+      "1 tbsp curry powder",
+      "1 tsp dried thyme",
+      "2 bay leaves",
+      "3 stock cubes (Maggi or Knorr)",
+      "1 tsp salt"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Boil chicken** with 1 chopped onion, half the garlic and ginger, thyme, half the curry powder, 1 stock cube, and salt in water to barely cover. Cook through (about 25 minutes). Reserve stock.",
+      "**Fry chicken** in half the oil until golden. Set aside.",
+      "**Blend** tomatoes, bell peppers, scotch bonnets, remaining onion. Boil to reduce about 15 minutes.",
+      "**Fry tomato paste** in remaining oil with remaining garlic and ginger until darkened.",
+      "**Build stew:** Add reduced pepper blend, bay leaves, remaining curry powder and stock cubes. Fry on medium, stirring often, until oil rises to the top (20 to 30 minutes). This is the heart of the dish.",
+      "**Simmer** with fried chicken and a splash of stock, 10 to 15 minutes."
+     ]
+    }
+   ],
+   "notes": [],
+   "extras": [
+    {
+     "title": "Serve with",
+     "body": "white rice, jollof, boiled yam, or fried plantain. Freezes well."
+    }
+   ],
+   "sources": [
+    {
+     "label": "",
+     "url": "https://claude.ai/chat/af89234d-4142-4494-b4ce-dee49812ae74"
+    }
+   ],
+   "createdAt": "2026-09-26T11:52:00.000Z",
+   "updatedAt": "2026-09-26T12:00:00.000Z"
+  },
+  {
+   "id": "nonna-style-turkey-meatballs",
+   "title": "Nonna Style Turkey Meatballs",
+   "description": "",
+   "category": "Mains",
+   "tags": [
+    "italian",
+    "turkey",
+    "meatballs",
+    "sunday"
+   ],
+   "time": "45 min",
+   "yield": "Makes about 20",
+   "image": "",
+   "ingredients": [
+    {
+     "name": "",
+     "note": "",
+     "items": [
+      "1.5 lb ground turkey (93% lean)",
+      "2 slices day-old Italian bread, crusts removed",
+      "1/3 cup whole milk",
+      "1 large egg",
+      "1/2 cup grated Parmigiano Reggiano",
+      "3 tbsp flat-leaf parsley, finely chopped",
+      "2 garlic cloves, grated",
+      "1 tsp kosher salt",
+      "1/2 tsp black pepper",
+      "1/4 cup breadcrumbs (optional, for structure)"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "Soak torn bread in milk 5 minutes. Squeeze out excess, keep damp.",
+      "Beat egg, add bread, Parm, parsley, garlic, salt, pepper. Add turkey, mix by hand until just combined.",
+      "With wet hands, gently roll 1.5 inch balls. Don't pack tight.",
+      "**Nonna way:** nestle raw into simmering red sauce, cover, low simmer 25 to 30 minutes without moving much.",
+      "**Or:** brown in olive oil 7 to 8 minutes, then finish in sauce 15 minutes."
+     ]
+    }
+   ],
+   "notes": [],
+   "extras": [
+    {
+     "title": "Turkey tips",
+     "body": "Milk-soaked bread is non-negotiable. Grate in a little fresh onion for juiciness. If using 99% lean breast, add 1 tbsp olive oil to the mix."
+    }
+   ],
+   "sources": [
+    {
+     "label": "",
+     "url": "https://claude.ai/chat/8d545790-f370-4403-b294-6aff8199db63"
+    }
+   ],
+   "createdAt": "2026-09-26T11:53:00.000Z",
+   "updatedAt": "2026-09-26T12:00:00.000Z"
+  },
+  {
+   "id": "nonna-s-sunday-sugo",
+   "title": "Nonna's Sunday Sugo (2 Can Version)",
+   "description": "",
+   "category": "Sauces, Spices and Ferments",
+   "tags": [
+    "italian",
+    "sauce",
+    "tomato",
+    "sunday",
+    "make-ahead",
+    "vegetarian"
+   ],
+   "time": "2 hr 30 min",
+   "yield": "Makes enough for about 1.5 lb pasta",
+   "image": "",
+   "ingredients": [
+    {
+     "name": "",
+     "note": "",
+     "items": [
+      "2 (28 oz) cans San Marzano whole peeled tomatoes (DOP)",
+      "1/4 cup extra virgin olive oil",
+      "1 medium yellow onion, diced",
+      "4 garlic cloves, thinly sliced",
+      "2 tbsp tomato paste",
+      "1/2 cup dry red wine",
+      "1 tsp dried oregano",
+      "Pinch of red pepper flakes",
+      "Small handful fresh basil, torn",
+      "Salt to taste",
+      "1 Parmigiano Reggiano rind (optional, recommended)"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "Hand crush tomatoes into a bowl.",
+      "Olive oil over medium-low. Cook onion with a pinch of salt 8 to 10 minutes until soft (don't brown). Add garlic and pepper flakes 1 minute.",
+      "Add tomato paste, caramelize 2 minutes.",
+      "Deglaze with red wine, reduce until mostly evaporated.",
+      "Add tomatoes plus 1/3 can of water, oregano, half the basil, Parm rind, salt.",
+      "Gentle simmer, then lowest heat, lid cracked. Cook 2 hours minimum, stirring every 20 minutes.",
+      "Remove rind, stir in remaining basil. Meatballs go in for the last 45 to 60 minutes.",
+      "Serve over rigatoni or spaghetti with Pecorino Romano."
+     ]
+    }
+   ],
+   "notes": [],
+   "extras": [
+    {
+     "title": "Making it a day early",
+     "body": "Cool uncovered 30 minutes, then refrigerate. Reheat low with a splash of water. Hold the final basil until reheating."
+    }
+   ],
+   "sources": [
+    {
+     "label": "",
+     "url": "https://claude.ai/chat/ebbddc23-3557-463c-bc94-7f4d14b649ec"
+    }
+   ],
+   "createdAt": "2026-09-26T11:54:00.000Z",
+   "updatedAt": "2026-09-26T12:00:00.000Z"
+  },
+  {
+   "id": "ponzu-sauce",
+   "title": "Ponzu Sauce",
+   "description": "",
+   "category": "Sauces, Spices and Ferments",
+   "tags": [
+    "japanese",
+    "sauce",
+    "citrus",
+    "make-ahead"
+   ],
+   "time": "10 min (plus 24 hr steep)",
+   "yield": "Makes about 1 cup",
+   "image": "",
+   "ingredients": [
+    {
+     "name": "",
+     "note": "",
+     "items": [
+      "120ml soy sauce",
+      "120ml fresh citrus juice (yuzu, or half lemon half lime)",
+      "2 tbsp mirin",
+      "2 tbsp rice vinegar",
+      "1 piece kombu (4 inch)",
+      "1/2 cup katsuobushi (bonito flakes), loosely packed"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "Simmer mirin 30 seconds to cook off alcohol. Cool.",
+      "In a jar combine soy, vinegar, mirin, kombu, bonito. No citrus yet.",
+      "Refrigerate 24 hours (4 hours in a pinch).",
+      "Strain, pressing the bonito. Stir in citrus juice.",
+      "Rest 1 hour before using. Adjust to taste."
+     ]
+    }
+   ],
+   "notes": [
+    "Keeps 2 to 3 months refrigerated. Great with shabu-shabu, gyoza, sashimi, salads, grilled fish. Same-day shortcut: whisk soy, citrus, mirin, vinegar, and a pinch of dashi powder."
+   ],
+   "extras": [],
+   "sources": [
+    {
+     "label": "",
+     "url": "https://claude.ai/chat/cdf73de8-b96e-4d42-90df-06348c079d2f"
+    }
+   ],
+   "createdAt": "2026-09-26T11:55:00.000Z",
+   "updatedAt": "2026-09-26T12:00:00.000Z"
+  },
+  {
+   "id": "pumpkin-pie-spice-blend",
+   "title": "Pumpkin Pie Spice Blend (No Cardamom)",
+   "description": "",
+   "category": "Sauces, Spices and Ferments",
+   "tags": [
+    "spice blend",
+    "pantry",
+    "fall",
+    "quick"
+   ],
+   "time": "5 min",
+   "yield": "Makes about 1/4 cup",
+   "image": "",
+   "ingredients": [
+    {
+     "name": "",
+     "note": "",
+     "items": [
+      "3 tbsp ground cinnamon",
+      "2 tsp ground ginger",
+      "2 tsp ground nutmeg",
+      "1.5 tsp ground allspice",
+      "1.5 tsp ground cloves"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "Whisk until uniform.",
+      "Store airtight in a cool, dark cabinet."
+     ]
+    }
+   ],
+   "notes": [
+    "Freshly grated nutmeg is the best upgrade. Potency fades after about 6 months. For a warmer, less sharp blend, cut cloves to 1 tsp and bump cinnamon to 3.5 tbsp."
+   ],
+   "extras": [],
+   "sources": [
+    {
+     "label": "",
+     "url": "https://claude.ai/chat/66bf9903-2480-480b-90dd-81e7ce03bfd0"
+    }
+   ],
+   "createdAt": "2026-09-26T11:56:00.000Z",
+   "updatedAt": "2026-09-26T12:00:00.000Z"
+  },
+  {
+   "id": "kimchi",
+   "title": "Kimchi",
+   "description": "",
+   "category": "Sauces, Spices and Ferments",
+   "tags": [
+    "korean",
+    "fermented",
+    "project"
+   ],
+   "time": "1 hr active (plus 1 to 3 days fermenting)",
+   "yield": "",
+   "image": "",
+   "ingredients": [
+    {
+     "name": "",
+     "note": "",
+     "items": [
+      "1 head napa cabbage (about 2 lb)",
+      "1/2 cup coarse sea salt",
+      "1/2 cup gochugaru",
+      "3 tbsp fish sauce",
+      "1 tbsp salted shrimp paste",
+      "5 to 6 garlic cloves, minced",
+      "1 tsp grated fresh ginger",
+      "1 tsp sugar (or rice flour porridge: 1 tbsp rice flour cooked briefly in 1/2 cup water)",
+      "Scallions, sliced",
+      "Daikon, matchstick cut",
+      "Carrot, julienned (optional)"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Salt:** Cut cabbage into bite-size pieces. Toss with salt, rest 1 to 2 hours, tossing occasionally. Rinse 2 to 3 times, drain well.",
+      "**Paste:** Mix gochugaru, fish sauce, shrimp paste, garlic, ginger, sugar or porridge.",
+      "**Combine:** Wearing gloves, massage paste into cabbage, scallions, daikon, carrot.",
+      "**Pack:** Press tightly into a clean jar, submerged in its own liquid, 1 inch headspace. Seal loosely.",
+      "**Ferment:** Room temp 1 to 3 days, pressing down once or twice daily. Refrigerate once tangy enough."
+     ]
+    }
+   ],
+   "notes": [
+    "Use real gochugaru; generic chili flakes won't give the right flavor or color. The rice flour porridge feeds the bacteria for a stronger ferment. Flavor keeps developing in the fridge for weeks."
+   ],
+   "extras": [],
+   "sources": [
+    {
+     "label": "",
+     "url": "https://claude.ai/chat/bebb2037-54fe-458a-a5f2-1aae2ad41c8d"
+    }
+   ],
+   "createdAt": "2026-09-26T11:57:00.000Z",
+   "updatedAt": "2026-09-26T12:00:00.000Z"
+  },
+  {
+   "id": "fresh-pasta-dough",
+   "title": "Fresh Pasta Dough",
+   "description": "",
+   "category": "Basics and Technique",
+   "tags": [
+    "italian",
+    "pasta",
+    "technique",
+    "vegetarian",
+    "next level chef"
+   ],
+   "time": "45 min (with resting)",
+   "yield": "",
+   "image": "",
+   "ingredients": [
+    {
+     "name": "",
+     "note": "",
+     "items": [
+      "2 cups all-purpose flour",
+      "3 eggs",
+      "1 tbsp olive oil",
+      "Pinch of salt"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "Mound flour, make a well, add eggs, oil, and salt. Work the flour in with a fork, then bring together by hand.",
+      "Knead 8 to 10 minutes until smooth and elastic.",
+      "Wrap and rest 30 minutes before rolling and cutting."
+     ]
+    }
+   ],
+   "notes": [],
+   "extras": [
+    {
+     "title": "Practice goal",
+     "body": "under 15 minutes from start to plate."
+    }
+   ],
+   "sources": [
+    {
+     "label": "",
+     "url": "https://claude.ai/chat/3f86c691-a3e1-4cb6-912e-dda1ef052fdd"
+    }
+   ],
+   "createdAt": "2026-09-26T11:58:00.000Z",
+   "updatedAt": "2026-09-26T12:00:00.000Z"
+  },
+  {
+   "id": "basic-risotto",
+   "title": "Basic Risotto",
+   "description": "",
+   "category": "Basics and Technique",
+   "tags": [
+    "italian",
+    "rice",
+    "technique",
+    "next level chef"
+   ],
+   "time": "30 min",
+   "yield": "",
+   "image": "",
+   "ingredients": [],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "Toast arborio rice in fat until the edges turn translucent.",
+      "Deglaze with white wine.",
+      "Add warm stock one ladle at a time, stirring, 18 to 20 minutes until creamy and just tender.",
+      "Finish off heat with butter and Parmesan."
+     ]
+    }
+   ],
+   "notes": [],
+   "extras": [],
+   "sources": [
+    {
+     "label": "",
+     "url": "https://claude.ai/chat/3f86c691-a3e1-4cb6-912e-dda1ef052fdd"
+    }
+   ],
+   "createdAt": "2026-09-26T11:59:00.000Z",
+   "updatedAt": "2026-09-26T12:00:00.000Z"
+  }
+ ],
+ "deleted": {},
+ "meta": {}
+}
