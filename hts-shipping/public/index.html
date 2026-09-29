@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HTS Shipping Desk</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1>HTS Shipping Desk</h1>
+    <nav class="tabs" role="tablist">
+      <button class="tab active" data-tab="classify" role="tab">1. Classify</button>
+      <button class="tab" data-tab="shipment" role="tab">2. Shipment</button>
+      <button class="tab" data-tab="documents" role="tab">3. Documents</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Classify -->
+    <section id="tab-classify" class="panel active">
+      <form id="search-form" class="search">
+        <input id="search-input" type="search" placeholder="Search by keyword or HTS number (e.g. &quot;cotton t-shirt&quot; or 6109.10)" autocomplete="off" required>
+        <button type="submit">Search HTS</button>
+      </form>
+      <p id="search-status" class="muted"></p>
+      <div class="split">
+        <div class="results-wrap">
+          <table id="results" class="grid">
+            <thead><tr><th>HTS No.</th><th>Description</th><th>General</th><th>Special</th><th>Col. 2</th><th></th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <aside id="detail" class="detail hidden"></aside>
+      </div>
+    </section>
+
+    <!-- Shipment -->
+    <section id="tab-shipment" class="panel">
+      <div class="card">
+        <h2>Shipment details</h2>
+        <div class="form-grid" id="header-form">
+          <label>Invoice no.<input name="invoiceNo"></label>
+          <label>Invoice date<input name="invoiceDate" type="date"></label>
+          <label>Shipper / exporter<textarea name="shipper" rows="3"></textarea></label>
+          <label>Consignee<textarea name="consignee" rows="3"></textarea></label>
+          <label>Importer of record<textarea name="importer" rows="3"></textarea></label>
+          <label>Country of export<input name="exportCountry" maxlength="2" placeholder="CN"></label>
+          <label>US port of entry<input name="port" placeholder="Los Angeles (2704)"></label>
+          <label>Mode of transport
+            <select name="mode">
+              <option value="ocean">Ocean</option>
+              <option value="air">Air</option>
+              <option value="truck">Truck</option>
+              <option value="rail">Rail</option>
+              <option value="courier">Express courier</option>
+            </select>
+          </label>
+          <label>Incoterm
+            <select name="incoterm">
+              <option>EXW</option><option>FCA</option><option selected>FOB</option><option>CFR</option>
+              <option>CIF</option><option>CPT</option><option>CIP</option><option>DAP</option><option>DPU</option><option>DDP</option>
+            </select>
+          </label>
+          <label>International freight (USD)<input name="freight" type="number" min="0" step="0.01"></label>
+          <label>Insurance (USD)<input name="insurance" type="number" min="0" step="0.01"></label>
+          <label>Packages<input name="packages" placeholder="4 cartons"></label>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <h2>Line items</h2>
+          <div class="btns">
+            <button id="add-line" type="button">+ Add line</button>
+            <button id="clear-shipment" type="button" class="ghost">Clear shipment</button>
+          </div>
+        </div>
+        <div class="table-scroll">
+          <table id="lines" class="grid lines">
+            <thead>
+              <tr>
+                <th>Description</th><th>HTS code</th><th>Origin</th><th>Qty</th><th>Unit</th>
+                <th>Unit value (USD)</th><th>Net kg</th><th>Pref.</th><th>Extra duty %</th>
+                <th>Rate applied</th><th class="num">Duty (USD)</th><th></th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <p class="muted small">Extra duty % is for Chapter 99 add-ons (Section 301, 232, IEEPA, AD/CVD, etc.) — these change often and are not computed automatically. Check the footnotes on each HTS line.</p>
+      </div>
+
+      <div class="card" id="summary"></div>
+
+      <details class="card">
+        <summary>Fee settings</summary>
+        <div class="form-grid" id="settings-form">
+          <label>MPF rate (%)<input name="mpfRate" type="number" step="0.0001"></label>
+          <label>MPF minimum (USD)<input name="mpfMin" type="number" step="0.01"></label>
+          <label>MPF maximum (USD)<input name="mpfMax" type="number" step="0.01"></label>
+          <label>Informal entry limit (USD)<input name="informalLimit" type="number" step="1"></label>
+          <label>Informal MPF (USD)<input name="mpfInformal" type="number" step="0.01"></label>
+          <label>HMF rate, ocean only (%)<input name="hmfRate" type="number" step="0.001"></label>
+        </div>
+        <button id="reset-settings" type="button" class="ghost">Reset to defaults</button>
+      </details>
+    </section>
+
+    <!-- Documents -->
+    <section id="tab-documents" class="panel">
+      <div class="btns no-print">
+        <button id="print-invoice" type="button">Print / Save PDF</button>
+        <button id="export-csv" type="button">Export CSV</button>
+        <button id="export-json" type="button">Export JSON</button>
+        <label class="file-btn">Import JSON<input id="import-json" type="file" accept="application/json" hidden></label>
+      </div>
+      <div id="invoice" class="invoice"></div>
+    </section>
+  </main>
+
+  <footer class="muted small no-print">
+    Data: USITC Harmonized Tariff Schedule REST API. Estimates only — not legal or brokerage advice. Confirm classification and duties with a licensed customs broker or CBP ruling.
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
