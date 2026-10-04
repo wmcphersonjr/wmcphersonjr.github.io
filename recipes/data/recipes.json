@@ -2,7 +2,7 @@
  "format": "waynesdays-recipes",
  "version": 1,
  "title": "Waynesdays Recipe Book",
- "updatedAt": "2026-10-04T17:22:02.007Z",
+ "updatedAt": "2026-10-04T18:37:05.472Z",
  "recipes": [
   {
    "id": "freeman-house-chai-concentrate",
@@ -1392,6 +1392,80 @@
    ],
    "createdAt": "2026-09-26T11:53:00.000Z",
    "updatedAt": "2026-09-26T12:00:00.000Z"
+  },
+  {
+   "id": "roasted-dumpling-squash-with-sage-brown-butter",
+   "title": "Roasted Dumpling Squash with Sage Brown Butter",
+   "description": "Sweet dumpling squash has thin, edible skin, so there's no peeling. High-heat roasting caramelizes the edges, then a maple sage brown butter goes on top.",
+   "category": "Sides and Salads",
+   "tags": [
+    "squash",
+    "vegetarian",
+    "fall",
+    "thanksgiving",
+    "side",
+    "weeknight"
+   ],
+   "time": "40 min",
+   "yield": "Serves 4",
+   "image": "",
+   "ingredients": [
+    {
+     "name": "Squash",
+     "note": "",
+     "items": [
+      "2 sweet dumpling squash (about 1 lb each)",
+      "2 tbsp olive oil",
+      "3/4 tsp kosher salt",
+      "1/4 tsp black pepper",
+      "1/4 tsp ground cinnamon",
+      "Pinch of cayenne or chipotle powder"
+     ]
+    },
+    {
+     "name": "Sage brown butter",
+     "note": "",
+     "items": [
+      "3 tbsp unsalted butter",
+      "6 to 8 fresh sage leaves",
+      "1 tbsp maple syrup",
+      "1 tsp apple cider vinegar"
+     ]
+    },
+    {
+     "name": "To finish",
+     "note": "",
+     "items": [
+      "2 tbsp toasted pepitas",
+      "Flaky salt",
+      "Crumbled feta or goat cheese (optional)"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Heat:** Preheat the oven to 425°F with a rack in the lower third. Line a sheet pan with parchment.",
+      "**Cut:** Microwave each whole squash 2 minutes to soften it for cutting. Halve stem to base, scoop out the seeds, and cut into 1 inch wedges along the ridges. Leave the skin on.",
+      "**Season:** Toss the wedges with olive oil, salt, pepper, cinnamon and cayenne. Spread out cut side down with space between them.",
+      "**Roast:** Roast 15 minutes, flip, then roast 10 to 15 minutes more until tender and deeply browned at the edges.",
+      "**Brown butter:** While the squash roasts, melt butter in a small pan over medium. Add sage and cook 2 to 3 minutes until the butter smells nutty and turns golden brown and the sage is crisp. Off heat, stir in maple syrup and vinegar.",
+      "**Finish:** Spoon the brown butter and crispy sage over the hot squash. Top with pepitas, flaky salt and cheese if using."
+     ]
+    }
+   ],
+   "notes": [
+    "Halves instead of wedges: roast cut side down 30 to 35 minutes, then fill with the brown butter, or stuff with wild rice, sausage or quinoa.",
+    "Delicata, carnival or acorn squash all work. Acorn skin is tougher, so add 5 to 10 minutes.",
+    "Roast the seeds: rinse, dry, toss with oil and salt, and bake at 325°F for 15 to 20 minutes.",
+    "Miso swap: whisk 1 tsp white miso into the brown butter instead of the vinegar.",
+    "Good next to the jerk duck tacos, or on the Thanksgiving table."
+   ],
+   "extras": [],
+   "sources": [],
+   "createdAt": "2026-10-04T18:37:05.472Z",
+   "updatedAt": "2026-10-04T18:37:05.472Z"
   },
   {
    "id": "nonna-s-sunday-sugo",

@@ -14,6 +14,8 @@ Every recipe pulled from past chats, compiled in one place. Grouped by category.
 
 **Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs
 
+**Sides and Salads:** Roasted Dumpling Squash
+
 **Sauces, Spices and Ferments:** Nonna's Sunday Sugo · Ponzu Sauce · Pumpkin Pie Spice Blend · Kimchi
 
 **Basics and Technique:** Fresh Pasta Dough · Basic Risotto
@@ -795,6 +797,53 @@ Build-your-own tacos. Low and slow roast renders the fat and makes the meat fall
 **Turkey tips:** Milk-soaked bread is non-negotiable. Grate in a little fresh onion for juiciness. If using 99% lean breast, add 1 tbsp olive oil to the mix.
 
 *Source: https://claude.ai/chat/8d545790-f370-4403-b294-6aff8199db63*
+
+---
+
+# SIDES AND SALADS
+
+## Roasted Dumpling Squash with Sage Brown Butter
+
+Sweet dumpling squash has thin, edible skin, so there's no peeling. High-heat roasting caramelizes the edges, then a maple sage brown butter goes on top.
+
+**Tags:** squash, vegetarian, fall, thanksgiving, side, weeknight
+**Time:** 40 min
+
+**Serves 4**
+
+**Squash**
+- 2 sweet dumpling squash (about 1 lb each)
+- 2 tbsp olive oil
+- 3/4 tsp kosher salt
+- 1/4 tsp black pepper
+- 1/4 tsp ground cinnamon
+- Pinch of cayenne or chipotle powder
+
+**Sage brown butter**
+- 3 tbsp unsalted butter
+- 6 to 8 fresh sage leaves
+- 1 tbsp maple syrup
+- 1 tsp apple cider vinegar
+
+**To finish**
+- 2 tbsp toasted pepitas
+- Flaky salt
+- Crumbled feta or goat cheese (optional)
+
+**Method**
+1. **Heat:** Preheat the oven to 425°F with a rack in the lower third. Line a sheet pan with parchment.
+2. **Cut:** Microwave each whole squash 2 minutes to soften it for cutting. Halve stem to base, scoop out the seeds, and cut into 1 inch wedges along the ridges. Leave the skin on.
+3. **Season:** Toss the wedges with olive oil, salt, pepper, cinnamon and cayenne. Spread out cut side down with space between them.
+4. **Roast:** Roast 15 minutes, flip, then roast 10 to 15 minutes more until tender and deeply browned at the edges.
+5. **Brown butter:** While the squash roasts, melt butter in a small pan over medium. Add sage and cook 2 to 3 minutes until the butter smells nutty and turns golden brown and the sage is crisp. Off heat, stir in maple syrup and vinegar.
+6. **Finish:** Spoon the brown butter and crispy sage over the hot squash. Top with pepitas, flaky salt and cheese if using.
+
+**Notes**
+- Halves instead of wedges: roast cut side down 30 to 35 minutes, then fill with the brown butter, or stuff with wild rice, sausage or quinoa.
+- Delicata, carnival or acorn squash all work. Acorn skin is tougher, so add 5 to 10 minutes.
+- Roast the seeds: rinse, dry, toss with oil and salt, and bake at 325°F for 15 to 20 minutes.
+- Miso swap: whisk 1 tsp white miso into the brown butter instead of the vinegar.
+- Good next to the jerk duck tacos, or on the Thanksgiving table.
 
 ---
 
