@@ -10,7 +10,7 @@ Every recipe pulled from past chats, compiled in one place. Grouped by category.
 
 **Breakfast:** Fluffy Pancakes · Buttermilk Cornbread Waffles · McDonald's Fruit and Maple Oatmeal (Copycat)
 
-**Baking and Sweets:** Sugar Moon Espresso Cornflake Cookies (Copycat) · Bakery Cookie Skillet
+**Baking and Sweets:** Sugar Moon Espresso Cornflake Cookies (Copycat) · Bakery Cookie Skillet · Pan de Muerto
 
 **Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs
 
@@ -365,6 +365,54 @@ For reheating a store-bought bakery cookie into a skillet dessert.
 5. Top with vanilla ice cream and a pinch of flaky salt. Serve from the hot skillet.
 
 *Source: https://claude.ai/chat/c48f17af-8056-447b-85bf-400d95c371a7*
+
+---
+
+## Pan de Muerto
+
+Soft, buttery, orange-scented sweet bread for Día de Muertos (Nov 1–2), topped with crossed dough "bones" and a coat of sugar.
+
+**Tags:** mexican, bread, holiday, day of the dead, project
+**Time:** 4 hr (mostly rising)
+
+**Makes 2 medium loaves (8 to 10 servings)**
+
+**Dough**
+- 1/2 cup whole milk
+- 1 tsp anise seeds (optional)
+- 3 1/2 cups (450g) all-purpose or bread flour
+- 1/2 cup (100g) sugar
+- 2 1/4 tsp instant yeast (1 packet)
+- 1 tsp kosher salt
+- Zest of 2 oranges
+- 3 large eggs plus 2 yolks, room temp
+- 1 tbsp orange blossom water (agua de azahar)
+- 1/2 cup (113g) unsalted butter, softened and cubed
+
+**Egg wash**
+- 1 egg
+- 1 tbsp milk
+
+**Topping**
+- 4 tbsp unsalted butter, melted
+- 1/2 cup sugar, rubbed with a little orange zest
+
+**Method**
+1. **Infuse:** Warm the milk with the anise seeds until steaming. Steep 10 minutes, strain, and cool to lukewarm (about 100°F).
+2. **Mix:** In a stand mixer, combine flour, sugar, yeast, salt and orange zest. Add the milk, eggs, yolks and orange blossom water. Mix on low 5 minutes until a shaggy dough forms.
+3. **Butter:** On medium, add butter a few cubes at a time. Knead 10 to 12 minutes until smooth, glossy and elastic. It will be soft and tacky, so resist adding much flour.
+4. **First rise:** Cover and let rise somewhere warm 1.5 to 2 hours until doubled. (Or refrigerate overnight; cold dough is much easier to shape.)
+5. **Divide:** Set aside about 1/5 of the dough (around 150g) for decorations. Split the rest in half and shape each into a tight, smooth ball. Place on a parchment-lined sheet and flatten slightly.
+6. **Bones:** From the reserved dough, roll 2 small marbles for the skulls. Roll the rest into 4 ropes about as long as the loaves are wide. Press with spread fingers as you roll to make knobby "bones."
+7. **Decorate:** Brush the loaves with egg wash. Lay 2 bones across each loaf in an X, then press a skull ball in the center. Brush again to glue everything down.
+8. **Second rise:** Cover loosely and let rise 45 to 60 minutes until puffy. Preheat the oven to 350°F.
+9. **Bake:** Brush gently with egg wash. Bake 30 to 35 minutes until deep golden and 190°F inside. Tent with foil around 20 minutes if browning fast.
+10. **Finish:** Cool 10 minutes. Brush all over with melted butter and sprinkle heavily with orange sugar.
+
+**Notes**
+- No orange blossom water? Use 1 tsp vanilla plus extra orange zest.
+- Keeps 2 days wrapped at room temp. Refresh 5 minutes in a 300°F oven.
+- Serve with Mexican hot chocolate, champurrado, or a latte made with the Freeman House chai.
 
 ---
 
