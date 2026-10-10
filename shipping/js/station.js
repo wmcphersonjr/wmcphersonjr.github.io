@@ -107,7 +107,8 @@ function packing(app, s, pkg) {
           <div>SHIP TO:<br><b>${esc(p.name.toUpperCase())}</b><br>${esc(p.city.toUpperCase())} ${esc(p.state)} ${esc(p.zip)}</div>
           ${bars(pkg.tracking)}
           <div style="font-size:12px">TRK# ${esc(pkg.tracking)}</div>
-          <div style="font-size:11px;margin-top:6px">FROM: DANDY · PROVO UT · ${E.fmtDay(pkg.shipDay)} · ${esc(pkg.pickupId)}</div>
+          <div style="font-size:11px;margin-top:6px">FROM: PROVO UT · ${E.fmtDay(pkg.shipDay)} · ${esc(pkg.pickupId)}</div>
+          <div class="sample">SAMPLE · SIMULATED · NOT A SHIPPING LABEL</div>
         </div>
       </div>
     </div>

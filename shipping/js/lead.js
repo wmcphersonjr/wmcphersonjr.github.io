@@ -6,7 +6,7 @@ import { esc, toast, pct, num, money, svcName, practiceLine, packByLabel } from 
 const TABS = [['floor', 'Floor'], ['trucks', 'Trucks & close-out'], ['production', 'Production & exceptions'], ['metrics', 'Metrics'], ['settings', 'Settings']];
 
 export const actions = {
-  'lead-tab'(app, d) { app.lead.tab = d.tab; app.savePrefs(); },
+  'lead-tab'(app, d) { app.lead.tab = d.tab; app.lead.confirmReset = false; app.savePrefs(); },
   'lead-peak'(app, d) { app.s.config.peak.mode = d.mode; E.log(app.s, 'peak-mode', { mode: d.mode }); },
   'lead-close'(app, d) { E.closeContainer(app.s, d.id); },
   'lead-depart'(app, d) { E.departContainer(app.s, d.id); toast(`${d.id} left on the truck`); },
@@ -21,7 +21,9 @@ export const actions = {
   'lead-metric-day'(app, d) { app.lead.metricDay = d.day; },
   'lead-reset'(app) {
     const f = id => Number(document.getElementById(id)?.value);
-    if (!confirm('Reset the simulated floor? All progress on this device is cleared.')) return;
+    // Two-step confirm in the page itself (browser dialogs are not available everywhere this runs).
+    if (!app.lead.confirmReset) { app.lead.confirmReset = true; return; }
+    app.lead.confirmReset = false;
     app.reset({
       seed: f('rs-seed') || 7, ordersPerDay: f('rs-opd') || 180, practices: f('rs-pr') || 60, bots: f('rs-bots') || 0,
       zoneBins: f('rs-zb') || 24, overflowBins: f('rs-of') || 12, slots: f('rs-slots') || 8, stations: f('rs-st') || 4,
@@ -283,7 +285,8 @@ function settings(app) {
         <label class="field">Handoff slots<input id="rs-slots" type="number" value="${c.handoffSlots}"></label>
         <label class="field">Pack stations<input id="rs-st" type="number" value="${c.stations}"></label>
       </div>
-      <button class="btn danger" data-act="lead-reset">Reset simulation</button>
+      <button class="btn danger" data-act="lead-reset">${app.lead.confirmReset ? 'Click again to clear and reset' : 'Reset simulation'}</button>
+      ${app.lead.confirmReset ? '<span class="faint" style="font-size:12px">All progress on this device is cleared.</span>' : ''}
     </div>
     <div class="card"><h3>Carrier services <span class="faint">· planning costs, not contract rates</span></h3>
       <table><thead><tr><th>Truck</th><th>Service</th><th class="n">Cost</th><th>Transit</th></tr></thead><tbody>

@@ -111,6 +111,8 @@ export function newSimulation(opts = {}) {
   s.clock = 6 * 60;
   s.bots = [];
   setBots(s, sim.bots);
+  // Open the demo mid-morning so there is work on the floor.
+  advance(s, 150);
   return s;
 }
 

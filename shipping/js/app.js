@@ -120,7 +120,7 @@ function topbar() {
   const nt = nextTruck(s);
   const views = [['handheld', 'Handheld'], ['station', 'Pack station'], ['lead', 'Lead']];
   return `<header class="topbar">
-    <div class="brand">Dandy Shipping Central<small>MVP</small></div>
+    <div class="brand">Dandy Shipping Central<small>Prototype · simulated data</small></div>
     <nav class="tabs" aria-label="Views">${views.map(([k, l]) => `<button data-act="view" data-view="${k}" aria-pressed="${app.view === k}">${l}</button>`).join('')}</nav>
     <div class="clock">
       <span class="time">${E.fmtDay(E.dayOf(s.clock))} · ${E.fmtTime(s.clock)}</span>
