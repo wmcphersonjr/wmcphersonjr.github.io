@@ -1,0 +1,6 @@
+{
+  "name": "dandy-shipping-central",
+  "private": true,
+  "type": "module",
+  "scripts": { "test": "node --test test/" }
+}
