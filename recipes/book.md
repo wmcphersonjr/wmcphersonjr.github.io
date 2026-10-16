@@ -12,7 +12,7 @@ Every recipe pulled from past chats, compiled in one place. Grouped by category.
 
 **Baking and Sweets:** Sugar Moon Espresso Cornflake Cookies (Copycat) · Bakery Cookie Skillet · Pan de Muerto
 
-**Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs
+**Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs · Creamy Lemon Pesto Pasta
 
 **Sides and Salads:** Roasted Dumpling Squash
 
@@ -811,6 +811,43 @@ Build-your-own tacos. Low and slow roast renders the fat and makes the meat fall
 **Turkey tips:** Milk-soaked bread is non-negotiable. Grate in a little fresh onion for juiciness. If using 99% lean breast, add 1 tbsp olive oil to the mix.
 
 *Source: https://claude.ai/chat/8d545790-f370-4403-b294-6aff8199db63*
+
+---
+
+## Creamy Lemon Pesto Pasta
+
+Kirkland pesto turned silky and clingy (not oily) with pasta water, mascarpone, butter, and lemon.
+
+**Tags:** italian, pasta, pesto, lemon, weeknight, vegetarian
+**Time:** 20 min
+
+**Serves 2**
+
+**Ingredients**
+- 8 oz short pasta (fusilli, gemelli, or rigatoni)
+- 1 tbsp kosher salt, for pasta water
+- 1/2 cup Kirkland basil pesto
+- 2 tbsp mascarpone or ricotta (or heavy cream)
+- 1 lemon
+- 1 tbsp cold unsalted butter
+- 1/3 cup grated Parmesan, plus more to serve
+- 1/4 tsp black pepper or red pepper flakes
+
+**Method**
+1. **Boil:** Salt a large pot of boiling water and cook the pasta until about 1 minute shy of al dente.
+2. **Sauce base:** While it cooks, stir the pesto and mascarpone together in a large bowl. Zest about half the lemon into the bowl.
+3. **Save water and drain:** Scoop out about 1 cup of pasta water, then drain. Don't rinse.
+4. **Emulsify:** Whisk 2 to 3 tbsp hot pasta water into the pesto mixture until smooth, creamy, and pale green.
+5. **Toss:** Add the hot pasta and cold butter. Toss hard for about 30 seconds, adding pasta water a spoonful at a time until glossy and every piece is coated.
+6. **Cheese:** Add the Parmesan and toss again until the sauce thickens and clings.
+7. **Lemon:** Squeeze in 1 to 2 tsp lemon juice, toss, and taste. Adjust juice and salt.
+8. **Serve:** Top with extra zest, Parmesan, and pepper. Serve right away.
+
+**Notes**
+- Keep the pesto off direct heat the whole time. Heat breaks the emulsion (oily) and dulls the basil.
+- Pasta water is the key: its starch emulsifies the oil, thickens the sauce, and helps it cling. Use a bit less water in the pot for starchier water.
+- Juice goes in last so it tastes fresh and doesn't break the cream. Zest carries most of the lemon flavor.
+- Leftovers tighten in the fridge; loosen with a splash of water or milk when reheating.
 
 ---
 

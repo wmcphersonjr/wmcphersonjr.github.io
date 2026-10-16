@@ -2,7 +2,7 @@
  "format": "waynesdays-recipes",
  "version": 1,
  "title": "Waynesdays Recipe Book",
- "updatedAt": "2026-10-16T18:37:28.644Z",
+ "updatedAt": "2026-10-16T18:38:46.467Z",
  "recipes": [
   {
    "id": "freeman-house-chai-concentrate",
@@ -1407,6 +1407,64 @@
    ],
    "createdAt": "2026-09-26T11:53:00.000Z",
    "updatedAt": "2026-09-26T12:00:00.000Z"
+  },
+  {
+   "id": "creamy-lemon-pesto-pasta",
+   "title": "Creamy Lemon Pesto Pasta",
+   "description": "Kirkland pesto turned silky and clingy (not oily) with pasta water, mascarpone, butter, and lemon.",
+   "category": "Mains",
+   "tags": [
+    "italian",
+    "pasta",
+    "pesto",
+    "lemon",
+    "weeknight",
+    "vegetarian"
+   ],
+   "time": "20 min",
+   "yield": "Serves 2",
+   "image": "",
+   "ingredients": [
+    {
+     "name": "",
+     "note": "",
+     "items": [
+      "8 oz short pasta (fusilli, gemelli, or rigatoni)",
+      "1 tbsp kosher salt, for pasta water",
+      "1/2 cup Kirkland basil pesto",
+      "2 tbsp mascarpone or ricotta (or heavy cream)",
+      "1 lemon",
+      "1 tbsp cold unsalted butter",
+      "1/3 cup grated Parmesan, plus more to serve",
+      "1/4 tsp black pepper or red pepper flakes"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Boil:** Salt a large pot of boiling water and cook the pasta until about 1 minute shy of al dente.",
+      "**Sauce base:** While it cooks, stir the pesto and mascarpone together in a large bowl. Zest about half the lemon into the bowl.",
+      "**Save water and drain:** Scoop out about 1 cup of pasta water, then drain. Don't rinse.",
+      "**Emulsify:** Whisk 2 to 3 tbsp hot pasta water into the pesto mixture until smooth, creamy, and pale green.",
+      "**Toss:** Add the hot pasta and cold butter. Toss hard for about 30 seconds, adding pasta water a spoonful at a time until glossy and every piece is coated.",
+      "**Cheese:** Add the Parmesan and toss again until the sauce thickens and clings.",
+      "**Lemon:** Squeeze in 1 to 2 tsp lemon juice, toss, and taste. Adjust juice and salt.",
+      "**Serve:** Top with extra zest, Parmesan, and pepper. Serve right away."
+     ]
+    }
+   ],
+   "notes": [
+    "Keep the pesto off direct heat the whole time. Heat breaks the emulsion (oily) and dulls the basil.",
+    "Pasta water is the key: its starch emulsifies the oil, thickens the sauce, and helps it cling. Use a bit less water in the pot for starchier water.",
+    "Juice goes in last so it tastes fresh and doesn't break the cream. Zest carries most of the lemon flavor.",
+    "Leftovers tighten in the fridge; loosen with a splash of water or milk when reheating."
+   ],
+   "extras": [],
+   "sources": [],
+   "createdAt": "2026-10-11T03:09:00.000Z",
+   "updatedAt": "2026-10-16T18:38:46.467Z"
   },
   {
    "id": "roasted-dumpling-squash-with-sage-brown-butter",
