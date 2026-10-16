@@ -1374,7 +1374,7 @@ One or two sentences about the dish.
               <textarea name="extras" rows="6" placeholder="### Serving&#10;Over rice with lime wedges.">${esc(extrasToText(r.extras))}</textarea></label>
             <label class="field"><span>Sources <small>one per line · “Label: https://…”</small></span>
               <textarea name="sources" rows="2" placeholder="https://claude.ai/chat/…">${esc(sourcesToText(r.sources))}</textarea></label>
-            <label class="field"><span>Photo URL</span><input name="image" type="url" value="${esc(r.image)}" placeholder="https://…/photo.jpg"></label>
+            <label class="field"><span>Photo URL</span><input name="image" type="text" inputmode="url" value="${esc(r.image)}" placeholder="https://…/photo.jpg"></label>
           </details>
           <div class="save-bar">
             ${isNew ? `<button type="button" class="btn ghost" data-act="discard-draft-edit">Discard</button>` : `<a class="btn ghost" href="#/r/${encodeURIComponent(r.id)}">Cancel</a>`}

@@ -708,9 +708,10 @@
     const L = [];
     L.push('## ' + r.title, '');
     if (r.description) L.push(r.description, '');
+    if (r.image) L.push('**Image:** ' + r.image);
     if (r.tags && r.tags.length) L.push('**Tags:** ' + r.tags.join(', '));
     if (r.time) L.push('**Time:** ' + r.time);
-    if ((r.tags && r.tags.length) || r.time) L.push('');
+    if ((r.tags && r.tags.length) || r.time || r.image) L.push('');
     if (r.yield) L.push(/^(serves|makes)\b/i.test(r.yield) ? '**' + r.yield + '**' : '**Yield:** ' + r.yield, '');
     (r.ingredients || []).forEach((g) => {
       const head = g.name ? g.name : 'Ingredients';

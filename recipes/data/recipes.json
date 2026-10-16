@@ -2,7 +2,7 @@
  "format": "waynesdays-recipes",
  "version": 1,
  "title": "Waynesdays Recipe Book",
- "updatedAt": "2026-10-04T18:37:05.472Z",
+ "updatedAt": "2026-10-16T18:37:28.644Z",
  "recipes": [
   {
    "id": "freeman-house-chai-concentrate",
@@ -588,40 +588,44 @@
   {
    "id": "sugar-moon-espresso-cornflake-cookies",
    "title": "Sugar Moon Espresso Cornflake Cookies (Copycat)",
-   "description": "",
+   "description": "Sugar Moon's espresso salted caramel cornflake cookie: a chewy brown sugar espresso cookie piled with salted caramel cornflakes. The topping is made like caramel corn, with cornflakes swapped in for extreme crunch. The cornflakes go on top only; they aren't mixed into the dough.",
    "category": "Baking and Sweets",
    "tags": [
     "cookies",
     "copycat",
     "espresso",
+    "salted caramel",
     "make-ahead"
    ],
    "time": "1 hr 45 min (plus chilling)",
-   "yield": "Makes about 18 cookies",
-   "image": "",
+   "yield": "Makes about 16 large cookies",
+   "image": "images/sugar-moon-espresso-cornflake-cookie.jpg",
    "ingredients": [
     {
-     "name": "Caramelized cornflakes",
+     "name": "Salted caramel cornflakes",
      "note": "",
      "items": [
-      "2 cups cornflakes",
-      "3 tbsp unsalted butter",
-      "3 tbsp brown sugar",
-      "Pinch of salt"
+      "3 cups cornflakes",
+      "4 tbsp unsalted butter",
+      "1/2 cup light brown sugar, packed",
+      "2 tbsp light corn syrup",
+      "1/2 tsp kosher salt",
+      "1/4 tsp baking soda",
+      "1/4 tsp vanilla extract"
      ]
     },
     {
-     "name": "Cookie dough",
+     "name": "Chewy brown sugar espresso dough",
      "note": "",
      "items": [
       "1 cup (2 sticks) unsalted butter, room temp",
-      "3/4 cup granulated sugar",
-      "3/4 cup light brown sugar, packed",
-      "2 eggs",
-      "1 tsp vanilla extract",
-      "2.25 cups all-purpose flour",
+      "1 1/4 cups dark brown sugar, packed",
+      "1/4 cup granulated sugar",
+      "1 egg plus 1 egg yolk",
+      "2 tsp vanilla extract",
+      "2 1/4 cups all-purpose flour",
       "1 tsp baking soda",
-      "1/2 tsp kosher salt",
+      "3/4 tsp kosher salt",
       "2 tbsp finely ground espresso (real grind, not instant)",
       "1 tbsp instant espresso powder",
       "Flaky sea salt (Maldon) to finish"
@@ -632,24 +636,35 @@
     {
      "name": "",
      "items": [
-      "**Cornflakes:** Melt butter and brown sugar in a skillet until bubbling. Add cornflakes, toss 2 to 3 minutes until golden. Cool on parchment, rough chop into clusters.",
-      "**Dough:** Cream butter and sugars 3 to 4 minutes. Add eggs one at a time, then vanilla. Whisk flour, baking soda, salt, ground espresso, and espresso powder separately. Combine until just mixed. Fold in 3/4 of the cornflakes.",
-      "**Rest:** Refrigerate at least 1 hour (overnight is better).",
-      "**Bake:** 375°F. Scoop 2 oz balls, press reserved cornflakes on top. Bake 10 to 12 minutes until edges set and centers look slightly underdone.",
-      "**Finish:** Flaky salt immediately out of the oven."
+      "**Caramel:** Heat the oven to 250°F and line a sheet pan with parchment. In a saucepan, melt butter, brown sugar, corn syrup and salt. Boil without stirring 3 minutes.",
+      "**Coat:** Off heat, stir in baking soda and vanilla (it will foam up). Pour over the cornflakes in a large bowl and fold gently until every flake is glossy.",
+      "**Bake the cornflakes:** Spread on the sheet pan and bake 30 minutes, stirring every 10 minutes, until glassy and dry. Cool completely, then break into clusters.",
+      "**Dough:** Cream butter and both sugars 3 minutes until fluffy. Beat in the egg, yolk and vanilla. Whisk the flour, baking soda, salt, ground espresso and espresso powder, then mix in until just combined.",
+      "**Rest:** Refrigerate the dough at least 1 hour (overnight is better for chew and flavor).",
+      "**Bake:** Heat the oven to 350°F. Scoop 2 oz balls 3 inches apart on parchment. Bake 9 minutes until the edges are just set.",
+      "**Top:** Pull the pan, pile a generous handful of caramel cornflakes on each cookie and press lightly. Return to the oven 2 to 3 minutes so the caramel softens and fuses to the cookie.",
+      "**Finish:** Sprinkle flaky salt immediately. Cool on the pan 10 minutes; centers should stay soft and chewy."
      ]
     }
    ],
-   "notes": [],
+   "notes": [
+    "Based on Sugar Moon's own description (Aug 14, 2021): \"chewy brown sugar espresso cookie… topped with salted caramel cornflakes (caramel corn but substituted corn flakes for extreme crunch).\"",
+    "All brown sugar (mostly dark) gives the chewy, crackly, toffee-colored base in the photo.",
+    "Make extra cornflakes. They keep 1 week airtight and are great over ice cream."
+   ],
    "extras": [],
    "sources": [
     {
      "label": "",
      "url": "https://claude.ai/chat/399019e1-cc69-4fe8-9310-0affb73affd3"
+    },
+    {
+     "label": "Sugar Moon on Instagram",
+     "url": "https://www.instagram.com/sugarmoonchi/"
     }
    ],
    "createdAt": "2026-09-26T11:43:00.000Z",
-   "updatedAt": "2026-09-26T12:00:00.000Z"
+   "updatedAt": "2026-10-16T18:37:28.644Z"
   },
   {
    "id": "bakery-cookie-skillet",

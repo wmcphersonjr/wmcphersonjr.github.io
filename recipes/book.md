@@ -318,38 +318,52 @@ A riff on Jeni's discontinued Johnny Cakes flavor, with toasted oat crumble and 
 
 ## Sugar Moon Espresso Cornflake Cookies (Copycat)
 
-**Tags:** cookies, copycat, espresso, make-ahead
+Sugar Moon's espresso salted caramel cornflake cookie: a chewy brown sugar espresso cookie piled with salted caramel cornflakes. The topping is made like caramel corn, with cornflakes swapped in for extreme crunch. The cornflakes go on top only; they aren't mixed into the dough.
+
+**Image:** images/sugar-moon-espresso-cornflake-cookie.jpg
+**Tags:** cookies, copycat, espresso, salted caramel, make-ahead
 **Time:** 1 hr 45 min (plus chilling)
 
-**Makes about 18 cookies**
+**Makes about 16 large cookies**
 
-**Caramelized cornflakes**
-- 2 cups cornflakes
-- 3 tbsp unsalted butter
-- 3 tbsp brown sugar
-- Pinch of salt
-
-**Cookie dough**
-- 1 cup (2 sticks) unsalted butter, room temp
-- 3/4 cup granulated sugar
-- 3/4 cup light brown sugar, packed
-- 2 eggs
-- 1 tsp vanilla extract
-- 2.25 cups all-purpose flour
-- 1 tsp baking soda
+**Salted caramel cornflakes**
+- 3 cups cornflakes
+- 4 tbsp unsalted butter
+- 1/2 cup light brown sugar, packed
+- 2 tbsp light corn syrup
 - 1/2 tsp kosher salt
+- 1/4 tsp baking soda
+- 1/4 tsp vanilla extract
+
+**Chewy brown sugar espresso dough**
+- 1 cup (2 sticks) unsalted butter, room temp
+- 1 1/4 cups dark brown sugar, packed
+- 1/4 cup granulated sugar
+- 1 egg plus 1 egg yolk
+- 2 tsp vanilla extract
+- 2 1/4 cups all-purpose flour
+- 1 tsp baking soda
+- 3/4 tsp kosher salt
 - 2 tbsp finely ground espresso (real grind, not instant)
 - 1 tbsp instant espresso powder
 - Flaky sea salt (Maldon) to finish
 
 **Method**
-1. **Cornflakes:** Melt butter and brown sugar in a skillet until bubbling. Add cornflakes, toss 2 to 3 minutes until golden. Cool on parchment, rough chop into clusters.
-2. **Dough:** Cream butter and sugars 3 to 4 minutes. Add eggs one at a time, then vanilla. Whisk flour, baking soda, salt, ground espresso, and espresso powder separately. Combine until just mixed. Fold in 3/4 of the cornflakes.
-3. **Rest:** Refrigerate at least 1 hour (overnight is better).
-4. **Bake:** 375°F. Scoop 2 oz balls, press reserved cornflakes on top. Bake 10 to 12 minutes until edges set and centers look slightly underdone.
-5. **Finish:** Flaky salt immediately out of the oven.
+1. **Caramel:** Heat the oven to 250°F and line a sheet pan with parchment. In a saucepan, melt butter, brown sugar, corn syrup and salt. Boil without stirring 3 minutes.
+2. **Coat:** Off heat, stir in baking soda and vanilla (it will foam up). Pour over the cornflakes in a large bowl and fold gently until every flake is glossy.
+3. **Bake the cornflakes:** Spread on the sheet pan and bake 30 minutes, stirring every 10 minutes, until glassy and dry. Cool completely, then break into clusters.
+4. **Dough:** Cream butter and both sugars 3 minutes until fluffy. Beat in the egg, yolk and vanilla. Whisk the flour, baking soda, salt, ground espresso and espresso powder, then mix in until just combined.
+5. **Rest:** Refrigerate the dough at least 1 hour (overnight is better for chew and flavor).
+6. **Bake:** Heat the oven to 350°F. Scoop 2 oz balls 3 inches apart on parchment. Bake 9 minutes until the edges are just set.
+7. **Top:** Pull the pan, pile a generous handful of caramel cornflakes on each cookie and press lightly. Return to the oven 2 to 3 minutes so the caramel softens and fuses to the cookie.
+8. **Finish:** Sprinkle flaky salt immediately. Cool on the pan 10 minutes; centers should stay soft and chewy.
 
-*Source: https://claude.ai/chat/399019e1-cc69-4fe8-9310-0affb73affd3*
+**Notes**
+- Based on Sugar Moon's own description (Aug 14, 2021): "chewy brown sugar espresso cookie… topped with salted caramel cornflakes (caramel corn but substituted corn flakes for extreme crunch)."
+- All brown sugar (mostly dark) gives the chewy, crackly, toffee-colored base in the photo.
+- Make extra cornflakes. They keep 1 week airtight and are great over ice cream.
+
+*Source: https://claude.ai/chat/399019e1-cc69-4fe8-9310-0affb73affd3 · Sugar Moon on Instagram: https://www.instagram.com/sugarmoonchi/*
 
 ---
 
