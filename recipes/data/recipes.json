@@ -2,7 +2,7 @@
  "format": "waynesdays-recipes",
  "version": 1,
  "title": "Waynesdays Recipe Book",
- "updatedAt": "2026-10-16T18:38:46.467Z",
+ "updatedAt": "2026-10-16T22:03:50.916Z",
  "recipes": [
   {
    "id": "freeman-house-chai-concentrate",
@@ -778,6 +778,82 @@
    "sources": [],
    "createdAt": "2026-10-04T17:22:02.007Z",
    "updatedAt": "2026-10-04T17:22:02.007Z"
+  },
+  {
+   "id": "latino-foodie-pan-de-muerto",
+   "title": "Latino Foodie Pan de Muerto",
+   "description": "Art Rodriguez's pan de muerto from Latino Foodie: an anise and orange scented sweet bread made as six individual loaves, each crossed with dough bones, brushed with butter and finished with sugar.",
+   "category": "Baking and Sweets",
+   "tags": [
+    "mexican",
+    "bread",
+    "holiday",
+    "day of the dead",
+    "project"
+   ],
+   "time": "3 hr 45 min (2 hr 45 min proofing)",
+   "yield": "Makes 6 loaves",
+   "image": "images/latino-foodie-pan-de-muerto.jpg",
+   "ingredients": [
+    {
+     "name": "Dough",
+     "note": "",
+     "items": [
+      "1/2 cup whole milk",
+      "1/2 cup water",
+      "2 packages active dry yeast (or 4 1/2 tsp)",
+      "5 cups all-purpose flour, sifted",
+      "1/2 cup (1 stick) unsalted butter, room temp",
+      "1/2 cup granulated sugar",
+      "4 large eggs",
+      "Zest of 2 medium oranges",
+      "1 tbsp whole anise seed",
+      "1 tsp kosher salt"
+     ]
+    },
+    {
+     "name": "Topping",
+     "note": "",
+     "items": [
+      "1/2 cup (1 stick) unsalted butter",
+      "1/2 cup sugar"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Bloom:** In a medium glass bowl, whisk the milk, water and yeast. Let it activate in a warm spot until foamy, 5 to 10 minutes.",
+      "**Sponge:** Whisk in 1/2 cup of the flour. Rest uncovered until doubled in size, about 25 minutes.",
+      "**Cream:** In a stand mixer with the paddle, cream the butter and sugar on medium until fluffy, about 2 minutes.",
+      "**Eggs:** Beat in the eggs one at a time on medium until fully incorporated, about 1 minute.",
+      "**Add the sponge:** Switch to the dough hook, add the yeast mixture and mix on medium until combined, about 2 minutes.",
+      "**Flour:** On low, add the remaining flour about 1/2 cup at a time, scraping down the sides, until the dough pulls away from the bowl, about 5 minutes. It may stay a little tacky.",
+      "**Flavor:** Add the orange zest, anise seed and salt. Mix with the dough hook about 5 minutes more, until less tacky and the dough comes off the sides easily.",
+      "**First rise:** Knead briefly by hand into a ball. Place in a greased bowl, cover with plastic wrap and let double in a warm place, 1 1/2 to 2 hours.",
+      "**Divide:** Gently punch down the dough, turn it out onto a clean surface and divide into 6 equal pieces.",
+      "**Shape:** From one piece, cut off 3 small pieces (about 1 tbsp or 1/2 oz each) for the bones. Roll the large piece into a tight ball and set it on a baking sheet. Roll the small pieces into balls, then roll two of them into long, finger-like bones.",
+      "**Decorate:** Lightly brush the loaf with water. Lay the two bones over it in an X, poke down where they cross, and set the last small ball on top. Repeat with the remaining dough for 6 loaves.",
+      "**Second rise:** Cover with plastic wrap and let rise in a warm spot, about 45 minutes. Preheat the oven to 350°F for the last 15 minutes of proofing.",
+      "**Bake:** Bake until golden brown, 25 to 30 minutes, tenting with foil if they brown too fast. Let cool completely.",
+      "**Topping:** Melt the butter and let it cool. Brush it over the loaves, then sprinkle generously with sugar."
+     ]
+    }
+   ],
+   "notes": [
+    "Recipe and photo by Art Rodriguez for Latino Foodie.",
+    "Compared with the other Pan de Muerto in this book, this one leans on anise and orange zest instead of orange blossom water, and makes six smaller loaves."
+   ],
+   "extras": [],
+   "sources": [
+    {
+     "label": "Latino Foodie (Art Rodriguez)",
+     "url": "https://www.latinofoodie.com/featured-blog-posts/pan-de-muerto-recipe/"
+    }
+   ],
+   "createdAt": "2026-10-16T22:03:50.916Z",
+   "updatedAt": "2026-10-16T22:03:50.916Z"
   },
   {
    "id": "jamaican-brown-stew-oxtail",

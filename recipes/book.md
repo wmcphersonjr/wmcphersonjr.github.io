@@ -10,7 +10,7 @@ Every recipe pulled from past chats, compiled in one place. Grouped by category.
 
 **Breakfast:** Fluffy Pancakes · Buttermilk Cornbread Waffles · McDonald's Fruit and Maple Oatmeal (Copycat)
 
-**Baking and Sweets:** Sugar Moon Espresso Cornflake Cookies (Copycat) · Bakery Cookie Skillet · Pan de Muerto
+**Baking and Sweets:** Sugar Moon Espresso Cornflake Cookies (Copycat) · Bakery Cookie Skillet · Pan de Muerto · Latino Foodie Pan de Muerto
 
 **Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs · Creamy Lemon Pesto Pasta
 
@@ -429,6 +429,56 @@ Soft, buttery, orange-scented sweet bread for Día de Muertos (Nov 1–2), toppe
 - No orange blossom water? Use 1 tsp vanilla plus extra orange zest.
 - Keeps 2 days wrapped at room temp. Refresh 5 minutes in a 300°F oven.
 - Serve with Mexican hot chocolate, champurrado, or a latte made with the Freeman House chai.
+
+---
+
+## Latino Foodie Pan de Muerto
+
+Art Rodriguez's pan de muerto from Latino Foodie: an anise and orange scented sweet bread made as six individual loaves, each crossed with dough bones, brushed with butter and finished with sugar.
+
+**Image:** images/latino-foodie-pan-de-muerto.jpg
+**Tags:** mexican, bread, holiday, day of the dead, project
+**Time:** 3 hr 45 min (2 hr 45 min proofing)
+
+**Makes 6 loaves**
+
+**Dough**
+- 1/2 cup whole milk
+- 1/2 cup water
+- 2 packages active dry yeast (or 4 1/2 tsp)
+- 5 cups all-purpose flour, sifted
+- 1/2 cup (1 stick) unsalted butter, room temp
+- 1/2 cup granulated sugar
+- 4 large eggs
+- Zest of 2 medium oranges
+- 1 tbsp whole anise seed
+- 1 tsp kosher salt
+
+**Topping**
+- 1/2 cup (1 stick) unsalted butter
+- 1/2 cup sugar
+
+**Method**
+1. **Bloom:** In a medium glass bowl, whisk the milk, water and yeast. Let it activate in a warm spot until foamy, 5 to 10 minutes.
+2. **Sponge:** Whisk in 1/2 cup of the flour. Rest uncovered until doubled in size, about 25 minutes.
+3. **Cream:** In a stand mixer with the paddle, cream the butter and sugar on medium until fluffy, about 2 minutes.
+4. **Eggs:** Beat in the eggs one at a time on medium until fully incorporated, about 1 minute.
+5. **Add the sponge:** Switch to the dough hook, add the yeast mixture and mix on medium until combined, about 2 minutes.
+6. **Flour:** On low, add the remaining flour about 1/2 cup at a time, scraping down the sides, until the dough pulls away from the bowl, about 5 minutes. It may stay a little tacky.
+7. **Flavor:** Add the orange zest, anise seed and salt. Mix with the dough hook about 5 minutes more, until less tacky and the dough comes off the sides easily.
+8. **First rise:** Knead briefly by hand into a ball. Place in a greased bowl, cover with plastic wrap and let double in a warm place, 1 1/2 to 2 hours.
+9. **Divide:** Gently punch down the dough, turn it out onto a clean surface and divide into 6 equal pieces.
+10. **Shape:** From one piece, cut off 3 small pieces (about 1 tbsp or 1/2 oz each) for the bones. Roll the large piece into a tight ball and set it on a baking sheet. Roll the small pieces into balls, then roll two of them into long, finger-like bones.
+11. **Decorate:** Lightly brush the loaf with water. Lay the two bones over it in an X, poke down where they cross, and set the last small ball on top. Repeat with the remaining dough for 6 loaves.
+12. **Second rise:** Cover with plastic wrap and let rise in a warm spot, about 45 minutes. Preheat the oven to 350°F for the last 15 minutes of proofing.
+13. **Bake:** Bake until golden brown, 25 to 30 minutes, tenting with foil if they brown too fast. Let cool completely.
+14. **Topping:** Melt the butter and let it cool. Brush it over the loaves, then sprinkle generously with sugar.
+
+**Notes**
+- Recipe and photo by Art Rodriguez for Latino Foodie.
+- Compared with the other Pan de Muerto in this book, this one leans on anise and orange zest instead of orange blossom water, and makes six smaller loaves.
+
+*Source: Latino Foodie (Art Rodriguez): https://www.latinofoodie.com/featured-blog-posts/pan-de-muerto-recipe/*
 
 ---
 
