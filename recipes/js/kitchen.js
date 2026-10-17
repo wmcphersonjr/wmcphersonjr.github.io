@@ -532,9 +532,121 @@
       .sort((a, b) => a.missing.length - b.missing.length || b.have.length - a.have.length);
   }
 
+
+  // ---------- timing: work backward from the serving time ----------
+  /** "2 1/2 hr (plus chilling)" → { minutes: 150, ahead: 'plus chilling' } */
+  function parseTime(time) {
+    const t = String(time || '').toLowerCase();
+    if (!t) return { minutes: null, ahead: '' };
+    const parts = t.split(/\(|\bplus\b/);
+    let head = parts[0];
+    if (/\bto\b/.test(head) && /\d/.test(head.split(/\bto\b/).pop())) head = head.split(/\bto\b/).pop();
+    const ahead = /\(|\bplus\b/.test(t) ? t.slice(head.length).replace(/[()]/g, '').trim() : '';
+    if (/\b(week|weeks|days?)\b/.test(head)) return { minutes: null, ahead: head.trim() };
+    let total = 0, found = false, m;
+    const rx = new RegExp('(' + NUM + ')\\s*(hours?|hrs?|hr|h|minutes?|mins?|min|m)\\b', 'g');
+    while ((m = rx.exec(head))) { found = true; const n = num(m[1]); total += /^h/.test(m[2]) ? n * 60 : n; }
+    return { minutes: found ? Math.round(total) : null, ahead };
+  }
+  const ovenTemp = (text) => {
+    const t = RB.stripMd(text);
+    const m = t.match(/(?:oven|bake|roast|broil)[^.]*?(\d{3})\s*(?:°|degrees)?\s*F?\b/i) || t.match(/(\d{3})\s*(?:°|degrees)\s*F?\b[^.]*?(?:oven|bake|roast)/i);
+    return m && +m[1] >= 200 && +m[1] <= 550 ? +m[1] : null;
+  };
+  const usesOven = (text) => /\b(oven|bake|baking|roast|broil)\b/i.test(RB.stripMd(text)) && !/\b(out of the oven|remove from the oven|turn off)\b/i.test(text);
+  /**
+   * Build a day-of schedule. recipes: [{id,title,time,steps}], serveAt: Date.
+   * Each step gets its timer length (or a few active minutes); slack from the recipe's stated time goes to untimed steps.
+   */
+  function schedule(recipes, serveAt) {
+    const serve = serveAt.getTime();
+    const dishes = [], events = [], warnings = [];
+    recipes.forEach((r) => {
+      const steps = [];
+      (r.steps || []).forEach((g) => g.items.forEach((text) => steps.push(text)));
+      if (!steps.length) return;
+      const pt = parseTime(r.time);
+      const durs = steps.map((text) => {
+        const tm = RB.findTimers(text);
+        const secs = tm.reduce((a, x) => Math.max(a, x.maxSeconds || x.seconds), 0);
+        return { timed: secs > 0, min: secs ? Math.max(1, secs / 60) : 5 };
+      });
+      let sum = durs.reduce((a, d) => a + d.min, 0);
+      const untimed = durs.filter((d) => !d.timed);
+      if (pt.minutes && pt.minutes > sum && untimed.length) {
+        const extra = (pt.minutes - sum) / untimed.length;
+        untimed.forEach((d) => { d.min += extra; });
+        sum = pt.minutes;
+      }
+      // long single timers (marinate overnight, rise 12 hours) become "ahead" tasks instead of stretching the day
+      let end = serve;
+      const rows = [];
+      for (let k = steps.length - 1; k >= 0; k--) {
+        const start = end - durs[k].min * 60000;
+        rows.unshift({ k, start, end, text: steps[k] });
+        end = start;
+      }
+      // oven windows: from the first oven step to the last one, at the first temperature named
+      let oven = null;
+      rows.forEach((row) => {
+        if (!usesOven(row.text)) return;
+        const temp = ovenTemp(row.text);
+        if (!oven) oven = { from: row.start, to: row.end, temp };
+        else { oven.to = row.end; if (!oven.temp && temp) oven.temp = temp; }
+      });
+      const d = { id: r.id, title: r.title, start: rows[0].start, minutes: Math.round(sum), ahead: pt.ahead, oven };
+      dishes.push(d);
+      rows.forEach((row) => events.push({ at: row.start, dish: r.title, id: r.id, n: row.k + 1, text: RB.stripMd(row.text), minutes: Math.round((row.end - row.start) / 60000), first: row.k === 0 }));
+    });
+    // two dishes needing the oven at different temperatures at the same time
+    const pairs = [];
+    for (let i = 0; i < dishes.length; i++) for (let j = i + 1; j < dishes.length; j++) {
+      const a = dishes[i].oven, b = dishes[j].oven;
+      if (a && b && a.temp && b.temp && a.from < b.to && b.from < a.to && Math.abs(a.temp - b.temp) > 25) pairs.push([i, j]);
+    }
+    // one warning per odd-one-out dish
+    while (pairs.length) {
+      const count = {}; pairs.forEach(([i, j]) => { count[i] = (count[i] || 0) + 1; count[j] = (count[j] || 0) + 1; });
+      const k = +Object.keys(count).sort((x, y) => count[y] - count[x])[0];
+      const others = pairs.filter((p) => p.includes(k)).map((p) => (p[0] === k ? p[1] : p[0]));
+      warnings.push({ kind: 'oven', a: dishes[k].id, text: `Oven clash: ${dishes[k].title} wants ${dishes[k].oven.temp}°F while ${others.map((o) => `${dishes[o].title} (${dishes[o].oven.temp}°F)`).join(', ')} ${others.length > 1 ? 'are' : 'is'} baking. Cook it first and hold it warm, or use a second oven or toaster oven.` });
+      for (let n = pairs.length - 1; n >= 0; n--) if (pairs[n].includes(k)) pairs.splice(n, 1);
+    }
+    dishes.filter((d) => d.ahead && /overnight|day|marinat|chill|soak|rise|proof|ferment|steep|rest/.test(d.ahead))
+      .forEach((d) => warnings.push({ kind: 'ahead', text: `${d.title}: start ahead (${d.ahead}).`, a: d.id }));
+    events.sort((x, y) => x.at - y.at || x.n - y.n);
+    return { serve, start: events.length ? events[0].at : serve, dishes: dishes.sort((x, y) => x.start - y.start), events, warnings };
+  }
+
+  // ---------- drink pairing ----------
+  const PAIRINGS = [
+    [/pancake|waffle|french toast|oatmeal|dutch baby|shakshuka|breakfast/, { wine: 'Brut sparkling wine or a mimosa', cocktail: 'Mimosa or a Bellini', zero: 'Fresh orange juice, coffee or chai', book: /chai|thai milk tea/ }],
+    [/souffl|chocolate|cookie|cake|cobbler|shortcake|pone|concha|cinnamon roll|pan de muerto|loaf|baking|sweet/, { wine: 'Tawny port or a late-harvest dessert wine', cocktail: 'Espresso martini', zero: 'Café de olla or masala chai', book: /chai|hot chocolate|thai milk tea/ }],
+    [/curry|thai|coconut|khao|laksa|chile oil|gochugaru|kimchi|jerk/, { wine: 'Off-dry Riesling or Gewürztraminer', cocktail: 'Dark ’n’ Stormy (dark rum + ginger beer + lime)', zero: 'Spicy ginger beer over ice with lime', book: /ginger beer/ }],
+    [/oxtail|brown stew|jamaican|stew peas|rundown|red peas|soup joumou|sancocho/, { wine: 'Grenache, Zinfandel or a chilled Beaujolais', cocktail: 'Rum punch or a rum old fashioned', zero: 'Sorrel or homemade ginger beer', book: /ginger beer/ }],
+    [/birria|taco|mexican|peruvian|aji|carnitas|pozole/, { wine: 'Tempranillo or a Mexican lager with lime', cocktail: 'Margarita or Paloma', zero: 'Agua fresca or tamarind soda', book: null }],
+    [/bulgogi|short rib|korean/, { wine: 'Off-dry Riesling or juicy Zinfandel', cocktail: 'Soju highball with yuzu', zero: 'Iced barley tea', book: null }],
+    [/vodka|sugo|norma|tomato|meatball|red pesto/, { wine: 'Chianti or another Sangiovese', cocktail: 'Negroni, or a Spritz before dinner', zero: 'Sparkling water with lemon and bitters', book: /spritz/ }],
+    [/pesto|lemon|ricotta|risotto|white bean/, { wine: 'Vermentino or Sauvignon Blanc', cocktail: 'Classic Spritz', zero: 'Elderflower tonic', book: /spritz/ }],
+    [/steak|beef|flank/, { wine: 'Malbec or Cabernet Sauvignon', cocktail: 'Manhattan', zero: 'Black cherry and rosemary soda', book: null }],
+    [/chicken|turkey|duck|thanksgiving/, { wine: 'Pinot Noir or a lightly oaked Chardonnay', cocktail: 'Apple-cider bourbon sour', zero: 'Sparkling apple cider', book: /toddy/ }],
+    [/pork/, { wine: 'Riesling or Gamay', cocktail: 'Hot toddy or a rye old fashioned', zero: 'Ginger-apple spritz', book: /toddy|ginger beer/ }],
+    [/mackerel|fish|shrimp|salmon|seafood|saltfish/, { wine: 'Albariño or Sancerre', cocktail: 'Ti’ punch or a gin and tonic', zero: 'Lime and cucumber soda', book: null }],
+    [/squash|pumpkin|sweet potato|lentil|split pea|congee|black bean|soup/, { wine: 'Viognier or a rich Chardonnay', cocktail: 'Hot toddy', zero: 'Hot spiced cider or chai', book: /toddy|chai/ }],
+  ];
+  /** Suggest a wine, a cocktail and a zero-proof drink, plus matching drinks from the book. */
+  function pairDrink(r, allRecipes) {
+    if (!r || r.category === 'Drinks') return null;
+    const text = (r.title + ' ' + (r.tags || []).join(' ') + ' ' + (r.category || '')).toLowerCase();
+    const hit = PAIRINGS.find(([rx]) => rx.test(text));
+    const p = hit ? hit[1] : { wine: 'Dry sparkling wine; it goes with almost anything', cocktail: 'French 75', zero: 'Sparkling water with citrus', book: null };
+    const book = p.book ? (allRecipes || []).filter((x) => x.category === 'Drinks' && p.book.test(x.title.toLowerCase())).slice(0, 2) : [];
+    return { wine: p.wine, cocktail: p.cocktail, zero: p.zero, book };
+  }
+
   const RK = { UNITS, parseIngredient, normalizeName, plural, singular, formatVolume, formatWeight, aisleFor, AISLE_ORDER, AISLE_LABEL,
     DEFAULT_STAPLES, mergeGroceries, suggestSides, dateKey, weekStart, weekDays,
-    displayIngredient, convertTemps, parseServings, nutrition, nutrEntry, recipeNeeds, whatCanIMake };
+    displayIngredient, convertTemps, parseServings, nutrition, nutrEntry, recipeNeeds, whatCanIMake, parseTime, schedule, pairDrink };
   if (typeof module !== 'undefined' && module.exports) module.exports = RK;
   else root.RK = RK;
 })(typeof window !== 'undefined' ? window : globalThis);

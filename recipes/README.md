@@ -32,6 +32,16 @@ A static web app for the recipe book, published at **https://wmcphersonjr.github
 - **Ask Claude.** Ask about substitutions, scaling or fixes on any recipe, and save the answer to your notes. **Snap a photo** in Add a recipe turns a cookbook page or recipe card into a draft. Inside the Claude app this needs no setup. On the site, add an Anthropic API key in Settings; it is stored only on the device and sent only to Anthropic.
 - **Nutrition (estimate).** Calories, protein, carbs and fat per serving, worked out from a built-in ingredient table. It shows which ingredients it couldn't count.
 - **Share.** A recipe can be shared as a card image (PNG), clean text, or a standalone `.html` page with schema.org data. The `.html` page can be imported back without losing anything.
+- **Practice runs.** Tap the stopwatch in cooking mode to time every step. The finish screen shows total time, how it compares with your last and best runs, and the slowest steps. You score taste, plating and timing out of 10. Each recipe keeps a practice log with a chart of run times and the steps that take longest on average.
+- **Timing.** Pick a serving time on a collection or a day in the plan, and the app works backward from each recipe's timers and stated time. It shows when to start each dish, a step-by-step timeline, oven-temperature clashes, and anything that needs doing ahead. The timeline can be saved to the collection.
+- **Ask the chef while cooking.** Type a question, tap the mic, or say "chef, …" while hands-free control is on. Claude sees the recipe and the step you're on, and the answer is read aloud.
+- **Plating.** Claude sketches a plating as a plate diagram, with placement, steps, garnish and a chef's tip. You can also save a photo of your best plate as the reference to match.
+- **Version history.** Each time you save an edit, the previous version is kept on the device (last 25). You can compare any version with the current one and restore it.
+- **Taste check.** After cooking, tap salt, acid, heat and cook time (less / perfect / more) and add a "next time" note. It shows at the top of the recipe and on the cooking-mode prep screen next time.
+- **Leftovers.** Log leftovers with a use-by. Recipes that use the most urgent ones are suggested, and the home screen shows what to use soon.
+- **Pantry from a photo.** Snap your fridge or pantry, and Claude adds the ingredients to "What can I make?". Clearing checked groceries also adds them to your pantry.
+- **Drink pairing.** Each dish gets a wine or beer, a cocktail and a zero-proof match, plus drinks from your own book when one fits. Collections show the whole menu with drinks.
+- **Family stories.** Record someone telling the recipe's story, add "As told by", and keep both with the recipe. While recording, their words are transcribed into the story. A "Family stories" filter is in the library.
 - **Sync across devices (optional).** Paste a fine-grained GitHub token (Contents: read & write on this repo) in Settings. The app then merges and saves `recipes/data/recipes.json`, and the newest edit wins per recipe. Without a token, everything is stored in the browser, and you can export JSON or Markdown backups.
 
 ## Files
