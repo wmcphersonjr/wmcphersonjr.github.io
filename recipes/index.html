@@ -32,26 +32,30 @@
     </a>
     <nav class="topnav" aria-label="Main">
       <a href="#/" data-nav="book">Recipes</a>
+      <a href="#/plan" data-nav="plan">Plan</a>
+      <a href="#/collections" data-nav="collections">Collections</a>
       <a href="#/tips" data-nav="tips">Techniques</a>
       <a href="#/groceries" data-nav="groceries">Groceries <span class="badge" data-grocery-count hidden></span></a>
-      <a href="#/settings" data-nav="settings">Settings</a>
+      <a href="#/settings" data-nav="settings" class="nav-gear" aria-label="Settings"><svg class="i"><use href="#i-gear"/></svg></a>
       <a href="#/add" data-nav="add" class="btn primary small"><svg class="i"><use href="#i-plus"/></svg> Add recipe</a>
     </nav>
+    <a href="#/settings" data-nav="settings" class="top-gear icon-btn" aria-label="Settings"><svg class="i"><use href="#i-gear"/></svg></a>
   </header>
 
   <main id="main" tabindex="-1"></main>
 
   <nav class="tabbar" aria-label="Main">
     <a href="#/" data-nav="book"><svg class="i"><use href="#i-book"/></svg><span>Recipes</span></a>
-    <a href="#/tips" data-nav="tips"><svg class="i"><use href="#i-chef"/></svg><span>Techniques</span></a>
+    <a href="#/plan" data-nav="plan"><svg class="i"><use href="#i-calendar"/></svg><span>Plan</span></a>
     <a href="#/add" data-nav="add" class="tab-add"><span class="tab-add-dot"><svg class="i"><use href="#i-plus"/></svg></span><span>Add</span></a>
     <a href="#/groceries" data-nav="groceries"><svg class="i"><use href="#i-bag"/></svg><span>Groceries</span><span class="badge" data-grocery-count hidden></span></a>
-    <a href="#/settings" data-nav="settings"><svg class="i"><use href="#i-sliders"/></svg><span>Settings</span></a>
+    <a href="#/tips" data-nav="tips"><svg class="i"><use href="#i-chef"/></svg><span>Techniques</span></a>
   </nav>
 
   <div id="timers" class="timers" aria-live="polite"></div>
   <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
   <div id="cook-root"></div>
+  <div id="sheet-root" class="sheet-root" hidden></div>
 
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <defs>
@@ -91,6 +95,13 @@
       <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9ZM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8Z"/></symbol>
       <symbol id="i-chef" viewBox="0 0 24 24"><path d="M17 21a1 1 0 0 0 1-1v-5.35c0-.46.32-.84.73-1.04a4 4 0 0 0-2.14-7.59 5 5 0 0 0-9.18 0 4 4 0 0 0-2.14 7.59c.41.2.73.58.73 1.04V20a1 1 0 0 0 1 1ZM6 17h12"/></symbol>
       <symbol id="i-bookmark" viewBox="0 0 24 24"><path d="M19 21l-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></symbol>
+      <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 2.8 2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3-4.6-4.4 6.3-.9Z"/></symbol>
+      <symbol id="i-camera" viewBox="0 0 24 24"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3Z"/><circle cx="12" cy="13" r="3.5"/></symbol>
+      <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="17" rx="2"/><path d="M16 2.5v4M8 2.5v4M3 10h18"/></symbol>
+      <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="1"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1"/></symbol>
+      <symbol id="i-basket" viewBox="0 0 24 24"><path d="M3 10h18l-1.7 9.2a2 2 0 0 1-2 1.8H6.7a2 2 0 0 1-2-1.8ZM7.5 10 11 3.5M16.5 10 13 3.5M9 14v3M15 14v3"/></symbol>
+      <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></symbol>
+      <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/></symbol>
       <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7L21 8M21 3v5h-5"/></symbol>
       <!-- category glyphs -->
       <symbol id="c-drinks" viewBox="0 0 24 24"><path d="M17 8h1a4 4 0 1 1 0 8h-1M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4ZM7 2v3M11 2v3M15 2v3"/></symbol>
@@ -106,6 +117,7 @@
   </svg>
 
   <script src="js/parse.js"></script>
+  <script src="js/kitchen.js"></script>
   <script src="js/tips.js"></script>
   <script src="js/app.js"></script>
 </body>

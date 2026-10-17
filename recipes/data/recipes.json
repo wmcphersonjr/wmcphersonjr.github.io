@@ -2,7 +2,7 @@
  "format": "waynesdays-recipes",
  "version": 1,
  "title": "Waynesdays Recipe Book",
- "updatedAt": "2026-10-17T02:58:23.850Z",
+ "updatedAt": "2026-10-17T03:39:23.752Z",
  "recipes": [
   {
    "id": "freeman-house-chai-concentrate",
@@ -4857,5 +4857,69 @@
   }
  ],
  "deleted": {},
- "meta": {}
+ "meta": {},
+ "plan": {},
+ "collections": [
+  {
+   "id": "c-dia-de-muertos",
+   "name": "Día de Muertos",
+   "description": "Sweet bread, warm drinks and a slow-simmered feast for the ofrenda and the table.",
+   "recipeIds": [
+    "pan-de-muerto",
+    "latino-foodie-pan-de-muerto",
+    "conchas",
+    "birria-de-res",
+    "quesabirria-tacos",
+    "coconut-hot-chocolate"
+   ],
+   "timeline": "**Two days before**\n- Make the birria and refrigerate it in its broth; it gets better overnight.\n\n**Day before**\n- Mix the pan de muerto sponge and dough, and let it rise slowly in the fridge.\n- Make the concha topping.\n\n**Morning of**\n- Shape and bake the pan de muerto and conchas.\n- Glaze and sugar the bread while warm; set one loaf aside for the ofrenda.\n\n**1 hour out**\n- Rewarm the birria. Skim the fat for the quesabirria tacos.\n- Warm the coconut hot chocolate and keep it on low.\n\n**To serve**\n- Griddle the quesabirria tacos to order with a cup of consommé for dipping.",
+   "updatedAt": "2026-10-17T03:39:23.752Z"
+  },
+  {
+   "id": "c-competition-prep",
+   "name": "Competition Prep",
+   "description": "Showpiece dishes to drill before a cook-off. Practice each one twice and time every run.",
+   "recipeIds": [
+    "thomas-keller-s-butternut-squash-soup-with-brown-butter",
+    "golden-krust-jamaican-oxtail-stew",
+    "birria-de-res",
+    "peruvian-roasted-chicken-with-spicy-cilantro-sauce",
+    "chocolate-souffles"
+   ],
+   "timeline": "**Practice run, week before**\n- Cook the full menu once, start to finish, against the clock.\n- Note every step that ran long and every component you could prep ahead.\n\n**Two days before**\n- Braise the oxtail and the birria; chill overnight so the fat sets and lifts off cleanly.\n\n**Day before**\n- Make the soup base and the cilantro sauce. Pack your kit: thermometer, squeeze bottles, towels, tasting spoons.\n\n**Day of**\n- Taste every component for salt and acid before it goes out.\n- Soufflés go in the oven last; they wait for no one.",
+   "updatedAt": "2026-10-17T03:39:23.752Z"
+  },
+  {
+   "id": "c-date-night",
+   "name": "Date Night",
+   "description": "Low effort, high impact. A drink, a bowl of pasta, something warm and chocolatey.",
+   "recipeIds": [
+    "classic-spritz",
+    "creamy-lemon-pesto-pasta",
+    "ricotta-pasta-alla-vodka",
+    "chocolate-souffles",
+    "rebekah-peppler-s-hot-toddy"
+   ],
+   "timeline": "**Afternoon**\n- Butter and sugar the soufflé ramekins and make the base; refrigerate.\n\n**30 minutes out**\n- Put the pasta water on. Chill the glasses.\n\n**Arrival**\n- Spritzes first.\n- Cook the pasta and finish it in the sauce with a splash of pasta water.\n\n**After dinner**\n- Whip the whites, fold and bake the soufflés while you clear the table.",
+   "updatedAt": "2026-10-17T03:39:23.752Z"
+  },
+  {
+   "id": "c-thanksgiving",
+   "name": "Thanksgiving",
+   "description": "Fall flavors for a full table, plus breakfast for the morning after.",
+   "recipeIds": [
+    "roast-chicken-with-maple-butter-and-rosemary",
+    "pumpkin-soup",
+    "roasted-dumpling-squash-with-sage-brown-butter",
+    "warm-sweet-potato-apple-pone",
+    "peach-cobbler",
+    "eggnog-overnight-french-toast"
+   ],
+   "timeline": "**Two days before**\n- Dry-brine the bird uncovered in the fridge.\n- Make the pumpkin pie spice blend if you need more.\n\n**Day before**\n- Make the pumpkin soup; it reheats beautifully.\n- Assemble the eggnog French toast for the next morning.\n\n**Morning of**\n- Bake the sweet potato apple pone and the peach cobbler.\n\n**2 hours out**\n- Roast the bird; roast the squash on the rack below.\n\n**While the bird rests**\n- Brown the sage butter, rewarm the soup and warm the plates.",
+   "updatedAt": "2026-10-17T03:39:23.752Z"
+  }
+ ],
+ "collectionsDeleted": {},
+ "customTips": [],
+ "tipsDeleted": {}
 }

@@ -2,6 +2,7 @@
 (() => {
   'use strict';
   const RB = window.RB;
+  const RK = window.RK;
 
   // ======================================================================
   // Utilities
@@ -22,7 +23,7 @@
     },
     del(k) { try { localStorage.removeItem(k); } catch (e) { /* ignore */ } },
   };
-  const K = { book: 'wrb.book.v1', groceries: 'wrb.groceries', settings: 'wrb.settings', timers: 'wrb.timers', ui: 'wrb.ui', draft: 'wrb.draft', scale: 'wrb.scale', tips: 'wrb.tips' };
+  const K = { book: 'wrb.book.v1', groceries: 'wrb.groceries', settings: 'wrb.settings', timers: 'wrb.timers', ui: 'wrb.ui', draft: 'wrb.draft', scale: 'wrb.scale', tips: 'wrb.tips', pantry: 'wrb.pantry' };
 
   function inlineMd(s) {
     let h = esc(s);
@@ -111,17 +112,140 @@
       ta.remove();
     }
   }
-  function download(filename, text, type) {
-    const blob = new Blob([text], { type: type || 'text/plain' });
+  function download(filename, text, type) { saveFile(new Blob([text], { type: type || 'text/plain' }), filename); }
+
+  // Inside the Claude app, files go out through the downloads capability; on the web, a share sheet or a plain download.
+  let downloadsP = null;
+  const downloadsCap = () => downloadsP || (downloadsP = (window.claude && typeof window.claude.use === 'function') ? window.claude.use('downloads').catch(() => null) : Promise.resolve(null));
+  async function saveFile(blob, filename, opts) {
+    opts = opts || {};
+    if (opts.share && navigator.canShare && /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
+      const file = new File([blob], filename, { type: blob.type });
+      if (navigator.canShare({ files: [file] })) {
+        try { await navigator.share({ files: [file], title: opts.title || filename }); return true; } catch (e) { if (e && e.name === 'AbortError') return false; }
+      }
+    }
+    const dl = await downloadsCap();
+    if (dl) {
+      try { await dl.save({ filename, data: blob }); return true; } catch (e) {
+        if (e && (e.code === 'declined' || e.code === 'rate_limited')) return false;
+        if (e && e.code === 'rejected_extension') { toast('That file type can’t be saved here'); return false; }
+      }
+    }
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob); a.download = filename; document.body.appendChild(a); a.click();
-    setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+    setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1500);
+    return true;
+  }
+  const blobToBase64 = (blob) => new Promise((res, rej) => { const fr = new FileReader(); fr.onload = () => res(String(fr.result).split(',')[1]); fr.onerror = rej; fr.readAsDataURL(blob); });
+  async function resizeImage(blob, max, quality) {
+    let src;
+    try { src = await createImageBitmap(blob, { imageOrientation: 'from-image' }); } catch (e) {
+      src = await new Promise((res, rej) => { const img = new Image(); img.onload = () => res(img); img.onerror = rej; img.src = URL.createObjectURL(blob); });
+    }
+    const w = src.width, h = src.height, k = Math.min(1, max / Math.max(w, h));
+    const c = document.createElement('canvas'); c.width = Math.round(w * k); c.height = Math.round(h * k);
+    c.getContext('2d').drawImage(src, 0, 0, c.width, c.height);
+    return new Promise((res) => c.toBlob((b) => res(b || blob), 'image/jpeg', quality || 0.85));
+  }
+
+  // ======================================================================
+  // Sheet (modal) + in-app confirm. Native confirm() is blocked in embedded viewers.
+  // ======================================================================
+  const sheet = {
+    el: null, onClose: null,
+    open(o) {
+      this.close(true);
+      const root = $('#sheet-root');
+      root.innerHTML = `<div class="sheet-backdrop" data-act="sheet-close"></div>
+        <div class="sheet ${o.wide ? 'wide' : ''} ${o.cls || ''}" role="dialog" aria-modal="true" aria-label="${esc(o.title)}">
+          <div class="sheet-top"><h2>${esc(o.title)}</h2><button class="icon-btn" data-act="sheet-close" aria-label="Close">${icon('i-x')}</button></div>
+          <div class="sheet-content">${o.body}</div></div>`;
+      root.hidden = false;
+      document.body.classList.add('sheet-open');
+      requestAnimationFrame(() => root.classList.add('open'));
+      this.el = $('.sheet', root); this.onClose = o.onClose || null;
+      if (o.onMount) o.onMount(this.el);
+      const f = $('[autofocus]', this.el); if (f && !/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) setTimeout(() => f.focus(), 60);
+      return this.el;
+    },
+    close(silent) {
+      const root = $('#sheet-root');
+      if (!root || root.hidden) return;
+      root.classList.remove('open'); root.hidden = true; root.innerHTML = '';
+      document.body.classList.remove('sheet-open');
+      const cb = this.onClose; this.el = null; this.onClose = null;
+      if (cb && !silent) cb();
+    },
+  };
+  function ask(msg, opts) {
+    opts = opts || {};
+    return new Promise((resolve) => {
+      let done = false;
+      const finish = (v) => { if (done) return; done = true; sheet.close(true); resolve(v); };
+      sheet.open({ title: opts.title || 'Are you sure?', cls: 'ask',
+        body: `<p class="ask-msg">${esc(msg)}</p><div class="row end"><button class="btn ghost" data-ask="0">${esc(opts.cancel || 'Cancel')}</button><button class="btn ${opts.danger ? 'danger-fill' : 'primary'}" data-ask="1">${esc(opts.ok || 'OK')}</button></div>`,
+        onMount: (el) => $$('[data-ask]', el).forEach((b) => b.addEventListener('click', (e) => { e.stopPropagation(); finish(b.dataset.ask === '1'); })),
+        onClose: () => finish(false) });
+    });
+  }
+
+  // ======================================================================
+  // Your photos: kept in IndexedDB on this device (too big for sync)
+  // ======================================================================
+  const photos = {
+    db: null, urls: new Map(),
+    open() {
+      if (this.db) return Promise.resolve(this.db);
+      return new Promise((res, rej) => {
+        let req;
+        try { req = indexedDB.open('wrb-photos', 1); } catch (e) { rej(e); return; }
+        req.onupgradeneeded = () => req.result.createObjectStore('photos');
+        req.onsuccess = () => { this.db = req.result; res(this.db); };
+        req.onerror = () => rej(req.error);
+      });
+    },
+    async run(mode, fn) {
+      const db = await this.open();
+      return new Promise((res, rej) => {
+        const tx = db.transaction('photos', mode);
+        const req = fn(tx.objectStore('photos'));
+        tx.oncomplete = () => res(req && req.result);
+        tx.onerror = () => rej(tx.error);
+      });
+    },
+    async put(blob) {
+      const id = 'p' + Date.now().toString(36) + uid();
+      const [full, thumb] = await Promise.all([resizeImage(blob, 1600, 0.86), resizeImage(blob, 560, 0.8)]);
+      await this.run('readwrite', (st) => st.put({ full, thumb, at: nowIso() }, id));
+      return id;
+    },
+    async blob(id, size) { try { const rec = await this.run('readonly', (st) => st.get(id)); return rec ? rec[size || 'thumb'] : null; } catch (e) { return null; } },
+    async url(id, size) {
+      const k = id + ':' + (size || 'thumb');
+      if (this.urls.has(k)) return this.urls.get(k);
+      const b = await this.blob(id, size);
+      if (!b) return null;
+      const u = URL.createObjectURL(b); this.urls.set(k, u); return u;
+    },
+    async del(id) {
+      ['thumb', 'full'].forEach((sz) => { const u = this.urls.get(id + ':' + sz); if (u) { URL.revokeObjectURL(u); this.urls.delete(id + ':' + sz); } });
+      try { await this.run('readwrite', (st) => st.delete(id)); } catch (e) { /* */ }
+    },
+  };
+  /** Fill <img data-photo="id"> tags from IndexedDB after a render. */
+  function hydratePhotos(root) {
+    $$('img[data-photo]', root || document).forEach(async (img) => {
+      const u = await photos.url(img.dataset.photo, img.dataset.size || 'thumb');
+      if (u) { img.src = u; const box = img.closest('.card-art, .r-img'); if (box) box.classList.add('has-img'); }
+      else if (!img.getAttribute('src')) { const box = img.closest('.card-art'); if (box) box.classList.remove('has-img'); img.remove(); }
+    });
   }
 
   // ======================================================================
   // Store
   // ======================================================================
-  const settings = Object.assign({ theme: 'auto', lang: navigator.language || 'en-US', cookSize: 1, speak: false,
+  const settings = Object.assign({ theme: 'auto', lang: navigator.language || 'en-US', cookSize: 1, speak: false, units: 'original', staples: null, claudeKey: '', gView: 'aisle',
     gh: { token: '', repo: 'wmcphersonjr/wmcphersonjr.github.io', branch: 'master', path: 'recipes/data/recipes.json', auto: true, lastSync: '' } }, LS.get(K.settings, {}));
   settings.gh = Object.assign({ token: '', repo: 'wmcphersonjr/wmcphersonjr.github.io', branch: 'master', path: 'recipes/data/recipes.json', auto: true, lastSync: '' }, settings.gh || {});
   const saveSettings = () => LS.set(K.settings, settings);
@@ -134,7 +258,7 @@
     book: LS.get(K.book, null), // {title, recipes:[], deleted:{}, meta:{}, seedAt}
     get recipes() { return this.book ? this.book.recipes : []; },
     byId(id) { return this.recipes.find((r) => r.id === id); },
-    meta(id) { return this.book.meta[id] || { fav: false, cooked: [], notes: '', updatedAt: '' }; },
+    meta(id) { return Object.assign({ fav: false, cooked: [], notes: '', rating: 0, photos: [], cover: '', updatedAt: '' }, this.book.meta[id] || {}); },
     setMeta(id, patch) { this.book.meta[id] = Object.assign({}, this.meta(id), patch, { updatedAt: nowIso() }); this.save(); },
     save() { this.book.updatedAt = nowIso(); LS.set(K.book, this.book); index.dirty = true; sync.schedule(); },
     uniqueId(title, except) {
@@ -161,8 +285,36 @@
       return r;
     },
     exportData() {
-      return { format: 'waynesdays-recipes', version: 1, title: this.book.title, updatedAt: this.book.updatedAt || nowIso(),
-        recipes: this.recipes, deleted: this.book.deleted, meta: this.book.meta };
+      const b = this.book;
+      return { format: 'waynesdays-recipes', version: 1, title: b.title, updatedAt: b.updatedAt || nowIso(),
+        recipes: this.recipes, deleted: b.deleted, meta: b.meta, plan: b.plan, collections: b.collections, collectionsDeleted: b.collectionsDeleted,
+        customTips: b.customTips, tipsDeleted: b.tipsDeleted };
+    },
+    ensure() {
+      const b = this.book;
+      b.deleted = b.deleted || {}; b.meta = b.meta || {}; b.plan = b.plan || {};
+      b.collections = b.collections || []; b.collectionsDeleted = b.collectionsDeleted || {};
+      b.customTips = b.customTips || []; b.tipsDeleted = b.tipsDeleted || {};
+    },
+    // meal plan
+    planDay(day) { return (this.book.plan[day] && this.book.plan[day].items) || []; },
+    setPlanDay(day, items) { this.book.plan[day] = { items, updatedAt: nowIso() }; this.save(); },
+    // collections & custom techniques share the same keep-newest + tombstone rules
+    byCollection(id) { return this.book.collections.find((c) => c.id === id); },
+    saveCollection(c) { this.putItem(this.book.collections, this.book.collectionsDeleted, c); },
+    removeCollection(id) { this.dropItem(this.book.collections, this.book.collectionsDeleted, id); },
+    saveTip(t) { this.putItem(this.book.customTips, this.book.tipsDeleted, t); },
+    removeTip(id) { this.dropItem(this.book.customTips, this.book.tipsDeleted, id); },
+    putItem(list, tombs, item) {
+      item.updatedAt = nowIso();
+      const i = list.findIndex((x) => x.id === item.id);
+      if (i >= 0) list[i] = item; else list.push(item);
+      delete tombs[item.id]; this.save();
+    },
+    dropItem(list, tombs, id) {
+      const i = list.findIndex((x) => x.id === id);
+      if (i >= 0) list.splice(i, 1);
+      tombs[id] = nowIso(); this.save();
     },
     /** Merge another copy of the book (seed file, backup or GitHub). Newest edit wins per recipe. */
     merge(remote, opts) {
@@ -188,10 +340,34 @@
         const lm = this.book.meta[id];
         if (!lm || Date.parse(m.updatedAt || 0) > Date.parse(lm.updatedAt || 0)) { this.book.meta[id] = m; changed++; }
       });
+      Object.entries(remote.plan || {}).forEach(([day, d]) => {
+        const ld = this.book.plan[day];
+        if (d && (!ld || Date.parse(d.updatedAt || 0) > Date.parse(ld.updatedAt || 0))) { this.book.plan[day] = d; changed++; }
+      });
+      changed += mergeItems(this.book.collections, this.book.collectionsDeleted, remote.collections, remote.collectionsDeleted);
+      changed += mergeItems(this.book.customTips, this.book.tipsDeleted, remote.customTips, remote.tipsDeleted);
       if (changed) { LS.set(K.book, this.book); index.dirty = true; }
       return changed;
     },
   };
+
+  function mergeItems(list, tombs, remoteList, remoteTombs) {
+    let changed = 0;
+    (remoteList || []).forEach((ri) => {
+      if (!ri || !ri.id) return;
+      const i = list.findIndex((x) => x.id === ri.id);
+      if (i < 0) {
+        if (tombs[ri.id] && Date.parse(tombs[ri.id]) >= Date.parse(ri.updatedAt || 0)) return;
+        list.push(ri); delete tombs[ri.id]; changed++;
+      } else if (Date.parse(ri.updatedAt || 0) > Date.parse(list[i].updatedAt || 0)) { list[i] = ri; changed++; }
+    });
+    Object.entries(remoteTombs || {}).forEach(([id, ts]) => {
+      const i = list.findIndex((x) => x.id === id);
+      if (i >= 0 && Date.parse(list[i].updatedAt || 0) <= Date.parse(ts)) { list.splice(i, 1); changed++; }
+      if (!tombs[id] || Date.parse(tombs[id]) < Date.parse(ts)) tombs[id] = ts;
+    });
+    return changed;
+  }
 
   function normalizeRecipe(r) {
     const base = RB.emptyRecipe();
@@ -213,8 +389,7 @@
 
   async function initStore() {
     if (store.book && Array.isArray(store.book.recipes)) {
-      store.book.deleted = store.book.deleted || {};
-      store.book.meta = store.book.meta || {};
+      store.ensure();
       // pick up new recipes added to book.md / data file since last visit (in background)
       loadSeed().then((seed) => {
         if (seed.updatedAt !== store.book.seedAt) {
@@ -227,10 +402,12 @@
     }
     try {
       const seed = await loadSeed();
-      store.book = { title: seed.title || 'Waynesdays Recipe Book', recipes: seed.recipes.map(normalizeRecipe), deleted: seed.deleted || {}, meta: seed.meta || {}, seedAt: seed.updatedAt };
+      store.book = { title: seed.title || 'Waynesdays Recipe Book', recipes: seed.recipes.map(normalizeRecipe), deleted: seed.deleted || {}, meta: seed.meta || {},
+        plan: seed.plan || {}, collections: seed.collections || [], collectionsDeleted: seed.collectionsDeleted || {}, customTips: seed.customTips || [], tipsDeleted: seed.tipsDeleted || {}, seedAt: seed.updatedAt };
     } catch (e) {
       store.book = { title: 'Waynesdays Recipe Book', recipes: [], deleted: {}, meta: {}, seedAt: '' };
     }
+    store.ensure();
     LS.set(K.book, store.book);
   }
 
@@ -526,6 +703,11 @@
     if (p[0] === 'groceries') return { name: 'groceries', params: {} };
     if (p[0] === 'settings') return { name: 'settings', params: {} };
     if (p[0] === 'tips') return { name: 'tips', params: { t: q.get('t'), cat: q.get('cat') } };
+    if (p[0] === 'plan') return { name: 'plan', params: { w: q.get('w') } };
+    if (p[0] === 'collections') return { name: 'collections', params: {} };
+    if (p[0] === 'c' && p[1]) return { name: 'collection', params: { cid: p[1] } };
+    if (p[0] === 'pantry') return { name: 'pantry', params: {} };
+    if (p[0] === 'cook' && p[1]) return { name: 'cookmulti', params: { ids: p[1].split(',').filter(Boolean) } };
     return { name: 'book', params: {} };
   }
   const go = (hash) => { if (location.hash === hash) render(); else location.hash = hash; };
@@ -536,7 +718,8 @@
     route = parseRoute();
     const main = $('#main');
     const key = route.name + ':' + (route.params.id || route.params.mode || '');
-    if (route.name !== 'cook') cook.close(true);
+    if (route.name !== 'cook' && route.name !== 'cookmulti') cook.close(true);
+    sheet.close(true);
     voice.stop();
     $$('[data-nav]').forEach((a) => a.classList.toggle('active', a.dataset.nav === navFor(route.name)));
     document.body.dataset.view = route.name;
@@ -550,12 +733,25 @@
       case 'groceries': viewGroceries(main); break;
       case 'settings': viewSettings(main); break;
       case 'tips': viewTips(main); break;
+      case 'plan': viewPlan(main); break;
+      case 'collections': viewCollections(main); break;
+      case 'collection': viewCollection(main, route.params.cid); break;
+      case 'pantry': viewPantry(main); break;
+      case 'cookmulti': {
+        const ids = route.params.ids.filter((id) => store.byId(id));
+        if (!ids.length) { go('#/'); return; }
+        if (prev.name !== 'cookmulti' || !cook.state) { if (!main.innerHTML) viewBook(main); cook.openMulti(ids, lastHash); }
+        break;
+      }
       default: viewBook(main);
     }
-    if (key !== lastRouteKey && route.name !== 'cook') { window.scrollTo(0, route.name === 'book' ? (bookScroll || 0) : 0); }
+    if (key !== lastRouteKey && route.name !== 'cook' && route.name !== 'cookmulti') { window.scrollTo(0, route.name === 'book' ? (bookScroll || 0) : 0); }
     lastRouteKey = key;
+    if (route.name !== 'cook' && route.name !== 'cookmulti') lastHash = location.hash || '#/';
   }
-  const navFor = (n) => ({ book: 'book', recipe: 'book', cook: 'book', edit: 'add', add: 'add', import: 'add', groceries: 'groceries', settings: 'settings', tips: 'tips' }[n]);
+  let lastHash = '';
+  const navFor = (n) => ({ book: 'book', recipe: 'book', cook: 'book', cookmulti: 'plan', edit: 'add', add: 'add', import: 'add', groceries: 'groceries', settings: 'settings', tips: 'tips',
+    plan: 'plan', collections: 'collections', collection: 'collections', pantry: 'book' }[n]);
   let bookScroll = 0;
   window.addEventListener('scroll', () => { if (route.name === 'book') bookScroll = window.scrollY; }, { passive: true });
 
@@ -590,7 +786,13 @@
             <h1>What are we cooking${new Date().getHours() < 11 ? ' this morning' : new Date().getHours() < 16 ? ' today' : ' tonight'}?</h1>
             <p class="sub">${total} recipe${total === 1 ? '' : 's'} · ${cats.length} categor${cats.length === 1 ? 'y' : 'ies'}</p>
           </div>
+          <div class="hero-links">
+            ${todayHtml()}
+            <a class="btn small" href="#/pantry">${icon('i-basket')} What can I make?</a>
+            <a class="btn small ghost" href="#/plan">${icon('i-calendar')} Plan the week</a>
+          </div>
         </div>
+        ${collectionsStripHtml()}
         <form class="searchbar" role="search" onsubmit="return false">
           ${icon('i-search', 'lead')}
           <input id="q" type="search" autocomplete="off" enterkeyhint="search" placeholder="Search recipes, ingredients, tags…" value="${esc(ui.q)}" aria-label="Search recipes">
@@ -606,7 +808,7 @@
           <button class="chip ghost ${ui.showTags || ui.tags.length ? 'on' : ''}" data-act="toggle-tags" aria-expanded="${ui.showTags}"># Tags${ui.tags.length ? ' · ' + ui.tags.length : ''}</button>
           <label class="sort">Sort
             <select id="sort">
-              ${[['book', 'Book order'], ['az', 'A–Z'], ['recent', 'Newest'], ['cooked', 'Most cooked'], ['time', 'Quickest']].map(([v, l]) => `<option value="${v}" ${ui.sort === v ? 'selected' : ''}>${l}</option>`).join('')}
+              ${[['book', 'Book order'], ['az', 'A–Z'], ['recent', 'Newest'], ['rated', 'Top rated'], ['cooked', 'Most cooked'], ['time', 'Quickest']].map(([v, l]) => `<option value="${v}" ${ui.sort === v ? 'selected' : ''}>${l}</option>`).join('')}
             </select>
           </label>
         </div>
@@ -644,6 +846,7 @@
         recent: (a, b) => (b.r.createdAt || '').localeCompare(a.r.createdAt || ''),
         cooked: (a, b) => (store.meta(b.r.id).cooked || []).length - (store.meta(a.r.id).cooked || []).length || a.r.title.localeCompare(b.r.title),
         time: (a, b) => (parseMinutes(a.r.time) || 9999) - (parseMinutes(b.r.time) || 9999),
+        rated: (a, b) => (store.meta(b.r.id).rating || 0) - (store.meta(a.r.id).rating || 0) || (store.meta(b.r.id).cooked || []).length - (store.meta(a.r.id).cooked || []).length || a.r.title.localeCompare(b.r.title),
       };
       list.sort(sorters[ui.sort] || sorters.book);
     }
@@ -682,6 +885,14 @@
       html += `<div class="grid">${list.map(cardHtml).join('')}</div>`;
     }
     el.innerHTML = html;
+    hydratePhotos(el);
+  }
+
+  const starsHtml = (n) => `<span class="stars" aria-label="${n} of 5 stars">${'★'.repeat(n)}<i>${'★'.repeat(5 - n)}</i></span>`;
+  function coverImg(r, m, size) {
+    if (m.cover) return `<img data-photo="${esc(m.cover)}" data-size="${size || 'thumb'}" alt="" ${r.image ? `src="${esc(r.image)}" referrerpolicy="no-referrer"` : ''}>`;
+    if (r.image) return `<img src="${esc(r.image)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">`;
+    return '';
   }
 
   function cardHtml({ r, why }) {
@@ -692,8 +903,8 @@
     const cooked = (m.cooked || []).length;
     return `<article class="card" style="--cat:var(--c-${ck})">
       <a class="card-link" href="#/r/${encodeURIComponent(r.id)}" aria-label="${esc(r.title)}"></a>
-      <div class="card-art ${r.image ? 'has-img' : ''}">
-        ${r.image ? `<img src="${esc(r.image)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">` : ''}
+      <div class="card-art ${r.image || m.cover ? 'has-img' : ''}">
+        ${coverImg(r, m)}
         <span class="card-glyph">${icon('c-' + ck)}</span>
       </div>
       <div class="card-body">
@@ -705,6 +916,7 @@
           ${nIng ? `<span>${nIng} ingredients</span>` : ''}
           ${!nIng && nSteps ? `<span>${nSteps} steps</span>` : ''}
           ${cooked ? `<span class="cooked">${icon('i-flame')}${cooked}×</span>` : ''}
+          ${m.rating ? `<span class="rated">${starsHtml(m.rating)}</span>` : ''}
         </p>
         ${r.tags.length ? `<p class="card-tags">${r.tags.slice(0, 4).map((t) => `<span>#${esc(t)}</span>`).join('')}</p>` : ''}
       </div>
@@ -722,6 +934,35 @@
   const setScale = (id, f) => { f = Math.max(0.25, Math.min(20, Math.round(f * 100) / 100)); if (f === 1) delete scales[id]; else scales[id] = f; LS.set(K.scale, scales); };
   const checkSet = (id) => checks[id] || (checks[id] = new Set());
   const doneSet = (id) => doneSteps[id] || (doneSteps[id] = new Set());
+
+  /** Ingredient line in the chosen unit system (original / US / metric), scaled. */
+  const ingText = (it, f) => RK.displayIngredient(it, settings.units, f || 1);
+  const stepText = (t) => RK.convertTemps(t, settings.units);
+  const unitsSeg = () => `<div class="seg units" role="radiogroup" aria-label="Units">${[['original', 'As written'], ['us', 'US'], ['metric', 'Metric']].map(([v, l]) => `<button role="radio" aria-checked="${settings.units === v}" class="${settings.units === v ? 'on' : ''}" data-act="units" data-u="${v}">${l}</button>`).join('')}</div>`;
+
+  function nutritionHtml(r) {
+    const n = RK.nutrition(r);
+    if (n.considered < 2 || n.coverage < 0.5 || n.total.kcal < 20) return '';
+    const v = (x) => Math.round(x);
+    const tot = n.per.protein * 4 + n.per.carbs * 4 + n.per.fat * 9 || 1;
+    const bar = (x, k) => `<i style="width:${Math.round((x * k / tot) * 100)}%"></i>`;
+    return `<details class="panel nutrition no-print">
+      <summary><span class="nut-title">Nutrition <small>estimate</small></span><span class="nut-kcal"><b>${v(n.per.kcal)}</b> kcal / serving</span></summary>
+      <div class="nut-bar" aria-hidden="true">${bar(n.per.protein, 4)}${bar(n.per.carbs, 4)}${bar(n.per.fat, 9)}</div>
+      <div class="nut-grid"><div><b>${v(n.per.protein)} g</b><span>Protein</span></div><div><b>${v(n.per.carbs)} g</b><span>Carbs</span></div><div><b>${v(n.per.fat)} g</b><span>Fat</span></div><div><b>${v(n.total.kcal)}</b><span>kcal total</span></div></div>
+      <p class="muted small">Rough estimate for ${n.servings} serving${n.servings === 1 ? '' : 's'}${r.yield ? '' : ' (assumed)'}, from ${n.counted} of ${n.considered} ingredients using typical values. Garnishes, “to taste” and frying oil aren’t counted.${n.missed.length ? ` Not counted: ${n.missed.slice(0, 5).map((x) => esc(x)).join('; ')}${n.missed.length > 5 ? '…' : ''}.` : ''}</p>
+    </details>`;
+  }
+
+  function photosHtml(r, m) {
+    const list = m.photos || [];
+    return `<div class="my-photos">
+      ${list.map((id) => `<figure class="${m.cover === id ? 'is-cover' : ''}"><button class="ph" data-act="photo-view" data-pid="${esc(id)}" aria-label="View photo"><img data-photo="${esc(id)}" alt=""></button>
+        <figcaption><button class="linkish" data-act="photo-cover" data-pid="${esc(id)}">${m.cover === id ? 'Cover ✓' : 'Make cover'}</button><button class="icon-btn" data-act="photo-del" data-pid="${esc(id)}" aria-label="Delete photo">${icon('i-trash')}</button></figcaption></figure>`).join('')}
+      <label class="ph-add">${icon('i-camera')}<span>Add photo</span><input type="file" accept="image/*" multiple data-act="add-photo" data-id="${esc(r.id)}" hidden></label>
+    </div>
+    ${list.length ? '<p class="muted small">Your photos are stored on this device.</p>' : ''}`;
+  }
 
   function qtyHtml(text) {
     const h = inlineMd(text);
@@ -760,8 +1001,8 @@
       <article class="recipe wrap" style="--cat:var(--c-${ck})">
         <nav class="crumbs no-print"><a href="#/" class="back">${icon('i-back')} All recipes</a>
           <a href="#/?cat=${encodeURIComponent(r.category || '')}" class="crumb-cat">${icon('c-' + ck)}${esc(r.category || 'Uncategorized')}</a></nav>
-        <header class="r-head ${r.image ? 'with-img' : ''}">
-          ${r.image ? `<div class="r-img"><img src="${esc(r.image)}" alt="" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"></div>` : ''}
+        <header class="r-head ${r.image || m.cover ? 'with-img' : ''}">
+          ${r.image || m.cover ? `<div class="r-img">${m.cover ? coverImg(r, m, 'full') : `<img src="${esc(r.image)}" alt="" referrerpolicy="no-referrer" onerror="this.parentNode.remove()">`}</div>` : ''}
           <div class="r-titles">
             <h1>${esc(r.title)}</h1>
             ${r.description ? `<p class="lede">${inlineMd(r.description)}</p>` : ''}
@@ -770,6 +1011,7 @@
               ${r.yield ? `<div><dt>${icon('i-utensils')}Yield</dt><dd>${esc(r.yield)}</dd></div>` : ''}
               ${nSteps ? `<div><dt>${icon('i-list')}Steps</dt><dd>${nSteps}</dd></div>` : ''}
               <div><dt>${icon('i-flame')}Cooked</dt><dd>${cooked.length ? `${cooked.length}× · last ${relDays(cooked[cooked.length - 1])}` : 'Not yet'}</dd></div>
+              <div><dt>${icon('i-star')}Your rating</dt><dd class="rate" role="radiogroup" aria-label="Your rating">${[1, 2, 3, 4, 5].map((n) => `<button role="radio" aria-checked="${m.rating === n}" class="${m.rating >= n ? 'on' : ''}" data-act="rate" data-v="${n}" aria-label="${n} star${n > 1 ? 's' : ''}">★</button>`).join('')}</dd></div>
             </dl>
             ${r.tags.length ? `<p class="tags">${r.tags.map((t) => `<a class="tag" href="#/?tag=${encodeURIComponent(t)}">#${esc(t)}</a>`).join('')}</p>` : ''}
           </div>
@@ -777,12 +1019,16 @@
             ${nSteps ? `<button class="btn primary big" data-act="cook">${icon('i-play')} Start cooking</button>` : ''}
             <button class="btn ${m.fav ? 'on' : ''}" data-act="fav" data-id="${esc(r.id)}" aria-pressed="${!!m.fav}">${icon('i-heart')} ${m.fav ? 'Favorited' : 'Favorite'}</button>
             <button class="btn" data-act="grocery-add">${icon('i-bag')} ${groceries.has(r.id) ? 'On list ✓' : 'Add to list'}</button>
+            <button class="btn" data-act="plan-recipe">${icon('i-calendar')} Plan</button>
+            <button class="btn" data-act="ask-claude">${icon('i-sparkle')} Ask Claude</button>
+            <button class="btn" data-act="share">${icon('i-share')} Share</button>
             <a class="btn" href="#/edit/${encodeURIComponent(r.id)}">${icon('i-pencil')} Edit</a>
             <details class="menu">
               <summary class="btn icon-only" aria-label="More actions">${icon('i-more')}</summary>
               <div class="menu-pop">
+                <button data-act="col-add">${icon('i-grid')} Add to collection…</button>
+                <button data-act="cook-with">${icon('i-play')} Cook with another dish…</button>
                 <button data-act="mark-cooked">${icon('i-flame')} Mark as cooked today</button>
-                <button data-act="share">${icon('i-share')} Share…</button>
                 <button data-act="copy-md">${icon('i-copy')} Copy as text</button>
                 <button data-act="duplicate">${icon('i-copyadd')} Duplicate</button>
                 <button data-act="print">${icon('i-print')} Print</button>
@@ -803,14 +1049,16 @@
                   <button class="icon-btn" data-act="scale" data-d="+" aria-label="Bigger batch">${icon('i-plus')}</button>
                 </div>
               </div>
+              <div class="ing-tools no-print">${unitsSeg()}</div>
               ${f !== 1 ? `<p class="scaled-note">Scaled ${esc(RB.formatQty(f, 'frac'))}× — quantities at the start of each line are adjusted.</p>` : ''}
               ${r.ingredients.map((g, gi) => `
                 ${g.name || g.note ? `<h3 class="group">${esc(g.name || '')}${g.note ? ` <small>${esc(g.note)}</small>` : ''}</h3>` : ''}
                 <ul class="ing-list">
-                  ${g.items.map((it, ii) => `<li><label class="check ${cs.has(gi + ':' + ii) ? 'on' : ''}"><input type="checkbox" data-act="ing-check" data-k="${gi}:${ii}" ${cs.has(gi + ':' + ii) ? 'checked' : ''}><span class="box">${icon('i-check')}</span><span>${qtyHtml(RB.scaleIngredient(it, f))}</span></label></li>`).join('')}
+                  ${g.items.map((it, ii) => `<li><label class="check ${cs.has(gi + ':' + ii) ? 'on' : ''}"><input type="checkbox" data-act="ing-check" data-k="${gi}:${ii}" ${cs.has(gi + ':' + ii) ? 'checked' : ''}><span class="box">${icon('i-check')}</span><span>${qtyHtml(ingText(it, f))}</span></label></li>`).join('')}
                 </ul>`).join('')}
               ${cs.size ? `<button class="linkish no-print" data-act="ing-reset">Uncheck all</button>` : ''}
             </div>
+            ${nutritionHtml(r)}
           </aside>` : ''}
           <div class="method-col">
             ${r.steps.length ? `<section class="panel">
@@ -818,19 +1066,20 @@
               ${r.steps.map((g, gi) => `
                 ${g.name ? `<h3 class="group">${esc(g.name)}</h3>` : ''}
                 <ol class="steps">
-                  ${g.items.map((s, si) => { stepNo++; const k = gi + ':' + si; return `<li class="${ds.has(k) ? 'done' : ''}" data-act="step-done" data-k="${k}"><span class="num">${stepNo}</span><div>${stepHtml(s, stepLabel(r, s, stepNo))}</div></li>`; }).join('')}
+                  ${g.items.map((s, si) => { stepNo++; const k = gi + ':' + si; return `<li class="${ds.has(k) ? 'done' : ''}" data-act="step-done" data-k="${k}"><span class="num">${stepNo}</span><div>${stepHtml(stepText(s), stepLabel(r, s, stepNo))}</div></li>`; }).join('')}
                 </ol>`).join('')}
             </section>` : ''}
             ${r.notes.length ? `<section class="panel notes"><h2>Notes</h2><ul>${r.notes.map((n) => `<li>${inlineMd(n)}</li>`).join('')}</ul></section>` : ''}
             ${r.extras.map((e) => `<section class="panel extra"><h2>${esc(e.title)}</h2>${blockMd(e.body)}</section>`).join('')}
             ${chefNotesHtml(r)}
             <section class="panel mine no-print">
-              <h2>My notes</h2>
+              <div class="panel-head"><h2>My notes &amp; photos</h2><button class="btn small ghost" data-act="ask-claude">${icon('i-sparkle')} Ask Claude</button></div>
               <textarea id="my-notes" rows="3" placeholder="Tweaks, what worked, what to try next time…">${esc(m.notes || '')}</textarea>
               <div class="row between">
                 <span class="muted small" id="notes-status">${m.notes ? 'Saved' : 'Saves automatically'}</span>
                 <button class="btn small" data-act="mark-cooked">${icon('i-flame')} I cooked this today</button>
               </div>
+              ${photosHtml(r, m)}
               ${cooked.length ? `<p class="cook-log">${icon('i-flame')} Cooked ${cooked.length}×: ${cooked.slice(-6).reverse().map((d) => esc(fmtDate(d))).join(' · ')}${cooked.length > 6 ? ' …' : ''} <button class="linkish" data-act="unmark-cooked">undo last</button></p>` : ''}
             </section>
             ${r.sources.length ? `<section class="sources"><h2>Sources</h2><ul>${r.sources.map((s) => `<li><a href="${esc(s.url)}" target="_blank" rel="noopener">${icon('i-link')}${esc(s.label || (/claude\.ai\/chat/.test(s.url) ? 'Original chat' : RB.hostLabel(s.url)))}</a></li>`).join('')}</ul></section>` : ''}
@@ -841,23 +1090,52 @@
     const notes = $('#my-notes');
     const saveNotes = debounce(() => { store.setMeta(r.id, { notes: notes.value }); $('#notes-status').textContent = 'Saved'; }, 500);
     notes.addEventListener('input', () => { $('#notes-status').textContent = 'Saving…'; saveNotes(); });
+    hydratePhotos(main);
   }
 
   // ======================================================================
   // Cooking mode
   // ======================================================================
   const cook = {
-    state: null, wake: null, listen: null,
-    open(id, step) {
-      const r = store.byId(id);
-      if (!r) return;
+    state: null, wake: null, listen: null, multi: null, returnTo: '',
+    session(r) {
       const flat = [{ kind: 'prep' }];
       let n = 0;
       r.steps.forEach((g, gi) => g.items.forEach((text, si) => { n++; flat.push({ kind: 'step', text, group: g.name, gi, si, n }); }));
       if (!r.ingredients.length) flat.shift();
       flat.push({ kind: 'done' });
-      this.state = { r, flat, i: 0, total: n, sheet: false };
-      if (step != null && !isNaN(+step)) this.state.i = Math.max(0, Math.min(flat.length - 1, +step));
+      return { r, flat, i: 0, total: n, sheet: false };
+    },
+    open(id, step) {
+      const r = store.byId(id);
+      if (!r) return;
+      this.multi = null; this.returnTo = '';
+      this.state = this.session(r);
+      if (step != null && !isNaN(+step)) this.state.i = Math.max(0, Math.min(this.state.flat.length - 1, +step));
+      this.start();
+    },
+    /** Cook several recipes at once. The longest one goes first so it can get going. */
+    openMulti(ids, returnTo) {
+      const rs = ids.map((id) => store.byId(id)).filter(Boolean)
+        .sort((a, b) => (parseMinutes(b.time) || 0) - (parseMinutes(a.time) || 0));
+      if (!rs.length) return;
+      this.multi = { sessions: rs.map((r) => this.session(r)), k: 0 };
+      this.returnTo = returnTo && !/#\/cook\//.test(returnTo) ? returnTo : '#/plan';
+      this.state = this.multi.sessions[0];
+      this.start();
+    },
+    switchDish(k) {
+      if (!this.multi || !this.multi.sessions[k]) return;
+      this.state.sheet = false;
+      this.multi.k = k; this.state = this.multi.sessions[k];
+      this.render();
+      if (settings.speak) this.readCurrent();
+    },
+    dishLabel(x) {
+      const st = x.flat[x.i];
+      return st.kind === 'prep' ? 'Not started' : st.kind === 'done' ? 'Done ✓' : `Step ${st.n} of ${x.total}`;
+    },
+    start() {
       document.body.classList.add('cooking');
       this.render();
       this.requestWake();
@@ -866,7 +1144,8 @@
     },
     close(silent) {
       if (!this.state) return;
-      this.state = null;
+      const back = this.multi ? (this.returnTo || '#/plan') : '#/r/' + encodeURIComponent(this.state.r.id);
+      this.state = null; this.multi = null;
       document.body.classList.remove('cooking');
       $('#cook-root').innerHTML = '';
       speech.stop();
@@ -874,10 +1153,10 @@
       this.releaseWake();
       document.removeEventListener('keydown', this.onKey);
       document.removeEventListener('visibilitychange', this.onVis);
-      if (!silent) { const id = route.params.id; go('#/r/' + encodeURIComponent(id)); }
+      if (!silent) go(back);
     },
     onKey: (e) => {
-      if (!cook.state || e.target.matches('input, textarea, select')) return;
+      if (!cook.state || e.target.matches('input, textarea, select') || !$('#sheet-root').hidden) return;
       if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); cook.move(1); }
       else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); cook.move(-1); }
       else if (e.key === 'Escape') { if (cook.state.sheet) cook.toggleSheet(false); else cook.close(); }
@@ -893,14 +1172,14 @@
       const ni = Math.max(0, Math.min(s.flat.length - 1, s.i + d));
       if (ni === s.i) return;
       s.i = ni; this.renderStage(d);
-      history.replaceState(null, '', '#/r/' + encodeURIComponent(s.r.id) + '/cook?step=' + s.i);
+      if (!this.multi) history.replaceState(null, '', '#/r/' + encodeURIComponent(s.r.id) + '/cook?step=' + s.i);
       if (settings.speak) this.readCurrent();
     },
     goto(i) { this.state.i = i; this.renderStage(0); if (settings.speak) this.readCurrent(); },
     readCurrent() {
       const s = this.state; const st = s.flat[s.i];
       if (st.kind === 'step') speech.say('Step ' + st.n + '. ' + st.text);
-      else if (st.kind === 'prep') speech.say('Gather your ingredients. ' + s.r.ingredients.flatMap((g) => g.items).slice(0, 25).map((x) => RB.scaleIngredient(x, getScale(s.r.id))).join('. '));
+      else if (st.kind === 'prep') speech.say((this.multi ? s.r.title + '. ' : '') + 'Gather your ingredients. ' + s.r.ingredients.flatMap((g) => g.items).slice(0, 25).map((x) => ingText(x, getScale(s.r.id))).join('. '));
       else speech.say('All done. Enjoy!');
     },
     toggleSheet(force) {
@@ -936,7 +1215,7 @@
       if (/\b(repeat|read|again|say that|what)\b/.test(t)) { flash(); this.readCurrent(); return; }
       if (/\b(ingredient|ingredients|what do i need)\b/.test(t)) {
         flash(); const st = this.state.flat[this.state.i];
-        const list = st.kind === 'step' ? RB.ingredientsForStep(st.text, this.state.r.ingredients).map((x) => RB.scaleIngredient(x.item, getScale(this.state.r.id))) : [];
+        const list = st.kind === 'step' ? RB.ingredientsForStep(st.text, this.state.r.ingredients).map((x) => ingText(x.item, getScale(this.state.r.id))) : [];
         if (list.length) speech.say('For this step: ' + list.join('. ')); else this.toggleSheet(true);
         return;
       }
@@ -964,6 +1243,7 @@
             </div>
           </header>
           <div class="cook-progress"><i></i></div>
+          ${this.multi ? `<nav class="dish-tabs" aria-label="Dishes">${this.multi.sessions.map((x, k) => `<button class="dish-tab ${k === this.multi.k ? 'on' : ''}" data-act="cook-dish" data-k="${k}" style="--cat:var(--c-${catKey(x.r.category)})"><b>${esc(x.r.title.replace(/\s*\(.*\)$/, ''))}</b><small>${esc(this.dishLabel(x))}</small></button>`).join('')}</nav>` : ''}
           <p class="voice-hint" hidden>${icon('i-mic')} Listening — say <b>next</b>, <b>back</b>, <b>repeat</b>, <b>ingredients</b>, <b>start timer</b>, <b>step 3</b>, <b>stop</b> <span class="voice-heard"></span></p>
           <main class="cook-stage" aria-live="polite"></main>
           <footer class="cook-nav">
@@ -973,6 +1253,7 @@
           </footer>
           <aside class="cook-sheet" aria-hidden="true" aria-label="Ingredients">
             <div class="sheet-head"><h2>Ingredients</h2><button class="icon-btn" data-act="cook-sheet" aria-label="Close ingredients">${icon('i-x')}</button></div>
+            <div class="sheet-units">${unitsSeg()}</div>
             <div class="sheet-body"></div>
           </aside>
         </div>`;
@@ -994,7 +1275,7 @@
       const r = this.state.r, f = getScale(r.id), cs = checkSet(r.id);
       return r.ingredients.map((g, gi) => `
         ${g.name ? `<h3 class="group">${esc(g.name)}</h3>` : ''}
-        <ul class="ing-list big">${g.items.map((it, ii) => `<li class="${highlight && highlight.has(gi + ':' + ii) ? 'hl' : ''}"><label class="check ${cs.has(gi + ':' + ii) ? 'on' : ''}"><input type="checkbox" data-act="ing-check" data-k="${gi}:${ii}" ${cs.has(gi + ':' + ii) ? 'checked' : ''}><span class="box">${icon('i-check')}</span><span>${qtyHtml(RB.scaleIngredient(it, f))}</span></label></li>`).join('')}</ul>`).join('');
+        <ul class="ing-list big">${g.items.map((it, ii) => `<li class="${highlight && highlight.has(gi + ':' + ii) ? 'hl' : ''}"><label class="check ${cs.has(gi + ':' + ii) ? 'on' : ''}"><input type="checkbox" data-act="ing-check" data-k="${gi}:${ii}" ${cs.has(gi + ':' + ii) ? 'checked' : ''}><span class="box">${icon('i-check')}</span><span>${qtyHtml(ingText(it, f))}</span></label></li>`).join('')}</ul>`).join('');
     },
     renderSheet() { const b = $('.cook-sheet .sheet-body'); if (b) b.innerHTML = this.ingListHtml(); },
     renderStage(dir) {
@@ -1005,7 +1286,8 @@
       if (st.kind === 'prep') {
         const nIng = r.ingredients.reduce((a, g) => a + g.items.length, 0);
         html = `<div class="stage-inner">
-          <p class="eyebrow">Before you start · mise en place</p>
+          ${this.multi && this.multi.k === 0 && this.multi.sessions.every((x) => x.i === 0) ? `<p class="multi-note">${icon('i-sparkle')}<span>Cooking ${this.multi.sessions.length} dishes. Start with <b>${esc(r.title)}</b>${r.time ? ` (${esc(r.time.replace(/\s*\(.*\)$/, ''))})` : ''} since it takes longest, then switch dishes with the tabs above while things simmer.</span></p>` : ''}
+          <p class="eyebrow">${this.multi ? esc(r.title) + ' · ' : ''}Before you start · mise en place</p>
           <h2 class="stage-h">Gather ${nIng} ingredients</h2>
           ${f !== 1 ? `<p class="muted">Scaled ${esc(RB.formatQty(f, 'frac'))}×</p>` : ''}
           <div class="prep-list">${this.ingListHtml()}</div>
@@ -1023,9 +1305,9 @@
         html = `<div class="stage-inner">
           <p class="eyebrow">Step ${st.n} of ${s.total}${st.group ? ' · ' + esc(st.group) : ''}</p>
           ${head ? `<h2 class="stage-h">${esc(head)}</h2>` : ''}
-          <p class="stage-text">${stepHtml(body || st.text, label)}</p>
+          <p class="stage-text">${stepHtml(stepText(body || st.text), label)}</p>
           ${tms.length ? `<div class="stage-timers">${tms.map((t) => `<button class="btn timer-btn" data-act="timer" data-secs="${t.seconds}" data-label="${esc(label)}">${icon('i-timer')} Start ${esc(RB.fmtDurationWords(t.seconds))} timer${t.maxSeconds ? `<small>up to ${esc(RB.fmtDurationWords(t.maxSeconds))}</small>` : ''}</button>`).join('')}</div>` : ''}
-          ${uses.length ? `<div class="uses"><p class="eyebrow">For this step</p><ul>${uses.map((u) => `<li>${qtyHtml(RB.scaleIngredient(u.item, f))}</li>`).join('')}</ul></div>` : ''}
+          ${uses.length ? `<div class="uses"><p class="eyebrow">For this step</p><ul>${uses.map((u) => `<li>${qtyHtml(ingText(u.item, f))}</li>`).join('')}</ul></div>` : ''}
           ${next && next.kind === 'step' ? `<p class="up-next"><span>Up next</span> ${esc(RB.stripMd(next.text).slice(0, 110))}${RB.stripMd(next.text).length > 110 ? '…' : ''}</p>` : ''}
         </div>`;
         const ds = doneSet(r.id);
@@ -1033,14 +1315,17 @@
       } else {
         const cooked = store.meta(r.id).cooked || [];
         const today = cooked.length && new Date(cooked[cooked.length - 1]).toDateString() === new Date().toDateString();
+        const nextDish = this.multi ? this.multi.sessions.findIndex((x, k) => k !== this.multi.k && x.flat[x.i].kind !== 'done') : -1;
         html = `<div class="stage-inner center">
           <p class="done-mark">${icon('i-check')}</p>
           <h2 class="stage-h">That’s it. Enjoy!</h2>
           <p class="muted">${esc(r.title)}</p>
           ${r.notes.length || r.extras.length ? `<div class="done-notes">${r.notes.map((n) => `<p>${inlineMd(n)}</p>`).join('')}${r.extras.map((e) => `<h3>${esc(e.title)}</h3>${blockMd(e.body)}`).join('')}</div>` : ''}
           <div class="row center wrap-row">
-            ${today ? `<span class="pill">${icon('i-flame')} Logged as cooked today</span>` : `<button class="btn primary big" data-act="mark-cooked">${icon('i-flame')} Log that I cooked this</button>`}
-            <button class="btn big" data-act="cook-close">Back to recipe</button>
+            ${nextDish >= 0 ? `<button class="btn primary big" data-act="cook-dish" data-k="${nextDish}">Next dish: ${esc(this.multi.sessions[nextDish].r.title.replace(/\s*\(.*\)$/, ''))} ${icon('i-right')}</button>` : ''}
+            ${today ? `<span class="pill">${icon('i-flame')} Logged as cooked today</span>` : `<button class="btn ${nextDish >= 0 ? '' : 'primary'} big" data-act="mark-cooked">${icon('i-flame')} Log that I cooked this</button>`}
+            <label class="btn big">${icon('i-camera')} Add a photo<input type="file" accept="image/*" data-act="add-photo" data-id="${esc(r.id)}" hidden></label>
+            <button class="btn big ghost" data-act="cook-close">${this.multi ? 'Finish cooking' : 'Back to recipe'}</button>
           </div>
           <label class="done-notes-field">Anything to remember next time?
             <textarea id="cook-notes" rows="3" placeholder="e.g. needed 5 more minutes, less salt…">${esc(store.meta(r.id).notes || '')}</textarea></label>
@@ -1056,6 +1341,7 @@
       // header + progress
       const stepN = st.kind === 'step' ? st.n : st.kind === 'prep' ? 0 : s.total;
       $('.cook-count').textContent = st.kind === 'prep' ? 'Mise en place' : st.kind === 'done' ? 'Finished' : `Step ${st.n} of ${s.total}`;
+      const tab = $('.dish-tab.on small'); if (tab) tab.textContent = this.dishLabel(s);
       $('.cook-progress i').style.width = (s.total ? (stepN / s.total) * 100 : 100) + '%';
       $('[data-act="cook-prev"]').disabled = s.i === 0;
       const nextBtn = $('[data-act="cook-next"]');
@@ -1113,8 +1399,9 @@ One or two sentences about the dish.
           <a class="add-tile" href="#/add/voice"><span class="add-ic">${icon('i-mic')}</span><b>Say it</b><span>Dictate the recipe out loud. Great with messy hands.</span></a>
           <a class="add-tile" href="#/add/web"><span class="add-ic">${icon('i-link')}</span><b>From a website</b><span>Paste a link. We pull the ingredients and steps.</span></a>
           <a class="add-tile" href="#/add/chat"><span class="add-ic">${icon('i-chat')}</span><b>From a chat</b><span>Paste a recipe from Claude, a text, notes or an email.</span></a>
+          <label class="add-tile"><span class="add-ic">${icon('i-camera')}</span><b>Snap a photo</b><span>A cookbook page, recipe card or screenshot. Claude reads it for you.</span><input type="file" accept="image/*" multiple data-act="photo-recipe" hidden></label>
           <a class="add-tile" href="#/new" data-act="new-blank"><span class="add-ic">${icon('i-pencil')}</span><b>Type it</b><span>Start with a blank recipe card.</span></a>
-          <label class="add-tile"><span class="add-ic">${icon('i-file')}</span><b>Import a file</b><span>Markdown (.md), text or a JSON backup.</span><input type="file" accept=".md,.markdown,.txt,.json,text/*,application/json" data-act="import-file" hidden></label>
+          <label class="add-tile"><span class="add-ic">${icon('i-file')}</span><b>Import a file</b><span>Markdown, text, a shared recipe page (.html) or a JSON backup.</span><input type="file" accept=".md,.markdown,.txt,.json,.html,.htm,text/*,application/json" data-act="import-file" hidden></label>
         </div>
         ${draft ? `<div class="tip">${icon('i-pencil')}<p>You have an unsaved draft: <b>${esc(draft.title || 'Untitled')}</b></p><a class="btn small" href="#/new">Resume</a><button class="icon-btn" data-act="discard-draft" aria-label="Discard draft">${icon('i-x')}</button></div>` : ''}
       </section>`;
@@ -1438,34 +1725,70 @@ One or two sentences about the dish.
   // ======================================================================
   // View: Groceries
   // ======================================================================
+  const staplesList = () => settings.staples || RK.DEFAULT_STAPLES;
+  const groceryMerged = () => RK.mergeGroceries(groceries.list, { system: settings.units === 'metric' ? 'metric' : 'us', staples: staplesList() });
   function viewGroceries(main) {
     const list = groceries.list;
-    const groups = [];
-    list.forEach((x) => { const k = x.recipeTitle || 'Other items'; let g = groups.find((y) => y.k === k); if (!g) groups.push(g = { k, id: x.recipeId, items: [] }); g.items.push(x); });
-    groups.sort((a, b) => (a.k === 'Other items') - (b.k === 'Other items'));
     const left = list.filter((x) => !x.checked).length;
+    const view = settings.gView === 'recipe' ? 'recipe' : 'aisle';
+    let body = '';
+    if (view === 'aisle') {
+      const merged = groceryMerged();
+      const row = (g) => `<li><label class="check ${g.checked ? 'on' : ''}" title="${esc(g.raws.join('\n'))}"><input type="checkbox" data-act="g-check-many" data-ids="${esc(g.ids.join(','))}" ${g.checked ? 'checked' : ''}><span class="box">${icon('i-check')}</span>
+        <span>${g.amount ? `<b class="qty">${esc(g.amount)}</b> ` : ''}${esc(g.display)}${g.approx ? ' <small class="muted">+ more</small>' : ''}${g.sources.length ? `<small class="g-src">${esc(g.sources.join(' · '))}</small>` : ''}</span></label></li>`;
+      const byAisle = RK.AISLE_ORDER.map((a) => ({ a, items: merged.filter((g) => !g.staple && g.aisle === a) })).filter((x) => x.items.length);
+      const staples = merged.filter((g) => g.staple);
+      body = byAisle.map((x) => `<section class="panel g-group aisle"><div class="panel-head"><h2>${esc(RK.AISLE_LABEL[x.a])}</h2><small class="muted">${x.items.filter((g) => !g.checked).length || '✓'}</small></div>
+          <ul class="ing-list">${x.items.slice().sort((a, b) => a.checked - b.checked).map(row).join('')}</ul></section>`).join('')
+        + (staples.length ? `<details class="panel g-group staples"><summary><h2>Pantry staples</h2><span class="muted small">${staples.length} item${staples.length === 1 ? '' : 's'} you probably have · tap to check</span></summary>
+          <ul class="ing-list">${staples.map(row).join('')}</ul></details>` : '');
+    } else {
+      const groups = [];
+      list.forEach((x) => { const k = x.recipeTitle || 'Other items'; let g = groups.find((y) => y.k === k); if (!g) groups.push(g = { k, id: x.recipeId, items: [] }); g.items.push(x); });
+      groups.sort((a, b) => (a.k === 'Other items') - (b.k === 'Other items'));
+      body = groups.map((g) => `<section class="panel g-group">
+          <div class="panel-head"><h2>${g.id && store.byId(g.id) ? `<a href="#/r/${encodeURIComponent(g.id)}">${esc(g.k)}</a>` : esc(g.k)}</h2>
+          <button class="linkish" data-act="g-remove-group" data-k="${esc(g.k)}">Remove</button></div>
+          <ul class="ing-list">${g.items.slice().sort((a, b) => a.checked - b.checked).map((x) => `<li><label class="check ${x.checked ? 'on' : ''}"><input type="checkbox" data-act="g-check" data-id="${x.id}" ${x.checked ? 'checked' : ''}><span class="box">${icon('i-check')}</span><span>${esc(x.text)}</span></label></li>`).join('')}</ul>
+        </section>`).join('');
+    }
+    const recipesOnList = new Set(list.map((x) => x.recipeId).filter(Boolean)).size;
     main.innerHTML = `
       <section class="wrap narrow groceries">
         <h1>Groceries</h1>
-        <p class="sub">${list.length ? `${left} to get${list.length - left ? ` · ${list.length - left} in the cart` : ''}` : 'Add a recipe’s ingredients from its page, or add items here.'}</p>
+        <p class="sub">${list.length ? `${left} to get${list.length - left ? ` · ${list.length - left} in the cart` : ''}${recipesOnList ? ` · from ${recipesOnList} recipe${recipesOnList === 1 ? '' : 's'}` : ''}` : 'Add a recipe’s ingredients from its page or the meal plan, or add items here.'}</p>
         <form class="add-item" data-form="grocery">
           <div class="with-mic"><input id="g-new" placeholder="Add an item…" enterkeyhint="done" aria-label="Add an item">${voice.supported ? `<button type="button" class="icon-btn mic" data-act="dictate" data-target="g-new" data-mode="text" aria-label="Dictate">${icon('i-mic')}</button>` : ''}</div>
           <button class="btn primary" type="submit">${icon('i-plus')} Add</button>
         </form>
-        ${groups.map((g) => `<section class="panel g-group">
-          <div class="panel-head"><h2>${g.id && store.byId(g.id) ? `<a href="#/r/${encodeURIComponent(g.id)}">${esc(g.k)}</a>` : esc(g.k)}</h2>
-          <button class="linkish" data-act="g-remove-group" data-k="${esc(g.k)}">Remove</button></div>
-          <ul class="ing-list">${g.items.slice().sort((a, b) => a.checked - b.checked).map((x) => `<li><label class="check ${x.checked ? 'on' : ''}"><input type="checkbox" data-act="g-check" data-id="${x.id}" ${x.checked ? 'checked' : ''}><span class="box">${icon('i-check')}</span><span>${esc(x.text)}</span></label></li>`).join('')}</ul>
-        </section>`).join('')}
+        ${list.length ? `<div class="g-view row between"><div class="seg" role="radiogroup" aria-label="Group by">
+            <button role="radio" aria-checked="${view === 'aisle'}" class="${view === 'aisle' ? 'on' : ''}" data-act="g-view" data-v="aisle">By aisle</button>
+            <button role="radio" aria-checked="${view === 'recipe'}" class="${view === 'recipe' ? 'on' : ''}" data-act="g-view" data-v="recipe">By recipe</button></div>
+          ${view === 'aisle' ? '<span class="muted small">Duplicates combined</span>' : ''}</div>` : ''}
+        ${body}
         ${list.length ? `<div class="row wrap-row">
           <button class="btn" data-act="g-share">${icon('i-share')} Share list</button>
           <button class="btn" data-act="g-copy">${icon('i-copy')} Copy</button>
           <button class="btn ghost" data-act="g-clear-checked" ${list.length - left ? '' : 'disabled'}>Clear checked</button>
           <button class="btn ghost danger" data-act="g-clear-all">Clear all</button>
-        </div>` : `<div class="empty"><p>${icon('i-bag', 'huge')}</p><a class="btn" href="#/">Browse recipes</a></div>`}
+        </div>` : `<div class="empty"><p>${icon('i-bag', 'huge')}</p><div class="row center"><a class="btn" href="#/">Browse recipes</a><a class="btn ghost" href="#/plan">Plan the week</a></div></div>`}
+        <details class="panel staples-edit">
+          <summary class="linkish">Pantry staples</summary>
+          <p class="muted small">Items you always keep at home. They’re tucked into their own section so the list stays short, and “What can I make?” assumes you have them.</p>
+          <textarea id="staples" rows="3">${esc(staplesList().join(', '))}</textarea>
+          <div class="row end"><button class="btn small ghost" data-act="staples-reset">Reset</button><button class="btn small" data-act="staples-save">Save staples</button></div>
+        </details>
       </section>`;
   }
   const groceryText = () => {
+    if (settings.gView !== 'recipe') {
+      const merged = groceryMerged().filter((g) => !g.checked);
+      const main = merged.filter((g) => !g.staple);
+      return RK.AISLE_ORDER.map((a) => {
+        const items = main.filter((g) => g.aisle === a);
+        return items.length ? RK.AISLE_LABEL[a] + '\n' + items.map((g) => '☐ ' + g.label).join('\n') : '';
+      }).filter(Boolean).join('\n\n');
+    }
     const groups = {};
     groceries.list.filter((x) => !x.checked).forEach((x) => { (groups[x.recipeTitle || 'Other'] = groups[x.recipeTitle || 'Other'] || []).push(x.text); });
     return Object.entries(groups).map(([k, v]) => k + '\n' + v.map((x) => '☐ ' + x).join('\n')).join('\n\n');
@@ -1475,6 +1798,8 @@ One or two sentences about the dish.
   // View: The Chef's Notebook (techniques & cheat codes)
   // ======================================================================
   const TIPS = window.RB_TIPS || { categories: [], tips: [], temps: [], sugar: [], ratios: [], tempsNote: '' };
+  /** Built-in techniques plus the ones you've written. */
+  const allTips = () => TIPS.tips.concat(store.book.customTips.map((t) => Object.assign({ how: [], useIn: [], match: '', pro: '', why: '', level: 'Foundation' }, t, { custom: true })));
   const tipsUi = { q: '', cat: '', saved: false };
   const savedTips = new Set(LS.get('wrb.tipsSaved', []));
   const saveSavedTips = () => LS.set('wrb.tipsSaved', Array.from(savedTips));
@@ -1489,14 +1814,16 @@ One or two sentences about the dish.
   }
   function tipMatches(t, text) {
     if (!t.match) return 0;
-    const rx = tipRx[t.id] || (tipRx[t.id] = new RegExp(t.match, 'gi'));
+    const key = t.id + '|' + t.match;
+    let rx = tipRx[key];
+    if (!rx) { try { rx = tipRx[key] = new RegExp(t.match, 'gi'); } catch (e) { return 0; } }
     const m = text.match(rx);
     return m ? m.length : 0;
   }
   function tipsForRecipe(r, n) {
     const text = recipeText(r);
-    return TIPS.tips.map((t) => ({ t, score: (t.useIn.includes(r.id) ? 10 : 0) + Math.min(tipMatches(t, text), 3) }))
-      .filter((x) => x.score >= (x.t.useIn.includes(r.id) ? 1 : 2))
+    return allTips().map((t) => { const n = Math.min(tipMatches(t, text), 3); return { t, score: (t.useIn.includes(r.id) ? 10 : 0) + (t.custom && n ? 20 : 0) + n }; })
+      .filter((x) => x.score >= (x.t.useIn.includes(r.id) || x.t.custom ? 1 : 2))
       .sort((a, b) => b.score - a.score || levelRank(b.t) - levelRank(a.t))
       .slice(0, n || 3).map((x) => x.t);
   }
@@ -1523,7 +1850,7 @@ One or two sentences about the dish.
     const saved = savedTips.has(t.id);
     return `<details class="tip-card" id="tip-${esc(t.id)}" ${open ? 'open' : ''}>
       <summary>
-        <div class="tip-top"><span class="eyebrow">${esc(tipCat(t.cat).label)}</span><span class="level level-${t.level.toLowerCase()}">${esc(t.level)}</span></div>
+        <div class="tip-top"><span class="eyebrow">${esc(tipCat(t.cat).label)}</span>${t.custom ? '<span class="level level-yours">Yours</span>' : `<span class="level level-${t.level.toLowerCase()}">${esc(t.level)}</span>`}</div>
         <h3>${esc(t.title)}</h3>
         <p class="tip-rule">${esc(t.rule)}</p>
         <span class="tip-more"><span class="when-closed">How it works</span><span class="when-open">Close</span>${icon('i-right')}</span>
@@ -1534,13 +1861,14 @@ One or two sentences about the dish.
         <ol class="tip-how">${t.how.map((h) => `<li>${esc(h)}</li>`).join('')}</ol>
         ${t.pro ? `<p class="tip-pro"><span class="eyebrow">Chef’s move</span>${esc(t.pro)}</p>` : ''}
         ${recipes.length ? `<div class="tip-uses"><span class="eyebrow">Use it in</span><div>${recipes.map((r) => `<a href="#/r/${encodeURIComponent(r.id)}">${esc(r.title)}</a>`).join('')}</div></div>` : ''}
+        ${t.custom ? `<div class="row end"><button class="btn small ghost" data-act="tip-edit" data-id="${esc(t.id)}">${icon('i-pencil')} Edit</button></div>` : ''}
       </div>
     </details>`;
   }
   function filteredTips() {
     const q = norm(tipsUi.q).trim();
     const toks = q ? q.split(/\s+/) : [];
-    return TIPS.tips.filter((t) => (!tipsUi.cat || t.cat === tipsUi.cat) && (!tipsUi.saved || savedTips.has(t.id))
+    return allTips().filter((t) => (!tipsUi.cat || (tipsUi.cat === 'mine' ? t.custom : t.cat === tipsUi.cat)) && (!tipsUi.saved || savedTips.has(t.id))
       && toks.every((k) => norm([t.title, t.rule, t.why, t.how.join(' '), t.pro, tipCat(t.cat).label, t.level].join(' ')).includes(k)));
   }
   function renderTipResults(openId) {
@@ -1569,6 +1897,7 @@ One or two sentences about the dish.
     const day = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
     const today = TIPS.tips[day % TIPS.tips.length];
     const nLevels = (lv) => TIPS.tips.filter((t) => t.level === lv).length;
+    const mine = store.book.customTips.length;
     main.innerHTML = `
       <section class="notebook wrap">
         <header class="nb-hero">
@@ -1576,6 +1905,7 @@ One or two sentences about the dish.
           <h1>Cheat codes for a Michelin kitchen at home</h1>
           <p class="sub">${TIPS.tips.length} techniques, ratios and plating moves that separate good cooking from unforgettable, each linked to the recipes in your book where it pays off.</p>
           <p class="nb-levels"><span class="level level-foundation">Foundation</span> ${nLevels('Foundation')} everyday habits <span class="level level-pro">Pro</span> ${nLevels('Pro')} real upgrades <span class="level level-michelin">Michelin</span> ${nLevels('Michelin')} fine-dining moves</p>
+          <p><button class="btn small" data-act="tip-new">${icon('i-plus')} Add your own technique</button></p>
         </header>
         ${today ? `<article class="spotlight after-dark">
           <div class="spot-copy">
@@ -1592,8 +1922,9 @@ One or two sentences about the dish.
           <input id="tip-q" type="search" autocomplete="off" placeholder="Search techniques: sear, emulsion, plating…" value="${esc(tipsUi.q)}" aria-label="Search techniques">
         </form>
         <div class="chips tip-chips" role="tablist" aria-label="Technique categories">
-          <button class="chip ${!tipsUi.cat && !tipsUi.saved ? 'on' : ''}" data-act="tip-cat" data-cat="">All <small>${TIPS.tips.length}</small></button>
-          ${TIPS.categories.map((c) => `<button class="chip ${tipsUi.cat === c.id ? 'on' : ''}" data-act="tip-cat" data-cat="${c.id}">${esc(c.label)} <small>${TIPS.tips.filter((t) => t.cat === c.id).length}</small></button>`).join('')}
+          <button class="chip ${!tipsUi.cat && !tipsUi.saved ? 'on' : ''}" data-act="tip-cat" data-cat="">All <small>${TIPS.tips.length + mine}</small></button>
+          ${mine ? `<button class="chip ${tipsUi.cat === 'mine' ? 'on' : ''}" data-act="tip-cat" data-cat="mine">Mine <small>${mine}</small></button>` : ''}
+          ${TIPS.categories.map((c) => `<button class="chip ${tipsUi.cat === c.id ? 'on' : ''}" data-act="tip-cat" data-cat="${c.id}">${esc(c.label)} <small>${allTips().filter((t) => t.cat === c.id).length}</small></button>`).join('')}
           <button class="chip ${tipsUi.saved ? 'on' : ''}" data-act="tip-saved">${icon('i-bookmark')} Saved <small data-saved-count>${savedTips.size}</small></button>
         </div>
         <div id="tip-results"></div>
@@ -1649,6 +1980,16 @@ One or two sentences about the dish.
           <label class="field"><span>Voice language <small>for dictation, voice search and read-aloud</small></span>
             <select id="lang">${langs.map(([v, l]) => `<option value="${v}" ${settings.lang === v ? 'selected' : ''}>${l}</option>`).join('')}${langs.some(([v]) => v === settings.lang) ? '' : `<option selected value="${esc(settings.lang)}">${esc(settings.lang)}</option>`}</select></label>
           ${voice.supported ? '' : '<p class="muted small">Voice input isn’t available in this browser. Chrome, Edge and Safari support it.</p>'}
+          <div class="field"><span>Units <small>for ingredients, oven temperatures and the grocery list</small></span>${unitsSeg()}</div>
+        </section>
+
+        <section class="panel">
+          <h2>${icon('i-sparkle')} Claude</h2>
+          <p class="small">Powers <b>Ask Claude</b> on every recipe and <b>Snap a photo</b> in Add a recipe. Inside the Claude app it works with no setup. On your own site, paste an Anthropic API key; it stays on this device and is sent only to Anthropic.</p>
+          <form data-form="ai" class="gh-form">
+            <label class="field"><span>Anthropic API key</span><input name="key" type="password" autocomplete="off" value="${esc(settings.claudeKey)}" placeholder="sk-ant-…"></label>
+            <div class="row between"><span class="muted small" id="ai-status">${ai.sample ? 'Connected through the Claude app' : settings.claudeKey ? 'Key saved on this device' : 'Not connected'}</span><button class="btn" type="submit">Save</button></div>
+          </form>
         </section>
 
         <section class="panel">
@@ -1681,7 +2022,7 @@ One or two sentences about the dish.
           <div class="row wrap-row">
             <button class="btn" data-act="export-json">${icon('i-download')} Backup (.json)</button>
             <button class="btn" data-act="export-md">${icon('i-download')} Recipe book (.md)</button>
-            <label class="btn">${icon('i-upload')} Import file<input type="file" accept=".md,.markdown,.txt,.json,text/*,application/json" data-act="import-file" hidden></label>
+            <label class="btn">${icon('i-upload')} Import file<input type="file" accept=".md,.markdown,.txt,.json,.html,.htm,text/*,application/json" data-act="import-file" hidden></label>
           </div>
           <p class="muted small">The Markdown export uses the same format as your original recipe book, so it can be pasted back into a chat or imported here.</p>
         </section>
@@ -1701,6 +2042,629 @@ One or two sentences about the dish.
         </section>
       </section>`;
     $('#lang').addEventListener('change', (e) => { settings.lang = e.target.value; saveSettings(); toast('Voice language saved'); });
+  }
+
+  // ======================================================================
+  // Meal plan
+  // ======================================================================
+  const MEALS = ['Breakfast', 'Lunch', 'Dinner', 'Dessert', 'Drinks'];
+  const defaultMeal = (r) => { const k = catKey(r.category); return k === 'breakfast' ? 'Breakfast' : k === 'baking' ? 'Dessert' : k === 'drinks' ? 'Drinks' : 'Dinner'; };
+  const dayLabel = (key, opts) => { const [y, mo, d] = key.split('-').map(Number); return new Date(y, mo - 1, d).toLocaleDateString(undefined, opts || { weekday: 'long', month: 'short', day: 'numeric' }); };
+  function planAdd(day, recipeId, meal) {
+    const r = store.byId(recipeId); if (!r) return;
+    const items = store.planDay(day).concat({ id: uid(), recipeId, meal: meal || defaultMeal(r) });
+    items.sort((a, b) => MEALS.indexOf(a.meal) - MEALS.indexOf(b.meal));
+    store.setPlanDay(day, items);
+  }
+  function todayHtml() {
+    const items = store.planDay(RK.dateKey(new Date())).filter((it) => store.byId(it.recipeId));
+    if (!items.length) return '';
+    const rs = items.map((it) => store.byId(it.recipeId));
+    return `<p class="today-menu">${icon('i-calendar')} <span>On the menu today:</span> ${rs.map((r) => `<a href="#/r/${encodeURIComponent(r.id)}">${esc(r.title)}</a>`).join(', ')}
+      ${rs.length > 1 ? `<a class="linkish" href="#/cook/${rs.map((r) => encodeURIComponent(r.id)).join(',')}">Cook together</a>` : ''}</p>`;
+  }
+  function viewPlan(main) {
+    const w = parseInt(route.params.w, 10) || 0;
+    const days = RK.weekDays(w);
+    const todayKey = RK.dateKey(new Date());
+    const keys = days.map(RK.dateKey);
+    const count = keys.reduce((a, k) => a + store.planDay(k).filter((it) => store.byId(it.recipeId)).length, 0);
+    const title = w === 0 ? 'This week' : w === 1 ? 'Next week' : w === -1 ? 'Last week' : 'Week of ' + days[0].toLocaleDateString(undefined, { month: 'long', day: 'numeric' });
+    const range = days[0].toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) + ' – ' + days[6].toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+    const dayHtml = (d) => {
+      const key = RK.dateKey(d);
+      const items = store.planDay(key).filter((it) => store.byId(it.recipeId));
+      const rs = items.map((it) => store.byId(it.recipeId));
+      const sides = RK.suggestSides(rs, store.recipes, 2);
+      return `<section class="day ${key === todayKey ? 'today' : ''} ${key < todayKey ? 'past' : ''}">
+        <header class="day-head"><span class="dow">${esc(d.toLocaleDateString(undefined, { weekday: 'short' }))}</span><b>${d.getDate()}</b>${key === todayKey ? '<span class="today-dot">Today</span>' : ''}</header>
+        <ul class="day-items">${items.map((it) => { const r = store.byId(it.recipeId); const m = store.meta(r.id); return `<li class="plan-item" style="--cat:var(--c-${catKey(r.category)})">
+          <a href="#/r/${encodeURIComponent(r.id)}"><span class="pi-art">${coverImg(r, m) || icon('c-' + catKey(r.category))}</span><span class="pi-txt"><small>${esc(it.meal)}</small><b>${esc(r.title)}</b></span></a>
+          <button class="icon-btn" data-act="plan-remove" data-day="${key}" data-pid="${esc(it.id)}" aria-label="Remove ${esc(r.title)}">${icon('i-x')}</button></li>`; }).join('')}</ul>
+        ${sides.length ? `<div class="pairs"><span class="eyebrow">Pairs well</span>${sides.map((x) => `<button class="pair-chip" data-act="plan-add-direct" data-day="${key}" data-rid="${esc(x.id)}">${icon('i-plus')}${esc(x.title)}</button>`).join('')}</div>` : ''}
+        <div class="day-foot"><button class="btn small ghost" data-act="plan-pick" data-day="${key}">${icon('i-plus')} Add</button>
+          ${rs.filter((r) => r.steps.length).length > 1 ? `<a class="btn small ghost" href="#/cook/${rs.map((r) => encodeURIComponent(r.id)).join(',')}">${icon('i-play')} Cook together</a>` : rs.length === 1 && rs[0].steps.length ? `<a class="btn small ghost" href="#/r/${encodeURIComponent(rs[0].id)}/cook">${icon('i-play')} Cook</a>` : ''}</div>
+      </section>`;
+    };
+    main.innerHTML = `
+      <section class="wrap plan">
+        <header class="page-head">
+          <div><p class="eyebrow">Meal plan</p><h1>${esc(title)}</h1><p class="sub">${esc(range)} · ${count ? `${count} dish${count === 1 ? '' : 'es'} planned` : 'Nothing planned yet'}</p></div>
+          <div class="week-nav">
+            <a class="icon-btn" href="#/plan?w=${w - 1}" aria-label="Previous week">${icon('i-left')}</a>
+            ${w !== 0 ? '<a class="btn small ghost" href="#/plan">This week</a>' : ''}
+            <a class="icon-btn" href="#/plan?w=${w + 1}" aria-label="Next week">${icon('i-right')}</a>
+          </div>
+        </header>
+        <div class="row wrap-row plan-actions">
+          <button class="btn primary" data-act="plan-groceries" data-w="${w}" ${count ? '' : 'disabled'}>${icon('i-bag')} Add week to groceries</button>
+          <button class="btn ghost" data-act="plan-clear" data-w="${w}" ${count ? '' : 'disabled'}>Clear week</button>
+        </div>
+        <div class="week">${days.map(dayHtml).join('')}</div>
+      </section>`;
+    hydratePhotos(main);
+  }
+  /** Pick a recipe for a given day. */
+  function openPlanPicker(day) {
+    let meal = 'Dinner';
+    const listHtml = (q) => {
+      const rs = q.trim() ? search(q).map((x) => x.r) : store.recipes.slice().sort((a, b) => (store.meta(b.id).fav ? 1 : 0) - (store.meta(a.id).fav ? 1 : 0) || a.title.localeCompare(b.title));
+      return rs.slice(0, 60).map((r) => `<li><button class="pick-row" data-rid="${esc(r.id)}" style="--cat:var(--c-${catKey(r.category)})">${icon('c-' + catKey(r.category))}<span><b>${esc(r.title)}</b><small>${esc(r.category || '')}${r.time ? ' · ' + esc(r.time.replace(/\s*\(.*\)$/, '')) : ''}</small></span>${store.meta(r.id).fav ? icon('i-heart', 'fav-i') : ''}</button></li>`).join('') || '<li class="muted small">No matches</li>';
+    };
+    sheet.open({ title: 'Add to ' + dayLabel(day), body: `
+      <div class="seg meal-seg" role="radiogroup" aria-label="Meal">${MEALS.map((m) => `<button role="radio" data-meal="${m}" class="${m === meal ? 'on' : ''}" aria-checked="${m === meal}">${m}</button>`).join('')}</div>
+      <div class="searchbar small-search">${icon('i-search', 'lead')}<input id="pick-q" type="search" placeholder="Search recipes…" autocomplete="off" autofocus></div>
+      <ul class="pick-list">${listHtml('')}</ul>`,
+    onMount: (el) => {
+      const q = $('#pick-q', el), ul = $('.pick-list', el);
+      q.addEventListener('input', debounce(() => { ul.innerHTML = listHtml(q.value); }, 80));
+      el.addEventListener('click', (e) => {
+        const mb = e.target.closest('[data-meal]');
+        if (mb) { meal = mb.dataset.meal; $$('[data-meal]', el).forEach((b) => { b.classList.toggle('on', b === mb); b.setAttribute('aria-checked', b === mb); }); return; }
+        const row = e.target.closest('.pick-row');
+        if (row) { planAdd(day, row.dataset.rid, meal); sheet.close(true); toast('Added to ' + dayLabel(day, { weekday: 'long' })); if (route.name === 'plan') viewPlan($('#main')); }
+      });
+    } });
+  }
+  /** Pick a day for a given recipe (from its page). */
+  function openPlanDays(r) {
+    let meal = defaultMeal(r);
+    const start = new Date();
+    const days = Array.from({ length: 14 }, (_, i) => { const d = new Date(start); d.setDate(start.getDate() + i); return d; });
+    sheet.open({ title: 'Plan ' + r.title, body: `
+      <div class="seg meal-seg" role="radiogroup" aria-label="Meal">${MEALS.map((m) => `<button role="radio" data-meal="${m}" class="${m === meal ? 'on' : ''}" aria-checked="${m === meal}">${m}</button>`).join('')}</div>
+      <div class="day-pick">${days.map((d, i) => { const key = RK.dateKey(d); const n = store.planDay(key).length; return `<button data-day="${key}"><small>${i === 0 ? 'Today' : i === 1 ? 'Tomorrow' : esc(d.toLocaleDateString(undefined, { weekday: 'short' }))}</small><b>${d.getDate()}</b><span>${esc(d.toLocaleDateString(undefined, { month: 'short' }))}${n ? ` · ${n}` : ''}</span></button>`; }).join('')}</div>`,
+    onMount: (el) => el.addEventListener('click', (e) => {
+      const mb = e.target.closest('[data-meal]');
+      if (mb) { meal = mb.dataset.meal; $$('[data-meal]', el).forEach((b) => { b.classList.toggle('on', b === mb); b.setAttribute('aria-checked', b === mb); }); return; }
+      const db = e.target.closest('[data-day]');
+      if (db) { planAdd(db.dataset.day, r.id, meal); sheet.close(true); toast('Planned for ' + dayLabel(db.dataset.day, { weekday: 'long', month: 'short', day: 'numeric' }), { label: 'View plan', run: () => go('#/plan') }); }
+    }) });
+  }
+  /** Pick other dishes to cook alongside this one. */
+  function openCookWith(r) {
+    const others = store.recipes.filter((x) => x.id !== r.id && x.steps.length);
+    const sides = RK.suggestSides([r], store.recipes, 3).map((x) => x.id);
+    others.sort((a, b) => (sides.includes(b.id) ? 1 : 0) - (sides.includes(a.id) ? 1 : 0) || a.title.localeCompare(b.title));
+    sheet.open({ title: 'Cook together', body: `<p class="muted small">Pick the dishes to cook alongside <b>${esc(r.title)}</b>. You’ll get one cooking mode with a tab for each dish, and timers labeled by dish.</p>
+      <ul class="pick-list checks">${others.map((x) => `<li><label class="check"><input type="checkbox" value="${esc(x.id)}"><span class="box">${icon('i-check')}</span><span><b>${esc(x.title)}</b>${sides.includes(x.id) ? ' <small class="pairs-tag">pairs well</small>' : ''}</span></label></li>`).join('')}</ul>
+      <div class="sheet-foot"><button class="btn primary" data-go>${icon('i-play')} Start cooking</button></div>`,
+    onMount: (el) => {
+      el.addEventListener('change', (e) => { const c = e.target.closest('.check'); if (c) c.classList.toggle('on', e.target.checked); });
+      $('[data-go]', el).addEventListener('click', () => {
+        const ids = [r.id].concat($$('input:checked', el).map((c) => c.value));
+        sheet.close(true); go('#/cook/' + ids.map(encodeURIComponent).join(','));
+      });
+    } });
+  }
+
+  // ======================================================================
+  // Collections
+  // ======================================================================
+  const colRecipes = (c) => c.recipeIds.map((id) => store.byId(id)).filter(Boolean);
+  function colTileHtml(c) {
+    const rs = colRecipes(c);
+    const imgs = rs.filter((r) => r.image).slice(0, 3);
+    return `<a class="col-tile" href="#/c/${encodeURIComponent(c.id)}">
+      <span class="col-art n${imgs.length}">${imgs.map((r) => `<img src="${esc(r.image)}" alt="" loading="lazy">`).join('') || icon('i-grid')}</span>
+      <span class="col-body"><b>${esc(c.name)}</b><small>${rs.length} recipe${rs.length === 1 ? '' : 's'}</small></span></a>`;
+  }
+  function collectionsStripHtml() {
+    const cs = store.book.collections;
+    return `<section class="col-strip" aria-label="Collections">
+      <div class="strip-head"><h2>Collections</h2><a class="linkish" href="#/collections">All collections</a></div>
+      <div class="col-scroll">${cs.map(colTileHtml).join('')}<button class="col-tile new" data-act="col-new"><span class="col-art">${icon('i-plus')}</span><span class="col-body"><b>New collection</b><small>Group recipes for an occasion</small></span></button></div>
+    </section>`;
+  }
+  function viewCollections(main) {
+    main.innerHTML = `<section class="wrap collections">
+      <header class="page-head"><div><p class="eyebrow">Collections</p><h1>Menus for every occasion</h1><p class="sub">Group recipes for a holiday, a dinner party or practice runs, with a timeline for the day itself.</p></div>
+        <button class="btn primary" data-act="col-new">${icon('i-plus')} New collection</button></header>
+      <div class="col-grid">${store.book.collections.map(colTileHtml).join('')}</div>
+      ${store.book.collections.length ? '' : '<div class="empty"><p class="empty-title">No collections yet</p></div>'}
+    </section>`;
+  }
+  function viewCollection(main, id) {
+    const c = store.byCollection(id);
+    if (!c) { main.innerHTML = `<section class="wrap narrow empty"><p class="empty-title">Collection not found</p><a class="btn" href="#/collections">All collections</a></section>`; return; }
+    const rs = colRecipes(c);
+    const cookable = rs.filter((r) => r.steps.length);
+    main.innerHTML = `<section class="wrap collection">
+      <nav class="crumbs"><a href="#/collections" class="back">${icon('i-back')} Collections</a></nav>
+      <header class="page-head">
+        <div><p class="eyebrow">Collection · ${rs.length} recipe${rs.length === 1 ? '' : 's'}</p><h1>${esc(c.name)}</h1>${c.description ? `<p class="sub">${inlineMd(c.description)}</p>` : ''}</div>
+        <div class="row wrap-row">
+          ${cookable.length > 1 ? `<a class="btn primary" href="#/cook/${cookable.slice(0, 6).map((r) => encodeURIComponent(r.id)).join(',')}">${icon('i-play')} Cook together</a>` : ''}
+          <button class="btn" data-act="col-groceries" data-cid="${esc(c.id)}" ${rs.length ? '' : 'disabled'}>${icon('i-bag')} Add all to groceries</button>
+          <button class="btn" data-act="col-edit" data-cid="${esc(c.id)}">${icon('i-pencil')} Edit</button>
+        </div>
+      </header>
+      <div class="col-layout ${c.timeline ? '' : 'no-tl'}">
+        <div>${rs.length ? `<div class="grid">${rs.map((r) => cardHtml({ r })).join('')}</div>` : '<div class="empty"><p>No recipes yet. Open any recipe and choose <b>Add to collection</b> from the ⋯ menu.</p></div>'}</div>
+        ${c.timeline ? `<aside class="panel timeline"><h2>Game plan</h2>${blockMd(c.timeline)}</aside>` : `<p class="muted small add-tl"><button class="linkish" data-act="col-edit" data-cid="${esc(c.id)}">Add a day-of timeline</button></p>`}
+      </div>
+    </section>`;
+    hydratePhotos(main);
+  }
+  function openCollectionEditor(c, presetIds) {
+    const isNew = !c;
+    c = c ? JSON.parse(JSON.stringify(c)) : { id: '', name: '', description: '', recipeIds: presetIds || [], timeline: '' };
+    const rs = colRecipes(c);
+    sheet.open({ title: isNew ? 'New collection' : 'Edit collection', wide: true, body: `
+      <form class="col-form">
+        <label class="field"><span>Name</span><input name="name" required value="${esc(c.name)}" placeholder="e.g. Sunday Supper" autofocus></label>
+        <label class="field"><span>Description</span><textarea name="description" rows="2" placeholder="What it’s for">${esc(c.description)}</textarea></label>
+        <label class="field"><span>Timeline <small>optional · “Day before:” lines start a section, “-” for each task</small></span>
+          <textarea name="timeline" rows="7" placeholder="**Day before**&#10;- Make the dough&#10;&#10;**2 hours out**&#10;- Start the braise">${esc(c.timeline)}</textarea></label>
+        ${rs.length ? `<div class="field"><span>Recipes <small>untick to remove</small></span><ul class="pick-list checks">${rs.map((r) => `<li><label class="check on"><input type="checkbox" checked value="${esc(r.id)}"><span class="box">${icon('i-check')}</span><span>${esc(r.title)}</span></label></li>`).join('')}</ul></div>` : ''}
+        <div class="sheet-foot">${isNew ? '' : '<button type="button" class="btn ghost danger" data-del>Delete</button>'}<span></span><button class="btn primary" type="submit">${icon('i-check')} Save</button></div>
+      </form>`,
+    onMount: (el) => {
+      const form = $('form', el);
+      el.addEventListener('change', (e) => { const ch = e.target.closest('.check'); if (ch) ch.classList.toggle('on', e.target.checked); });
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const fd = new FormData(form);
+        const name = String(fd.get('name') || '').trim();
+        if (!name) return;
+        const keep = new Set($$('.pick-list input:checked', el).map((x) => x.value));
+        c.name = name; c.description = String(fd.get('description') || '').trim(); c.timeline = String(fd.get('timeline') || '').trim();
+        if (rs.length) c.recipeIds = c.recipeIds.filter((id) => keep.has(id) || !store.byId(id));
+        if (isNew) { let base = 'c-' + RB.slugify(name), id = base, n = 2; while (store.byCollection(id)) id = base + '-' + n++; c.id = id; }
+        store.saveCollection(c); sheet.close(true);
+        toast(isNew ? 'Collection created' : 'Collection saved');
+        if (isNew && !presetIds) go('#/c/' + encodeURIComponent(c.id)); else render();
+      });
+      const del = $('[data-del]', el);
+      if (del) del.addEventListener('click', async () => {
+        if (!(await ask(`Delete the “${c.name}” collection? The recipes themselves stay in your book.`, { ok: 'Delete', danger: true }))) { openCollectionEditor(store.byCollection(c.id)); return; }
+        store.removeCollection(c.id); toast('Collection deleted'); go('#/collections');
+      });
+    } });
+  }
+  function openAddToCollection(r) {
+    const body = () => `<ul class="pick-list checks">${store.book.collections.map((c) => { const on = c.recipeIds.includes(r.id); return `<li><label class="check ${on ? 'on' : ''}"><input type="checkbox" value="${esc(c.id)}" ${on ? 'checked' : ''}><span class="box">${icon('i-check')}</span><span><b>${esc(c.name)}</b> <small class="muted">${colRecipes(c).length}</small></span></label></li>`; }).join('')}</ul>
+      <form class="add-item new-col"><input placeholder="New collection name" aria-label="New collection name"><button class="btn" type="submit">${icon('i-plus')} Create</button></form>`;
+    sheet.open({ title: 'Add to collection', body: body(), onMount: (el) => {
+      el.addEventListener('change', (e) => {
+        const inp = e.target; if (inp.type !== 'checkbox') return;
+        const c = JSON.parse(JSON.stringify(store.byCollection(inp.value)));
+        c.recipeIds = inp.checked ? c.recipeIds.concat(r.id) : c.recipeIds.filter((id) => id !== r.id);
+        store.saveCollection(c); inp.closest('.check').classList.toggle('on', inp.checked);
+        toast(inp.checked ? 'Added to ' + c.name : 'Removed from ' + c.name);
+      });
+      el.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = $('.new-col input', el).value.trim(); if (!name) return;
+        let base = 'c-' + RB.slugify(name), id = base, n = 2; while (store.byCollection(id)) id = base + '-' + n++;
+        store.saveCollection({ id, name, description: '', recipeIds: [r.id], timeline: '' });
+        toast('Added to ' + name); $('.sheet-content', el).innerHTML = body();
+      });
+    } });
+  }
+
+  // ======================================================================
+  // What can I make?
+  // ======================================================================
+  let pantryCommon = null;
+  function viewPantry(main) {
+    const have = LS.get(K.pantry, []);
+    if (!pantryCommon) {
+      const freq = new Map();
+      store.recipes.forEach((r) => RK.recipeNeeds(r, staplesList()).forEach((raw, name) => { if (name.length < 26) freq.set(name, (freq.get(name) || 0) + 1); }));
+      pantryCommon = Array.from(freq.entries()).sort((a, b) => b[1] - a[1]).map(([n]) => n);
+    }
+    const quick = pantryCommon.filter((n) => !have.some((h) => RK.normalizeName(h) === n)).slice(0, 18);
+    const results = RK.whatCanIMake(have, store.recipes, staplesList()).slice(0, 30);
+    main.innerHTML = `<section class="wrap pantry">
+      <header class="page-head"><div><p class="eyebrow">What can I make?</p><h1>Cook from what you have</h1>
+        <p class="sub">Add what’s in your fridge and pantry. Recipes are ranked by how little you’d need to buy. Staples like ${esc(staplesList().slice(0, 4).join(', '))} are assumed.</p></div></header>
+      <form class="add-item" data-form="pantry">
+        <div class="with-mic"><input id="pantry-new" list="pantry-list" placeholder="chicken, rice, limes…" enterkeyhint="done" aria-label="Add an ingredient you have" autocomplete="off">${voice.supported ? `<button type="button" class="icon-btn mic" data-act="dictate" data-target="pantry-new" data-mode="text" aria-label="Dictate">${icon('i-mic')}</button>` : ''}</div>
+        <datalist id="pantry-list">${pantryCommon.slice(0, 300).map((n) => `<option value="${esc(n)}">`).join('')}</datalist>
+        <button class="btn primary" type="submit">${icon('i-plus')} Add</button>
+      </form>
+      ${have.length ? `<div class="have"><span class="eyebrow">You have</span>${have.map((h) => `<button class="tag on" data-act="pantry-rm" data-v="${esc(h)}">${esc(h)} ${icon('i-x')}</button>`).join('')}<button class="linkish" data-act="pantry-clear">Clear</button></div>` : ''}
+      <div class="have quick"><span class="eyebrow">Common</span>${quick.map((n) => `<button class="tag" data-act="pantry-add" data-v="${esc(n)}">+ ${esc(n)}</button>`).join('')}</div>
+      ${have.length ? (results.length ? `<ol class="can-make">${results.map((x) => {
+        const pct = Math.round((x.have.length / x.total) * 100);
+        return `<li class="can-row" style="--cat:var(--c-${catKey(x.recipe.category)})">
+          <a class="can-main" href="#/r/${encodeURIComponent(x.recipe.id)}"><span class="can-art">${coverImg(x.recipe, store.meta(x.recipe.id)) || icon('c-' + catKey(x.recipe.category))}</span>
+            <span class="can-txt"><b>${esc(x.recipe.title)}</b>
+            <span class="can-meter"><i style="width:${pct}%"></i></span>
+            <small>${x.missing.length ? `Need ${x.missing.length}: ${esc(x.missing.slice(0, 6).join(', '))}${x.missing.length > 6 ? '…' : ''}` : 'You have everything!'}</small></span></a>
+          ${x.missing.length ? `<button class="btn small ghost" data-act="pantry-missing" data-id="${esc(x.recipe.id)}">${icon('i-bag')} Add ${x.missing.length} to list</button>` : `<span class="pill">${icon('i-check')} Ready</span>`}
+        </li>`; }).join('')}</ol>` : '<div class="empty"><p class="empty-title">No matches yet</p><p>Add a few more ingredients.</p></div>')
+      : '<div class="empty"><p>Start by adding a few ingredients, or tap the common ones above.</p></div>'}
+    </section>`;
+    hydratePhotos(main);
+  }
+  function pantrySet(list) { LS.set(K.pantry, Array.from(new Set(list.map((x) => x.trim()).filter(Boolean)))); viewPantry($('#main')); }
+
+  // ======================================================================
+  // Claude: Ask Claude + photo-to-recipe. Uses the Claude app when available, else your API key.
+  // ======================================================================
+  const ai = {
+    sample: null, ready: null,
+    init() {
+      if (!this.ready) {
+        this.ready = (async () => {
+          try { if (window.claude && typeof window.claude.use === 'function') this.sample = await window.claude.use('sample'); } catch (e) { this.sample = null; }
+          return this.sample;
+        })();
+      }
+      return this.ready;
+    },
+    available() { return !!(this.sample || settings.claudeKey); },
+    async imagesOk() {
+      if (this.sample) { try { const l = await this.sample.limits(); if (l && l.images) return true; } catch (e) { /* */ } }
+      return !!settings.claudeKey;
+    },
+    async ask(prompt, opts) {
+      opts = opts || {};
+      if (this.sample && (!opts.images || await this.imagesOk())) {
+        try {
+          const res = await this.sample(prompt, { onText: opts.onText ? ({ text }) => opts.onText(text) : undefined, signal: opts.signal, images: opts.images, cache: false });
+          return res.text;
+        } catch (e) {
+          if (e && e.name === 'AbortError') throw e;
+          if (e && e.code === 'not_granted') { this.sample = null; if (!settings.claudeKey) throw new Error('Claude access wasn’t allowed for this page.'); }
+          else if (e && e.code === 'rate_limited') throw new Error('Claude is busy. Try again in a minute.');
+          else throw new Error((e && e.message) || 'Claude is unavailable right now.');
+        }
+      }
+      if (!settings.claudeKey) throw new Error('NO_KEY');
+      return this.api(prompt, opts);
+    },
+    async api(prompt, opts) {
+      const content = [];
+      for (const b of opts.images || []) content.push({ type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: await blobToBase64(await resizeImage(b, 1568, 0.85)) } });
+      content.push({ type: 'text', text: prompt });
+      const res = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST', signal: opts.signal,
+        headers: { 'content-type': 'application/json', 'x-api-key': settings.claudeKey, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' },
+        body: JSON.stringify({ model: 'claude-opus-5-5', max_tokens: 8000, thinking: { type: 'adaptive' }, stream: true, messages: [{ role: 'user', content }] }),
+      });
+      if (!res.ok) {
+        let msg = 'Claude API error ' + res.status;
+        try { const j = await res.json(); msg = (j.error && j.error.message) || msg; } catch (e) { /* */ }
+        throw new Error(res.status === 401 ? 'Your API key was rejected. Check it in Settings.' : msg);
+      }
+      const reader = res.body.getReader(), dec = new TextDecoder();
+      let buf = '', text = '';
+      for (;;) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buf += dec.decode(value, { stream: true });
+        let i;
+        while ((i = buf.indexOf('\n')) >= 0) {
+          const line = buf.slice(0, i).trim(); buf = buf.slice(i + 1);
+          if (!line.startsWith('data:')) continue;
+          let ev; try { ev = JSON.parse(line.slice(5)); } catch (e) { continue; }
+          if (ev.type === 'content_block_delta' && ev.delta && ev.delta.type === 'text_delta') { text += ev.delta.text; if (opts.onText) opts.onText(text); }
+          else if (ev.type === 'error') throw new Error((ev.error && ev.error.message) || 'Claude stopped unexpectedly');
+        }
+      }
+      return text;
+    },
+  };
+  const aiSetupHtml = () => `<div class="ai-setup">${icon('i-sparkle')}<p>To ask Claude from your own site, add an Anthropic API key in <a href="#/settings">Settings</a>. It stays on this device. Inside the Claude app this works with no setup.</p></div>`;
+  const ASK_CHIPS = ['What can I substitute if I’m missing something?', 'Scale this for 8 people', 'Make it dairy-free', 'How far ahead can I make it?', 'What should I serve with it?', 'How do I take this to restaurant level?'];
+  async function openAsk(r) {
+    await ai.init();
+    let ctl = null, lastQ = '', lastA = '';
+    sheet.open({ title: 'Ask Claude', wide: true, cls: 'ask-claude', body: `
+      <p class="muted small">About <b>${esc(r.title)}</b>. Claude sees the full recipe and your notes.</p>
+      ${ai.available() ? '' : aiSetupHtml()}
+      <div class="ask-chips">${ASK_CHIPS.map((q) => `<button class="tag" data-q="${esc(q)}">${esc(q)}</button>`).join('')}</div>
+      <form class="ask-form"><textarea rows="2" placeholder="Ask anything: swaps, timing, fixing a mistake…" aria-label="Your question" autofocus></textarea><button class="btn primary" type="submit">${icon('i-sparkle')} Ask</button></form>
+      <div class="ask-answer" aria-live="polite" hidden></div>
+      <div class="row end ask-after" hidden><button class="btn small ghost" data-copy>${icon('i-copy')} Copy</button><button class="btn small" data-save>${icon('i-pencil')} Save to my notes</button></div>`,
+    onClose: () => { if (ctl) ctl.abort(); },
+    onMount: (el) => {
+      const ta = $('textarea', el), out = $('.ask-answer', el), after = $('.ask-after', el), btn = $('.ask-form button', el);
+      const run = async (q) => {
+        if (!q.trim()) return;
+        if (ctl) ctl.abort();
+        ctl = new AbortController();
+        lastQ = q; lastA = '';
+        out.hidden = false; after.hidden = true; out.innerHTML = '<p class="muted thinking">Thinking…</p>'; btn.disabled = true;
+        const m = store.meta(r.id);
+        const prompt = `You are a warm, precise professional chef helping a home cook with one recipe from their personal recipe book.
+Answer the question below about this recipe. Be concise: under about 180 words unless they ask for a full rewritten ingredient list or method. Use short markdown: a sentence or two, then bullet points with **bold** key amounts or times. Use ${settings.units === 'metric' ? 'metric units and °C' : settings.units === 'us' ? 'US units and °F' : 'the same units the recipe uses'}. If the question isn't about cooking, steer back to the recipe.
+
+RECIPE
+${RB.toMarkdown(r)}
+${m.notes ? '\nTHEIR NOTES\n' + m.notes + '\n' : ''}
+QUESTION
+${q}`;
+        try {
+          lastA = await ai.ask(prompt, { signal: ctl.signal, onText: (t) => { out.innerHTML = blockMd(t); } });
+          out.innerHTML = blockMd(lastA) || '<p class="muted">No answer came back.</p>';
+          after.hidden = !lastA;
+        } catch (e) {
+          if (e && e.name === 'AbortError') return;
+          out.innerHTML = e.message === 'NO_KEY' ? aiSetupHtml() : `<p class="error-text">${esc(e.message || 'Something went wrong')}</p>`;
+        } finally { btn.disabled = false; }
+      };
+      $('.ask-form', el).addEventListener('submit', (e) => { e.preventDefault(); run(ta.value); });
+      ta.addEventListener('keydown', (e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); run(ta.value); } });
+      $$('[data-q]', el).forEach((b) => b.addEventListener('click', () => { ta.value = b.dataset.q; run(b.dataset.q); }));
+      $('[data-copy]', el).addEventListener('click', () => copyText(lastA, 'Answer copied'));
+      $('[data-save]', el).addEventListener('click', () => {
+        const m = store.meta(r.id);
+        const add = `Asked Claude: ${lastQ}\n${RB.stripMd(lastA).replace(/\n{3,}/g, '\n\n')}`;
+        store.setMeta(r.id, { notes: (m.notes ? m.notes.replace(/\s+$/, '') + '\n\n' : '') + add });
+        toast('Saved to your notes'); const n = $('#my-notes'); if (n) n.value = store.meta(r.id).notes;
+        $('[data-save]', el).disabled = true;
+      });
+    } });
+  }
+  async function photoToRecipe(files) {
+    const main = $('#main');
+    await ai.init();
+    const imgs = await Promise.all(files.map((f) => resizeImage(f, 1568, 0.85)));
+    const thumbs = imgs.map((b) => URL.createObjectURL(b));
+    main.innerHTML = `<section class="wrap narrow photo-import">
+      <nav class="crumbs"><a href="#/add" class="back">${icon('i-back')} Add a recipe</a></nav>
+      <h1>Reading your photo${files.length > 1 ? 's' : ''}</h1>
+      <div class="photo-thumbs">${thumbs.map((u) => `<img src="${u}" alt="">`).join('')}</div>
+      <p class="status" id="photo-status">${icon('i-sparkle')} Claude is transcribing the recipe…</p>
+      <pre class="photo-stream" id="photo-stream"></pre>
+    </section>`;
+    const st = $('#photo-status'), stream = $('#photo-stream');
+    if (!(await ai.imagesOk())) {
+      st.className = 'status error';
+      st.innerHTML = ai.sample ? 'Photo reading isn’t available in this view. Open your book on your site with an API key, or paste the recipe text instead.' : 'Photo reading needs Claude. Add an Anthropic API key in <a href="#/settings">Settings</a>, or open the book in the Claude app.';
+      return;
+    }
+    const prompt = `Transcribe the recipe in ${files.length > 1 ? 'these photos (they may be pages of one recipe)' : 'this photo'} for my recipe book. Keep the original quantities, wording and order; fix obvious typos. Leave out sections the photo doesn't have. If it contains several recipes, give each its own "## " section.
+
+${CLAUDE_PROMPT}`;
+    try {
+      const text = await ai.ask(prompt, { images: imgs, onText: (t) => { stream.textContent = t; stream.scrollTop = stream.scrollHeight; } });
+      const list = RB.parseText(text).filter((r) => r.ingredients.length || r.steps.length);
+      if (!list.length) throw new Error('Couldn’t find a recipe in that photo. Try a sharper, closer shot.');
+      st.innerHTML = `${icon('i-check')} Got it`;
+      handleParsed(list);
+    } catch (e) {
+      st.className = 'status error';
+      st.innerHTML = e.message === 'NO_KEY' ? 'Photo reading needs Claude. Add an Anthropic API key in <a href="#/settings">Settings</a>.' : esc(e.message || 'Something went wrong');
+    }
+  }
+
+  // ======================================================================
+  // Share a recipe: card image, clean text or a standalone web page
+  // ======================================================================
+  function shareText(r) {
+    const f = getScale(r.id);
+    const lines = [r.title.toUpperCase()];
+    if (r.description) lines.push(RB.stripMd(r.description));
+    const facts = [r.time, r.yield].filter(Boolean).join(' · ');
+    if (facts) lines.push(facts);
+    if (r.ingredients.length) {
+      lines.push('', 'INGREDIENTS');
+      r.ingredients.forEach((g) => { if (g.name) lines.push(g.name + ':'); g.items.forEach((it) => lines.push('• ' + RB.stripMd(ingText(it, f)))); });
+    }
+    if (r.steps.length) {
+      lines.push('', 'METHOD'); let n = 0;
+      r.steps.forEach((g) => { if (g.name) lines.push(g.name + ':'); g.items.forEach((s) => lines.push(++n + '. ' + RB.stripMd(stepText(s)))); });
+    }
+    if (r.notes.length) { lines.push('', 'NOTES'); r.notes.forEach((x) => lines.push('• ' + RB.stripMd(x))); }
+    if (r.sources.length) lines.push('', 'Source: ' + r.sources.map((x) => x.url).join(' '));
+    lines.push('', '— from Waynesdays Recipe Book');
+    return lines.join('\n');
+  }
+  function recipePage(r) {
+    const abs = (u) => { try { return new URL(u, location.href).href; } catch (e) { return u; } };
+    const ld = { '@context': 'https://schema.org', '@type': 'Recipe', name: r.title, description: RB.stripMd(r.description || ''), recipeCategory: r.category, keywords: r.tags.join(', '),
+      recipeYield: r.yield || undefined, image: r.image && !/^data:/.test(r.image) ? abs(r.image) : undefined,
+      recipeIngredient: r.ingredients.flatMap((g) => g.items.map((x) => RB.stripMd(x))),
+      recipeInstructions: r.steps.map((g) => (g.name ? { '@type': 'HowToSection', name: g.name, itemListElement: g.items.map((t) => ({ '@type': 'HowToStep', text: RB.stripMd(t) })) } : g.items.map((t) => ({ '@type': 'HowToStep', text: RB.stripMd(t) })))).flat() };
+    const md = RB.toMarkdown(r).replace(/<\/script/gi, '<\\/script');
+    return `<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${esc(r.title)}</title>
+<script type="application/ld+json">${JSON.stringify(ld).replace(/</g, '\\u003c')}</script>
+<script type="text/markdown" id="wrb-recipe">${md}</script>
+<style>
+:root{--bg:#f8f7f4;--ink:#15140f;--ink2:#4f4c45;--ink3:#8b877d;--line:#e3e0d8;--accent:#94713f}
+@media (prefers-color-scheme:dark){:root{--bg:#0e0d0b;--ink:#f1ede4;--ink2:#bdb7aa;--ink3:#7f796e;--line:#2a2822;--accent:#c9a66b}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:300 17px/1.65 'Jost','Avenir Next',system-ui,sans-serif}
+article{max-width:760px;margin:0 auto;padding:48px 20px 64px}img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:6px;margin-bottom:28px}
+.eyebrow{font:500 .7rem/1.4 system-ui,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
+h1,h2,h3{font-family:'Bodoni Moda','Didot',Georgia,serif;font-weight:500;line-height:1.1;margin:.2em 0}h1{font-size:clamp(2.2rem,6vw,3.4rem)}
+h2{font-style:italic;font-weight:400;font-size:1.7rem;border-bottom:1px solid var(--ink);padding-bottom:10px;margin-top:40px}h3{font-size:1.1rem;margin-top:20px}
+.lede{color:var(--ink2);font-size:1.1rem}.facts{color:var(--ink3);font-size:.85rem;letter-spacing:.14em;text-transform:uppercase}
+ul,ol{padding-left:1.2em}li{margin:.45em 0}ul li::marker{color:var(--accent)}ol li::marker{font-family:Georgia,serif;color:var(--accent)}
+footer{border-top:1px solid var(--line);margin-top:48px;padding-top:16px;color:var(--ink3);font-size:.8rem;letter-spacing:.14em;text-transform:uppercase}
+a{color:inherit}
+</style></head><body><article>
+${r.image && !/^data:/.test(r.image) ? `<img src="${esc(abs(r.image))}" alt="">` : ''}
+<p class="eyebrow">${esc(r.category || 'Recipe')}</p>
+<h1>${esc(r.title)}</h1>
+${r.description ? `<p class="lede">${inlineMd(r.description)}</p>` : ''}
+${r.time || r.yield ? `<p class="facts">${[r.time, r.yield].filter(Boolean).map(esc).join(' · ')}</p>` : ''}
+${r.ingredients.length ? `<h2>Ingredients</h2>${r.ingredients.map((g) => `${g.name ? `<h3>${esc(g.name)}</h3>` : ''}<ul>${g.items.map((it) => `<li>${inlineMd(it)}</li>`).join('')}</ul>`).join('')}` : ''}
+${r.steps.length ? `<h2>Method</h2>${r.steps.map((g) => `${g.name ? `<h3>${esc(g.name)}</h3>` : ''}<ol>${g.items.map((it) => `<li>${inlineMd(it)}</li>`).join('')}</ol>`).join('')}` : ''}
+${r.notes.length ? `<h2>Notes</h2><ul>${r.notes.map((n) => `<li>${inlineMd(n)}</li>`).join('')}</ul>` : ''}
+${r.extras.map((e) => `<h2>${esc(e.title)}</h2>${blockMd(e.body)}`).join('')}
+${r.sources.length ? `<p class="facts">Source: ${r.sources.map((x) => `<a href="${esc(x.url)}">${esc(x.label || RB.hostLabel(x.url))}</a>`).join(' · ')}</p>` : ''}
+<footer>Waynesdays Recipe Book · import this file into the app to save it</footer>
+</article></body></html>
+`;
+  }
+  async function cardImage(r) {
+    const W = 1080, H = 1350, P = 84;
+    const c = document.createElement('canvas'); c.width = W; c.height = H;
+    const x = c.getContext('2d');
+    try { if (document.fonts && document.fonts.ready) await document.fonts.ready; } catch (e) { /* */ }
+    const serif = '"Bodoni Moda", Didot, "Bodoni 72", Georgia, serif', sans = 'Jost, "Avenir Next", system-ui, sans-serif';
+    x.fillStyle = '#f8f7f4'; x.fillRect(0, 0, W, H);
+    // photo: your cover, else the recipe photo if it's on this site (other sites' images can't be drawn)
+    let img = null;
+    const m = store.meta(r.id);
+    const load = (src) => new Promise((res) => { const im = new Image(); im.onload = () => res(im); im.onerror = () => res(null); im.src = src; });
+    if (m.cover) { const u = await photos.url(m.cover, 'full'); if (u) img = await load(u); }
+    if (!img && r.image) { try { if (new URL(r.image, location.href).origin === location.origin) img = await load(r.image); } catch (e) { /* */ } }
+    let y;
+    if (img) {
+      const ih = 600, k = Math.max(W / img.width, ih / img.height), dw = img.width * k, dh = img.height * k;
+      x.save(); x.beginPath(); x.rect(0, 0, W, ih); x.clip(); x.drawImage(img, (W - dw) / 2, (ih - dh) / 2, dw, dh); x.restore();
+      y = ih + 78;
+    } else {
+      x.fillStyle = '#15140f'; x.fillRect(0, 0, W, 16); y = 150;
+    }
+    const wrap = (text, font, maxW, maxLines) => {
+      x.font = font; const words = String(text).split(/\s+/); const lines = []; let cur = '';
+      words.forEach((w) => { const t = cur ? cur + ' ' + w : w; if (x.measureText(t).width > maxW && cur) { lines.push(cur); cur = w; } else cur = t; });
+      if (cur) lines.push(cur);
+      if (lines.length > maxLines) { lines.length = maxLines; lines[maxLines - 1] = lines[maxLines - 1].replace(/\s*\S*$/, '') + '…'; }
+      return lines;
+    };
+    x.fillStyle = '#94713f'; x.font = `500 24px ${sans}`;
+    if ('letterSpacing' in x) x.letterSpacing = '6px';
+    x.fillText(String(r.category || 'Recipe').toUpperCase(), P, y);
+    if ('letterSpacing' in x) x.letterSpacing = '0px';
+    y += 26;
+    x.fillStyle = '#15140f';
+    const tl = wrap(r.title, `500 ${img ? 62 : 82}px ${serif}`, W - P * 2, img ? 2 : 3);
+    tl.forEach((ln) => { y += img ? 70 : 92; x.fillText(ln, P, y); });
+    const facts = [r.time && r.time.replace(/\s*\(.*\)$/, ''), r.yield, m.rating ? '★'.repeat(m.rating) : ''].filter(Boolean).join('   ·   ');
+    if (facts) { y += 52; x.fillStyle = '#4f4c45'; x.font = `400 26px ${sans}`; x.fillText(facts, P, y); }
+    y += 40; x.fillStyle = '#15140f'; x.fillRect(P, y, W - P * 2, 2); y += 52;
+    // ingredients in two columns
+    const items = r.ingredients.flatMap((g) => g.items.map((it) => RB.stripMd(ingText(it, getScale(r.id)))));
+    x.font = `400 25px ${sans}`;
+    const colW = (W - P * 2 - 48) / 2, lineH = 36, bottom = H - 120;
+    const rows = Math.max(1, Math.floor((bottom - y) / lineH));
+    let col = 0, row = 0, shown = 0;
+    for (const it of items) {
+      const lines = wrap(it, `400 25px ${sans}`, colW - 26, 2);
+      if (row + lines.length > rows) { if (col === 1) break; col = 1; row = 0; }
+      const cx = P + col * (colW + 48);
+      x.fillStyle = '#94713f'; x.beginPath(); x.arc(cx + 5, y + row * lineH - 8, 4, 0, Math.PI * 2); x.fill();
+      x.fillStyle = '#2b2924'; lines.forEach((ln, k) => x.fillText(ln, cx + 22, y + (row + k) * lineH));
+      row += lines.length; shown++;
+    }
+    if (shown < items.length) { x.fillStyle = '#8b877d'; x.font = `italic 400 24px ${serif}`; x.fillText(`+ ${items.length - shown} more ingredients`, P + (col ? colW + 48 : 0) + 22, Math.min(bottom, y + row * lineH)); }
+    x.fillStyle = '#94713f'; x.font = `500 20px ${sans}`;
+    if ('letterSpacing' in x) x.letterSpacing = '5px';
+    x.fillText('WAYNESDAYS RECIPE BOOK', P, H - 64);
+    return new Promise((res) => c.toBlob(res, 'image/png'));
+  }
+  function openShare(r) {
+    const slug = RB.slugify(r.title) || 'recipe';
+    const isWeb = /^https?:/.test(location.protocol) && !/localhost|127\.0\.0\.1/.test(location.hostname) && !window.claude;
+    sheet.open({ title: 'Share recipe', body: `
+      <div class="share-grid">
+        <button class="share-opt" data-s="card">${icon('i-image')}<b>Recipe card</b><span>A photo-ready image for messages and stories</span></button>
+        <button class="share-opt" data-s="text">${icon('i-chat')}<b>Text</b><span>Clean, formatted text for any app</span></button>
+        <button class="share-opt" data-s="html">${icon('i-file')}<b>Web page</b><span>A single .html file anyone can open, and import back into this app</span></button>
+        <button class="share-opt" data-s="copy">${icon('i-copy')}<b>Copy</b><span>Copy the text to your clipboard</span></button>
+        ${isWeb ? `<button class="share-opt" data-s="link">${icon('i-link')}<b>Link</b><span>A link to this recipe in your book</span></button>` : ''}
+      </div>
+      <div class="share-preview" hidden></div>`,
+    onMount: (el) => el.addEventListener('click', async (e) => {
+      const b = e.target.closest('[data-s]'); if (!b) return;
+      const kind = b.dataset.s;
+      if (kind === 'text') {
+        const t = shareText(r);
+        if (navigator.share) { try { await navigator.share({ title: r.title, text: t }); return; } catch (err) { if (err && err.name === 'AbortError') return; } }
+        copyText(t, 'Recipe copied as text');
+      } else if (kind === 'copy') copyText(shareText(r), 'Recipe copied');
+      else if (kind === 'link') copyText(location.origin + location.pathname + '#/r/' + encodeURIComponent(r.id), 'Link copied');
+      else if (kind === 'html') { await saveFile(new Blob([recipePage(r)], { type: 'text/html' }), slug + '.html', { share: true, title: r.title }); }
+      else if (kind === 'card') {
+        b.disabled = true;
+        try {
+          const blob = await cardImage(r);
+          const pv = $('.share-preview', el);
+          pv.hidden = false; pv.innerHTML = `<img src="${URL.createObjectURL(blob)}" alt="Recipe card preview"><button class="btn primary" data-save-card>${icon('i-download')} Save image</button>`;
+          $('[data-save-card]', pv).addEventListener('click', () => saveFile(blob, slug + '.png', { share: true, title: r.title }));
+        } catch (err) { toast('Couldn’t draw the card'); } finally { b.disabled = false; }
+      }
+    }) });
+  }
+
+  // ======================================================================
+  // Your own techniques
+  // ======================================================================
+  function openTipEditor(t) {
+    const isNew = !t;
+    t = t ? JSON.parse(JSON.stringify(t)) : { id: '', cat: tipsUi.cat && tipsUi.cat !== 'mine' ? tipsUi.cat : 'workflow', level: 'Foundation', title: '', rule: '', why: '', how: [], pro: '', useIn: [], words: '' };
+    sheet.open({ title: isNew ? 'Add your own technique' : 'Edit technique', wide: true, body: `
+      <form class="tip-form">
+        <label class="field"><span>Title</span><input name="title" required value="${esc(t.title)}" placeholder="e.g. Bloom the curry powder in oil" autofocus></label>
+        <div class="field-row two">
+          <label class="field"><span>Section</span><select name="cat">${TIPS.categories.map((c) => `<option value="${c.id}" ${t.cat === c.id ? 'selected' : ''}>${esc(c.label)}</option>`).join('')}</select></label>
+          <label class="field"><span>Level</span><select name="level">${['Foundation', 'Pro', 'Michelin'].map((l) => `<option ${t.level === l ? 'selected' : ''}>${l}</option>`).join('')}</select></label>
+        </div>
+        <label class="field"><span>The rule <small>one line</small></span><input name="rule" value="${esc(t.rule)}" placeholder="Fry it in hot oil for 30 seconds before adding liquid."></label>
+        <label class="field"><span>Why it works</span><textarea name="why" rows="2">${esc(t.why)}</textarea></label>
+        <label class="field"><span>How <small>one step per line</small></span><textarea name="how" rows="4">${esc((t.how || []).join('\n'))}</textarea></label>
+        <label class="field"><span>Chef’s move <small>optional</small></span><input name="pro" value="${esc(t.pro)}"></label>
+        <label class="field"><span>Show on recipes that mention <small>comma-separated words</small></span><input name="words" value="${esc(t.words || '')}" placeholder="curry powder, curry"></label>
+        <div class="sheet-foot">${isNew ? '' : '<button type="button" class="btn ghost danger" data-del>Delete</button>'}<span></span><button class="btn primary" type="submit">${icon('i-check')} Save</button></div>
+      </form>`,
+    onMount: (el) => {
+      const form = $('form', el);
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const fd = new FormData(form);
+        const title = String(fd.get('title') || '').trim(); if (!title) return;
+        const words = String(fd.get('words') || '').split(',').map((w) => w.trim()).filter(Boolean);
+        Object.assign(t, { title, cat: fd.get('cat'), level: fd.get('level'), rule: String(fd.get('rule') || '').trim(), why: String(fd.get('why') || '').trim(),
+          how: String(fd.get('how') || '').split('\n').map((x) => x.replace(/^[-*•\d.)\s]+/, '').trim()).filter(Boolean), pro: String(fd.get('pro') || '').trim(),
+          words: words.join(', '), match: words.length ? '\\b(' + words.map((w) => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')' : '' });
+        if (isNew) { let base = 'my-' + RB.slugify(title), id = base, n = 2; while (allTips().some((x) => x.id === id)) id = base + '-' + n++; t.id = id; }
+        delete t.custom;
+        store.saveTip(t); sheet.close(true); toast(isNew ? 'Technique added to your notebook' : 'Technique saved');
+        tipsUi.q = ''; if (route.name === 'tips') { viewTips($('#main')); setTimeout(() => { const card = document.getElementById('tip-' + t.id); if (card) { card.open = true; card.scrollIntoView({ block: 'center', behavior: 'smooth' }); } }, 60); }
+      });
+      const del = $('[data-del]', el);
+      if (del) del.addEventListener('click', async () => {
+        if (!(await ask(`Delete “${t.title}”?`, { ok: 'Delete', danger: true }))) return;
+        store.removeTip(t.id); toast('Technique deleted'); if (route.name === 'tips') viewTips($('#main'));
+      });
+    } });
+  }
+  function openPhoto(id) {
+    sheet.open({ title: 'Photo', wide: true, cls: 'photo-sheet', body: `<img data-photo="${esc(id)}" data-size="full" alt="">`, onMount: (el) => hydratePhotos(el) });
+  }
+  async function addPhotos(rid, files) {
+    const r = store.byId(rid); if (!r || !files.length) return;
+    toast('Saving photo…');
+    try {
+      const ids = [];
+      for (const f of files) ids.push(await photos.put(f));
+      const m = store.meta(rid);
+      const patch = { photos: (m.photos || []).concat(ids) };
+      if (!m.cover && !r.image) patch.cover = ids[0];
+      store.setMeta(rid, patch);
+      toast(ids.length > 1 ? `${ids.length} photos added` : 'Photo added', !patch.cover ? { label: 'Make cover', run: () => { store.setMeta(rid, { cover: ids[0] }); if (route.name === 'recipe') viewRecipe($('#main'), rid); } } : null);
+      if (cook.state) cook.renderStage(0); else if (route.name === 'recipe') viewRecipe($('#main'), rid);
+    } catch (e) { toast('Couldn’t save that photo on this device'); }
   }
 
   // ======================================================================
@@ -1736,7 +2700,8 @@ One or two sentences about the dish.
           const body = JSON.stringify(data, null, 1) + '\n';
           // Only write when our copy differs from what's there
           let same = false;
-          try { const r = JSON.parse(remoteText || 'null'); same = r && JSON.stringify({ a: r.recipes, b: r.deleted, c: r.meta }) === JSON.stringify({ a: data.recipes, b: data.deleted, c: data.meta }); } catch (e) { /* */ }
+          const keyOf = (d) => JSON.stringify([d.recipes, d.deleted, d.meta, d.plan || {}, d.collections || [], d.collectionsDeleted || {}, d.customTips || [], d.tipsDeleted || {}]);
+          try { const r = JSON.parse(remoteText || 'null'); same = r && keyOf(r) === keyOf(data); } catch (e) { /* */ }
           if (!same) {
             const put = await fetch(url, { method: 'PUT', headers, body: JSON.stringify({ message: 'Update recipe book (' + data.recipes.length + ' recipes)', content: b64encode(body), branch, sha: sha || undefined }) });
             if (put.status === 409 || put.status === 422) { if (attempt === 0) continue; }
@@ -1761,6 +2726,11 @@ One or two sentences about the dish.
   // ======================================================================
   async function importFile(file) {
     const text = await file.text();
+    if (/\.html?$/i.test(file.name) || /^\s*<(!doctype|html)/i.test(text)) {
+      const md = (text.match(/<script type="text\/markdown" id="wrb-recipe">([\s\S]*?)<\/script>/) || [])[1];
+      const list = md ? RB.parseText(md.replace(/<\\\/script/gi, '</script')) : RB.parseHtml(text, '');
+      go('#/add/chat'); setTimeout(() => handleParsed(list), 30); return;
+    }
     if (/\.json$/i.test(file.name) || /^\s*[{[]/.test(text)) {
       try {
         const data = JSON.parse(text);
@@ -1868,11 +2838,31 @@ One or two sentences about the dish.
         break;
       }
       case 'unmark-cooked': { const m = store.meta(rid); store.setMeta(rid, { cooked: (m.cooked || []).slice(0, -1) }); viewRecipe($('#main'), rid); break; }
-      case 'share': {
-        const text = RB.toMarkdown(r);
-        if (navigator.share) { try { await navigator.share({ title: r.title, text }); } catch (err) { /* cancelled */ } }
-        else copyText(text, 'Recipe copied — paste it anywhere');
-        el.closest('details').open = false; break;
+      case 'share': if (r) openShare(r); break;
+      case 'plan-recipe': if (r) openPlanDays(r); break;
+      case 'ask-claude': if (r) openAsk(r); break;
+      case 'col-add': if (r) { el.closest('details').open = false; openAddToCollection(r); } break;
+      case 'cook-with': if (r) { el.closest('details').open = false; openCookWith(r); } break;
+      case 'rate': {
+        const v = +el.dataset.v; const cur = store.meta(rid).rating || 0;
+        store.setMeta(rid, { rating: cur === v ? 0 : v });
+        const nv = store.meta(rid).rating;
+        $$('.rate button').forEach((b) => { b.classList.toggle('on', +b.dataset.v <= nv); b.setAttribute('aria-checked', +b.dataset.v === nv); });
+        toast(nv ? `Rated ${nv} star${nv > 1 ? 's' : ''}` : 'Rating cleared'); break;
+      }
+      case 'units': {
+        settings.units = el.dataset.u; saveSettings();
+        $$('.seg.units button').forEach((b) => { const on = b.dataset.u === settings.units; b.classList.toggle('on', on); b.setAttribute('aria-checked', on); });
+        if (cook.state) { cook.renderSheet(); cook.renderStage(0); } else if (route.name === 'recipe') viewRecipe($('#main'), rid);
+        break;
+      }
+      case 'photo-view': openPhoto(el.dataset.pid); break;
+      case 'photo-cover': { const m = store.meta(rid); store.setMeta(rid, { cover: m.cover === el.dataset.pid ? '' : el.dataset.pid }); viewRecipe($('#main'), rid); break; }
+      case 'photo-del': {
+        if (!(await ask('Delete this photo from this device?', { ok: 'Delete', danger: true }))) break;
+        const pid = el.dataset.pid; const m = store.meta(rid);
+        store.setMeta(rid, { photos: (m.photos || []).filter((x) => x !== pid), cover: m.cover === pid ? '' : m.cover });
+        await photos.del(pid); viewRecipe($('#main'), rid); break;
       }
       case 'copy-md': copyText(RB.toMarkdown(r), 'Recipe copied as text'); el.closest('details').open = false; break;
       case 'duplicate': {
@@ -1881,7 +2871,8 @@ One or two sentences about the dish.
       }
       case 'print': el.closest('details').open = false; setTimeout(() => window.print(), 50); break;
       case 'delete': {
-        if (!confirm(`Delete “${r.title}”? This can be undone right after.`)) break;
+        el.closest('details').open = false;
+        if (!(await ask(`Delete “${r.title}”? You can undo right after.`, { ok: 'Delete', danger: true }))) break;
         const removed = store.remove(r.id);
         go('#/');
         toast('Recipe deleted', { label: 'Undo', run: () => { store.upsert(removed); render(); } });
@@ -1894,11 +2885,13 @@ One or two sentences about the dish.
       case 'cook-sheet': cook.toggleSheet(); break;
       case 'cook-voice': cook.toggleVoice(); break;
       case 'cook-speak': settings.speak = !settings.speak; saveSettings(); cook.syncButtons(); if (settings.speak) cook.readCurrent(); else speech.stop(); break;
+      case 'cook-dish': cook.switchDish(+el.dataset.k); break;
+      case 'sheet-close': sheet.close(); break;
       case 'cook-size': settings.cookSize = Math.max(0.8, Math.min(1.8, Math.round((settings.cookSize + (+el.dataset.d) * 0.15) * 100) / 100)); saveSettings(); $('.cook').style.setProperty('--cook-size', settings.cookSize); break;
       // add flows
-      case 'new-blank': if (draft) { e.preventDefault(); if (confirm('Start a blank recipe? Your unsaved draft will be discarded.')) { draft = null; LS.del(K.draft); go('#/new'); } } break;
+      case 'new-blank': if (draft) { e.preventDefault(); if (await ask('Start a blank recipe? Your unsaved draft will be discarded.', { ok: 'Start blank' })) { draft = null; LS.del(K.draft); go('#/new'); } } break;
       case 'discard-draft': draft = null; LS.del(K.draft); el.closest('.tip').remove(); break;
-      case 'discard-draft-edit': if (confirm('Discard this recipe?')) { draft = null; LS.del(K.draft); go('#/add'); } break;
+      case 'discard-draft-edit': if (await ask('Discard this recipe?', { ok: 'Discard', danger: true })) { draft = null; LS.del(K.draft); go('#/add'); } break;
       case 'voice-dictate': {
         const ta = $('#transcript'), st = $('#mic-status'), interim = $('#interim');
         if (el.classList.contains('listening')) { voice.stop(); break; }
@@ -1942,12 +2935,62 @@ One or two sentences about the dish.
       case 'g-check': { const it = groceries.list.find((x) => x.id === el.dataset.id); if (it) { it.checked = el.checked; groceries.save(); setTimeout(() => viewGroceries($('#main')), 180); } break; }
       case 'g-remove-group': groceries.list = groceries.list.filter((x) => (x.recipeTitle || 'Other items') !== el.dataset.k); groceries.save(); viewGroceries($('#main')); break;
       case 'g-clear-checked': groceries.list = groceries.list.filter((x) => !x.checked); groceries.save(); viewGroceries($('#main')); break;
-      case 'g-clear-all': if (confirm('Clear the whole grocery list?')) { groceries.list = []; groceries.save(); viewGroceries($('#main')); } break;
+      case 'g-clear-all': if (await ask('Clear the whole grocery list?', { ok: 'Clear list', danger: true })) { groceries.list = []; groceries.save(); viewGroceries($('#main')); } break;
+      case 'g-check-many': {
+        const ids = new Set(el.dataset.ids.split(','));
+        groceries.list.forEach((x) => { if (ids.has(x.id)) x.checked = el.checked; });
+        groceries.save(); el.closest('.check').classList.toggle('on', el.checked);
+        setTimeout(() => { if (route.name === 'groceries') viewGroceries($('#main')); }, 220); break;
+      }
+      case 'g-view': settings.gView = el.dataset.v; saveSettings(); viewGroceries($('#main')); break;
+      case 'staples-save': settings.staples = $('#staples').value.split(/[,\n]/).map((x) => x.trim().toLowerCase()).filter(Boolean); saveSettings(); pantryCommon = null; toast('Pantry staples saved'); viewGroceries($('#main')); break;
+      case 'staples-reset': settings.staples = null; saveSettings(); pantryCommon = null; viewGroceries($('#main')); break;
+      // meal plan
+      case 'plan-pick': openPlanPicker(el.dataset.day); break;
+      case 'plan-add-direct': planAdd(el.dataset.day, el.dataset.rid, 'Dinner'); toast('Added ' + (store.byId(el.dataset.rid) || {}).title); viewPlan($('#main')); break;
+      case 'plan-remove': {
+        const day = el.dataset.day; const before = store.planDay(day);
+        store.setPlanDay(day, before.filter((x) => x.id !== el.dataset.pid));
+        viewPlan($('#main'));
+        toast('Removed from plan', { label: 'Undo', run: () => { store.setPlanDay(day, before); if (route.name === 'plan') viewPlan($('#main')); } }); break;
+      }
+      case 'plan-groceries': {
+        const counts = new Map();
+        RK.weekDays(+el.dataset.w || 0).forEach((d) => store.planDay(RK.dateKey(d)).forEach((it) => { if (store.byId(it.recipeId)) counts.set(it.recipeId, (counts.get(it.recipeId) || 0) + 1); }));
+        counts.forEach((n, id) => groceries.addRecipe(store.byId(id), n * getScale(id)));
+        toast(`Added ingredients for ${counts.size} recipe${counts.size === 1 ? '' : 's'}`, { label: 'View list', run: () => go('#/groceries') }); break;
+      }
+      case 'plan-clear': {
+        if (!(await ask('Clear every meal planned for this week?', { ok: 'Clear week', danger: true }))) break;
+        RK.weekDays(+el.dataset.w || 0).forEach((d) => { const k = RK.dateKey(d); if (store.planDay(k).length) store.book.plan[k] = { items: [], updatedAt: nowIso() }; });
+        store.save(); viewPlan($('#main')); break;
+      }
+      // collections
+      case 'col-new': openCollectionEditor(null); break;
+      case 'col-edit': openCollectionEditor(store.byCollection(el.dataset.cid)); break;
+      case 'col-groceries': {
+        const c = store.byCollection(el.dataset.cid); if (!c) break;
+        const rs = colRecipes(c); rs.forEach((x) => groceries.addRecipe(x, getScale(x.id)));
+        toast(`Added ingredients for ${rs.length} recipes`, { label: 'View list', run: () => go('#/groceries') }); break;
+      }
+      // what can I make
+      case 'pantry-add': pantrySet(LS.get(K.pantry, []).concat(el.dataset.v)); break;
+      case 'pantry-rm': pantrySet(LS.get(K.pantry, []).filter((x) => x !== el.dataset.v)); break;
+      case 'pantry-clear': pantrySet([]); break;
+      case 'pantry-missing': {
+        const x = RK.whatCanIMake(LS.get(K.pantry, []), [store.byId(el.dataset.id)], staplesList())[0];
+        if (!x) break;
+        const rec = x.recipe; const needs = RK.recipeNeeds(rec, staplesList());
+        x.missing.forEach((name) => groceries.list.push({ id: uid(), text: RB.stripMd(needs.get(name) || name), recipeId: '', recipeTitle: rec.title, checked: false }));
+        groceries.save(); toast(`Added ${x.missing.length} item${x.missing.length === 1 ? '' : 's'} for ${rec.title}`, { label: 'View list', run: () => go('#/groceries') }); break;
+      }
       case 'g-copy': copyText(groceryText(), 'List copied'); break;
       case 'g-share': { const t = groceryText(); if (navigator.share) { try { await navigator.share({ title: 'Grocery list', text: t }); } catch (err) { /* */ } } else copyText(t, 'List copied'); break; }
       // chef's notebook
       case 'tip-cat': tipsUi.cat = el.dataset.cat; tipsUi.saved = false; $$('.tip-chips .chip').forEach((c) => c.classList.toggle('on', c === el)); renderTipResults(); break;
       case 'tip-saved': tipsUi.saved = !tipsUi.saved; tipsUi.cat = ''; $$('.tip-chips .chip').forEach((c) => c.classList.toggle('on', tipsUi.saved ? c === el : !c.dataset.cat && c.dataset.act === 'tip-cat')); renderTipResults(); break;
+      case 'tip-new': openTipEditor(null); break;
+      case 'tip-edit': e.preventDefault(); openTipEditor(store.book.customTips.find((x) => x.id === el.dataset.id)); break;
       case 'tip-save': {
         e.preventDefault(); e.stopPropagation();
         const id = el.dataset.id;
@@ -1971,7 +3014,7 @@ One or two sentences about the dish.
         break;
       }
       case 'erase-all': {
-        if (!confirm('Erase all recipes, notes, lists and settings on this device? (Your GitHub copy, if any, is not touched.)')) break;
+        if (!(await ask('Erase all recipes, notes, lists and settings on this device? Your GitHub copy, if any, is not touched.', { ok: 'Erase everything', danger: true }))) break;
         Object.values(K).forEach((k) => LS.del(k)); LS.del('wrb.transcript');
         location.hash = '#/'; location.reload(); break;
       }
@@ -1982,6 +3025,8 @@ One or two sentences about the dish.
   document.addEventListener('change', (e) => {
     const el = e.target;
     if (el.matches('[data-act="import-file"]') && el.files && el.files[0]) { importFile(el.files[0]); el.value = ''; }
+    if (el.matches('[data-act="add-photo"]') && el.files && el.files.length) { addPhotos(el.dataset.id || route.params.id, Array.from(el.files)); el.value = ''; }
+    if (el.matches('[data-act="photo-recipe"]') && el.files && el.files.length) { photoToRecipe(Array.from(el.files).slice(0, 4)); el.value = ''; }
   });
 
   document.addEventListener('submit', async (e) => {
@@ -2009,6 +3054,16 @@ One or two sentences about the dish.
       v.split(/\s*(?:,|\bnext\b|\n)\s*/i).filter(Boolean).forEach((t) => groceries.list.push({ id: uid(), text: t.charAt(0).toUpperCase() + t.slice(1), recipeId: '', recipeTitle: '', checked: false }));
       groceries.save(); viewGroceries($('#main')); setTimeout(() => $('#g-new') && $('#g-new').focus(), 30);
     }
+    if (kind === 'ai') {
+      settings.claudeKey = String(new FormData(form).get('key') || '').trim(); saveSettings();
+      const st = $('#ai-status'); if (st) st.textContent = ai.sample ? 'Connected through the Claude app' : settings.claudeKey ? 'Key saved on this device' : 'Not connected';
+      toast(settings.claudeKey ? 'API key saved on this device' : 'API key removed');
+    }
+    if (kind === 'pantry') {
+      const inp = $('#pantry-new'); const v = inp.value.trim(); if (!v) return;
+      pantrySet(LS.get(K.pantry, []).concat(v.split(/\s*(?:,|\band\b|\bnext\b|\n)\s*/i).map((x) => x.toLowerCase())));
+      setTimeout(() => $('#pantry-new') && $('#pantry-new').focus(), 30);
+    }
     if (kind === 'gh') {
       const fd = new FormData(form);
       Object.assign(settings.gh, { token: String(fd.get('token') || '').trim(), repo: String(fd.get('repo') || '').trim(), branch: String(fd.get('branch') || '').trim() || 'master', path: String(fd.get('path') || '').trim(), auto: !!fd.get('auto') });
@@ -2019,6 +3074,7 @@ One or two sentences about the dish.
   });
 
   document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !$('#sheet-root').hidden) { e.preventDefault(); e.stopImmediatePropagation(); sheet.close(); return; }
     if (cook.state) return;
     if (e.target.matches('input, textarea, select, [contenteditable]')) { if (e.key === 'Escape') e.target.blur(); return; }
     if (e.metaKey || e.ctrlKey || e.altKey) return;
@@ -2036,6 +3092,7 @@ One or two sentences about the dish.
   // ======================================================================
   async function boot() {
     applyTheme();
+    ai.init();
     await initStore();
     // Share target / deep links: ?url=…&text=…&title=…
     const sp = new URLSearchParams(location.search);

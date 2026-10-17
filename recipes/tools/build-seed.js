@@ -31,7 +31,9 @@ book.recipes.forEach((r) => {
   out.push(Object.assign({}, r, { id, createdAt: (old && old.createdAt) || now, updatedAt: now }));
 });
 (prev.recipes || []).forEach((r) => { if (!seen.has(r.id)) out.push(r); });
+// Collections, custom techniques and the meal plan live only in the JSON (edited in the app); carry them through.
 const data = { format: 'waynesdays-recipes', version: 1, title: book.title || prev.title, updatedAt: changed ? now : (prev.updatedAt || now),
-  recipes: out, deleted: prev.deleted || {}, meta: prev.meta || {} };
+  recipes: out, deleted: prev.deleted || {}, meta: prev.meta || {}, plan: prev.plan || {},
+  collections: prev.collections || [], collectionsDeleted: prev.collectionsDeleted || {}, customTips: prev.customTips || [], tipsDeleted: prev.tipsDeleted || {} };
 fs.writeFileSync(file, JSON.stringify(data, null, 1) + '\n');
 console.log(`${out.length} recipes (${changed} added/updated from book.md)`);
