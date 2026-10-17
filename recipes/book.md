@@ -6,17 +6,17 @@ Every recipe pulled from past chats, compiled in one place. Grouped by category.
 
 ## Contents
 
-**Drinks:** Freeman House Chai Concentrate (Copycat) · Simple Chai Concentrate · Thai Milk Tea · Hot Toddy · Classic Spritz · Reed's Style Extra Strong Ginger Beer · Traditional Ginger Beer (Ginger Bug)
+**Drinks:** Freeman House Chai Concentrate (Copycat) · Simple Chai Concentrate · Thai Milk Tea · Hot Toddy · Classic Spritz · Reed's Style Extra Strong Ginger Beer · Traditional Ginger Beer (Ginger Bug) · Rebekah Peppler's Hot Toddy
 
-**Breakfast:** Fluffy Pancakes · Buttermilk Cornbread Waffles · McDonald's Fruit and Maple Oatmeal (Copycat) · Golden Diner Pancakes · Shakshuka With Feta
+**Breakfast:** Fluffy Pancakes · Buttermilk Cornbread Waffles · McDonald's Fruit and Maple Oatmeal (Copycat) · Golden Diner Pancakes · Shakshuka With Feta · Waffles · Dutch Baby
 
-**Baking and Sweets:** Sugar Moon Espresso Cornflake Cookies (Copycat) · Bakery Cookie Skillet · Soft and Chewy Oatmeal Chocolate Chip Cookies · Pan de Muerto · Latino Foodie Pan de Muerto · Gingerbread Latte Cookies · Chocolate Soufflés · Conchas · Peach Cobbler
+**Baking and Sweets:** Sugar Moon Espresso Cornflake Cookies (Copycat) · Bakery Cookie Skillet · Soft and Chewy Oatmeal Chocolate Chip Cookies · Pan de Muerto · Latino Foodie Pan de Muerto · Gingerbread Latte Cookies · Chocolate Soufflés · Conchas · Peach Cobbler · Warm Sweet Potato-Apple Pone
 
-**Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs · Creamy Lemon Pesto Pasta · Oxtail and Butter Beans · Birria de Res (Beef Birria) · Quesabirria Tacos · Stew Peas and Spinners · Spicy Red Pesto Pasta · Ricotta Pasta Alla Vodka
+**Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs · Creamy Lemon Pesto Pasta · Oxtail and Butter Beans · Birria de Res (Beef Birria) · Quesabirria Tacos · Stew Peas and Spinners · Spicy Red Pesto Pasta · Ricotta Pasta Alla Vodka · Pasta Alla Norma Sorta · Grilled Cheese With Apples and Apple Butter
 
 **Sides and Salads:** Roasted Dumpling Squash
 
-**Soups:** Split Pea Soup · Butternut Squash Congee With Chile Oil · Red Peas Soup · Soup Joumou · Sancocho · Best Black Bean Soup
+**Soups:** Split Pea Soup · Butternut Squash Congee With Chile Oil · Red Peas Soup · Soup Joumou · Sancocho · Best Black Bean Soup · Coconut Black Bean Soup · Lemony White Bean Soup With Turkey and Greens · Citrusy Lentil and Sweet Potato Soup · Pumpkin Soup · Thomas Keller's Butternut Squash Soup With Brown Butter
 
 **Sauces, Spices and Ferments:** Nonna's Sunday Sugo · Ponzu Sauce · Pumpkin Pie Spice Blend · Kimchi
 
@@ -202,6 +202,36 @@ Combine in a jar, cover with cloth. Each day add 1 tbsp grated ginger and 1 tbsp
 4. Ferment 2 to 4 days at room temp, burping daily. Refrigerate once fizzy. Drink within 2 to 3 weeks.
 
 *Source: https://claude.ai/chat/1fc2f70d-408e-46b8-9afd-0adeed2e7730*
+
+---
+
+## Rebekah Peppler's Hot Toddy
+
+A minimalist hot toddy: any brown spirit or amaro with honey and boiling water in a pre-warmed mug, scented with lemon peel and optional spices.
+
+**Image:** images/rebekah-peppler-s-hot-toddy.jpg
+**Tags:** cocktail, whisky, warm, quick, nyt cooking
+**Time:** 5 min
+
+**Makes 1 drink**
+
+**Ingredients**
+- Boiling water, as needed
+- 2 oz scotch, bourbon, rye, Irish whiskey, dark rum, cognac or amaro
+- 3/4 oz light honey, such as acacia, or maple syrup (or 1 tsp Demerara sugar)
+- 1 (3-inch) lemon peel
+- Cinnamon stick and whole star anise, to garnish (optional)
+
+**Method**
+1. **Warm the mug:** Fill a 6-ounce heatproof mug or glass with boiling water and let it sit 1 minute, then pour it out.
+2. **Build:** Add the spirit and honey, top with boiling water and stir until the honey dissolves.
+3. **Garnish:** Add the lemon peel, plus a cinnamon stick and star anise if you like. Let it cool slightly before drinking.
+
+**Notes**
+- By Rebekah Peppler for NYT Cooking.
+- Compare with the lemon-juice Hot Toddy earlier in this book; this one uses only peel, so the spirit leads.
+
+*Source: NYT Cooking (Rebekah Peppler): https://cooking.nytimes.com/search?q=Hot%20Toddy%20Rebekah%20Peppler*
 
 ---
 
@@ -413,6 +443,74 @@ Eggs baked in a cumin, paprika and cayenne spiced tomato and red pepper sauce, w
 - Serve with pita or challah for scooping. Good for breakfast, brunch or dinner.
 
 *Source: NYT Cooking (Melissa Clark): https://cooking.nytimes.com/search?q=Shakshuka%20With%20Feta*
+
+---
+
+## Waffles
+
+Melissa Clark's crisp, tangy yogurt waffles that come together in one bowl in about 35 minutes.
+
+**Image:** images/waffles.jpg
+**Tags:** waffles, brunch, weekend, vegetarian, nyt cooking
+**Time:** 35 min
+
+**Makes about 10 waffles**
+
+**Ingredients**
+- 6 tbsp unsalted butter, plus more for the waffle iron
+- 2 cups (240 grams) all-purpose flour
+- 1 tbsp (15 grams) sugar
+- 1 tsp (4 grams) baking powder
+- 1 tsp (5 grams) fine sea salt
+- 1/2 tsp (3 grams) baking soda
+- 1 cup plain yogurt (or see notes)
+- 1 cup milk
+- 4 large eggs
+
+**Method**
+1. **Butter:** Melt the butter on the stove or in the microwave and set aside.
+2. **Batter:** Whisk the flour, sugar, baking powder, salt and baking soda in a large bowl. In another bowl, whisk the yogurt, milk, melted butter and eggs. Fold the wet into the dry.
+3. **Cook:** Heat the waffle iron and brush it lightly with butter. Cook about 1/2 cup batter per waffle until golden and crisp, buttering the iron between batches as needed.
+4. **Serve:** Serve right away, or keep warm in a 200°F oven.
+
+**Notes**
+- By Melissa Clark for NYT Cooking.
+- No yogurt? Sour cream or buttermilk work, or use another 1 cup milk mixed with 1 tbsp lemon juice or vinegar.
+
+*Source: NYT Cooking (Melissa Clark): https://cooking.nytimes.com/search?q=Waffles%20Melissa%20Clark*
+
+---
+
+## Dutch Baby
+
+Florence Fabricant's classic puffed oven pancake: a blender batter poured into sizzling butter and baked until tall and golden.
+
+**Image:** images/dutch-baby.jpg
+**Tags:** pancakes, brunch, quick, vegetarian, nyt cooking
+**Time:** 40 min
+
+**Serves 3 to 4**
+
+**Ingredients**
+- 3 large eggs, at room temperature
+- 1/2 cup all-purpose flour
+- 1/2 cup whole milk, at room temperature
+- 1 tbsp sugar
+- Pinch of nutmeg
+- 4 tbsp unsalted butter
+- Syrup, preserves, confectioners' sugar or cinnamon sugar, for serving
+
+**Method**
+1. **Heat:** Heat the oven to 425°F.
+2. **Batter:** Blend the eggs, flour, milk, sugar and nutmeg until very smooth (or whisk by hand).
+3. **Bake:** Put the butter in a heavy 10-inch skillet and set it in the oven. As soon as it melts (don't let it burn), pour in the batter and bake 20 minutes, until puffed and golden. Lower the oven to 300°F and bake 5 minutes more.
+4. **Serve:** Cut into wedges and serve at once with syrup, preserves, confectioners' sugar or cinnamon sugar.
+
+**Notes**
+- By Florence Fabricant for NYT Cooking.
+- Room-temperature eggs and milk help it puff.
+
+*Source: NYT Cooking (Florence Fabricant): https://cooking.nytimes.com/search?q=Dutch%20Baby%20Florence%20Fabricant*
 
 ---
 
@@ -830,6 +928,44 @@ Juicy maple-spiced peaches under a biscuit topping with oats for crisp-like crun
 - A handful of blueberries in the filling works well.
 
 *Source: NYT Cooking (Millie Peartree): https://cooking.nytimes.com/search?q=Peach%20Cobbler*
+
+---
+
+## Warm Sweet Potato-Apple Pone
+
+A spoonable, custardy Southern pone of grated sweet potato and apple with brown sugar and cinnamon, baked until golden at the edges and served warm with ice cream.
+
+**Image:** images/warm-sweet-potato-apple-pone.jpg
+**Tags:** dessert, sweet potato, apple, fall, southern, nyt cooking
+**Time:** 45 min to 1 1/4 hr
+
+**Serves 4**
+
+**Ingredients**
+- 2 tbsp melted unsalted butter, plus 2 tsp for greasing
+- 1 medium sweet, crisp baking apple, such as Honeycrisp, Fuji or Gala
+- 1 tsp lemon juice
+- 1 medium sweet potato, peeled and shredded (about 1 1/2 cups)
+- 1 cup evaporated milk
+- 1/4 packed cup (55 grams) light brown sugar
+- 1/4 cup (30 grams) all-purpose flour
+- 1 large egg, lightly beaten
+- 2 tsp vanilla extract
+- 1 1/2 tsp ground cinnamon
+- 1/2 tsp kosher salt
+- Vanilla ice cream, for serving
+
+**Method**
+1. **Heat:** Heat the oven to 375°F. Grease two 15-ounce au gratin pans or one 8-inch square baking dish with 2 tsp butter and set on a baking sheet.
+2. **Apple:** Peel, core and shred the apple, then squeeze the shreds hard in a clean kitchen towel to remove excess water. Toss with the lemon juice in a large bowl.
+3. **Mix:** Add the sweet potato, evaporated milk, brown sugar, flour, egg, vanilla, cinnamon, salt and the remaining 2 tbsp melted butter and stir until combined.
+4. **Bake:** Divide between the au gratin pans and bake 30 to 35 minutes, or bake in the 8-inch dish 55 to 60 minutes, until slightly puffed, golden at the edges and no longer jiggly.
+5. **Serve:** Cool 5 to 10 minutes and serve warm with vanilla ice cream.
+
+**Notes**
+- By Jerrelle Guy for NYT Cooking.
+
+*Source: NYT Cooking (Jerrelle Guy): https://cooking.nytimes.com/search?q=Warm%20Sweet%20Potato-Apple%20Pone*
 
 ---
 
@@ -1507,6 +1643,81 @@ Spicy, bacon-laced vodka sauce that glossily coats the pasta, finished with thre
 
 ---
 
+## Pasta Alla Norma Sorta
+
+A loose take on pasta alla Norma: roasted eggplant in a burst cherry tomato sauce with chile, melted mozzarella, crispy prosciutto and fresh herbs.
+
+**Image:** images/pasta-alla-norma-sorta.jpg
+**Tags:** italian, pasta, eggplant, summer, nyt cooking
+**Time:** 45 min
+
+**Serves 4**
+
+**Ingredients**
+- Kosher salt
+- 10 oz mezzi rigatoni or rigatoni
+- 1 1/2 pounds eggplant, unpeeled, cut into 1/2-inch dice
+- 1/4 cup plus 2 tbsp extra-virgin olive oil
+- Black pepper
+- 3 oz prosciutto, roughly chopped into 1- to 1 1/2-inch pieces
+- 1 medium shallot, thinly sliced into rings
+- 3 garlic cloves, thinly sliced
+- 1 Fresno or serrano chile, seeded if you like, thinly sliced into rings
+- 1 1/2 pounds Sun Gold, cherry or grape tomatoes
+- 1 (15-ounce) can diced tomatoes with their juices
+- 4 oz fresh mozzarella, finely chopped
+- 1 cup roughly chopped fresh herbs, such as basil and mint
+- Flaky salt, for serving (optional)
+
+**Method**
+1. **Roast the eggplant:** Heat the oven to 425°F. Toss the eggplant on a large rimmed sheet pan with 1/4 cup oil, season well and spread in one layer. Roast until golden, 25 to 30 minutes, flipping halfway.
+2. **Crisp the prosciutto:** Meanwhile, heat the remaining oil in a deep 12-inch skillet over medium. Cook the prosciutto, stirring, until crisping and browned in spots, 2 to 3 minutes. Drain on paper towels.
+3. **Sauce:** Add the shallot, garlic and chile and cook until soft and fragrant, about 2 minutes. Add the cherry tomatoes and cook, pressing gently to help some burst, 5 to 7 minutes. Stir in the canned tomatoes, season, and simmer while the eggplant finishes, about 15 minutes, adding 1/4 cup pasta water if dry.
+4. **Pasta:** Cook the pasta in well-salted boiling water until al dente. Reserve 1 cup pasta water and drain.
+5. **Combine:** Stir the eggplant into the sauce, add the pasta and toss, adding pasta water as needed. Stir in the mozzarella until it starts to melt.
+6. **Serve:** Top with the crispy prosciutto, herbs and flaky salt if using.
+
+**Notes**
+- By Colu Henry for NYT Cooking.
+- Leave out the prosciutto for a vegetarian version.
+
+*Source: NYT Cooking (Colu Henry): https://cooking.nytimes.com/search?q=Pasta%20Alla%20Norma%20Sorta*
+
+---
+
+## Grilled Cheese With Apples and Apple Butter
+
+Sharp Cheddar grilled cheese layered with apple butter and buttery sautéed apples, shallot and rosemary, steamed briefly under a lid so the cheese melts as the bread crisps.
+
+**Image:** images/grilled-cheese-with-apples-and-apple-butter.jpg
+**Tags:** sandwich, cheese, apples, fall, vegetarian, nyt cooking
+**Time:** 30 min
+
+**Serves 4**
+
+**Ingredients**
+- 5 tbsp unsalted butter, plus more as needed
+- 1 large Granny Smith apple, cored and thinly sliced
+- 1 small shallot, halved and thinly sliced
+- 1 tsp chopped fresh rosemary
+- Kosher salt
+- 1/2 cup apple butter
+- 8 slices country bread, cut 1/2 inch thick
+- 4 oz sharp Cheddar, sliced 1/4 inch thick
+
+**Method**
+1. **Apples:** Heat a 12-inch skillet over medium-high, add 1 tbsp butter, then the apples, shallot, rosemary and a pinch of salt. Cook, tossing occasionally, until the apples are golden and soft, 8 to 10 minutes, lowering the heat if the shallots start to burn. Set aside on a plate.
+2. **Prep the bread:** Wipe out the pan and set it over medium with 1 tbsp butter (2 tbsp if cooking two sandwiches at once). Spread one side of each bread slice with 1 tbsp apple butter. Top four slices with 1 oz Cheddar each and the other four with the apple mixture. Don't close them yet.
+3. **Grill:** Put one cheese slice and one apple slice in the pan, butter side down (two of each if they fit), drizzle 2 tsp water into the pan and cover. Cook until the cheese melts and the bread is golden and crisp, 5 to 7 minutes, lowering the heat if needed.
+4. **Serve:** Press the halves together, cut and serve right away. Repeat with the rest, adding butter as needed.
+
+**Notes**
+- By Susan Spungen for NYT Cooking.
+
+*Source: NYT Cooking (Susan Spungen): https://cooking.nytimes.com/search?q=Grilled%20Cheese%20With%20Apples%20and%20Apple%20Butter*
+
+---
+
 # SIDES AND SALADS
 
 ## Roasted Dumpling Squash with Sage Brown Butter
@@ -1851,6 +2062,220 @@ Big-tasting, meat-free black bean soup with chipotle, red wine and Mexican orega
 - If your tap water is hard, add the wine with the stock instead (acid can keep beans from softening), or use distilled water.
 
 *Source: NYT Cooking (Julia Moskin): https://cooking.nytimes.com/search?q=Best%20Black%20Bean%20Soup*
+
+---
+
+## Coconut Black Bean Soup
+
+A quick, creamy black bean soup made with canned beans and coconut milk, half-blended for body and brightened with lime, cilantro and quick-pickled onion.
+
+**Image:** images/coconut-black-bean-soup.jpg
+**Tags:** soup, beans, coconut, vegetarian, quick, weeknight, nyt cooking
+**Time:** 35 min
+
+**Serves 4**
+
+**Ingredients**
+- 1 large white onion, peeled
+- 2 limes, 1 halved and 1 cut into wedges
+- 1 3/4 tsp kosher salt (Diamond Crystal, or 3/4 tsp Morton), plus more to taste
+- 1 tbsp extra-virgin olive oil
+- 4 garlic cloves, minced
+- 1 jalapeño, seeded if desired and minced
+- 1 bunch cilantro, stems and leaves separated
+- 1 tbsp tomato paste
+- 1 tsp cumin seeds
+- 1/2 tsp freshly ground black pepper
+- 3 (15.5-ounce) cans black beans, drained
+- 1 (13.5-ounce) can full-fat coconut milk
+- 1 cup vegetable or chicken stock, plus more if needed
+
+**Method**
+1. **Pickled onion:** Quarter the onion lengthwise. Thinly slice one quarter and toss with the juice of 1/2 lime and 1/4 tsp salt; set aside for serving. Dice the rest.
+2. **Soften:** Heat a large soup pot or Dutch oven over medium-high, add the oil, and cook the diced onion until tender and golden at the edges, 3 to 5 minutes. Stir in the garlic and cook 1 minute.
+3. **Aromatics:** Add the jalapeño and 1/4 cup minced cilantro stems and cook until tender, about 2 minutes. Stir in the tomato paste, cumin seeds, pepper and remaining 1 1/2 tsp salt and cook until the paste darkens, 1 to 2 minutes.
+4. **Simmer:** Add the beans, coconut milk and stock. Bring to a boil, then simmer until thick, 15 to 20 minutes.
+5. **Blend:** Purée with an immersion blender or blender until half-smooth and still a little chunky. Add stock for a brothier soup.
+6. **Finish:** Stir in the juice of the remaining lime half and 1/2 cup chopped cilantro leaves. Adjust salt and lime. Serve topped with the pickled onions and more cilantro, with lime wedges alongside.
+
+**Notes**
+- By Melissa Clark for NYT Cooking.
+
+*Source: NYT Cooking (Melissa Clark): https://cooking.nytimes.com/search?q=Coconut%20Black%20Bean%20Soup*
+
+---
+
+## Lemony White Bean Soup With Turkey and Greens
+
+A brothy, bright one-pot soup of ground turkey, white beans and sturdy greens with cumin, ginger and a generous finish of herbs and lemon.
+
+**Image:** images/lemony-white-bean-soup-with-turkey-and-greens.jpg
+**Tags:** soup, beans, turkey, greens, weeknight, nyt cooking
+**Time:** 45 min
+
+**Serves 4**
+
+**Ingredients**
+- 3 tbsp olive oil
+- 1 large onion, diced
+- 1 large carrot, diced
+- 1 bunch sturdy greens, such as kale, broccoli rabe, mustard greens or collards
+- 1 tbsp tomato paste
+- 3/4 tsp ground cumin, plus more to taste
+- 1/8 tsp red-pepper flakes, plus more to taste
+- 1/2 pound ground turkey
+- 3 garlic cloves, minced
+- 1 tbsp finely grated fresh ginger
+- 1 tsp kosher salt, plus more to taste
+- 1 quart chicken stock
+- 2 (15-ounce) cans white beans, drained and rinsed
+- 1 cup chopped soft herbs, such as parsley, mint, dill, basil, tarragon or chives
+- Fresh lemon juice, to taste
+
+**Method**
+1. **Soften:** Heat a large pot over medium-high about 1 minute, add the oil and heat 30 seconds. Sauté the onion and carrot until very soft and browned at the edges, 7 to 10 minutes.
+2. **Greens prep:** Meanwhile, rinse the greens, strip the leaves from the stems and tear into bite-size pieces.
+3. **Turkey:** Add the tomato paste, cumin and pepper flakes and cook until the paste darkens, about 1 minute. Add the turkey, garlic, ginger and salt and cook, breaking up the meat, until browned in spots, 4 to 7 minutes.
+4. **Simmer:** Add the stock and beans and simmer until thick and flavorful, 15 to 25 minutes. Smash some beans for a thicker broth, or leave them whole.
+5. **Greens:** Add the greens and simmer until very soft, 5 to 10 minutes (up to 15 for collards), adding water if it reduces too much.
+6. **Finish:** Stir in the herbs and lemon juice and adjust the salt, cumin and lemon until bright. Serve with a drizzle of olive oil and more pepper flakes.
+
+**Notes**
+- By Melissa Clark for NYT Cooking.
+
+*Source: NYT Cooking (Melissa Clark): https://cooking.nytimes.com/search?q=Lemony%20White%20Bean%20Soup%20With%20Turkey%20and%20Greens*
+
+---
+
+## Citrusy Lentil and Sweet Potato Soup
+
+A fast, bright lentil soup with sweet potato and chard, topped with chard stems quick-pickled in lemon or lime juice with jalapeño.
+
+**Image:** images/citrusy-lentil-and-sweet-potato-soup.jpg
+**Tags:** soup, lentils, vegetarian, quick, weeknight, nyt cooking
+**Time:** 30 min
+
+**Serves 4**
+
+**Ingredients**
+- 1/4 cup extra-virgin olive oil
+- 4 scallions, thinly sliced
+- 4 garlic cloves, coarsely chopped
+- 1 tsp ground cumin or coriander (or a mix)
+- 1 bay leaf, thyme or oregano sprig (optional)
+- Kosher salt (such as Diamond Crystal)
+- 1 jalapeño, halved lengthwise, seeds removed if desired
+- 1 medium sweet potato (8 to 10 oz), peeled and cut into 1/2-inch pieces
+- 1 cup green lentils
+- 1 medium bunch chard (8 to 10 oz)
+- 1/4 cup lemon or lime juice (from 2 lemons or limes)
+
+**Method**
+1. **Bloom:** In a large Dutch oven, combine the oil, scallions, garlic, cumin, bay leaf (if using), a pinch of salt and one jalapeño half. Cook over medium, stirring constantly, until softened and fragrant but not browned, 2 to 4 minutes.
+2. **Simmer:** Add 5 cups water, the sweet potato, lentils and 1 1/2 tsp salt. Bring to a simmer over medium-high, then cover and simmer on low 10 minutes.
+3. **Chard topping:** Meanwhile, thinly slice the chard stems up to the leaves and toss them with the citrus juice and a pinch of salt. Thinly slice the other jalapeño half and add as much as you like. Coarsely chop the chard leaves.
+4. **Greens:** Taste the broth; add salt if muted and remove the jalapeño if it's getting too spicy. Stir in the chard leaves, cover and cook until the lentils and sweet potato are tender, 8 to 12 minutes. Thin with water if needed and discard the bay leaf and jalapeño half.
+5. **Serve:** Ladle into bowls and top each with a spoonful of the citrusy chard stems, adding more for a brighter soup.
+
+**Notes**
+- By Ali Slagle for NYT Cooking.
+- Soup and topping keep separately up to 3 days. Reheat the soup with a little water and salt, then add the topping.
+
+*Source: NYT Cooking (Ali Slagle): https://cooking.nytimes.com/search?q=Citrusy%20Lentil%20and%20Sweet%20Potato%20Soup*
+
+---
+
+## Pumpkin Soup
+
+Velvety pumpkin soup built on rosemary-caramelized onions, maple and apple cider, warmed with curry powder and nutmeg, and topped with fried sage.
+
+**Image:** images/pumpkin-soup.jpg
+**Tags:** soup, pumpkin, fall, thanksgiving, vegetarian option, nyt cooking
+**Time:** 50 min
+
+**Serves 6**
+
+**Soup**
+- 3 tbsp unsalted butter
+- 2 medium yellow onions, halved and thinly sliced
+- 2 tbsp coarsely chopped fresh rosemary (or 2 tsp dried)
+- 2 tbsp maple syrup
+- 4 garlic cloves, coarsely chopped
+- 1/2 cup fresh apple cider (or 3/4 cup apple juice)
+- 4 cups low-sodium chicken or vegetable broth, plus more as needed
+- 2 (15-ounce) cans pumpkin purée (not pie filling), or 3 cups homemade purée (see notes)
+- 1 tsp mild curry powder
+- 1/2 tsp ground nutmeg, plus more for serving
+- Pinch of ground cloves
+- 1 1/2 tsp kosher salt, plus more as needed
+- 1/2 tsp black pepper, plus more as needed
+- 1/3 cup heavy cream, plus more for serving
+
+**Fried sage topping** (optional)
+- 2 tbsp unsalted butter
+- 12 fresh sage leaves
+
+**Method**
+1. **Caramelize:** Melt the butter in a large Dutch oven over medium. Cook the onions and rosemary, stirring occasionally, until lightly caramelized, 15 to 20 minutes, lowering the heat if they brown too fast.
+2. **Deglaze:** Add the maple syrup and garlic and cook until the onions darken, 3 to 5 minutes. Add the cider, scrape up the bits and reduce by about half.
+3. **Simmer:** Add the broth, pumpkin, curry powder, nutmeg, cloves, salt and pepper and bring to a boil. Simmer briskly on medium-low 10 minutes, scraping the bottom so it doesn't scorch.
+4. **Blend:** Purée in batches (or with an immersion blender), return to a simmer, then turn off the heat and stir in the cream. Season and thin with broth if needed.
+5. **Fried sage:** If using, melt the butter in a skillet over medium-high and fry the sage until just crisp, 1 to 2 minutes. Drain on paper towels and keep the butter.
+6. **Serve:** Top each bowl with 2 fried sage leaves and a drizzle of the sage butter, or a swirl of cream and a pinch of nutmeg.
+
+**Notes**
+- By Lidey Heuck for NYT Cooking.
+- Homemade purée: roast 1 1/2-inch wedges of a 4- to 5-pound sugar pumpkin, oiled and salted, at 425°F for 35 to 40 minutes, flipping halfway, until very tender. Scoop and mash.
+- Roast the rinsed seeds with olive oil and salt at 375°F for 10 to 15 minutes.
+
+*Source: NYT Cooking (Lidey Heuck): https://cooking.nytimes.com/search?q=Pumpkin%20Soup%20Lidey%20Heuck*
+
+---
+
+## Thomas Keller's Butternut Squash Soup With Brown Butter
+
+Silky, restaurant-style squash soup built from roasted and simmered squash, strained smooth, then finished with hazelnut brown butter, nutmeg crème fraîche and chives.
+
+**Image:** images/thomas-keller-s-butternut-squash-soup-with-brown-butter.jpg
+**Tags:** soup, squash, vegetarian, fall, holiday, make-ahead, nyt cooking
+**Time:** 2 hr 15 min (plus chilling)
+
+**Serves 6**
+
+**Ingredients**
+- 1 (3- to 3 1/2-pound) butternut squash
+- 2 tbsp canola oil
+- Kosher salt and freshly ground black pepper
+- 2 sprigs sage
+- 1 cup thinly sliced leeks
+- 1/2 cup thinly sliced carrots
+- 1/2 cup thinly sliced shallots
+- 1/2 cup thinly sliced onions
+- 6 garlic cloves, smashed
+- 2 tbsp honey
+- 6 cups vegetable stock, more if needed
+- Bouquet garni: 8 sprigs thyme, 2 sprigs Italian parsley, 2 bay leaves and 1/2 tsp black peppercorns wrapped in 2 green leek leaves
+- 1/4 cup crème fraîche
+- Freshly grated nutmeg
+- 4 tbsp unsalted butter
+- 1 tbsp minced chives
+- Extra-virgin olive oil
+
+**Method**
+1. **Roast the bulb:** Heat the oven to 350°F and line a small baking sheet with foil. Cut the neck off the squash and set it aside. Halve the bulb, scoop out the seeds, brush each half inside and out with about 1 1/2 tsp of the oil, season the cavities and tuck in a sage sprig. Roast cut side down until completely tender, about 1 hour. Cool, then scoop out the flesh (discard the sage).
+2. **Dice the neck:** Meanwhile, peel the neck down to the bright orange flesh and cut it into 1/2-inch pieces (about 4 cups).
+3. **Sweat:** Heat the remaining oil in a stockpot over medium-high and cook the leeks, carrots, shallots and onions, stirring often, about 6 minutes. Add the diced squash, garlic, 1 1/2 tsp salt and 1/2 tsp pepper and cook gently 3 minutes without browning. Stir in the honey and cook 2 to 3 minutes.
+4. **Simmer:** Add the stock and bouquet garni, bring to a simmer and cook until the squash is tender, 10 to 15 minutes.
+5. **Blend:** Add the roasted squash and simmer gently about 30 minutes. Discard the bouquet garni, purée in batches, strain through a fine sieve and adjust the seasoning. Cool and refrigerate until serving.
+6. **Crème fraîche:** Whisk the crème fraîche with nutmeg to taste in a chilled bowl until it holds a shape. Cover and refrigerate.
+7. **Brown butter:** Gently reheat the soup, thinning with stock if needed. Heat a medium skillet over high until very hot, add the butter and swirl until hazelnut brown, then pour it into the soup (stand back, it sputters) and stir.
+8. **Serve:** Ladle into 6 bowls and top each with a dollop of crème fraîche, black pepper, chives and a drizzle of olive oil.
+
+**Notes**
+- Thomas Keller's recipe, by Amanda Hesser for NYT Cooking.
+- The soup can be made ahead and chilled; add the brown butter just before serving.
+
+*Source: NYT Cooking (Amanda Hesser): https://cooking.nytimes.com/search?q=Thomas%20Keller%27s%20Butternut%20Squash%20Soup%20With%20Brown%20Butter*
 
 ---
 
