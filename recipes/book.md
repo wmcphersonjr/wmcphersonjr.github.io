@@ -10,7 +10,7 @@ Every recipe pulled from past chats, compiled in one place. Grouped by category.
 
 **Breakfast:** Fluffy Pancakes · Buttermilk Cornbread Waffles · McDonald's Fruit and Maple Oatmeal (Copycat) · Golden Diner Pancakes · Shakshuka With Feta · Waffles · Dutch Baby · Eggnog Overnight French Toast · Lula Cafe Buttermilk Pancakes
 
-**Baking and Sweets:** Sugar Moon Espresso Cornflake Cookies (Copycat) · Bakery Cookie Skillet · Soft and Chewy Oatmeal Chocolate Chip Cookies · Pan de Muerto · Latino Foodie Pan de Muerto · Gingerbread Latte Cookies · Chocolate Soufflés · Conchas · Peach Cobbler · Warm Sweet Potato-Apple Pone · Strawberry Shortcake · London Fog Loaf Cake · Homemade Cinnamon Rolls · Kevin Gillespie's Warm Banana Pudding with Meringue
+**Baking and Sweets:** Sugar Moon Espresso Cornflake Cookies (Copycat) · Bakery Cookie Skillet · Soft and Chewy Oatmeal Chocolate Chip Cookies · Pan de Muerto · Latino Foodie Pan de Muerto · Gingerbread Latte Cookies · Chocolate Soufflés · Conchas · Peach Cobbler · Warm Sweet Potato-Apple Pone · Strawberry Shortcake · London Fog Loaf Cake · Homemade Cinnamon Rolls · Kevin Gillespie's Warm Banana Pudding with Meringue · Jamaican Banana Fritters
 
 **Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs · Creamy Lemon Pesto Pasta · Oxtail and Butter Beans · Birria de Res (Beef Birria) · Quesabirria Tacos · Stew Peas and Spinners · Spicy Red Pesto Pasta · Ricotta Pasta Alla Vodka · Pasta Alla Norma Sorta · Grilled Cheese With Apples and Apple Butter · Golden Krust Jamaican Oxtail Stew · Roast Chicken With Maple Butter and Rosemary · Smoked Mackerel Rundown · Peruvian Roasted Chicken With Spicy Cilantro Sauce · Peruvian Pork Stew With Chiles, Lime and Apples · Closed On Sunday Chicken Sandwich
 
@@ -1288,6 +1288,39 @@ Kevin Gillespie's re-creation of his great-grandmother's Thanksgiving banana pud
 4. Cornstarch gives a glossier pudding, but flour gives more structure and the velvety texture Gillespie prefers.
 
 *Source: Atlanta Magazine (Susan Puckett): https://www.atlantamagazine.com/recipes/kevin-gillespie-banana-pudding/*
+
+---
+
+## Jamaican Banana Fritters
+
+Soft, crisp-edged fritters of mashed overripe bananas, brown sugar, nutmeg and cinnamon, pan-fried and sprinkled with sugar. No eggs, quick to mix, and best eaten warm.
+
+**Tags:** banana, fritters, jamaican, caribbean, snack, quick, cook like a jamaican
+
+**Fritters**
+- 1 2/3 cups mashed overripe bananas (about 3 to 5 medium bananas)
+- 2 to 3 tbsp brown sugar
+- 1/4 tsp nutmeg
+- 1/4 tsp cinnamon
+- 1 tsp vanilla extract
+- Pinch of salt
+- 1 cup all-purpose flour
+- 4 to 5 tbsp cooking oil
+- 1 tbsp granulated sugar
+
+**Method**
+1. **Batter:** Mash the bananas with the brown sugar, spices, vanilla and salt, then stir in the flour.
+2. **Heat:** Heat 1 or 2 tablespoons of the oil in a frying pan on high. Using a serving spoon, spoon the batter into the pan.
+3. **Fry:** Fry the fritters until crisp and brown on both sides, adding more oil as needed. They're done when no batter oozes out when you press them.
+4. **Drain:** Move the fritters to paper towels.
+5. **Serve:** Sprinkle with the granulated sugar and eat warm.
+
+**Notes**
+- From Cook Like a Jamaican.
+- Use really ripe, speckled bananas for the sweetest, softest fritters.
+- Never leave the pan of hot oil unattended. The author's after-school batch, left heating while she watched Love Connection, set the kitchen on fire.
+
+*Source: Cook Like a Jamaican: https://cooklikeajamaican.com/new-recipe-banana-fritters/*
 
 ---
 

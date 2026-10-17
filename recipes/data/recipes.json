@@ -2,7 +2,7 @@
  "format": "waynesdays-recipes",
  "version": 1,
  "title": "Waynesdays Recipe Book",
- "updatedAt": "2026-10-17T20:20:40.510Z",
+ "updatedAt": "2026-10-17T20:23:49.758Z",
  "recipes": [
   {
    "id": "freeman-house-chai-concentrate",
@@ -2128,6 +2128,67 @@
    ],
    "createdAt": "2026-10-17T19:37:10.156Z",
    "updatedAt": "2026-10-17T19:37:10.156Z"
+  },
+  {
+   "id": "jamaican-banana-fritters",
+   "title": "Jamaican Banana Fritters",
+   "description": "Soft, crisp-edged fritters of mashed overripe bananas, brown sugar, nutmeg and cinnamon, pan-fried and sprinkled with sugar. No eggs, quick to mix, and best eaten warm.",
+   "category": "Baking and Sweets",
+   "tags": [
+    "banana",
+    "fritters",
+    "jamaican",
+    "caribbean",
+    "snack",
+    "quick",
+    "cook like a jamaican"
+   ],
+   "time": "",
+   "yield": "",
+   "image": "",
+   "ingredients": [
+    {
+     "name": "Fritters",
+     "note": "",
+     "items": [
+      "1 2/3 cups mashed overripe bananas (about 3 to 5 medium bananas)",
+      "2 to 3 tbsp brown sugar",
+      "1/4 tsp nutmeg",
+      "1/4 tsp cinnamon",
+      "1 tsp vanilla extract",
+      "Pinch of salt",
+      "1 cup all-purpose flour",
+      "4 to 5 tbsp cooking oil",
+      "1 tbsp granulated sugar"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Batter:** Mash the bananas with the brown sugar, spices, vanilla and salt, then stir in the flour.",
+      "**Heat:** Heat 1 or 2 tablespoons of the oil in a frying pan on high. Using a serving spoon, spoon the batter into the pan.",
+      "**Fry:** Fry the fritters until crisp and brown on both sides, adding more oil as needed. They're done when no batter oozes out when you press them.",
+      "**Drain:** Move the fritters to paper towels.",
+      "**Serve:** Sprinkle with the granulated sugar and eat warm."
+     ]
+    }
+   ],
+   "notes": [
+    "From Cook Like a Jamaican.",
+    "Use really ripe, speckled bananas for the sweetest, softest fritters.",
+    "Never leave the pan of hot oil unattended. The author's after-school batch, left heating while she watched Love Connection, set the kitchen on fire."
+   ],
+   "extras": [],
+   "sources": [
+    {
+     "label": "Cook Like a Jamaican",
+     "url": "https://cooklikeajamaican.com/new-recipe-banana-fritters/"
+    }
+   ],
+   "createdAt": "2026-10-17T20:23:38.609Z",
+   "updatedAt": "2026-10-17T20:23:49.758Z"
   },
   {
    "id": "jamaican-brown-stew-oxtail",
