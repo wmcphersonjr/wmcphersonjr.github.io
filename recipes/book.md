@@ -10,7 +10,7 @@ Every recipe pulled from past chats, compiled in one place. Grouped by category.
 
 **Breakfast:** Fluffy Pancakes · Buttermilk Cornbread Waffles · McDonald's Fruit and Maple Oatmeal (Copycat)
 
-**Baking and Sweets:** Sugar Moon Espresso Cornflake Cookies (Copycat) · Bakery Cookie Skillet · Pan de Muerto · Latino Foodie Pan de Muerto
+**Baking and Sweets:** Sugar Moon Espresso Cornflake Cookies (Copycat) · Bakery Cookie Skillet · Soft and Chewy Oatmeal Chocolate Chip Cookies · Pan de Muerto · Latino Foodie Pan de Muerto
 
 **Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs · Creamy Lemon Pesto Pasta
 
@@ -381,6 +381,52 @@ For reheating a store-bought bakery cookie into a skillet dessert.
 5. Top with vanilla ice cream and a pinch of flaky salt. Serve from the hot skillet.
 
 *Source: https://claude.ai/chat/c48f17af-8056-447b-85bf-400d95c371a7*
+
+---
+
+## Soft and Chewy Oatmeal Chocolate Chip Cookies
+
+Danielle's oatmeal chocolate chip cookies from Live Well Bake Often: packed with rolled oats and chocolate chips, soft and chewy, and easy to make.
+
+**Image:** images/oatmeal-chocolate-chip-cookies.jpg
+**Tags:** cookies, oatmeal, chocolate, make-ahead, freezer-friendly
+**Time:** 57 min (includes 30 min chill)
+
+**Makes 24 cookies**
+
+**Ingredients**
+- 1 cup (125 grams) all-purpose flour, spooned and leveled
+- 1/2 tsp ground cinnamon
+- 1/2 tsp baking soda
+- 1/4 tsp salt
+- 1 1/2 cups (150 grams) old-fashioned rolled oats
+- 1/2 cup (115 grams) unsalted butter, softened
+- 1/2 cup (100 grams) light brown sugar, packed
+- 1/4 cup (50 grams) granulated sugar
+- 1 large egg, room temperature
+- 1 tsp pure vanilla extract
+- 1 cup (190 grams) semisweet chocolate chips
+
+**Method**
+1. **Dry mix:** In a medium bowl, whisk the flour, cinnamon, baking soda and salt. Stir in the rolled oats and set aside.
+2. **Cream:** In a stand mixer with the paddle (or with a hand mixer), beat the butter, brown sugar and granulated sugar 1 to 2 minutes, until well combined.
+3. **Egg:** Mix in the egg and vanilla, scraping down the sides of the bowl as needed.
+4. **Combine:** Add the dry ingredients and mix on low until just combined, then mix in the chocolate chips on low until evenly distributed.
+5. **Chill:** Cover tightly and refrigerate at least 30 minutes.
+6. **Heat:** Meanwhile, preheat the oven to 350°F (177°C). Line two large baking sheets with parchment or silicone mats.
+7. **Scoop:** Use a 1.5 tbsp cookie scoop to portion the dough onto the sheets, leaving a little room between each. Gently press each ball to flatten slightly.
+8. **Bake:** Bake 10 to 13 minutes, until the tops are set.
+9. **Cool:** Cool on the baking sheet 5 to 10 minutes, then move to a wire rack to cool completely.
+
+**Notes**
+- Store in an airtight container on the counter for up to 1 week.
+- Use old-fashioned rolled oats for the chewiest texture. Quick oats work, but the texture won't be quite the same.
+- Only have salted butter? Cut the salt to a tiny pinch.
+- Make ahead: the dough keeps 2 to 3 days, covered tightly in the fridge. If it's too cold to scoop, let it sit 20 minutes at room temperature.
+- Freeze dough: scoop, roll and gently flatten the balls on a parchment-lined sheet, freeze, then store in a freezer bag up to 3 months. Bake from frozen, adding 1 to 2 minutes if needed.
+- Baked cookies freeze well up to 3 months. Thaw to room temperature before serving.
+
+*Source: Live Well Bake Often (Danielle): https://www.livewellbakeoften.com/soft-chewy-oatmeal-chocolate-chip-cookies/*
 
 ---
 

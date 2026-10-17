@@ -2,7 +2,7 @@
  "format": "waynesdays-recipes",
  "version": 1,
  "title": "Waynesdays Recipe Book",
- "updatedAt": "2026-10-16T22:03:50.916Z",
+ "updatedAt": "2026-10-17T02:17:17.715Z",
  "recipes": [
   {
    "id": "freeman-house-chai-concentrate",
@@ -702,6 +702,74 @@
    ],
    "createdAt": "2026-09-26T11:44:00.000Z",
    "updatedAt": "2026-09-26T12:00:00.000Z"
+  },
+  {
+   "id": "soft-and-chewy-oatmeal-chocolate-chip-cookies",
+   "title": "Soft and Chewy Oatmeal Chocolate Chip Cookies",
+   "description": "Danielle's oatmeal chocolate chip cookies from Live Well Bake Often: packed with rolled oats and chocolate chips, soft and chewy, and easy to make.",
+   "category": "Baking and Sweets",
+   "tags": [
+    "cookies",
+    "oatmeal",
+    "chocolate",
+    "make-ahead",
+    "freezer-friendly"
+   ],
+   "time": "57 min (includes 30 min chill)",
+   "yield": "Makes 24 cookies",
+   "image": "images/oatmeal-chocolate-chip-cookies.jpg",
+   "ingredients": [
+    {
+     "name": "",
+     "note": "",
+     "items": [
+      "1 cup (125 grams) all-purpose flour, spooned and leveled",
+      "1/2 tsp ground cinnamon",
+      "1/2 tsp baking soda",
+      "1/4 tsp salt",
+      "1 1/2 cups (150 grams) old-fashioned rolled oats",
+      "1/2 cup (115 grams) unsalted butter, softened",
+      "1/2 cup (100 grams) light brown sugar, packed",
+      "1/4 cup (50 grams) granulated sugar",
+      "1 large egg, room temperature",
+      "1 tsp pure vanilla extract",
+      "1 cup (190 grams) semisweet chocolate chips"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Dry mix:** In a medium bowl, whisk the flour, cinnamon, baking soda and salt. Stir in the rolled oats and set aside.",
+      "**Cream:** In a stand mixer with the paddle (or with a hand mixer), beat the butter, brown sugar and granulated sugar 1 to 2 minutes, until well combined.",
+      "**Egg:** Mix in the egg and vanilla, scraping down the sides of the bowl as needed.",
+      "**Combine:** Add the dry ingredients and mix on low until just combined, then mix in the chocolate chips on low until evenly distributed.",
+      "**Chill:** Cover tightly and refrigerate at least 30 minutes.",
+      "**Heat:** Meanwhile, preheat the oven to 350°F (177°C). Line two large baking sheets with parchment or silicone mats.",
+      "**Scoop:** Use a 1.5 tbsp cookie scoop to portion the dough onto the sheets, leaving a little room between each. Gently press each ball to flatten slightly.",
+      "**Bake:** Bake 10 to 13 minutes, until the tops are set.",
+      "**Cool:** Cool on the baking sheet 5 to 10 minutes, then move to a wire rack to cool completely."
+     ]
+    }
+   ],
+   "notes": [
+    "Store in an airtight container on the counter for up to 1 week.",
+    "Use old-fashioned rolled oats for the chewiest texture. Quick oats work, but the texture won't be quite the same.",
+    "Only have salted butter? Cut the salt to a tiny pinch.",
+    "Make ahead: the dough keeps 2 to 3 days, covered tightly in the fridge. If it's too cold to scoop, let it sit 20 minutes at room temperature.",
+    "Freeze dough: scoop, roll and gently flatten the balls on a parchment-lined sheet, freeze, then store in a freezer bag up to 3 months. Bake from frozen, adding 1 to 2 minutes if needed.",
+    "Baked cookies freeze well up to 3 months. Thaw to room temperature before serving."
+   ],
+   "extras": [],
+   "sources": [
+    {
+     "label": "Live Well Bake Often (Danielle)",
+     "url": "https://www.livewellbakeoften.com/soft-chewy-oatmeal-chocolate-chip-cookies/"
+    }
+   ],
+   "createdAt": "2026-10-17T02:17:17.715Z",
+   "updatedAt": "2026-10-17T02:17:17.715Z"
   },
   {
    "id": "pan-de-muerto",
