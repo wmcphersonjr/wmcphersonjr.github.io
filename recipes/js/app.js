@@ -525,6 +525,7 @@
     if (p[0] === 'import') return { name: 'import', params: { d: q.get('d') } };
     if (p[0] === 'groceries') return { name: 'groceries', params: {} };
     if (p[0] === 'settings') return { name: 'settings', params: {} };
+    if (p[0] === 'tips') return { name: 'tips', params: { t: q.get('t'), cat: q.get('cat') } };
     return { name: 'book', params: {} };
   }
   const go = (hash) => { if (location.hash === hash) render(); else location.hash = hash; };
@@ -548,12 +549,13 @@
       case 'import': viewImportPayload(main, route.params.d); break;
       case 'groceries': viewGroceries(main); break;
       case 'settings': viewSettings(main); break;
+      case 'tips': viewTips(main); break;
       default: viewBook(main);
     }
     if (key !== lastRouteKey && route.name !== 'cook') { window.scrollTo(0, route.name === 'book' ? (bookScroll || 0) : 0); }
     lastRouteKey = key;
   }
-  const navFor = (n) => ({ book: 'book', recipe: 'book', cook: 'book', edit: 'add', add: 'add', import: 'add', groceries: 'groceries', settings: 'settings' }[n]);
+  const navFor = (n) => ({ book: 'book', recipe: 'book', cook: 'book', edit: 'add', add: 'add', import: 'add', groceries: 'groceries', settings: 'settings', tips: 'tips' }[n]);
   let bookScroll = 0;
   window.addEventListener('scroll', () => { if (route.name === 'book') bookScroll = window.scrollY; }, { passive: true });
 
@@ -821,6 +823,7 @@
             </section>` : ''}
             ${r.notes.length ? `<section class="panel notes"><h2>Notes</h2><ul>${r.notes.map((n) => `<li>${inlineMd(n)}</li>`).join('')}</ul></section>` : ''}
             ${r.extras.map((e) => `<section class="panel extra"><h2>${esc(e.title)}</h2>${blockMd(e.body)}</section>`).join('')}
+            ${chefNotesHtml(r)}
             <section class="panel mine no-print">
               <h2>My notes</h2>
               <textarea id="my-notes" rows="3" placeholder="Tweaks, what worked, what to try next time…">${esc(m.notes || '')}</textarea>
@@ -1469,6 +1472,158 @@ One or two sentences about the dish.
   };
 
   // ======================================================================
+  // View: The Chef's Notebook (techniques & cheat codes)
+  // ======================================================================
+  const TIPS = window.RB_TIPS || { categories: [], tips: [], temps: [], sugar: [], ratios: [], tempsNote: '' };
+  const tipsUi = { q: '', cat: '', saved: false };
+  const savedTips = new Set(LS.get('wrb.tipsSaved', []));
+  const saveSavedTips = () => LS.set('wrb.tipsSaved', Array.from(savedTips));
+  const tipCat = (id) => TIPS.categories.find((c) => c.id === id) || { id, label: id, blurb: '' };
+  const levelRank = (t) => ({ Foundation: 0, Pro: 1, Michelin: 2 }[t.level] || 0);
+  const tipRx = {};
+  const recipeTextCache = new Map();
+  function recipeText(r) {
+    const key = r.id + '|' + (r.updatedAt || '');
+    if (!recipeTextCache.has(key)) recipeTextCache.set(key, [r.title, r.description].concat(r.ingredients.flatMap((g) => g.items), r.steps.flatMap((g) => g.items), r.notes, r.extras.map((e) => e.body)).join('\n'));
+    return recipeTextCache.get(key);
+  }
+  function tipMatches(t, text) {
+    if (!t.match) return 0;
+    const rx = tipRx[t.id] || (tipRx[t.id] = new RegExp(t.match, 'gi'));
+    const m = text.match(rx);
+    return m ? m.length : 0;
+  }
+  function tipsForRecipe(r, n) {
+    const text = recipeText(r);
+    return TIPS.tips.map((t) => ({ t, score: (t.useIn.includes(r.id) ? 10 : 0) + Math.min(tipMatches(t, text), 3) }))
+      .filter((x) => x.score >= (x.t.useIn.includes(r.id) ? 1 : 2))
+      .sort((a, b) => b.score - a.score || levelRank(b.t) - levelRank(a.t))
+      .slice(0, n || 3).map((x) => x.t);
+  }
+  function recipesForTip(t) {
+    const ids = t.useIn.filter((id) => store.byId(id));
+    if (ids.length < 5 && t.match) {
+      store.recipes.map((r) => ({ r, n: tipMatches(t, recipeText(r)) })).filter((x) => x.n > 0 && !ids.includes(x.r.id))
+        .sort((a, b) => b.n - a.n).slice(0, 5 - ids.length).forEach((x) => ids.push(x.r.id));
+    }
+    return ids.map((id) => store.byId(id));
+  }
+  function chefNotesHtml(r) {
+    const list = tipsForRecipe(r, 3);
+    if (!list.length) return '';
+    return `<section class="panel chef-notes no-print">
+      <div class="panel-head"><h2>Chef’s notes</h2><a class="linkish" href="#/tips">All techniques</a></div>
+      <ul class="chef-list">${list.map((t) => `<li><a href="#/tips?t=${encodeURIComponent(t.id)}">
+        <span class="level level-${t.level.toLowerCase()}">${esc(t.level)}</span>
+        <b>${esc(t.title)}</b><span>${esc(t.rule)}</span></a></li>`).join('')}</ul>
+    </section>`;
+  }
+  function tipCardHtml(t, open) {
+    const recipes = recipesForTip(t);
+    const saved = savedTips.has(t.id);
+    return `<details class="tip-card" id="tip-${esc(t.id)}" ${open ? 'open' : ''}>
+      <summary>
+        <div class="tip-top"><span class="eyebrow">${esc(tipCat(t.cat).label)}</span><span class="level level-${t.level.toLowerCase()}">${esc(t.level)}</span></div>
+        <h3>${esc(t.title)}</h3>
+        <p class="tip-rule">${esc(t.rule)}</p>
+        <span class="tip-more"><span class="when-closed">How it works</span><span class="when-open">Close</span>${icon('i-right')}</span>
+        <button type="button" class="tip-save ${saved ? 'on' : ''}" data-act="tip-save" data-id="${esc(t.id)}" aria-pressed="${saved}" aria-label="${saved ? 'Remove from' : 'Save to'} saved techniques">${icon('i-bookmark')}</button>
+      </summary>
+      <div class="tip-body">
+        <p class="tip-why">${esc(t.why)}</p>
+        <ol class="tip-how">${t.how.map((h) => `<li>${esc(h)}</li>`).join('')}</ol>
+        ${t.pro ? `<p class="tip-pro"><span class="eyebrow">Chef’s move</span>${esc(t.pro)}</p>` : ''}
+        ${recipes.length ? `<div class="tip-uses"><span class="eyebrow">Use it in</span><div>${recipes.map((r) => `<a href="#/r/${encodeURIComponent(r.id)}">${esc(r.title)}</a>`).join('')}</div></div>` : ''}
+      </div>
+    </details>`;
+  }
+  function filteredTips() {
+    const q = norm(tipsUi.q).trim();
+    const toks = q ? q.split(/\s+/) : [];
+    return TIPS.tips.filter((t) => (!tipsUi.cat || t.cat === tipsUi.cat) && (!tipsUi.saved || savedTips.has(t.id))
+      && toks.every((k) => norm([t.title, t.rule, t.why, t.how.join(' '), t.pro, tipCat(t.cat).label, t.level].join(' ')).includes(k)));
+  }
+  function renderTipResults(openId) {
+    const el = $('#tip-results');
+    if (!el) return;
+    const list = filteredTips();
+    if (!list.length) {
+      el.innerHTML = `<div class="empty"><p class="empty-title">${tipsUi.saved && !savedTips.size ? 'No saved techniques yet' : 'Nothing matches that'}</p><p>${tipsUi.saved && !savedTips.size ? 'Tap the bookmark on any technique to keep it here.' : 'Try another word or category.'}</p></div>`;
+      return;
+    }
+    if (!tipsUi.q && !tipsUi.cat && !tipsUi.saved) {
+      el.innerHTML = TIPS.categories.map((c) => {
+        const items = list.filter((t) => t.cat === c.id);
+        if (!items.length) return '';
+        return `<section class="tip-section"><div class="tip-section-head"><h2>${esc(c.label)}</h2><p>${esc(c.blurb)}</p></div>
+          <div class="tip-grid">${items.map((t) => tipCardHtml(t, t.id === openId)).join('')}</div></section>`;
+      }).join('');
+    } else {
+      el.innerHTML = `<p class="result-count">${list.length} technique${list.length === 1 ? '' : 's'}</p><div class="tip-grid">${list.map((t) => tipCardHtml(t, t.id === openId)).join('')}</div>`;
+    }
+  }
+  function viewTips(main) {
+    const p = route.params;
+    if (p.t) { tipsUi.q = ''; tipsUi.cat = ''; tipsUi.saved = false; }
+    if (p.cat) tipsUi.cat = p.cat;
+    const day = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
+    const today = TIPS.tips[day % TIPS.tips.length];
+    const nLevels = (lv) => TIPS.tips.filter((t) => t.level === lv).length;
+    main.innerHTML = `
+      <section class="notebook wrap">
+        <header class="nb-hero">
+          <p class="eyebrow">The Chef’s Notebook</p>
+          <h1>Cheat codes for a Michelin kitchen at home</h1>
+          <p class="sub">${TIPS.tips.length} techniques, ratios and plating moves that separate good cooking from unforgettable, each linked to the recipes in your book where it pays off.</p>
+          <p class="nb-levels"><span class="level level-foundation">Foundation</span> ${nLevels('Foundation')} everyday habits <span class="level level-pro">Pro</span> ${nLevels('Pro')} real upgrades <span class="level level-michelin">Michelin</span> ${nLevels('Michelin')} fine-dining moves</p>
+        </header>
+        ${today ? `<article class="spotlight after-dark">
+          <div class="spot-copy">
+            <p class="eyebrow">Today’s cheat code · ${esc(tipCat(today.cat).label)}</p>
+            <h2>${esc(today.title)}</h2>
+            <p class="spot-rule">${esc(today.rule)}</p>
+            <p class="spot-why">${esc(today.why)}</p>
+            <a class="btn" href="#/tips?t=${encodeURIComponent(today.id)}">Learn the technique ${icon('i-right')}</a>
+          </div>
+          <span class="level level-${today.level.toLowerCase()}">${esc(today.level)}</span>
+        </article>` : ''}
+        <form class="searchbar" role="search" onsubmit="return false">
+          ${icon('i-search', 'lead')}
+          <input id="tip-q" type="search" autocomplete="off" placeholder="Search techniques: sear, emulsion, plating…" value="${esc(tipsUi.q)}" aria-label="Search techniques">
+        </form>
+        <div class="chips tip-chips" role="tablist" aria-label="Technique categories">
+          <button class="chip ${!tipsUi.cat && !tipsUi.saved ? 'on' : ''}" data-act="tip-cat" data-cat="">All <small>${TIPS.tips.length}</small></button>
+          ${TIPS.categories.map((c) => `<button class="chip ${tipsUi.cat === c.id ? 'on' : ''}" data-act="tip-cat" data-cat="${c.id}">${esc(c.label)} <small>${TIPS.tips.filter((t) => t.cat === c.id).length}</small></button>`).join('')}
+          <button class="chip ${tipsUi.saved ? 'on' : ''}" data-act="tip-saved">${icon('i-bookmark')} Saved <small data-saved-count>${savedTips.size}</small></button>
+        </div>
+        <div id="tip-results"></div>
+        <section class="reference" id="numbers">
+          <div class="tip-section-head"><h2>Numbers worth memorizing</h2><p>The ratios and temperatures chefs carry in their heads.</p></div>
+          <div class="ref-grid">
+            <div class="ref-card ref-wide">
+              <h3>Doneness temperatures</h3>
+              <div class="table-wrap"><table class="ref-table"><thead><tr><th>What</th><th>Pull at</th><th>After resting</th></tr></thead>
+                <tbody>${TIPS.temps.map((x) => `<tr><td>${esc(x.item)}</td><td class="num">${esc(x.pull)}</td><td>${esc(x.final)}</td></tr>`).join('')}</tbody></table></div>
+              <p class="ref-note">${esc(TIPS.tempsNote)}</p>
+            </div>
+            <div class="ref-card">
+              <h3>Ratios</h3>
+              <dl class="ratio-list">${TIPS.ratios.map((x) => `<div><dt>${esc(x.name)}</dt><dd><b>${esc(x.ratio)}</b><span>${esc(x.note)}</span></dd></div>`).join('')}</dl>
+            </div>
+            <div class="ref-card">
+              <h3>Sugar stages</h3>
+              <dl class="ratio-list">${TIPS.sugar.map((x) => `<div><dt>${esc(x.stage)}</dt><dd><b>${esc(x.temp)}</b><span>${esc(x.use)}</span></dd></div>`).join('')}</dl>
+            </div>
+          </div>
+        </section>
+      </section>`;
+    renderTipResults(p.t);
+    const q = $('#tip-q');
+    q.addEventListener('input', debounce(() => { tipsUi.q = q.value; renderTipResults(); }, 120));
+    if (p.t) setTimeout(() => { const card = document.getElementById('tip-' + p.t); if (card) card.scrollIntoView({ block: 'start', behavior: 'smooth' }); }, 60);
+  }
+
+  // ======================================================================
   // View: Settings
   // ======================================================================
   function viewSettings(main) {
@@ -1790,6 +1945,21 @@ One or two sentences about the dish.
       case 'g-clear-all': if (confirm('Clear the whole grocery list?')) { groceries.list = []; groceries.save(); viewGroceries($('#main')); } break;
       case 'g-copy': copyText(groceryText(), 'List copied'); break;
       case 'g-share': { const t = groceryText(); if (navigator.share) { try { await navigator.share({ title: 'Grocery list', text: t }); } catch (err) { /* */ } } else copyText(t, 'List copied'); break; }
+      // chef's notebook
+      case 'tip-cat': tipsUi.cat = el.dataset.cat; tipsUi.saved = false; $$('.tip-chips .chip').forEach((c) => c.classList.toggle('on', c === el)); renderTipResults(); break;
+      case 'tip-saved': tipsUi.saved = !tipsUi.saved; tipsUi.cat = ''; $$('.tip-chips .chip').forEach((c) => c.classList.toggle('on', tipsUi.saved ? c === el : !c.dataset.cat && c.dataset.act === 'tip-cat')); renderTipResults(); break;
+      case 'tip-save': {
+        e.preventDefault(); e.stopPropagation();
+        const id = el.dataset.id;
+        if (savedTips.has(id)) savedTips.delete(id); else savedTips.add(id);
+        saveSavedTips();
+        const on = savedTips.has(id);
+        el.classList.toggle('on', on); el.setAttribute('aria-pressed', on);
+        const c = $('[data-saved-count]'); if (c) c.textContent = savedTips.size;
+        toast(on ? 'Saved to your techniques' : 'Removed from saved');
+        if (tipsUi.saved) renderTipResults();
+        break;
+      }
       // settings
       case 'theme': settings.theme = el.dataset.theme; saveSettings(); applyTheme(); $$('.seg button').forEach((b) => { const on = b.dataset.theme === settings.theme; b.classList.toggle('on', on); b.setAttribute('aria-checked', on); }); break;
       case 'sync-now': sync.run(false); break;

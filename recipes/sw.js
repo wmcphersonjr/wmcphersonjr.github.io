@@ -1,6 +1,6 @@
 /* Offline support: app shell cache-first, recipe data network-first. */
-const VERSION = 'wrb-v2';
-const SHELL = ['./', 'index.html', 'app.css', 'js/parse.js', 'js/app.js', 'icon.svg', 'icon-192.png', 'manifest.webmanifest', 'data/recipes.json'];
+const VERSION = 'wrb-v3';
+const SHELL = ['./', 'index.html', 'app.css', 'js/parse.js', 'js/tips.js', 'js/app.js', 'icon.svg', 'icon-192.png', 'manifest.webmanifest', 'data/recipes.json'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(VERSION).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()));
