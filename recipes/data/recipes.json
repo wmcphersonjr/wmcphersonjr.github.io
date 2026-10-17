@@ -2,7 +2,7 @@
  "format": "waynesdays-recipes",
  "version": 1,
  "title": "Waynesdays Recipe Book",
- "updatedAt": "2026-10-17T02:27:21.567Z",
+ "updatedAt": "2026-10-17T02:31:36.890Z",
  "recipes": [
   {
    "id": "freeman-house-chai-concentrate",
@@ -599,7 +599,7 @@
    ],
    "time": "1 hr 45 min",
    "yield": "Makes 4 to 6 large pancakes (3 to 6 servings)",
-   "image": "",
+   "image": "images/golden-diner-pancakes.jpg",
    "ingredients": [
     {
      "name": "Pancake batter",
@@ -676,7 +676,70 @@
     }
    ],
    "createdAt": "2026-10-17T02:27:21.567Z",
-   "updatedAt": "2026-10-17T02:27:21.567Z"
+   "updatedAt": "2026-10-17T02:31:36.890Z"
+  },
+  {
+   "id": "shakshuka-with-feta",
+   "title": "Shakshuka With Feta",
+   "description": "Eggs baked in a cumin, paprika and cayenne spiced tomato and red pepper sauce, with crumbled feta that turns into creamy nuggets in the oven.",
+   "category": "Breakfast",
+   "tags": [
+    "eggs",
+    "brunch",
+    "vegetarian",
+    "one-pan",
+    "nyt cooking"
+   ],
+   "time": "50 min",
+   "yield": "Serves 4 to 6",
+   "image": "images/shakshuka-with-feta.jpg",
+   "ingredients": [
+    {
+     "name": "",
+     "note": "",
+     "items": [
+      "3 tbsp extra-virgin olive oil",
+      "1 large onion, halved and thinly sliced",
+      "1 large red bell pepper, seeded and thinly sliced",
+      "3 garlic cloves, thinly sliced",
+      "1 tsp ground cumin",
+      "1 tsp sweet paprika",
+      "1/8 tsp ground cayenne, or to taste",
+      "1 (28-ounce) can whole plum tomatoes with their juices, coarsely chopped",
+      "3/4 tsp kosher salt, plus more as needed",
+      "1/4 tsp black pepper, plus more as needed",
+      "5 oz feta, crumbled (about 1 1/4 cups)",
+      "6 large eggs",
+      "Chopped cilantro, for serving",
+      "Hot sauce, for serving"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Soften:** Heat the oven to 375°F. Heat the oil in a large ovenproof skillet over medium-low. Cook the onion and bell pepper gently until very soft, about 20 minutes.",
+      "**Spice:** Add the garlic and cook until tender, 1 to 2 minutes, then stir in the cumin, paprika and cayenne and cook 1 minute.",
+      "**Sauce:** Add the tomatoes, 3/4 tsp salt and 1/4 tsp pepper, and simmer until thickened, about 10 minutes. Adjust the seasoning and stir in the feta.",
+      "**Eggs:** Gently crack the eggs over the sauce and season them with salt and pepper.",
+      "**Bake:** Bake until the eggs are just set, 7 to 10 minutes. Top with cilantro and serve with hot sauce."
+     ]
+    }
+   ],
+   "notes": [
+    "By Melissa Clark for NYT Cooking.",
+    "Serve with pita or challah for scooping. Good for breakfast, brunch or dinner."
+   ],
+   "extras": [],
+   "sources": [
+    {
+     "label": "NYT Cooking (Melissa Clark)",
+     "url": "https://cooking.nytimes.com/search?q=Shakshuka%20With%20Feta"
+    }
+   ],
+   "createdAt": "2026-10-17T02:31:36.890Z",
+   "updatedAt": "2026-10-17T02:31:36.890Z"
   },
   {
    "id": "sugar-moon-espresso-cornflake-cookies",
@@ -1031,7 +1094,7 @@
    ],
    "time": "35 min (plus 2 hr chilling)",
    "yield": "Makes about 18 cookies",
-   "image": "",
+   "image": "images/gingerbread-latte-cookies.jpg",
    "ingredients": [
     {
      "name": "Cookies",
@@ -1091,7 +1154,7 @@
     }
    ],
    "createdAt": "2026-10-17T02:27:21.567Z",
-   "updatedAt": "2026-10-17T02:27:21.567Z"
+   "updatedAt": "2026-10-17T02:31:36.890Z"
   },
   {
    "id": "chocolate-souffles",
@@ -1108,7 +1171,7 @@
    ],
    "time": "45 min",
    "yield": "Serves 4",
-   "image": "",
+   "image": "images/chocolate-souffles.jpg",
    "ingredients": [
     {
      "name": "",
@@ -1156,7 +1219,7 @@
     }
    ],
    "createdAt": "2026-10-17T02:27:21.567Z",
-   "updatedAt": "2026-10-17T02:27:21.567Z"
+   "updatedAt": "2026-10-17T02:31:36.890Z"
   },
   {
    "id": "conchas",
@@ -1173,7 +1236,7 @@
    ],
    "time": "1 1/2 hr (plus 4 to 24 hr chilled rise and 1 1/2 to 2 hr proof)",
    "yield": "Makes 15 buns",
-   "image": "",
+   "image": "images/conchas.jpg",
    "ingredients": [
     {
      "name": "Dough",
@@ -1252,7 +1315,83 @@
     }
    ],
    "createdAt": "2026-10-17T02:27:21.567Z",
-   "updatedAt": "2026-10-17T02:27:21.567Z"
+   "updatedAt": "2026-10-17T02:31:36.890Z"
+  },
+  {
+   "id": "peach-cobbler",
+   "title": "Peach Cobbler",
+   "description": "Juicy maple-spiced peaches under a biscuit topping with oats for crisp-like crunch. Works with fresh or frozen peaches year-round.",
+   "category": "Baking and Sweets",
+   "tags": [
+    "dessert",
+    "peaches",
+    "summer",
+    "comfort",
+    "nyt cooking"
+   ],
+   "time": "1 hr",
+   "yield": "Serves 8",
+   "image": "images/peach-cobbler.jpg",
+   "ingredients": [
+    {
+     "name": "Filling",
+     "note": "",
+     "items": [
+      "Unsalted butter, at room temperature, for the pan",
+      "5 ripe but firm peaches, peeled, halved, cored and sliced, or 2 pounds frozen peaches, thawed and drained (about 4 cups)",
+      "1/2 cup (101 grams) granulated sugar",
+      "1 tsp pure vanilla extract",
+      "1/2 tsp ground cinnamon",
+      "1/4 tsp freshly ground nutmeg",
+      "1/4 tsp kosher salt",
+      "2 tbsp maple syrup",
+      "1 tbsp cornstarch"
+     ]
+    },
+    {
+     "name": "Topping",
+     "note": "",
+     "items": [
+      "1 cup (128 grams) all-purpose flour",
+      "1/2 cup (44 grams) old-fashioned oats",
+      "1/4 cup (50 grams) granulated sugar",
+      "1 1/2 tsp baking powder",
+      "1 tsp kosher salt",
+      "6 tbsp unsalted butter, frozen",
+      "3/4 to 1 cup buttermilk",
+      "2 tbsp turbinado sugar",
+      "Vanilla ice cream, for serving",
+      "Mint leaves, for serving (optional)"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Heat:** Heat the oven to 350°F. Butter a cast-iron skillet or 9-inch square glass baking dish.",
+      "**Peaches:** In a medium saucepan over medium, combine the peaches, sugar, vanilla, cinnamon, nutmeg and salt. Cook, stirring occasionally, until the sugar dissolves and the peaches release juice, 3 to 4 minutes.",
+      "**Thicken:** Stir the maple syrup and cornstarch together, add to the peaches and cook, stirring, about 1 minute, until the liquid coats the back of a spoon. Take off the heat.",
+      "**Topping:** Mix the flour, oats, sugar, baking powder and salt in a large bowl. Grate in the frozen butter and rub it in with your hands until pea-size. Stir in 3/4 cup buttermilk a little at a time, adding more only as needed to bring it together.",
+      "**Assemble:** Pour the peaches into the pan. Drop scoops of the biscuit dough on top with a little space between them and sprinkle with turbinado sugar.",
+      "**Bake:** Bake until the top is golden and the peaches bubble, 45 to 50 minutes. Rest 5 to 10 minutes so the filling sets, then serve warm with ice cream and a little mint."
+     ]
+    }
+   ],
+   "notes": [
+    "By Millie Peartree for NYT Cooking.",
+    "Maple syrup stands in for the usual brown sugar for a lightly woody sweetness.",
+    "A handful of blueberries in the filling works well."
+   ],
+   "extras": [],
+   "sources": [
+    {
+     "label": "NYT Cooking (Millie Peartree)",
+     "url": "https://cooking.nytimes.com/search?q=Peach%20Cobbler"
+    }
+   ],
+   "createdAt": "2026-10-17T02:31:36.890Z",
+   "updatedAt": "2026-10-17T02:31:36.890Z"
   },
   {
    "id": "jamaican-brown-stew-oxtail",
@@ -1369,7 +1508,7 @@
    ],
    "time": "about 3 1/2 hr",
    "yield": "Serves 4",
-   "image": "",
+   "image": "images/oxtail-and-butter-beans.jpg",
    "ingredients": [
     {
      "name": "",
@@ -1422,7 +1561,7 @@
     }
    ],
    "createdAt": "2026-10-17T02:27:21.567Z",
-   "updatedAt": "2026-10-17T02:27:21.567Z"
+   "updatedAt": "2026-10-17T02:31:36.890Z"
   },
   {
    "id": "jerk-spiced-duck-tacos",
@@ -2011,6 +2150,325 @@
    "updatedAt": "2026-10-16T18:38:46.467Z"
   },
   {
+   "id": "birria-de-res",
+   "title": "Birria de Res (Beef Birria)",
+   "description": "Josef Centeno's thickly sauced beef birria, based on his grandmother Alice's recipe: bone-in beef braised in a smoky guajillo and poblano adobo, served in bowls with warm tortillas.",
+   "category": "Mains",
+   "tags": [
+    "mexican",
+    "beef",
+    "braise",
+    "stew",
+    "entertaining",
+    "nyt cooking"
+   ],
+   "time": "2 3/4 hr",
+   "yield": "Serves 8 to 10",
+   "image": "images/birria-de-res.jpg",
+   "ingredients": [
+    {
+     "name": "",
+     "note": "",
+     "items": [
+      "2 poblano chiles",
+      "5 guajillo chiles, seeded, stemmed and halved lengthwise",
+      "5 pounds bone-in beef shoulder, cut into large pieces (or goat or lamb stew cuts on the bone)",
+      "1 tbsp fine sea salt",
+      "1/4 cup neutral oil, such as canola or grapeseed",
+      "1 medium white onion, finely chopped",
+      "1 (28-ounce) can crushed tomatoes",
+      "1/4 cup plus 2 tbsp distilled white vinegar",
+      "6 garlic cloves, peeled",
+      "2 tbsp finely grated fresh ginger",
+      "2 tsp dried Mexican oregano",
+      "2 tsp toasted white sesame seeds",
+      "1/2 tsp ground cumin",
+      "4 cloves",
+      "Fresh black pepper",
+      "1 cinnamon stick",
+      "2 fresh or dried bay leaves",
+      "1/2 cup chopped fresh cilantro",
+      "2 limes, quartered",
+      "Corn tortillas, warmed"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Heat:** Heat the oven to 325°F.",
+      "**Poblanos:** Char the poblanos directly over a gas flame on high, turning, until blackened all over, about 2 minutes per side. Cover in a bowl to steam 10 minutes, then peel off the skins, remove the stems and seeds, and roughly chop.",
+      "**Guajillos:** Meanwhile, toast the guajillo halves flat in a large skillet over medium, in batches, about 15 seconds, turning once. Soak them in 2 cups hot water.",
+      "**Sear:** Season the meat all over with the salt. Heat the oil in a large ovenproof pot over medium-high and sear the meat in batches until well browned, 2 to 3 minutes per side. Move to a bowl as you go.",
+      "**Onion:** Add the onion to the pot and cook, stirring occasionally, until golden, about 5 minutes. Return all the meat.",
+      "**Adobo:** Blend the tomatoes, vinegar, garlic, ginger, oregano, sesame seeds, cumin, cloves and a few grinds of pepper with the poblanos, guajillos and their soaking liquid until smooth.",
+      "**Braise:** Pour the adobo over the meat, add the cinnamon stick and bay leaves, and add 4 to 6 cups water, enough to cover the meat well.",
+      "**Bake:** Cover and cook in the oven until fork-tender, about 2 hours.",
+      "**Serve:** Ladle into bowls, sprinkle with cilantro, and serve with lime wedges and warm tortillas."
+     ]
+    }
+   ],
+   "notes": [
+    "Recipe from Josef Centeno, adapted by Tejal Rao for NYT Cooking.",
+    "Skim the red fat off the top and save it with leftover meat for the Quesabirria Tacos.",
+    "Leftover broth (consomé) makes a great birria ramen with an egg and fresh herbs.",
+    "Oxtail, lamb on the bone or even tofu work in place of beef."
+   ],
+   "extras": [],
+   "sources": [
+    {
+     "label": "NYT Cooking (Josef Centeno, adapted by Tejal Rao)",
+     "url": "https://cooking.nytimes.com/search?q=Birria%20de%20Res"
+    }
+   ],
+   "createdAt": "2026-10-17T02:31:36.890Z",
+   "updatedAt": "2026-10-17T02:31:36.890Z"
+  },
+  {
+   "id": "quesabirria-tacos",
+   "title": "Quesabirria Tacos",
+   "description": "Crisp, cheesy tacos made from leftover birria: tortillas dipped in the red, seasoned fat skimmed from the pot, filled with shredded meat and cheese and pan-fried until lacy at the edges.",
+   "category": "Mains",
+   "tags": [
+    "mexican",
+    "tacos",
+    "leftovers",
+    "quick",
+    "nyt cooking"
+   ],
+   "time": "15 min",
+   "yield": "Makes 4 tacos",
+   "image": "images/quesabirria-tacos.jpg",
+   "ingredients": [
+    {
+     "name": "",
+     "note": "",
+     "items": [
+      "1/4 cup seasoned birria fat plus 1 cup leftover birria meat (both from Birria de Res)",
+      "4 corn tortillas",
+      "1 cup shredded low-moisture cheese, such as Monterey Jack",
+      "1/4 white onion, chopped",
+      "1 handful fresh cilantro leaves, chopped",
+      "1 lime, quartered"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Prep:** Spoon the red-stained fat off the top of the birria onto a plate. Shred the meat by hand or with a fork; it should be lightly dressed in broth, not swimming in it.",
+      "**Fry:** Heat a large nonstick or cast-iron skillet over medium. Working quickly, dip one side of each tortilla in the fat and lay it in the pan, fat side down. As it sizzles, cover each with 1/4 cup cheese all the way to the edges, then scatter about 1/4 cup meat over half.",
+      "**Fold:** As the tortillas brown and the cheese melts, fold them over the meat and press gently. Spilled cheese is good; it makes lacy, crisp edges. Flip as needed and cook until crisp on both sides without burning.",
+      "**Serve:** Lift the edge of each taco and add onion, cilantro and a squeeze of lime."
+     ]
+    }
+   ],
+   "notes": [
+    "By Tejal Rao for NYT Cooking.",
+    "Salsa or hot sauce are welcome, but the birria fat carries plenty of flavor on its own."
+   ],
+   "extras": [],
+   "sources": [
+    {
+     "label": "NYT Cooking (Tejal Rao)",
+     "url": "https://cooking.nytimes.com/search?q=Quesabirria%20Tacos"
+    }
+   ],
+   "createdAt": "2026-10-17T02:31:36.890Z",
+   "updatedAt": "2026-10-17T02:31:36.890Z"
+  },
+  {
+   "id": "stew-peas-and-spinners",
+   "title": "Stew Peas and Spinners",
+   "description": "Jamaican stew peas: red kidney beans simmered with coconut milk and salted pig's tail or beef, finished with thyme, Scotch bonnet and hand-rolled spinner dumplings.",
+   "category": "Mains",
+   "tags": [
+    "jamaican",
+    "beans",
+    "stew",
+    "coconut",
+    "nyt cooking"
+   ],
+   "time": "3 hr (plus overnight soaking)",
+   "yield": "Serves 6",
+   "image": "images/stew-peas-and-spinners.jpg",
+   "ingredients": [
+    {
+     "name": "",
+     "note": "",
+     "items": [
+      "2 cups dried red peas (kidney beans)",
+      "2 pounds salted pig's tail, chopped, or 1 pound beef stew meat (such as chuck), cut into large chunks",
+      "Salt and pepper",
+      "5 garlic cloves, chopped",
+      "3 scallions, chopped",
+      "1 (13- to 14-ounce) can coconut milk (about 1 3/4 cups)",
+      "1 Scotch bonnet or habanero chile",
+      "3 thyme sprigs",
+      "1 cup all-purpose flour",
+      "Cooked rice, for serving"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Soak:** Rinse the peas and soak them in a large pot of cold water in the fridge overnight, or at least 8 hours. Rinse the pig's tail, if using, and soak it in cold water in the fridge the same amount of time. (If using beef, salt it right before cooking.)",
+      "**Simmer:** Drain the peas, leaving them in the pot, and add the garlic, scallions and drained pig's tail or salted beef. Add water to just cover, bring to a simmer and stir in the coconut milk. Simmer at least 2 1/2 hours, until the meat is fork-tender and the peas are cooked, skimming foam and topping up with water to keep everything covered.",
+      "**Season:** Add the chile and thyme and simmer 30 minutes more, seasoning with salt and pepper.",
+      "**Spinners:** Meanwhile, stir the flour with a pinch of salt, then stir in 1/4 cup water until a dough forms, adding more water a teaspoon at a time if dry. Roll tablespoon-size pieces between your palms into thin ropes about 5 inches long and a scant 1/2 inch thick. Keep them apart until all the dough is used.",
+      "**Finish:** About 15 minutes before serving, stir the spinners into the pot and simmer until cooked through, about 15 minutes. Serve hot with white rice."
+     ]
+    }
+   ],
+   "notes": [
+    "By Bryan Washington for NYT Cooking.",
+    "Every cook's version differs; adjust garlic, meat, peppers and herbs to taste. Chicken or a vegetarian version work too."
+   ],
+   "extras": [],
+   "sources": [
+    {
+     "label": "NYT Cooking (Bryan Washington)",
+     "url": "https://cooking.nytimes.com/search?q=Stew%20Peas%20and%20Spinners"
+    }
+   ],
+   "createdAt": "2026-10-17T02:31:36.890Z",
+   "updatedAt": "2026-10-17T02:31:36.890Z"
+  },
+  {
+   "id": "spicy-red-pesto-pasta",
+   "title": "Spicy Red Pesto Pasta",
+   "description": "A red pesto inspired by pesto alla Siciliana: toasted sun-dried tomatoes, walnuts, tomato paste and chile blitzed with roasted red peppers and Parmesan, with basil as a garnish.",
+   "category": "Mains",
+   "tags": [
+    "italian",
+    "pasta",
+    "weeknight",
+    "vegetarian",
+    "nyt cooking"
+   ],
+   "time": "30 min",
+   "yield": "Serves 4",
+   "image": "images/spicy-red-pesto-pasta.jpg",
+   "ingredients": [
+    {
+     "name": "",
+     "note": "",
+     "items": [
+      "2/3 cup plus 1 tbsp extra-virgin olive oil",
+      "1/2 cup drained jarred oil-packed sun-dried tomatoes (about 3 1/2 oz), roughly chopped",
+      "1/2 cup coarsely chopped walnuts (a scant 2 1/2 oz)",
+      "3 tbsp double-concentrated tomato paste (or 1/3 cup tomato paste)",
+      "3 garlic cloves, roughly chopped",
+      "1 tsp red-pepper flakes",
+      "Kosher salt and black pepper",
+      "1/2 cup drained, chopped jarred roasted red peppers (about 4 oz)",
+      "1 1/2 oz finely grated Parmesan (about 1 packed cup), plus more for serving",
+      "1 pound rigatoni, orecchiette or other shaped pasta",
+      "Sliced fresh basil leaves, for serving",
+      "Fresh lemon zest, for serving (optional)"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Toast:** Bring a large pot of water to a boil. In a large skillet, heat 1 tbsp of the oil over medium-high. Add the sun-dried tomatoes, walnuts, tomato paste, garlic and red-pepper flakes, season with 1/2 tsp salt and 1/2 tsp pepper, and cook, stirring, until toasted and fragrant, about 5 minutes. Move to a bowl to cool a few minutes.",
+      "**Pesto:** Put the roasted peppers and Parmesan in a food processor, top with the cooled tomato mixture and the remaining 2/3 cup oil, and pulse into a paste. It makes about 2 cups.",
+      "**Pasta:** Salt the boiling water generously and cook the pasta until al dente. Reserve 1 1/2 cups pasta water, then drain.",
+      "**Toss:** Return the pasta to the pot with about 1 1/2 cups pesto and 1 cup pasta water, and stir vigorously until glossy and evenly coated. Add more pesto or pasta water to taste and season with salt and pepper.",
+      "**Serve:** Top with Parmesan, torn basil and lemon zest if using. Serve right away."
+     ]
+    }
+   ],
+   "notes": [
+    "By Alexa Weibel for NYT Cooking.",
+    "Stir in a splash of heavy cream for a richer sauce.",
+    "Extra pesto is great on steak, sandwiches, a cheese board or crudités."
+   ],
+   "extras": [],
+   "sources": [
+    {
+     "label": "NYT Cooking (Alexa Weibel)",
+     "url": "https://cooking.nytimes.com/search?q=Spicy%20Red%20Pesto%20Pasta"
+    }
+   ],
+   "createdAt": "2026-10-17T02:31:36.890Z",
+   "updatedAt": "2026-10-17T02:31:36.890Z"
+  },
+  {
+   "id": "ricotta-pasta-alla-vodka",
+   "title": "Ricotta Pasta Alla Vodka",
+   "description": "Spicy, bacon-laced vodka sauce that glossily coats the pasta, finished with three cool dollops of whole-milk ricotta on each plate.",
+   "category": "Mains",
+   "tags": [
+    "italian",
+    "pasta",
+    "bacon",
+    "weeknight",
+    "nyt cooking"
+   ],
+   "time": "45 min",
+   "yield": "Serves 4 to 6",
+   "image": "images/ricotta-pasta-alla-vodka.jpg",
+   "ingredients": [
+    {
+     "name": "",
+     "note": "",
+     "items": [
+      "Kosher salt",
+      "1 tbsp olive oil",
+      "4 slices thick-cut bacon (6 oz), coarsely chopped",
+      "1 1/2 tsp red-pepper flakes",
+      "1 tsp dried oregano",
+      "4 large garlic cloves, crushed but left whole",
+      "1 medium yellow onion, finely chopped",
+      "Freshly ground black pepper",
+      "5 tbsp tomato paste, preferably double-concentrated",
+      "3/4 to 1 cup vodka, depending on how boozy you want it",
+      "1 pound fusilli, penne or rigatoni",
+      "1 cup heavy cream",
+      "4 oz Pecorino Romano or Parmesan, finely grated (1 cup)",
+      "1 cup (8 oz) whole-milk ricotta",
+      "Finely chopped flat-leaf parsley or basil, for serving"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Water:** Bring a large pot of salted water to a boil.",
+      "**Bacon:** Heat a large, high-sided skillet over medium-high. Cook the oil and bacon, stirring occasionally, until crisp at the edges, about 5 minutes. Pour off all but 3 tbsp fat and save the rest.",
+      "**Aromatics:** Lower to medium and stir in the pepper flakes, oregano and garlic for a few seconds until fragrant. Add the onion, season well with salt and pepper and cook over medium-high until translucent, about 5 minutes, adding bacon fat if dry.",
+      "**Tomato paste and vodka:** Stir in the tomato paste and cook, stirring constantly, until slightly darker, about 3 minutes. Turn off the heat and stir in the vodka.",
+      "**Pasta:** Cook the pasta until 2 minutes shy of al dente.",
+      "**Reduce:** Meanwhile, return the sauce to high heat and cook, stirring, until reduced by three-quarters, about 2 minutes. Add the cream, bring to a simmer and take off the heat.",
+      "**Toss:** Reserve 2 cups pasta water, then drain. Add the pasta to the sauce with 1 cup pasta water and most of the pecorino. Cook over medium-high, stirring hard and shaking the pan, until the sauce glossily coats the pasta, 5 to 7 minutes, adding more water if dry. Remove the garlic and season to taste.",
+      "**Serve:** Plate, sprinkle with the remaining pecorino, add three spoonfuls of ricotta to each serving and top with parsley."
+     ]
+    }
+   ],
+   "notes": [
+    "By Eric Kim for NYT Cooking.",
+    "The vodka helps the fat emulsify into a glossy, creamy sauce.",
+    "The cool ricotta and fresh parsley balance the spicy, boozy sauce."
+   ],
+   "extras": [],
+   "sources": [
+    {
+     "label": "NYT Cooking (Eric Kim)",
+     "url": "https://cooking.nytimes.com/search?q=Ricotta%20Pasta%20Alla%20Vodka"
+    }
+   ],
+   "createdAt": "2026-10-17T02:31:36.890Z",
+   "updatedAt": "2026-10-17T02:31:36.890Z"
+  },
+  {
    "id": "roasted-dumpling-squash-with-sage-brown-butter",
    "title": "Roasted Dumpling Squash with Sage Brown Butter",
    "description": "Sweet dumpling squash has thin, edible skin, so there's no peeling. High-heat roasting caramelizes the edges, then a maple sage brown butter goes on top.",
@@ -2098,7 +2556,7 @@
    ],
    "time": "2 hr 20 min",
    "yield": "Serves 4",
-   "image": "",
+   "image": "images/split-pea-soup.jpg",
    "ingredients": [
     {
      "name": "",
@@ -2143,7 +2601,7 @@
     }
    ],
    "createdAt": "2026-10-17T02:27:21.567Z",
-   "updatedAt": "2026-10-17T02:27:21.567Z"
+   "updatedAt": "2026-10-17T02:31:36.890Z"
   },
   {
    "id": "butternut-squash-congee-with-chile-oil",
@@ -2161,7 +2619,7 @@
    ],
    "time": "45 min",
    "yield": "Serves 4 to 6",
-   "image": "",
+   "image": "images/butternut-squash-congee-with-chile-oil.jpg",
    "ingredients": [
     {
      "name": "",
@@ -2204,7 +2662,7 @@
     }
    ],
    "createdAt": "2026-10-17T02:27:21.567Z",
-   "updatedAt": "2026-10-17T02:27:21.567Z"
+   "updatedAt": "2026-10-17T02:31:36.890Z"
   },
   {
    "id": "red-peas-soup",
@@ -2220,7 +2678,7 @@
    ],
    "time": "about 3 hr (plus overnight soaking)",
    "yield": "Serves 6 generously",
-   "image": "",
+   "image": "images/red-peas-soup.jpg",
    "ingredients": [
     {
      "name": "Soup",
@@ -2279,7 +2737,7 @@
     }
    ],
    "createdAt": "2026-10-17T02:27:21.567Z",
-   "updatedAt": "2026-10-17T02:27:21.567Z"
+   "updatedAt": "2026-10-17T02:31:36.890Z"
   },
   {
    "id": "soup-joumou",
@@ -2296,7 +2754,7 @@
    ],
    "time": "2 hr (plus marinating)",
    "yield": "Makes about 20 cups (6 to 10 servings)",
-   "image": "",
+   "image": "images/soup-joumou.jpg",
    "ingredients": [
     {
      "name": "Epis seasoning",
@@ -2381,7 +2839,159 @@
     }
    ],
    "createdAt": "2026-10-17T02:27:21.567Z",
-   "updatedAt": "2026-10-17T02:27:21.567Z"
+   "updatedAt": "2026-10-17T02:31:36.890Z"
+  },
+  {
+   "id": "sancocho",
+   "title": "Sancocho",
+   "description": "Von Diaz's Puerto Rican sancocho: a thick, hearty stew of pork and chicken with sofrito, yuca, yautia, plantains, calabaza, corn and chorizo.",
+   "category": "Soups",
+   "tags": [
+    "puerto rican",
+    "stew",
+    "pork",
+    "chicken",
+    "comfort",
+    "nyt cooking"
+   ],
+   "time": "1 1/2 hr",
+   "yield": "Serves 8 to 10",
+   "image": "images/sancocho.jpg",
+   "ingredients": [
+    {
+     "name": "",
+     "note": "",
+     "items": [
+      "1 medium yuca",
+      "1 medium white yautia (taro root)",
+      "1 green plantain",
+      "1 yellow sweet plantain",
+      "10 oz calabaza (pumpkin) or kabocha squash",
+      "1 to 2 fresh ears sweet corn",
+      "1 pound pork or beef stew meat, trimmed and cut into 2-inch pieces",
+      "1 pound boneless chicken thighs, trimmed and cut into 2-inch pieces",
+      "1 1/2 tbsp kosher salt (such as Diamond Crystal), plus more to taste",
+      "1/4 tsp freshly ground black pepper",
+      "1 tbsp olive oil, plus more as needed",
+      "1/2 cup sofrito",
+      "10 cups pork or beef stock",
+      "3 dried bay leaves",
+      "1 cup thinly sliced Spanish chorizo",
+      "Fresh bread or white rice, for serving"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Prep the vegetables:** Peel the yuca, yautia and both plantains and cut into 1-inch pieces. Seed the calabaza and cut it into 1-inch pieces with the skin on. Keep each in its own bowl of water so they don't brown.",
+      "**Corn:** Husk the corn and slice into 2-inch segments.",
+      "**Season:** Season the pork and chicken with 1/2 tbsp salt and the pepper.",
+      "**Brown:** Heat 1 tbsp oil in a large pot over medium-high. Brown the pork on all sides, 5 minutes, and move to a bowl. Brown the chicken on both sides, another 5 minutes, adding oil if needed, and add it to the bowl.",
+      "**Sofrito:** Lower the heat to medium, add the sofrito and scrape up the browned bits. Cook until the liquid evaporates and it darkens, 5 to 7 minutes.",
+      "**Simmer:** Return the meat and juices to the pot with the stock, bay leaves and remaining 1 tbsp salt. Bring to a boil over high, then simmer uncovered over medium-low 15 minutes, stirring occasionally.",
+      "**Vegetables in order:** Drain the vegetables and add them from firmest to softest, 5 minutes apart: yuca, yautia, green plantain, yellow plantain, calabaza, then corn. The yuca gets about 30 minutes total and the corn just 5.",
+      "**Chorizo:** Stir in the chorizo and cook 10 to 15 minutes more over medium-low, until the meat and vegetables are fork-tender. Some vegetables will break down and thicken it like porridge, which is what you want.",
+      "**Serve:** Adjust the salt and serve with fresh bread or white rice."
+     ]
+    }
+   ],
+   "notes": [
+    "By Von Diaz for NYT Cooking.",
+    "Look for yuca and yautia at Hispanic, Caribbean or Asian markets or in the freezer section. Potatoes can sub in with less cooking time.",
+    "Nearly everything can be swapped, and it makes a hearty vegetarian stew without the meat."
+   ],
+   "extras": [],
+   "sources": [
+    {
+     "label": "NYT Cooking (Von Diaz)",
+     "url": "https://cooking.nytimes.com/search?q=Sancocho"
+    }
+   ],
+   "createdAt": "2026-10-17T02:31:36.890Z",
+   "updatedAt": "2026-10-17T02:31:36.890Z"
+  },
+  {
+   "id": "best-black-bean-soup",
+   "title": "Best Black Bean Soup",
+   "description": "Big-tasting, meat-free black bean soup with chipotle, red wine and Mexican oregano. Season generously and purée sparingly, so whole beans swim in a velvety broth, then add quick-pickled onions and garnishes.",
+   "category": "Soups",
+   "tags": [
+    "soup",
+    "beans",
+    "vegetarian",
+    "mexican",
+    "make-ahead",
+    "nyt cooking"
+   ],
+   "time": "about 2 hr",
+   "yield": "Serves 10",
+   "image": "images/best-black-bean-soup.jpg",
+   "ingredients": [
+    {
+     "name": "Soup",
+     "note": "",
+     "items": [
+      "1 small (7-ounce) can chipotle chiles in adobo (see notes)",
+      "2 tbsp olive oil",
+      "2 carrots, peeled and chopped",
+      "2 onions, peeled and chopped",
+      "4 garlic cloves, minced",
+      "1 cup red wine",
+      "2 jalapeño peppers, seeded and chopped",
+      "1 pound dry black beans (don't soak)",
+      "2 quarts mild vegetable or chicken stock",
+      "1 tbsp dried oregano, preferably Mexican",
+      "2 bay leaves",
+      "1 tbsp kosher salt",
+      "1 tsp ground black pepper",
+      "Red wine vinegar, to taste"
+     ]
+    },
+    {
+     "name": "Pickled onions and garnishes",
+     "note": "optional",
+     "items": [
+      "1 small red onion, peeled and thinly sliced",
+      "Juice of 2 limes",
+      "Salt",
+      "Sour cream or Mexican crema",
+      "Whole cilantro leaves",
+      "Thinly sliced fresh chiles",
+      "Sliced avocado"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Chipotle purée:** Purée the whole can of chipotles until smooth and set aside. Put a kettle of water on to boil and keep it hot.",
+      "**Vegetables:** In a large, heavy pot, heat the oil over medium until shimmering. Cook the carrots, onions and garlic, stirring, until softened but not browned, 5 to 8 minutes.",
+      "**Wine:** Add the wine and simmer until the pan is almost dry. Add the jalapeños and cook 2 minutes. Push the vegetables aside, fry 2 tsp chipotle purée in the center for a minute, then stir it all together.",
+      "**Beans:** Add the beans, stock, oregano and bay leaves. Boil 10 to 15 minutes, then simmer partly covered, stirring occasionally and adding hot water to keep it loose and runny, until the beans are just soft, 1 to 2 hours. Add the salt and pepper and keep cooking until the beans are fully soft.",
+      "**Pickled onions:** Meanwhile, toss the onion with the lime juice and a sprinkle of salt and let sit until crunchy and tart, about 30 minutes. Drain, rinse in cold water, squeeze dry and refrigerate.",
+      "**Texture:** You want whole beans, soft chunks and a velvety broth. If it's thin, purée a small amount of beans and stir them back in, repeating until it's right. It thickens as it sits.",
+      "**Season:** Heat through and adjust with salt, pepper, drops of red wine vinegar and dabs of chipotle purée.",
+      "**Serve:** Ladle into deep bowls and garnish with sour cream, pickled onions, cilantro, sliced chiles and avocado."
+     ]
+    }
+   ],
+   "notes": [
+    "By Julia Moskin for NYT Cooking.",
+    "No chipotles? Use 1 tbsp each ground cumin and ground coriander, added with the jalapeños.",
+    "If your tap water is hard, add the wine with the stock instead (acid can keep beans from softening), or use distilled water."
+   ],
+   "extras": [],
+   "sources": [
+    {
+     "label": "NYT Cooking (Julia Moskin)",
+     "url": "https://cooking.nytimes.com/search?q=Best%20Black%20Bean%20Soup"
+    }
+   ],
+   "createdAt": "2026-10-17T02:31:36.890Z",
+   "updatedAt": "2026-10-17T02:31:36.890Z"
   },
   {
    "id": "nonna-s-sunday-sugo",
