@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>waynesdays brand guidelines</title>
+<link rel="icon" href="icons/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="tokens.css">
+<style>
+:root {
+  --green: var(--wd-green); --cream: var(--wd-cream); --brass: var(--wd-brass); --brass-lt: var(--wd-brass-light);
+  --ink: var(--wd-ink); --stone: var(--wd-stone); --night: var(--wd-night); --porcelain: var(--wd-porcelain);
+  --serif: var(--wd-font-display); --sans: var(--wd-font-body);
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: #e9e4d8; color: var(--ink); font: 400 15px/1.6 var(--sans); }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-underline-offset: 3px; text-decoration-color: var(--brass); }
+
+.page { position: relative; width: min(1280px, 100%); margin: 0 auto 24px; padding: 54px 72px 64px; background: var(--porcelain); overflow: hidden; }
+.page.green { background: var(--green); color: var(--cream); }
+.page.cream { background: var(--cream); }
+.page.night { background: var(--night); color: var(--cream); }
+.folio { position: absolute; left: 72px; right: 72px; bottom: 28px; display: flex; justify-content: space-between; font-size: 11px; letter-spacing: .2em; color: var(--stone); }
+.green .folio, .night .folio { color: color-mix(in srgb, var(--cream) 60%, transparent); }
+.eyebrow { font-size: 11px; letter-spacing: .26em; color: var(--brass); margin: 0 0 14px; }
+.green .eyebrow, .night .eyebrow { color: var(--brass-lt); }
+h1, h2, h3 { font-family: var(--serif); font-weight: 500; margin: 0; line-height: 1.02; letter-spacing: -.005em; }
+h2 { font-size: clamp(36px, 4.6vw, 56px); }
+h3 { font-size: 26px; margin-bottom: 6px; }
+.lede { font-size: 18px; font-weight: 300; max-width: 56ch; margin: 18px 0 0; }
+.small { font-size: 12.5px; color: var(--stone); }
+.green .small, .night .small { color: color-mix(in srgb, var(--cream) 70%, transparent); }
+.tab { display: flex; align-items: center; gap: 8px; margin: 16px 0 26px; }
+.tab::before { content: ''; width: 140px; height: 1px; background: currentColor; opacity: .5; }
+.tab i { display: block; width: 7px; height: 12px; border-right: 2.4px solid var(--brass); transform: skewX(-32deg); }
+.green .tab i, .night .tab i { border-color: var(--brass-lt); }
+
+.grid { display: grid; gap: 20px; }
+.g2 { grid-template-columns: 1fr 1fr; } .g3 { grid-template-columns: repeat(3, 1fr); } .g4 { grid-template-columns: repeat(4, 1fr); }
+.tile { border-radius: 10px; padding: 26px; display: grid; place-items: center; min-height: 164px; }
+.tile.cream { background: var(--cream); } .tile.green { background: var(--green); } .tile.white { background: #fff; } .tile.ink { background: var(--ink); }
+.tile img { max-height: 120px; }
+.cap { margin: 8px 0 0; }
+.g4 .tile { min-height: 150px; }
+.cap b { font-family: var(--serif); font-size: 21px; font-weight: 500; display: block; }
+
+/* cover */
+.cover { display: grid; place-items: center; min-height: 760px; text-align: center; }
+.cover img { width: min(620px, 86%); }
+.cover .meta { position: absolute; left: 72px; right: 72px; top: 56px; display: flex; justify-content: space-between; font-size: 11px; letter-spacing: .26em; color: color-mix(in srgb, var(--cream) 70%, transparent); }
+
+/* idea */
+.equation { display: grid; grid-template-columns: 1fr auto 1fr auto 1.2fr; align-items: center; gap: 28px; margin-top: 46px; }
+.equation .tile { min-height: 220px; }
+.equation .op { font-family: var(--serif); font-size: 46px; color: var(--brass); }
+
+/* colour */
+.swatches { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 20px; }
+.sw { border-radius: 10px; overflow: hidden; background: #fff; border: 1px solid #e3ddd0; }
+.sw .chip { height: 78px; }
+.sw .info { padding: 10px 14px 12px; font-size: 12px; line-height: 1.55; }
+.sw .info b { font-family: var(--serif); font-size: 20px; font-weight: 500; display: block; margin-bottom: 2px; }
+.ratio { display: flex; height: 28px; border: 1px solid #e3ddd0; border-radius: 999px; overflow: hidden; margin-top: 26px; }
+
+/* type */
+.specimen { font-family: var(--serif); font-size: clamp(56px, 8vw, 100px); line-height: .9; letter-spacing: -.01em; }
+.specimen.sans { font-family: var(--sans); font-weight: 400; font-size: clamp(40px, 5.6vw, 68px); letter-spacing: 0; }
+.scale > div { display: grid; grid-template-columns: 120px 1fr; align-items: baseline; border-top: 1px solid #e3ddd0; padding: 10px 0; }
+.scale span { font-size: 11px; letter-spacing: .14em; color: var(--stone); }
+
+/* clear space */
+.clear { position: relative; background: var(--cream); border-radius: 10px; padding: 46px; display: grid; place-items: center; }
+.clear .box { position: relative; padding: 34px; outline: 1px dashed var(--brass); }
+.clear .box::after { content: ''; position: absolute; inset: 34px; outline: 1px solid color-mix(in srgb, var(--brass) 50%, transparent); }
+.clear .x { position: absolute; font-family: var(--serif); font-size: 18px; color: var(--brass); }
+.minis { display: flex; align-items: end; gap: 26px; flex-wrap: wrap; }
+
+/* motifs */
+.motif { border-radius: 10px; min-height: 230px; padding: 26px; display: flex; flex-direction: column; justify-content: space-between; }
+.pattern { background-size: 300px; }
+
+/* applications */
+.phone { width: 250px; height: 486px; border-radius: 40px; background: var(--porcelain); border: 9px solid #111; overflow: hidden; margin: 0 auto; box-shadow: 0 30px 60px -30px rgba(0,0,0,.5); }
+.phone .bar { display: flex; align-items: center; justify-content: space-between; padding: 30px 16px 12px; border-bottom: 1px solid #e3ddd0; }
+.phone .bar img { height: 24px; }
+.phone .body { padding: 18px 16px; }
+.phone .ttl { font-family: var(--serif); font-size: 30px; line-height: 1; }
+.phone .card { height: 104px; border-radius: 6px; margin-top: 12px; background: var(--green); display: grid; place-items: center; }
+.phone .card img { height: 60px; }
+.phone .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.phone .btn { margin-top: 16px; background: var(--green); color: var(--cream); border-radius: 4px; text-align: center; padding: 11px; font-size: 12px; letter-spacing: .08em; }
+.homescreen { display: grid; grid-template-columns: repeat(4, 56px); gap: 18px 16px; justify-content: center; padding: 26px; border-radius: 26px; background: linear-gradient(160deg, #6b7f6e, #2f3d33); }
+.homescreen div { width: 56px; height: 56px; border-radius: 14px; background: rgba(255,255,255,.18); }
+.homescreen img { width: 56px; border-radius: 13px; }
+.share { background: var(--cream); border-radius: 8px; padding: 26px; aspect-ratio: 4 / 5; display: flex; flex-direction: column; box-shadow: 0 30px 60px -34px rgba(0,0,0,.45); }
+.share .t { font-family: var(--serif); font-size: 34px; line-height: 1; color: var(--green); margin: 6px 0 12px; }
+.share ul { margin: 0; padding: 0 0 0 16px; font-size: 12.5px; color: #3a3a33; }
+.share footer { margin-top: auto; display: flex; justify-content: space-between; align-items: end; }
+.share footer img { height: 40px; }
+.jar { width: 210px; height: 210px; border-radius: 50%; background: var(--cream); display: grid; place-items: center; margin: 0 auto; box-shadow: inset 0 0 0 10px #fff, 0 20px 40px -24px rgba(0,0,0,.5); }
+.jar img { width: 150px; }
+
+/* don'ts */
+.dont { position: relative; }
+.dont .tile { min-height: 150px; }
+.dont .tile::after { content: ''; position: absolute; inset: 0; border-radius: 10px; background: linear-gradient(to top right, transparent calc(50% - 1px), #a3352b calc(50% - 1px), #a3352b calc(50% + 1px), transparent calc(50% + 1px)); opacity: .55; }
+.dont .tile { position: relative; }
+
+/* downloads */
+.dl { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 30px; }
+.dl a { display: block; padding: 18px 20px; border: 1px solid color-mix(in srgb, var(--cream) 25%, transparent); border-radius: 8px; text-decoration: none; }
+.dl a b { font-family: var(--serif); font-size: 21px; font-weight: 500; display: block; }
+.dl a span { font-size: 12px; opacity: .75; }
+
+@media (max-width: 820px) {
+  .page { padding: 40px 18px 64px; margin-bottom: 12px; }
+  .folio { left: 18px; right: 18px; }
+  .cover .meta { left: 18px; right: 18px; }
+  .cover { min-height: 560px; }
+  .g2, .g3, .g4, .equation, .dl { grid-template-columns: 1fr; }
+  .swatches { grid-template-columns: 1fr 1fr; }
+  .equation .op { text-align: center; }
+  .scale > div { grid-template-columns: 1fr; }
+}
+@media print {
+  @page { size: 1280px 800px; margin: 0; }
+  body { background: none; }
+  .page { width: 1280px; height: 800px; margin: 0; break-after: page; }
+}
+</style>
+</head>
+<body>
+
+<section class="page green cover">
+  <div class="meta"><span>brand guidelines</span><span>volume one · 2026</span></div>
+  <img src="logos/svg/waynesdays-primary-cream.svg" alt="waynesdays">
+  <div class="folio"><span>waynesdays</span><span>01</span></div>
+</section>
+
+<section class="page">
+  <p class="eyebrow">the idea</p>
+  <h2>the tab × the ring</h2>
+  <div class="tab"><i></i><i></i><i></i><i></i><i></i></div>
+  <p class="lede">A personal recipe book with clubhouse manners. Two small things carry the whole brand: a thin brass <b>ring</b> that holds the monogram like a signet, and a <b>tab</b> of five brass stripes that ends every line like a woven label. Everything is lowercase, quiet, and finished in brass.</p>
+  <div class="equation">
+    <div><div class="tile cream"><img src="logos/svg/waynesdays-wordmark-green.svg" alt="" style="max-height:80px"></div><p class="cap"><b>the tab</b><span class="small">heritage serif, a fine rule, five stripes</span></p></div>
+    <div class="op">×</div>
+    <div><div class="tile green"><img src="logos/svg/waynesdays-monogram-cream.svg" alt=""></div><p class="cap"><b>the ring</b><span class="small">wd, overlapped, in a single brass line</span></p></div>
+    <div class="op">=</div>
+    <div><div class="tile cream"><img src="logos/svg/waynesdays-primary-green.svg" alt="" style="max-height:74px"></div><p class="cap"><b>waynesdays</b><span class="small">one system, eight marks</span></p></div>
+  </div>
+  <div class="folio"><span>waynesdays · the idea</span><span>02</span></div>
+</section>
+
+<section class="page cream">
+  <p class="eyebrow">logo suite</p>
+  <h2>eight marks, one family</h2>
+  <div class="tab"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="grid g4">
+    <div><div class="tile green"><img src="logos/svg/waynesdays-primary-cream.svg" alt="" style="max-height:52px"></div><p class="cap"><b>primary lockup</b><span class="small">headers, covers, anywhere there's room</span></p></div>
+    <div><div class="tile white"><img src="logos/svg/waynesdays-wordmark-green.svg" alt="" style="max-height:64px"></div><p class="cap"><b>wordmark</b><span class="small">when the ring is already nearby</span></p></div>
+    <div><div class="tile white"><img src="logos/svg/waynesdays-wordmark-signed-green.svg" alt="" style="max-height:64px"></div><p class="cap"><b>signed wordmark</b><span class="small">footers, share cards, print</span></p></div>
+    <div><div class="tile green"><img src="logos/svg/waynesdays-monogram-cream.svg" alt=""></div><p class="cap"><b>monogram</b><span class="small">app icon, avatar, favicon</span></p></div>
+    <div><div class="tile white"><img src="logos/svg/waynesdays-mark-open-green.svg" alt=""></div><p class="cap"><b>open ring</b><span class="small">loading, empty states, stickers</span></p></div>
+    <div><div class="tile green"><img src="logos/svg/waynesdays-stacked-cream.svg" alt=""></div><p class="cap"><b>stacked lockup</b><span class="small">square spaces, splash</span></p></div>
+    <div><div class="tile white"><img src="logos/svg/waynesdays-seal-green.svg" alt="" style="max-height:140px"></div><p class="cap"><b>seal</b><span class="small">jar labels, gifts, the last page</span></p></div>
+    <div><div class="tile green"><img src="logos/svg/waynesdays-label-cream.svg" alt="" style="max-height:52px"></div><p class="cap"><b>label</b><span class="small">tags, aprons, merch</span></p></div>
+  </div>
+  <div class="folio"><span>waynesdays · logo suite</span><span>03</span></div>
+</section>
+
+<section class="page">
+  <p class="eyebrow">clear space &amp; size</p>
+  <h2>give it room</h2>
+  <div class="tab"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="grid g2" style="align-items:start">
+    <div class="clear"><div class="box"><img src="logos/svg/waynesdays-primary-green.svg" alt="" style="width:360px"></div>
+      <span class="x" style="top:14px;left:50%">w</span><span class="x" style="left:16px;top:50%">w</span></div>
+    <div>
+      <p class="lede" style="margin-top:0">Keep a clear margin the width of the <b>w</b> on every side. Nothing else (text, edges, photos) crosses into it.</p>
+      <h3 style="margin-top:34px">smallest sizes</h3>
+      <div class="minis" style="margin-top:14px">
+        <div><img src="logos/svg/waynesdays-primary-green.svg" alt="" style="width:140px"><p class="small">primary · 140px / 35mm</p></div>
+        <div><img src="logos/svg/waynesdays-wordmark-green.svg" alt="" style="width:96px"><p class="small">wordmark · 96px / 24mm</p></div>
+        <div><img src="logos/svg/waynesdays-monogram-green.svg" alt="" style="width:24px"><p class="small">ring · 24px / 6mm</p></div>
+      </div>
+      <p class="small" style="margin-top:18px">Below these sizes the stripes close up; use the monogram on its own.</p>
+    </div>
+  </div>
+  <div class="folio"><span>waynesdays · clear space</span><span>04</span></div>
+</section>
+
+<section class="page">
+  <p class="eyebrow">colour</p>
+  <h2>green, cream, brass</h2>
+  <div class="tab"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="swatches"><div class="sw"><div class="chip" style="background:#1d3a2c"></div><div class="info"><b>clubhouse green</b>#1D3A2C · RGB 29 58 44<br>CMYK 50 0 24 77<br><span class="small">Primary. Buttons, the wordmark on light, dark grounds.</span></div></div><div class="sw"><div class="chip" style="background:#f1ebdd"></div><div class="info"><b>cream</b>#F1EBDD · RGB 241 235 221<br>CMYK 0 2 8 5<br><span class="small">Ground. Paper, labels, the wordmark on green.</span></div></div><div class="sw"><div class="chip" style="background:#b08d57"></div><div class="info"><b>brass</b>#B08D57 · RGB 176 141 87<br>CMYK 0 20 51 31<br><span class="small">Accent on light. The ring and the five stripes, never body text.</span></div></div><div class="sw"><div class="chip" style="background:#d2b07a"></div><div class="info"><b>brass light</b>#D2B07A · RGB 210 176 122<br>CMYK 0 16 42 18<br><span class="small">Accent on green and night.</span></div></div><div class="sw"><div class="chip" style="background:#141414"></div><div class="info"><b>ink</b>#141414 · RGB 20 20 20<br>CMYK 0 0 0 92<br><span class="small">Type and one-colour marks.</span></div></div><div class="sw"><div class="chip" style="background:#f8f5ee"></div><div class="info"><b>porcelain</b>#F8F5EE · RGB 248 245 238<br>CMYK 0 1 4 3<br><span class="small">App background in daylight.</span></div></div><div class="sw"><div class="chip" style="background:#0f1a14"></div><div class="info"><b>night green</b>#0F1A14 · RGB 15 26 20<br>CMYK 42 0 23 90<br><span class="small">App background after dark and in cooking mode.</span></div></div><div class="sw"><div class="chip" style="background:#8a8577"></div><div class="info"><b>stone</b>#8A8577 · RGB 138 133 119<br>CMYK 0 4 14 46<br><span class="small">Quiet text: captions, eyebrows, metadata.</span></div></div></div>
+  <div class="ratio"><span style="flex:46;background:var(--cream)"></span><span style="flex:30;background:var(--green)"></span><span style="flex:14;background:var(--porcelain)"></span><span style="flex:6;background:var(--ink)"></span><span style="flex:4;background:var(--brass)"></span></div>
+  <p class="small" style="margin-top:8px">Rough balance: mostly cream and green, a little ink, brass as jewellery. CMYK values are straight conversions; proof them before printing.</p>
+  <div class="folio"><span>waynesdays · colour</span><span>05</span></div>
+</section>
+
+<section class="page cream">
+  <p class="eyebrow">typography</p>
+  <h2>two typefaces</h2>
+  <div class="tab"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="grid g2">
+    <div>
+      <div class="specimen">waynesdays</div>
+      <h3 style="margin-top:18px">Cormorant Garamond</h3>
+      <p class="small">Display and the wordmark. Medium 500, lowercase for the name, sentence case for recipe titles. Italic for quotes and notes.</p>
+    </div>
+    <div>
+      <div class="specimen sans">Aa · 1 ½ cups</div>
+      <h3 style="margin-top:18px">Jost</h3>
+      <p class="small">Everything you read or tap: steps, ingredients, buttons, labels. Regular 400 and Medium 500; tracked small caps-style labels at 0.2em.</p>
+    </div>
+  </div>
+  <div class="scale" style="margin-top:28px">
+    <div><span>display · 64</span><div style="font-family:var(--serif);font-size:52px;line-height:1">Sunday gravy</div></div>
+    <div><span>title · 32</span><div style="font-family:var(--serif);font-size:32px;line-height:1.1">Lula Cafe buttermilk pancakes</div></div>
+    <div><span>body · 16</span><div>Whisk the flour, sugar and salt, then fold in the buttermilk until just combined.</div></div>
+    <div><span>label · 11</span><div style="font-size:11px;letter-spacing:.22em;color:var(--brass)">ingredients · serves 4 · 35 min</div></div>
+  </div>
+  <div class="folio"><span>waynesdays · typography</span><span>06</span></div>
+</section>
+
+<section class="page">
+  <p class="eyebrow">motifs</p>
+  <h2>the details</h2>
+  <div class="tab"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="grid g3">
+    <div class="motif" style="background:var(--cream)"><svg viewBox="0 0 240 40" style="width:220px"><path d="M0 26H150" stroke="#1d3a2c" stroke-width="1"/><path d="M160 32l8-13M170 32l8-13M180 32l8-13M190 32l8-13M200 32l8-13" stroke="#b08d57" stroke-width="2.6"/></svg><div><h3>the tab</h3><p class="small">A fine rule ending in five stripes. Use it under page titles and to close a section. Always five, always leaning right.</p></div></div>
+    <div class="motif" style="background:var(--green);color:var(--cream)"><svg viewBox="0 0 120 120" style="width:96px"><circle cx="60" cy="60" r="54" fill="none" stroke="#d2b07a" stroke-width="1.6"/></svg><div><h3>the ring</h3><p class="small">One thin brass line. It frames the monogram, avatars and timers. Never filled, never doubled.</p></div></div>
+    <div class="motif pattern" style="background-image:url(patterns/stripes-green.svg);color:var(--cream)"><span></span><div style="background:var(--green);padding:14px 16px;border-radius:8px"><h3>the pattern</h3><p class="small">The tab repeated. Packaging, the inside cover, loading screens. Behind type, always on a solid panel.</p></div></div>
+  </div>
+  <div class="folio"><span>waynesdays · motifs</span><span>07</span></div>
+</section>
+
+<section class="page cream">
+  <p class="eyebrow">in use</p>
+  <h2>out in the world</h2>
+  <div class="tab"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="grid g4" style="align-items:center">
+    <div class="phone"><div class="bar"><img src="logos/svg/waynesdays-primary-green.svg" alt=""><span class="small">⌕</span></div>
+      <div class="body"><p class="eyebrow" style="margin:0 0 6px">tonight</p><div class="ttl">what's for dinner</div>
+        <div class="card"><img src="logos/svg/waynesdays-mark-open-cream.svg" alt=""></div>
+        <div class="row2"><div class="card" style="background:var(--cream);height:80px"></div><div class="card" style="background:#e3dccb;height:80px"></div></div>
+        <div class="btn">start cooking</div></div></div>
+    <div><div class="homescreen"><div></div><div></div><img src="icons/app-icon.svg" alt=""><div></div><div></div><div></div><div></div><div></div></div><p class="cap" style="text-align:center"><b>app icon</b></p></div>
+    <div class="share"><p class="eyebrow" style="margin:0">breakfast</p><div class="t">Lula Cafe buttermilk pancakes</div>
+      <ul><li>2 cups flour</li><li>2 tbsp sugar</li><li>2 tsp baking powder</li><li>1 tsp salt</li><li>2 cups buttermilk</li><li>2 eggs</li><li>4 tbsp butter</li></ul>
+      <footer><img src="logos/svg/waynesdays-wordmark-signed-green.svg" alt=""></footer></div>
+    <div><div class="jar"><img src="logos/svg/waynesdays-seal-green.svg" alt=""></div><p class="cap" style="text-align:center"><b>jar label</b></p></div>
+  </div>
+  <div class="folio"><span>waynesdays · in use</span><span>08</span></div>
+</section>
+
+<section class="page">
+  <p class="eyebrow">please don't</p>
+  <h2>keep it quiet</h2>
+  <div class="tab"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="grid g4 dont">
+    <div><div class="tile cream"><div style="font-family:var(--serif);font-size:44px;color:var(--green)">Waynesdays</div></div><p class="cap small">Capitalise the name. It is always waynesdays.</p></div>
+    <div><div class="tile cream"><img src="logos/svg/waynesdays-wordmark-green.svg" alt="" style="max-height:60px;transform:scaleX(1.5)"></div><p class="cap small">Stretch, squash or rotate any mark.</p></div>
+    <div><div class="tile cream"><img src="logos/svg/waynesdays-monogram-green.svg" alt="" style="filter:hue-rotate(160deg) saturate(3)"></div><p class="cap small">Recolour outside the palette.</p></div>
+    <div><div class="tile" style="background:linear-gradient(120deg,#c78b4d,#6b8f71,#d2c3a3)"><img src="logos/svg/waynesdays-wordmark-white.svg" alt="" style="max-height:60px;filter:drop-shadow(0 4px 6px rgba(0,0,0,.6))"></div><p class="cap small">Add shadows or set it on busy photos without a panel.</p></div>
+  </div>
+  <p class="lede" style="margin-top:30px">The voice matches the marks: lowercase, warm, short. Say what to do and stop. <i style="font-family:var(--serif);font-size:20px">“fold, don't stir.”</i></p>
+  <div class="folio"><span>waynesdays · don'ts</span><span>09</span></div>
+</section>
+
+<section class="page green">
+  <p class="eyebrow">the files</p>
+  <h2>download the kit</h2>
+  <div class="tab"><i></i><i></i><i></i><i></i><i></i></div>
+  <p class="lede">Every mark comes in four colourways: green (for light grounds), cream (for green), ink and white (one colour). Type is outlined, so the SVGs work without the fonts installed.</p>
+  <div class="dl">
+    <a href="logos/svg/waynesdays-primary-green.svg" download><b>primary lockup</b><span>SVG · green, cream, ink, white</span></a>
+    <a href="logos/svg/waynesdays-monogram-green.svg" download><b>monogram</b><span>SVG · plus app icons in icons/</span></a>
+    <a href="logos/svg/waynesdays-seal-green.svg" download><b>seal</b><span>SVG · green, cream, ink, white</span></a>
+    <a href="icons/app-icon-1024.png" download><b>app icon</b><span>PNG 1024 · 512 · 192 · 180 · maskable</span></a>
+    <a href="tokens.css" download><b>colour + type tokens</b><span>CSS variables · palette.json</span></a>
+    <a href="social/og-cream.svg" download><b>social card</b><span>1200 × 630 · cream and green</span></a>
+  </div>
+  <p class="small" style="margin-top:28px">Fonts: Cormorant Garamond and Jost, both under the SIL Open Font License, in ../fonts.</p>
+  <div class="folio"><span>waynesdays</span><span>10</span></div>
+</section>
+
+</body>
+</html>

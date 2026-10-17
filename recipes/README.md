@@ -1,4 +1,4 @@
-# Waynesdays Recipe Book
+# waynesdays
 
 A static web app for the recipe book, published at **https://wmcphersonjr.github.io/recipes/**. It has no build step and no server. You can install it on a phone's home screen, and it works offline.
 
@@ -61,6 +61,9 @@ A static web app for the recipe book, published at **https://wmcphersonjr.github
 | `js/tips.js` | The Chef's Notebook content |
 | `js/app.js` | The app |
 | `tools/build-seed.js` | Merges `book.md` into `data/recipes.json` |
+| `brand/` | The brand kit: guidelines page (`brand/index.html`), outlined logos, app icons, colour tokens, social images |
+| `fonts/` | Cormorant Garamond and Jost, self-hosted (SIL Open Font License) |
+| `tools/brand.py`, `tools/brand-png.js` | Regenerate the logos, icons and the header logo inlined in `index.html` |
 
 ## Editing the book by hand
 
@@ -71,3 +74,15 @@ node recipes/tools/build-seed.js
 ```
 
 New and changed recipes get a fresh timestamp, so every device picks them up on its next visit. Recipes that were added in the app and synced are kept.
+
+## Brand
+
+The look is "the tab × the ring": a lowercase Cormorant Garamond wordmark on a fine rule ending in five brass stripes, and a `wd` monogram in a thin brass ring. Clubhouse green `#1D3A2C`, cream `#F1EBDD`, brass `#B08D57`. The full rules are in `brand/index.html`.
+
+To change a logo, edit `tools/brand.py` and run:
+
+```sh
+pip install fonttools brotli uharfbuzz
+python3 recipes/tools/brand.py      # SVG logos, icon SVGs, header logo in index.html
+node recipes/tools/brand-png.js     # app icon PNGs (pass a folder to also export logo PNGs)
+```

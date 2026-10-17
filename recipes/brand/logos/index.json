@@ -1,0 +1,290 @@
+[
+ {
+  "logo": "primary",
+  "title": "Primary lockup",
+  "variant": "green",
+  "file": "logos/svg/waynesdays-primary-green.svg",
+  "w": 644.58,
+  "h": 183.76,
+  "preview": "#f1ebdd"
+ },
+ {
+  "logo": "primary",
+  "title": "Primary lockup",
+  "variant": "cream",
+  "file": "logos/svg/waynesdays-primary-cream.svg",
+  "w": 644.58,
+  "h": 183.76,
+  "preview": "#1d3a2c"
+ },
+ {
+  "logo": "primary",
+  "title": "Primary lockup",
+  "variant": "ink",
+  "file": "logos/svg/waynesdays-primary-ink.svg",
+  "w": 644.58,
+  "h": 183.76,
+  "preview": "#ffffff"
+ },
+ {
+  "logo": "primary",
+  "title": "Primary lockup",
+  "variant": "white",
+  "file": "logos/svg/waynesdays-primary-white.svg",
+  "w": 644.58,
+  "h": 183.76,
+  "preview": "#141414"
+ },
+ {
+  "logo": "wordmark",
+  "title": "Wordmark",
+  "variant": "green",
+  "file": "logos/svg/waynesdays-wordmark-green.svg",
+  "w": 482.54,
+  "h": 163.74,
+  "preview": "#f1ebdd"
+ },
+ {
+  "logo": "wordmark",
+  "title": "Wordmark",
+  "variant": "cream",
+  "file": "logos/svg/waynesdays-wordmark-cream.svg",
+  "w": 482.54,
+  "h": 163.74,
+  "preview": "#1d3a2c"
+ },
+ {
+  "logo": "wordmark",
+  "title": "Wordmark",
+  "variant": "ink",
+  "file": "logos/svg/waynesdays-wordmark-ink.svg",
+  "w": 482.54,
+  "h": 163.74,
+  "preview": "#ffffff"
+ },
+ {
+  "logo": "wordmark",
+  "title": "Wordmark",
+  "variant": "white",
+  "file": "logos/svg/waynesdays-wordmark-white.svg",
+  "w": 482.54,
+  "h": 163.74,
+  "preview": "#141414"
+ },
+ {
+  "logo": "wordmark-signed",
+  "title": "Signed wordmark",
+  "variant": "green",
+  "file": "logos/svg/waynesdays-wordmark-signed-green.svg",
+  "w": 482.54,
+  "h": 163.74,
+  "preview": "#f1ebdd"
+ },
+ {
+  "logo": "wordmark-signed",
+  "title": "Signed wordmark",
+  "variant": "cream",
+  "file": "logos/svg/waynesdays-wordmark-signed-cream.svg",
+  "w": 482.54,
+  "h": 163.74,
+  "preview": "#1d3a2c"
+ },
+ {
+  "logo": "wordmark-signed",
+  "title": "Signed wordmark",
+  "variant": "ink",
+  "file": "logos/svg/waynesdays-wordmark-signed-ink.svg",
+  "w": 482.54,
+  "h": 163.74,
+  "preview": "#ffffff"
+ },
+ {
+  "logo": "wordmark-signed",
+  "title": "Signed wordmark",
+  "variant": "white",
+  "file": "logos/svg/waynesdays-wordmark-signed-white.svg",
+  "w": 482.54,
+  "h": 163.74,
+  "preview": "#141414"
+ },
+ {
+  "logo": "monogram",
+  "title": "Monogram",
+  "variant": "green",
+  "file": "logos/svg/waynesdays-monogram-green.svg",
+  "w": 111.89,
+  "h": 111.89,
+  "preview": "#f1ebdd"
+ },
+ {
+  "logo": "monogram",
+  "title": "Monogram",
+  "variant": "cream",
+  "file": "logos/svg/waynesdays-monogram-cream.svg",
+  "w": 111.89,
+  "h": 111.89,
+  "preview": "#1d3a2c"
+ },
+ {
+  "logo": "monogram",
+  "title": "Monogram",
+  "variant": "ink",
+  "file": "logos/svg/waynesdays-monogram-ink.svg",
+  "w": 111.89,
+  "h": 111.89,
+  "preview": "#ffffff"
+ },
+ {
+  "logo": "monogram",
+  "title": "Monogram",
+  "variant": "white",
+  "file": "logos/svg/waynesdays-monogram-white.svg",
+  "w": 111.89,
+  "h": 111.89,
+  "preview": "#141414"
+ },
+ {
+  "logo": "mark-open",
+  "title": "Open ring",
+  "variant": "green",
+  "file": "logos/svg/waynesdays-mark-open-green.svg",
+  "w": 112.29,
+  "h": 117.29,
+  "preview": "#f1ebdd"
+ },
+ {
+  "logo": "mark-open",
+  "title": "Open ring",
+  "variant": "cream",
+  "file": "logos/svg/waynesdays-mark-open-cream.svg",
+  "w": 112.29,
+  "h": 117.29,
+  "preview": "#1d3a2c"
+ },
+ {
+  "logo": "mark-open",
+  "title": "Open ring",
+  "variant": "ink",
+  "file": "logos/svg/waynesdays-mark-open-ink.svg",
+  "w": 112.29,
+  "h": 117.29,
+  "preview": "#ffffff"
+ },
+ {
+  "logo": "mark-open",
+  "title": "Open ring",
+  "variant": "white",
+  "file": "logos/svg/waynesdays-mark-open-white.svg",
+  "w": 112.29,
+  "h": 117.29,
+  "preview": "#141414"
+ },
+ {
+  "logo": "stacked",
+  "title": "Stacked lockup",
+  "variant": "green",
+  "file": "logos/svg/waynesdays-stacked-green.svg",
+  "w": 162.05,
+  "h": 155.6,
+  "preview": "#f1ebdd"
+ },
+ {
+  "logo": "stacked",
+  "title": "Stacked lockup",
+  "variant": "cream",
+  "file": "logos/svg/waynesdays-stacked-cream.svg",
+  "w": 162.05,
+  "h": 155.6,
+  "preview": "#1d3a2c"
+ },
+ {
+  "logo": "stacked",
+  "title": "Stacked lockup",
+  "variant": "ink",
+  "file": "logos/svg/waynesdays-stacked-ink.svg",
+  "w": 162.05,
+  "h": 155.6,
+  "preview": "#ffffff"
+ },
+ {
+  "logo": "stacked",
+  "title": "Stacked lockup",
+  "variant": "white",
+  "file": "logos/svg/waynesdays-stacked-white.svg",
+  "w": 162.05,
+  "h": 155.6,
+  "preview": "#141414"
+ },
+ {
+  "logo": "seal",
+  "title": "Seal",
+  "variant": "green",
+  "file": "logos/svg/waynesdays-seal-green.svg",
+  "w": 258.77,
+  "h": 258.77,
+  "preview": "#f1ebdd"
+ },
+ {
+  "logo": "seal",
+  "title": "Seal",
+  "variant": "cream",
+  "file": "logos/svg/waynesdays-seal-cream.svg",
+  "w": 258.77,
+  "h": 258.77,
+  "preview": "#1d3a2c"
+ },
+ {
+  "logo": "seal",
+  "title": "Seal",
+  "variant": "ink",
+  "file": "logos/svg/waynesdays-seal-ink.svg",
+  "w": 258.77,
+  "h": 258.77,
+  "preview": "#ffffff"
+ },
+ {
+  "logo": "seal",
+  "title": "Seal",
+  "variant": "white",
+  "file": "logos/svg/waynesdays-seal-white.svg",
+  "w": 258.77,
+  "h": 258.77,
+  "preview": "#141414"
+ },
+ {
+  "logo": "label",
+  "title": "Label",
+  "variant": "green",
+  "file": "logos/svg/waynesdays-label-green.svg",
+  "w": 716.08,
+  "h": 189.44,
+  "preview": "#f1ebdd"
+ },
+ {
+  "logo": "label",
+  "title": "Label",
+  "variant": "cream",
+  "file": "logos/svg/waynesdays-label-cream.svg",
+  "w": 716.08,
+  "h": 189.44,
+  "preview": "#1d3a2c"
+ },
+ {
+  "logo": "label",
+  "title": "Label",
+  "variant": "ink",
+  "file": "logos/svg/waynesdays-label-ink.svg",
+  "w": 716.08,
+  "h": 189.44,
+  "preview": "#ffffff"
+ },
+ {
+  "logo": "label",
+  "title": "Label",
+  "variant": "white",
+  "file": "logos/svg/waynesdays-label-white.svg",
+  "w": 716.08,
+  "h": 189.44,
+  "preview": "#141414"
+ }
+]

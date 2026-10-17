@@ -1,0 +1,138 @@
+[
+ {
+  "name": "clubhouse green",
+  "token": "green",
+  "hex": "#1d3a2c",
+  "rgb": [
+   29,
+   58,
+   44
+  ],
+  "cmyk": [
+   50,
+   0,
+   24,
+   77
+  ],
+  "role": "Primary. Buttons, the wordmark on light, dark grounds."
+ },
+ {
+  "name": "cream",
+  "token": "cream",
+  "hex": "#f1ebdd",
+  "rgb": [
+   241,
+   235,
+   221
+  ],
+  "cmyk": [
+   0,
+   2,
+   8,
+   5
+  ],
+  "role": "Ground. Paper, labels, the wordmark on green."
+ },
+ {
+  "name": "brass",
+  "token": "brass",
+  "hex": "#b08d57",
+  "rgb": [
+   176,
+   141,
+   87
+  ],
+  "cmyk": [
+   0,
+   20,
+   51,
+   31
+  ],
+  "role": "Accent on light. The ring and the five stripes, never body text."
+ },
+ {
+  "name": "brass light",
+  "token": "brass-light",
+  "hex": "#d2b07a",
+  "rgb": [
+   210,
+   176,
+   122
+  ],
+  "cmyk": [
+   0,
+   16,
+   42,
+   18
+  ],
+  "role": "Accent on green and night."
+ },
+ {
+  "name": "ink",
+  "token": "ink",
+  "hex": "#141414",
+  "rgb": [
+   20,
+   20,
+   20
+  ],
+  "cmyk": [
+   0,
+   0,
+   0,
+   92
+  ],
+  "role": "Type and one-colour marks."
+ },
+ {
+  "name": "porcelain",
+  "token": "porcelain",
+  "hex": "#f8f5ee",
+  "rgb": [
+   248,
+   245,
+   238
+  ],
+  "cmyk": [
+   0,
+   1,
+   4,
+   3
+  ],
+  "role": "App background in daylight."
+ },
+ {
+  "name": "night green",
+  "token": "night",
+  "hex": "#0f1a14",
+  "rgb": [
+   15,
+   26,
+   20
+  ],
+  "cmyk": [
+   42,
+   0,
+   23,
+   90
+  ],
+  "role": "App background after dark and in cooking mode."
+ },
+ {
+  "name": "stone",
+  "token": "stone",
+  "hex": "#8a8577",
+  "rgb": [
+   138,
+   133,
+   119
+  ],
+  "cmyk": [
+   0,
+   4,
+   14,
+   46
+  ],
+  "role": "Quiet text: captions, eyebrows, metadata."
+ }
+]

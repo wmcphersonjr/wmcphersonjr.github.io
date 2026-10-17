@@ -1,6 +1,7 @@
 /* Offline support: app shell cache-first, recipe data network-first. */
-const VERSION = 'wrb-v9';
-const SHELL = ['./', 'index.html', 'app.css', 'js/parse.js', 'js/kitchen.js', 'js/tips.js', 'js/app.js', 'icon.svg', 'icon-192.png', 'manifest.webmanifest', 'data/recipes.json'];
+const VERSION = 'wrb-v10';
+const SHELL = ['./', 'index.html', 'app.css', 'js/parse.js', 'js/kitchen.js', 'js/tips.js', 'js/app.js', 'icon.svg', 'icon-192.png', 'manifest.webmanifest', 'data/recipes.json',
+  'fonts/cormorant-garamond.woff2', 'fonts/cormorant-garamond-italic.woff2', 'fonts/jost.woff2', 'brand/icons/favicon.svg', 'brand/logos/svg/waynesdays-wordmark-signed-green.svg'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(VERSION).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()));
@@ -13,10 +14,9 @@ self.addEventListener('fetch', (e) => {
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
   const sameOrigin = url.origin === location.origin;
-  const isFont = /fonts\.(googleapis|gstatic)\.com$/.test(url.hostname);
-  if (!sameOrigin && !isFont) return; // web imports, GitHub API, proxies: straight to network
+  if (!sameOrigin) return; // web imports, GitHub API, proxies: straight to network
   // network-first for the data file and navigations so updates show up; cache as fallback
-  if (sameOrigin && (url.pathname.endsWith('/data/recipes.json') || req.mode === 'navigate' || /\.(js|css|html)$/.test(url.pathname))) {
+  if ((url.pathname.endsWith('/data/recipes.json') || req.mode === 'navigate' || /\.(js|css|html)$/.test(url.pathname))) {
     e.respondWith(fetch(req).then((res) => {
       if (res.ok) { const copy = res.clone(); caches.open(VERSION).then((c) => c.put(req, copy)); }
       return res;

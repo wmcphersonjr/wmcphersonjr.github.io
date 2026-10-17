@@ -1,4 +1,4 @@
-/* Waynesdays Recipe Book — app */
+/* waynesdays — recipe book app */
 (() => {
   'use strict';
   const RB = window.RB;
@@ -429,10 +429,10 @@
     }
     try {
       const seed = await loadSeed();
-      store.book = { title: seed.title || 'Waynesdays Recipe Book', recipes: seed.recipes.map(normalizeRecipe), deleted: seed.deleted || {}, meta: seed.meta || {},
+      store.book = { title: seed.title || 'waynesdays', recipes: seed.recipes.map(normalizeRecipe), deleted: seed.deleted || {}, meta: seed.meta || {},
         plan: seed.plan || {}, collections: seed.collections || [], collectionsDeleted: seed.collectionsDeleted || {}, customTips: seed.customTips || [], tipsDeleted: seed.tipsDeleted || {}, seedAt: seed.updatedAt };
     } catch (e) {
-      store.book = { title: 'Waynesdays Recipe Book', recipes: [], deleted: {}, meta: {}, seedAt: '' };
+      store.book = { title: 'waynesdays', recipes: [], deleted: {}, meta: {}, seedAt: '' };
     }
     store.ensure();
     LS.set(K.book, store.book);
@@ -862,6 +862,7 @@
           <button class="icon-btn" data-act="hide-tip" aria-label="Dismiss">${icon('i-x')}</button>
         </div>` : ''}
         <div id="results" aria-live="polite"></div>
+        ${brandSign()}
       </section>`;
     renderResults();
     const q = $('#q');
@@ -1755,6 +1756,7 @@ One or two sentences about the dish.
 - Tips, swaps, storage.`;
 
   /** Shared page header: eyebrow, title, optional subtitle and actions. */
+  const brandSign = () => '<div class="brand-sign" aria-hidden="true"><svg><use href="#logo-ring"/></svg><small>waynesdays · est. mmxxvi</small></div>';
   const pageHead = (eyebrow, title, sub, actions) => `<header class="page-head"><div>${eyebrow ? `<p class="eyebrow">${eyebrow}</p>` : ''}<h1>${title}</h1>${sub ? `<p class="sub">${sub}</p>` : ''}</div>${actions ? `<div class="row wrap-row">${actions}</div>` : ''}</header>`;
   function viewAdd(main, mode) {
     if (mode === 'voice') return viewAddVoice(main);
@@ -2340,7 +2342,7 @@ One or two sentences about the dish.
           <div><b>${cooked}</b><span>times cooked</span></div>
         </div>
 
-        <nav class="set-nav" aria-label="Settings sections">${[['appearance', 'Appearance'], ['kitchen', 'Kitchen'], ['claude', 'Claude'], ['sync', 'Sync'], ['backup', 'Backup'], ['reset', 'Reset']].map(([k, l]) => `<a href="#/settings" data-act="set-jump" data-k="${k}">${l}</a>`).join('')}</nav>
+        <nav class="set-nav" aria-label="Settings sections">${[['appearance', 'Appearance'], ['kitchen', 'Kitchen'], ['claude', 'Claude'], ['sync', 'Sync'], ['backup', 'Backup'], ['reset', 'Reset'], ['about', 'About']].map(([k, l]) => `<a href="#/settings" data-act="set-jump" data-k="${k}">${l}</a>`).join('')}</nav>
 
         <section class="panel" id="set-appearance">
           <h2>Appearance &amp; voice</h2>
@@ -2417,6 +2419,12 @@ One or two sentences about the dish.
             <button class="btn danger" data-act="erase-all">${icon('i-trash')} Erase everything on this device</button>
           </div>
           <p class="muted small">Restore brings back any of the original book’s recipes you deleted, without touching your own.</p>
+        </section>
+        <section class="panel" id="set-about">
+          <h2>About</h2>
+          <p class="muted">waynesdays is a personal recipe book. The logos, colours and type are collected in the brand kit.</p>
+          <div class="row wrap-row"><a class="btn" href="brand/index.html" target="_blank" rel="noopener">${icon('i-book')} Brand guidelines</a></div>
+          ${brandSign()}
         </section>
       </section>`;
     $('#lang').addEventListener('change', (e) => { settings.lang = e.target.value; saveSettings(); toast('Voice language saved'); });
@@ -2888,7 +2896,7 @@ ${CLAUDE_PROMPT}`;
     }
     if (r.notes.length) { lines.push('', 'NOTES'); r.notes.forEach((x) => lines.push('• ' + RB.stripMd(x))); }
     if (r.sources.length) lines.push('', 'Source: ' + r.sources.map((x) => x.url).join(' '));
-    lines.push('', '— from Waynesdays Recipe Book');
+    lines.push('', '— from waynesdays');
     return lines.join('\n');
   }
   function recipePage(r) {
@@ -2904,16 +2912,17 @@ ${CLAUDE_PROMPT}`;
 <script type="application/ld+json">${JSON.stringify(ld).replace(/</g, '\\u003c')}</script>
 <script type="text/markdown" id="wrb-recipe">${md}</script>
 <style>
-:root{--bg:#f8f7f4;--ink:#15140f;--ink2:#4f4c45;--ink3:#8b877d;--line:#e3e0d8;--accent:#94713f}
-@media (prefers-color-scheme:dark){:root{--bg:#0e0d0b;--ink:#f1ede4;--ink2:#bdb7aa;--ink3:#7f796e;--line:#2a2822;--accent:#c9a66b}}
+:root{--bg:#f8f5ee;--ink:#141714;--ink2:#4a4d46;--ink3:#8a8577;--line:#e6dfd0;--accent:#9a7744;--green:#1d3a2c}
+@media (prefers-color-scheme:dark){:root{--bg:#0f1a14;--ink:#f1ebdd;--ink2:#c6bfad;--ink3:#8a8a78;--line:#22332a;--accent:#d2b07a;--green:#f1ebdd}}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:300 17px/1.65 'Jost','Avenir Next',system-ui,sans-serif}
 article{max-width:760px;margin:0 auto;padding:48px 20px 64px}img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:6px;margin-bottom:28px}
-.eyebrow{font:500 .7rem/1.4 system-ui,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
-h1,h2,h3{font-family:'Bodoni Moda','Didot',Georgia,serif;font-weight:500;line-height:1.1;margin:.2em 0}h1{font-size:clamp(2.2rem,6vw,3.4rem)}
+.eyebrow{font:500 .7rem/1.4 'Jost',system-ui,sans-serif;letter-spacing:.24em;text-transform:lowercase;color:var(--accent)}
+h1,h2,h3{font-family:'Cormorant Garamond','EB Garamond',Garamond,Georgia,serif;font-weight:500;line-height:1.05;margin:.2em 0;color:var(--green)}h1{font-size:clamp(2.4rem,6.4vw,3.8rem)}
 h2{font-style:italic;font-weight:400;font-size:1.7rem;border-bottom:1px solid var(--ink);padding-bottom:10px;margin-top:40px}h3{font-size:1.1rem;margin-top:20px}
 .lede{color:var(--ink2);font-size:1.1rem}.facts{color:var(--ink3);font-size:.85rem;letter-spacing:.14em;text-transform:uppercase}
 ul,ol{padding-left:1.2em}li{margin:.45em 0}ul li::marker{color:var(--accent)}ol li::marker{font-family:Georgia,serif;color:var(--accent)}
-footer{border-top:1px solid var(--line);margin-top:48px;padding-top:16px;color:var(--ink3);font-size:.8rem;letter-spacing:.14em;text-transform:uppercase}
+footer{border-top:1px solid var(--line);margin-top:48px;padding-top:16px;color:var(--ink3);font-size:.8rem;letter-spacing:.14em}
+footer b{font:500 1.3rem/1 'Cormorant Garamond',Garamond,Georgia,serif;letter-spacing:0;color:var(--green);margin-right:8px}
 a{color:inherit}
 </style></head><body><article>
 ${r.image && !/^data:/.test(r.image) ? `<img src="${esc(abs(r.image))}" alt="">` : ''}
@@ -2926,17 +2935,39 @@ ${r.steps.length ? `<h2>Method</h2>${r.steps.map((g) => `${g.name ? `<h3>${esc(g
 ${r.notes.length ? `<h2>Notes</h2><ul>${r.notes.map((n) => `<li>${inlineMd(n)}</li>`).join('')}</ul>` : ''}
 ${r.extras.map((e) => `<h2>${esc(e.title)}</h2>${blockMd(e.body)}`).join('')}
 ${r.sources.length ? `<p class="facts">Source: ${r.sources.map((x) => `<a href="${esc(x.url)}">${esc(x.label || RB.hostLabel(x.url))}</a>`).join(' · ')}</p>` : ''}
-<footer>Waynesdays Recipe Book · import this file into the app to save it</footer>
+<footer><b>waynesdays</b> import this file into the app to save it</footer>
 </article></body></html>
 `;
+  }
+  // ---- brand art for exported images ----
+  const BRAND = { green: '#1d3a2c', cream: '#f1ebdd', brass: '#b08d57', brassText: '#9a7744', ink: '#141714', ink2: '#4a4d46', stone: '#8a8577',
+    serif: '"Cormorant Garamond", "EB Garamond", Garamond, Georgia, serif', sans: 'Jost, "Avenir Next", system-ui, sans-serif' };
+  const brandArtCache = {};
+  /** One of the outlined logo SVGs from the brand kit, as an Image (null if it can't load). */
+  function brandArt(name) {
+    if (!brandArtCache[name]) brandArtCache[name] = new Promise((res) => { const im = new Image(); im.onload = () => res(im); im.onerror = () => res(null); im.src = 'brand/logos/svg/waynesdays-' + name + '.svg'; });
+    return brandArtCache[name];
+  }
+  /** The tab: a fine rule from x0 to x1 that ends in five brass stripes. */
+  function drawTab(x, x0, x1, y, rule) {
+    const sw = 13, gap = 13;
+    x.fillStyle = rule; x.fillRect(x0, y - 0.75, x1 - x0 - (gap * 4 + sw) - 16, 1.5);
+    x.strokeStyle = BRAND.brass; x.lineWidth = 3.2; x.beginPath();
+    for (let i = 0; i < 5; i++) { const sx = x1 - (gap * 4 + sw) + i * gap; x.moveTo(sx, y + 9); x.lineTo(sx + sw - 2, y - 11); }
+    x.stroke();
+  }
+  async function drawSignature(x, left, bottom, h) {
+    const im = await brandArt('wordmark-signed-green');
+    if (im) { const w = h * (im.naturalWidth || im.width) / (im.naturalHeight || im.height); x.drawImage(im, left, bottom - h, w, h); return; }
+    x.fillStyle = BRAND.green; x.font = `500 ${Math.round(h * 0.7)}px ${BRAND.serif}`; x.fillText('waynesdays', left, bottom - h * 0.3);
   }
   async function cardImage(r) {
     const W = 1080, H = 1350, P = 84;
     const c = document.createElement('canvas'); c.width = W; c.height = H;
     const x = c.getContext('2d');
     try { if (document.fonts && document.fonts.ready) await document.fonts.ready; } catch (e) { /* */ }
-    const serif = '"Bodoni Moda", Didot, "Bodoni 72", Georgia, serif', sans = 'Jost, "Avenir Next", system-ui, sans-serif';
-    x.fillStyle = '#f8f7f4'; x.fillRect(0, 0, W, H);
+    const { serif, sans } = BRAND;
+    x.fillStyle = BRAND.cream; x.fillRect(0, 0, W, H);
     // photo: your cover, else the recipe photo if it's on this site (other sites' images can't be drawn)
     let img = null;
     const m = store.meta(r.id);
@@ -2949,7 +2980,7 @@ ${r.sources.length ? `<p class="facts">Source: ${r.sources.map((x) => `<a href="
       x.save(); x.beginPath(); x.rect(0, 0, W, ih); x.clip(); x.drawImage(img, (W - dw) / 2, (ih - dh) / 2, dw, dh); x.restore();
       y = ih + 78;
     } else {
-      x.fillStyle = '#15140f'; x.fillRect(0, 0, W, 16); y = 150;
+      x.fillStyle = BRAND.green; x.fillRect(0, 0, W, 16); y = 150;
     }
     const wrap = (text, font, maxW, maxLines) => {
       x.font = font; const words = String(text).split(/\s+/); const lines = []; let cur = '';
@@ -2958,35 +2989,33 @@ ${r.sources.length ? `<p class="facts">Source: ${r.sources.map((x) => `<a href="
       if (lines.length > maxLines) { lines.length = maxLines; lines[maxLines - 1] = lines[maxLines - 1].replace(/\s*\S*$/, '') + '…'; }
       return lines;
     };
-    x.fillStyle = '#94713f'; x.font = `500 24px ${sans}`;
+    x.fillStyle = BRAND.brassText; x.font = `500 24px ${sans}`;
     if ('letterSpacing' in x) x.letterSpacing = '6px';
-    x.fillText(String(r.category || 'Recipe').toUpperCase(), P, y);
+    x.fillText(String(r.category || 'Recipe').toLowerCase(), P, y);
     if ('letterSpacing' in x) x.letterSpacing = '0px';
     y += 26;
-    x.fillStyle = '#15140f';
-    const tl = wrap(r.title, `500 ${img ? 62 : 82}px ${serif}`, W - P * 2, img ? 2 : 3);
-    tl.forEach((ln) => { y += img ? 70 : 92; x.fillText(ln, P, y); });
+    x.fillStyle = BRAND.green;
+    const tl = wrap(r.title, `500 ${img ? 70 : 92}px ${serif}`, W - P * 2, img ? 2 : 3);
+    tl.forEach((ln) => { y += img ? 72 : 94; x.fillText(ln, P, y); });
     const facts = [r.time && r.time.replace(/\s*\(.*\)$/, ''), r.yield, m.rating ? '★'.repeat(m.rating) : ''].filter(Boolean).join('   ·   ');
-    if (facts) { y += 52; x.fillStyle = '#4f4c45'; x.font = `400 26px ${sans}`; x.fillText(facts, P, y); }
-    y += 40; x.fillStyle = '#15140f'; x.fillRect(P, y, W - P * 2, 2); y += 52;
+    if (facts) { y += 52; x.fillStyle = BRAND.ink2; x.font = `400 26px ${sans}`; x.fillText(facts, P, y); }
+    y += 42; drawTab(x, P, W - P, y, BRAND.green); y += 56;
     // ingredients in two columns
     const items = r.ingredients.flatMap((g) => g.items.map((it) => RB.stripMd(ingText(it, getScale(r.id)))));
     x.font = `400 25px ${sans}`;
-    const colW = (W - P * 2 - 48) / 2, lineH = 36, bottom = H - 120;
+    const colW = (W - P * 2 - 48) / 2, lineH = 36, bottom = H - 150;
     const rows = Math.max(1, Math.floor((bottom - y) / lineH));
     let col = 0, row = 0, shown = 0;
     for (const it of items) {
       const lines = wrap(it, `400 25px ${sans}`, colW - 26, 2);
       if (row + lines.length > rows) { if (col === 1) break; col = 1; row = 0; }
       const cx = P + col * (colW + 48);
-      x.fillStyle = '#94713f'; x.beginPath(); x.arc(cx + 5, y + row * lineH - 8, 4, 0, Math.PI * 2); x.fill();
-      x.fillStyle = '#2b2924'; lines.forEach((ln, k) => x.fillText(ln, cx + 22, y + (row + k) * lineH));
+      x.fillStyle = BRAND.brass; x.beginPath(); x.arc(cx + 5, y + row * lineH - 8, 4, 0, Math.PI * 2); x.fill();
+      x.fillStyle = BRAND.ink; lines.forEach((ln, k) => x.fillText(ln, cx + 22, y + (row + k) * lineH));
       row += lines.length; shown++;
     }
-    if (shown < items.length) { x.fillStyle = '#8b877d'; x.font = `italic 400 24px ${serif}`; x.fillText(`+ ${items.length - shown} more ingredients`, P + (col ? colW + 48 : 0) + 22, Math.min(bottom, y + row * lineH)); }
-    x.fillStyle = '#94713f'; x.font = `500 20px ${sans}`;
-    if ('letterSpacing' in x) x.letterSpacing = '5px';
-    x.fillText('WAYNESDAYS RECIPE BOOK', P, H - 64);
+    if (shown < items.length) { x.fillStyle = BRAND.stone; x.font = `italic 500 26px ${serif}`; x.fillText(`+ ${items.length - shown} more ingredients`, P + (col ? colW + 48 : 0) + 22, Math.min(bottom, y + row * lineH)); }
+    await drawSignature(x, P, H - 58, 92);
     return new Promise((res) => c.toBlob(res, 'image/png'));
   }
   function openShare(r) {
@@ -3518,17 +3547,19 @@ Judge composition, height, color contrast, cleanliness of the rim, portion and h
     const img = await new Promise((res, rej) => { const im = new Image(); im.onload = () => res(im); im.onerror = rej; im.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg); });
     const W = 1080, H = 1500, cv = document.createElement('canvas'); cv.width = W; cv.height = H;
     const x = cv.getContext('2d');
-    const serif = '"Bodoni Moda", Didot, Georgia, serif', sans = 'Jost, "Avenir Next", system-ui, sans-serif';
-    x.fillStyle = '#f8f7f4'; x.fillRect(0, 0, W, H);
-    x.fillStyle = '#94713f'; x.font = `500 24px ${sans}`; x.fillText(('PLATING · ' + (c.name || '')).toUpperCase(), 80, 96);
-    x.fillStyle = '#15140f'; x.font = `500 58px ${serif}`; x.fillText(r.title.replace(/\s*\(.*\)$/, '').slice(0, 34), 80, 166);
+    const { serif, sans } = BRAND;
+    try { if (document.fonts && document.fonts.ready) await document.fonts.ready; } catch (e) { /* */ }
+    x.fillStyle = BRAND.cream; x.fillRect(0, 0, W, H);
+    x.fillStyle = BRAND.brassText; x.font = `500 24px ${sans}`; if ('letterSpacing' in x) x.letterSpacing = '5px';
+    x.fillText(('plating · ' + (c.name || '')).toLowerCase(), 80, 96); if ('letterSpacing' in x) x.letterSpacing = '0px';
+    x.fillStyle = BRAND.green; x.font = `500 66px ${serif}`; x.fillText(r.title.replace(/\s*\(.*\)$/, '').slice(0, 34), 80, 168);
     x.drawImage(img, 140, 200, 800, 800);
     let y = 1060; x.font = `400 26px ${sans}`;
-    (c.elements || []).forEach((e, i) => { const col = i % 2, row = Math.floor(i / 2); x.fillStyle = e.color || PLATE_COLORS[i % 7]; x.beginPath(); x.arc(92 + col * 470, y + row * 44 - 9, 9, 0, 6.3); x.fill(); x.fillStyle = '#15140f'; x.fillText(`${i + 1}. ${e.name}`.slice(0, 30), 112 + col * 470, y + row * 44); });
+    (c.elements || []).forEach((e, i) => { const col = i % 2, row = Math.floor(i / 2); x.fillStyle = e.color || PLATE_COLORS[i % 7]; x.beginPath(); x.arc(92 + col * 470, y + row * 44 - 9, 9, 0, 6.3); x.fill(); x.fillStyle = BRAND.ink; x.fillText(`${i + 1}. ${e.name}`.slice(0, 30), 112 + col * 470, y + row * 44); });
     y += Math.ceil((c.elements || []).length / 2) * 44 + 30;
-    x.fillStyle = '#4f4c45'; x.font = `400 23px ${sans}`;
-    (c.steps || []).slice(0, 6).forEach((s, k) => { if (y < H - 90) { x.fillText(`${k + 1}  ${String(s.text || s).slice(0, 78)}`, 80, y); y += 36; } });
-    x.fillStyle = '#94713f'; x.font = `500 20px ${sans}`; x.fillText('WAYNESDAYS RECIPE BOOK', 80, H - 50);
+    x.fillStyle = BRAND.ink2; x.font = `400 23px ${sans}`;
+    (c.steps || []).slice(0, 6).forEach((s, k) => { if (y < H - 130) { x.fillText(`${k + 1}  ${String(s.text || s).slice(0, 78)}`, 80, y); y += 36; } });
+    await drawSignature(x, 80, H - 44, 64);
     const blob = await new Promise((res) => cv.toBlob(res, 'image/png'));
     saveFile(blob, RB.slugify(r.title) + '-plating.png', { share: true, title: r.title });
   }
