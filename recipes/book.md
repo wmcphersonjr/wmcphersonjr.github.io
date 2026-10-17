@@ -8,15 +8,15 @@ Every recipe pulled from past chats, compiled in one place. Grouped by category.
 
 **Drinks:** Freeman House Chai Concentrate (Copycat) · Simple Chai Concentrate · Thai Milk Tea · Hot Toddy · Classic Spritz · Reed's Style Extra Strong Ginger Beer · Traditional Ginger Beer (Ginger Bug) · Rebekah Peppler's Hot Toddy
 
-**Breakfast:** Fluffy Pancakes · Buttermilk Cornbread Waffles · McDonald's Fruit and Maple Oatmeal (Copycat) · Golden Diner Pancakes · Shakshuka With Feta · Waffles · Dutch Baby
+**Breakfast:** Fluffy Pancakes · Buttermilk Cornbread Waffles · McDonald's Fruit and Maple Oatmeal (Copycat) · Golden Diner Pancakes · Shakshuka With Feta · Waffles · Dutch Baby · Eggnog Overnight French Toast
 
-**Baking and Sweets:** Sugar Moon Espresso Cornflake Cookies (Copycat) · Bakery Cookie Skillet · Soft and Chewy Oatmeal Chocolate Chip Cookies · Pan de Muerto · Latino Foodie Pan de Muerto · Gingerbread Latte Cookies · Chocolate Soufflés · Conchas · Peach Cobbler · Warm Sweet Potato-Apple Pone
+**Baking and Sweets:** Sugar Moon Espresso Cornflake Cookies (Copycat) · Bakery Cookie Skillet · Soft and Chewy Oatmeal Chocolate Chip Cookies · Pan de Muerto · Latino Foodie Pan de Muerto · Gingerbread Latte Cookies · Chocolate Soufflés · Conchas · Peach Cobbler · Warm Sweet Potato-Apple Pone · Strawberry Shortcake
 
-**Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs · Creamy Lemon Pesto Pasta · Oxtail and Butter Beans · Birria de Res (Beef Birria) · Quesabirria Tacos · Stew Peas and Spinners · Spicy Red Pesto Pasta · Ricotta Pasta Alla Vodka · Pasta Alla Norma Sorta · Grilled Cheese With Apples and Apple Butter
+**Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs · Creamy Lemon Pesto Pasta · Oxtail and Butter Beans · Birria de Res (Beef Birria) · Quesabirria Tacos · Stew Peas and Spinners · Spicy Red Pesto Pasta · Ricotta Pasta Alla Vodka · Pasta Alla Norma Sorta · Grilled Cheese With Apples and Apple Butter · Golden Krust Jamaican Oxtail Stew · Roast Chicken With Maple Butter and Rosemary
 
 **Sides and Salads:** Roasted Dumpling Squash
 
-**Soups:** Split Pea Soup · Butternut Squash Congee With Chile Oil · Red Peas Soup · Soup Joumou · Sancocho · Best Black Bean Soup · Coconut Black Bean Soup · Lemony White Bean Soup With Turkey and Greens · Citrusy Lentil and Sweet Potato Soup · Pumpkin Soup · Thomas Keller's Butternut Squash Soup With Brown Butter
+**Soups:** Split Pea Soup · Butternut Squash Congee With Chile Oil · Red Peas Soup · Soup Joumou · Sancocho · Best Black Bean Soup · Coconut Black Bean Soup · Lemony White Bean Soup With Turkey and Greens · Citrusy Lentil and Sweet Potato Soup · Pumpkin Soup · Thomas Keller's Butternut Squash Soup With Brown Butter · Sherried Lentil Soup With Sausage and Croutons
 
 **Sauces, Spices and Ferments:** Nonna's Sunday Sugo · Ponzu Sauce · Pumpkin Pie Spice Blend · Kimchi
 
@@ -514,6 +514,42 @@ Florence Fabricant's classic puffed oven pancake: a blender batter poured into s
 
 ---
 
+## Eggnog Overnight French Toast
+
+A whole country loaf cut in a deep grid, soaked with an eggnog-style custard spiked with rum, then baked until golden and dusted with nutmeg and powdered sugar. A pull-apart holiday brunch.
+
+**Image:** images/eggnog-overnight-french-toast.jpg
+**Tags:** brunch, holiday, make-ahead, french toast, christmas, nyt cooking
+**Time:** 1 hr 10 min (plus 30 min to overnight soaking)
+
+**Serves 4 to 6**
+
+**Ingredients**
+- 1 (16-ounce) day-old plain country bread loaf, oblong or similar
+- 2 large eggs
+- 1 cup granulated sugar
+- 1 cup heavy cream
+- 4 tbsp unsalted butter, melted
+- 1 tbsp dark rum, brandy or bourbon
+- 2 tsp pure vanilla extract
+- 1/2 tsp coarse kosher salt
+- Freshly grated nutmeg, for dusting
+- Confectioners' sugar, for dusting
+
+**Method**
+1. **Cut the loaf:** Have a rimmed dish about 1 inch deep that fits the loaf snugly. Shave a very thin layer (about 1/16 inch) off the bottom. Cut 1 1/2-inch slices across the top, leaving about 1/2 inch uncut at the bottom, then turn the loaf and cut the other way to make a grid. Set it in the dish.
+2. **Soak:** Whisk the eggs, sugar, cream, melted butter, rum, vanilla and salt. Pour slowly into the center of the loaf, gently opening the pieces so every crevice and the top get soaked. Rest 30 minutes at room temperature, or cover and refrigerate overnight.
+3. **Heat:** Heat the oven to 350°F and line a baking sheet with parchment.
+4. **Bake:** Spoon any pooled custard back over dry spots, move the loaf to the sheet and bake until deeply golden and the custard is set, about 1 hour.
+5. **Serve:** Dust with nutmeg and confectioners' sugar and serve right away.
+
+**Notes**
+- By Jerrelle Guy for NYT Cooking.
+
+*Source: NYT Cooking (Jerrelle Guy): https://cooking.nytimes.com/search?q=Eggnog%20Overnight%20French%20Toast*
+
+---
+
 # BAKING AND SWEETS
 
 ## Sugar Moon Espresso Cornflake Cookies (Copycat)
@@ -969,6 +1005,46 @@ A spoonable, custardy Southern pone of grated sweet potato and apple with brown 
 
 ---
 
+## Strawberry Shortcake
+
+Jane Grigson's classic: tender cream biscuits baked in buttered stacks, split while warm and filled with lightly crushed sugared strawberries and vanilla whipped cream.
+
+**Image:** images/strawberry-shortcake.jpg
+**Tags:** dessert, strawberries, summer, biscuits, nyt cooking
+**Time:** about 45 min
+
+**Serves 4 generously**
+
+**Berries**
+- 2 pints ripe, well-rinsed strawberries
+- 1/2 cup sugar, or more to taste
+
+**Shortcakes and cream**
+- 4 cups flour
+- 3 tbsp sugar
+- 1/4 tsp salt
+- 5 tsp baking powder
+- 1 1/4 cups butter, divided (3/4 cup softened)
+- 3 cups whipping cream, divided
+- 1/4 tsp vanilla extract
+
+**Method**
+1. **Macerate:** Hull the strawberries and halve or slice them. Gently crush about a quarter with a fork, mix with the rest and the 1/2 cup sugar (more if needed), cover and let sit about 30 minutes.
+2. **Heat:** Heat the oven to 450°F.
+3. **Dough:** Sift the flour, 3 tbsp sugar, salt and baking powder into a large bowl. Rub in 3/4 cup softened butter as for pastry, then mix in 1 1/4 cups cream to a soft dough. Knead 1 minute on a lightly floured board and roll to about 1/2 inch thick. Cut an even number of 3-inch rounds, 2 per serving.
+4. **Stack and bake:** Grease a baking sheet with a little of the remaining butter and set half the rounds on it. Melt the rest of the butter, brush a little on the rounds and top each with a second round. Bake until golden, 10 to 15 minutes.
+5. **Split:** Pull the shortcakes apart and brush the insides with more melted butter.
+6. **Cream:** Whip the remaining cream until it thickens, add the vanilla and whip just until thick.
+7. **Assemble:** Set a bottom half on each plate, add cream and berries, cover with the top half, then add more berries and cream. Serve right away.
+
+**Notes**
+- From "Jane Grigson's Fruit Book," adapted by Nancy Harmon Jenkins for NYT Cooking.
+- Extra shortcakes freeze well; warm before using. They're also good toasted for breakfast.
+
+*Source: NYT Cooking (Jane Grigson, adapted by Nancy Harmon Jenkins): https://cooking.nytimes.com/search?q=Strawberry%20Shortcake%20Jane%20Grigson*
+
+---
+
 # MAINS
 
 ## Jamaican Brown Stew Oxtail (5 lb Practice Batch)
@@ -1087,6 +1163,52 @@ Jamaican-style oxtail braised until it falls off the bone in a rich, full-bodied
 - The gravy is great sopped up with roti or naan, or over coconut rice and peas.
 
 *Source: NYT Cooking (Millie Peartree): https://cooking.nytimes.com/search?q=Oxtail%20and%20Butter%20Beans*
+
+---
+
+## Golden Krust Jamaican Oxtail Stew
+
+Golden Krust's oxtail stew: oxtails browned in nearly black caramelized sugar, braised with allspice, Scotch bonnet and thyme in two stages, then thickened with a flour slurry and ketchup and finished with butter beans.
+
+**Image:** images/golden-krust-jamaican-oxtail-stew.jpg
+**Tags:** jamaican, oxtail, stew, braise, nyt cooking
+**Time:** 2 hr 40 min
+
+**Serves 4**
+
+**Ingredients**
+- 3 pounds oxtails, cut into segments by a butcher
+- Kosher salt
+- Freshly ground black pepper, to taste
+- 3 tbsp light brown sugar
+- 2 Spanish onions, peeled and chopped
+- 4 garlic cloves, peeled and minced
+- 3 tbsp fresh ginger, peeled and chopped
+- 1 Scotch bonnet pepper, whole
+- 3 sprigs fresh thyme
+- 12 allspice berries
+- 1 bunch scallions, trimmed and chopped
+- 2 tbsp white sugar
+- 3 tbsp soy sauce
+- 1 tbsp Worcestershire sauce
+- 3 tbsp flour
+- 3 tbsp tomato ketchup
+- 1 cup butter beans, or a 10 1/2-ounce can, rinsed and drained
+
+**Method**
+1. **Blackened sugar:** Season the oxtails aggressively with salt and pepper. Heat a large Dutch oven over high, add the brown sugar and stir until it darkens and starts to smoke, about 6 minutes. When it's nearly black, add 2 tbsp boiling water (it will splatter) and stir.
+2. **Brown:** Add the oxtails in batches, turning to coat in the blackened sugar, and cook until well browned. Set aside in a bowl and keep warm.
+3. **First aromatics:** Add half the onions, garlic and ginger, the Scotch bonnet, thyme, allspice and a third of the scallions. Cook until softened, about 5 minutes.
+4. **Braise 1:** Return the oxtails and their juices and add water to almost cover. Bring to a simmer, cover and cook about 1 hour, stirring occasionally.
+5. **Braise 2:** Add the remaining onions, garlic and ginger, another third of the scallions, the white sugar, soy sauce and Worcestershire. Cook until the meat is yielding and loose on the bone, about 1 hour more.
+6. **Thicken:** Ladle about 1 cup of the liquid into a bowl, stir in the flour until smooth, then stir the slurry and ketchup into the pot and cook about 15 minutes more.
+7. **Finish:** Remove the Scotch bonnet and thyme stems, fold in the butter beans to heat through and scatter the remaining scallions on top. Serve with white rice or rice and peas.
+
+**Notes**
+- Recipe from Golden Krust Caribbean Bakery and Grill, adapted by Sam Sifton for NYT Cooking.
+- The same blackened sugar and two-stage aromatic method drives the Jamaican Brown Stew Oxtail practice batch in this book.
+
+*Source: NYT Cooking (Golden Krust, adapted by Sam Sifton): https://cooking.nytimes.com/search?q=Jamaican%20Oxtail%20Stew%20Golden%20Krust*
 
 ---
 
@@ -1718,6 +1840,36 @@ Sharp Cheddar grilled cheese layered with apple butter and buttery sautéed appl
 
 ---
 
+## Roast Chicken With Maple Butter and Rosemary
+
+A simple skillet-roasted whole chicken basted with rosemary maple butter until glossy and deep golden.
+
+**Image:** images/roast-chicken-with-maple-butter-and-rosemary.jpg
+**Tags:** chicken, roast, weeknight, sunday, fall, nyt cooking
+**Time:** 1 hr
+
+**Serves 4**
+
+**Ingredients**
+- 1 (3 1/2-pound) whole chicken
+- Kosher salt and black pepper
+- 2 to 3 rosemary sprigs, plus 2 1/2 tsp finely chopped rosemary
+- 4 tbsp unsalted butter
+- 2 tbsp maple syrup
+
+**Method**
+1. **Prep:** Heat the oven to 375°F. Pat the chicken dry and season well inside and out. Set it breast side up in a 10-inch cast-iron or ovenproof skillet and stuff the rosemary sprigs into the cavity.
+2. **Maple butter:** Melt the butter in a saucepan over medium-low, add the chopped rosemary and maple syrup, and cook until fragrant and slightly thickened, 1 to 2 minutes. Spoon it all over the chicken; some will pool in the pan, which is fine.
+3. **Roast:** Roast, basting with the pan juices every 15 to 20 minutes, until glossy, golden and 165°F in the thickest part of the thigh, 55 to 60 minutes.
+4. **Rest:** Baste once more if you like and rest 10 minutes before carving. Whisk the pan juices and pass them at the table.
+
+**Notes**
+- By Colu Henry for NYT Cooking.
+
+*Source: NYT Cooking (Colu Henry): https://cooking.nytimes.com/search?q=Roast%20Chicken%20With%20Maple%20Butter%20and%20Rosemary*
+
+---
+
 # SIDES AND SALADS
 
 ## Roasted Dumpling Squash with Sage Brown Butter
@@ -2276,6 +2428,43 @@ Silky, restaurant-style squash soup built from roasted and simmered squash, stra
 - The soup can be made ahead and chilled; add the brown butter just before serving.
 
 *Source: NYT Cooking (Amanda Hesser): https://cooking.nytimes.com/search?q=Thomas%20Keller%27s%20Butternut%20Squash%20Soup%20With%20Brown%20Butter*
+
+---
+
+## Sherried Lentil Soup With Sausage and Croutons
+
+A rustic, partly puréed French lentil soup finished with amontillado sherry and topped with crisp croutons and browned kielbasa.
+
+**Image:** images/sherried-lentil-soup-with-sausage-and-croutons.jpg
+**Tags:** soup, lentils, sausage, winter, nyt cooking
+**Time:** 1 1/2 hr
+
+**Ingredients**
+- 5 tbsp extra-virgin olive oil, divided
+- 1 cup finely diced onion
+- 2/3 cup finely diced carrot
+- 1/3 cup finely diced celery
+- 4 garlic cloves, finely chopped
+- 1 tbsp fresh thyme leaves
+- Freshly ground black pepper
+- 2 1/2 cups lentils, preferably French
+- About 10 cups well-seasoned chicken stock
+- 2 thick slices whole wheat bread, crusts removed, diced
+- 1/2 pound kielbasa, in 1/2-inch dice
+- 1 tbsp minced fresh flat-leaf parsley
+- Salt
+- 1/2 cup amontillado sherry
+
+**Method**
+1. **Lentils:** Heat 3 tbsp oil in a heavy soup pot. Cook the onion, carrot, celery and garlic over low heat until soft. Stir in the thyme and plenty of pepper, add the lentils and 8 cups stock, and simmer until tender, about 45 minutes.
+2. **Topping:** Meanwhile, heat the remaining oil in a skillet and sauté the bread over medium until lightly browned and crisp. Remove to a bowl. Brown the kielbasa in the same pan, add it to the croutons with the parsley and toss.
+3. **Finish:** Purée the lentils in batches in a food processor, keeping some texture. Return to the pot and reheat, adding 1 cup or more stock if too thick. Season with salt and stir in the sherry.
+4. **Serve:** Top each bowl with the kielbasa and croutons.
+
+**Notes**
+- By Florence Fabricant for NYT Cooking.
+
+*Source: NYT Cooking (Florence Fabricant): https://cooking.nytimes.com/search?q=Sherried%20Lentil%20Soup%20With%20Sausage%20and%20Croutons*
 
 ---
 
