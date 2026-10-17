@@ -6,13 +6,13 @@ Every recipe pulled from past chats, compiled in one place. Grouped by category.
 
 ## Contents
 
-**Drinks:** Freeman House Chai Concentrate (Copycat) · Simple Chai Concentrate · Thai Milk Tea · Hot Toddy · Classic Spritz · Reed's Style Extra Strong Ginger Beer · Traditional Ginger Beer (Ginger Bug) · Rebekah Peppler's Hot Toddy
+**Drinks:** Freeman House Chai Concentrate (Copycat) · Simple Chai Concentrate · Thai Milk Tea · Hot Toddy · Classic Spritz · Reed's Style Extra Strong Ginger Beer · Traditional Ginger Beer (Ginger Bug) · Rebekah Peppler's Hot Toddy · Coconut Hot Chocolate
 
 **Breakfast:** Fluffy Pancakes · Buttermilk Cornbread Waffles · McDonald's Fruit and Maple Oatmeal (Copycat) · Golden Diner Pancakes · Shakshuka With Feta · Waffles · Dutch Baby · Eggnog Overnight French Toast
 
 **Baking and Sweets:** Sugar Moon Espresso Cornflake Cookies (Copycat) · Bakery Cookie Skillet · Soft and Chewy Oatmeal Chocolate Chip Cookies · Pan de Muerto · Latino Foodie Pan de Muerto · Gingerbread Latte Cookies · Chocolate Soufflés · Conchas · Peach Cobbler · Warm Sweet Potato-Apple Pone · Strawberry Shortcake
 
-**Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs · Creamy Lemon Pesto Pasta · Oxtail and Butter Beans · Birria de Res (Beef Birria) · Quesabirria Tacos · Stew Peas and Spinners · Spicy Red Pesto Pasta · Ricotta Pasta Alla Vodka · Pasta Alla Norma Sorta · Grilled Cheese With Apples and Apple Butter · Golden Krust Jamaican Oxtail Stew · Roast Chicken With Maple Butter and Rosemary
+**Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs · Creamy Lemon Pesto Pasta · Oxtail and Butter Beans · Birria de Res (Beef Birria) · Quesabirria Tacos · Stew Peas and Spinners · Spicy Red Pesto Pasta · Ricotta Pasta Alla Vodka · Pasta Alla Norma Sorta · Grilled Cheese With Apples and Apple Butter · Golden Krust Jamaican Oxtail Stew · Roast Chicken With Maple Butter and Rosemary · Smoked Mackerel Rundown · Peruvian Roasted Chicken With Spicy Cilantro Sauce · Peruvian Pork Stew With Chiles, Lime and Apples
 
 **Sides and Salads:** Roasted Dumpling Squash
 
@@ -232,6 +232,40 @@ A minimalist hot toddy: any brown spirit or amaro with honey and boiling water i
 - Compare with the lemon-juice Hot Toddy earlier in this book; this one uses only peel, so the spirit leads.
 
 *Source: NYT Cooking (Rebekah Peppler): https://cooking.nytimes.com/search?q=Hot%20Toddy%20Rebekah%20Peppler*
+
+---
+
+## Coconut Hot Chocolate
+
+Dairy-free hot chocolate made with coconut milk, cocoa, bittersweet chocolate and brown sugar, crowned with a glossy whipped meringue.
+
+**Image:** images/coconut-hot-chocolate.jpg
+**Tags:** chocolate, coconut, warm, dairy-free, winter, nyt cooking
+
+**Serves 2**
+
+**Hot chocolate**
+- 2 tbsp unsweetened cocoa powder
+- 1 (15-ounce) can coconut milk
+- 1/4 cup dark brown sugar
+- Pinch of kosher salt
+- 1 oz bittersweet chocolate, chopped (about 1/4 cup)
+- 1 tsp vanilla extract
+
+**Meringue**
+- 1 large egg white
+- 3 tbsp superfine sugar
+
+**Method**
+1. **Cocoa:** Whisk the cocoa into 1/3 cup boiling water.
+2. **Hot chocolate:** In a saucepan, simmer the coconut milk, brown sugar and salt, stirring, until the sugar dissolves, about 2 minutes. Whisk in the hot cocoa and the chocolate until smooth, then stir in the vanilla.
+3. **Meringue:** Beat the egg white on medium until foamy, about 1 minute. With the mixer running, add the superfine sugar a tablespoon at a time and beat until shiny soft peaks form, about 5 minutes.
+4. **Serve:** Pour into mugs and dollop with the meringue.
+
+**Notes**
+- By Melissa Clark for NYT Cooking.
+
+*Source: NYT Cooking (Melissa Clark): https://cooking.nytimes.com/search?q=Coconut%20Hot%20Chocolate*
 
 ---
 
@@ -1212,6 +1246,50 @@ Golden Krust's oxtail stew: oxtails browned in nearly black caramelized sugar, b
 
 ---
 
+## Smoked Mackerel Rundown
+
+Melissa Thompson's Jamaican rundown: smoked mackerel cooked down in spiced coconut milk with yam or pumpkin, tomatoes and peppers, served with boiled green bananas.
+
+**Image:** images/smoked-mackerel-rundown.jpg
+**Tags:** jamaican, fish, coconut, one-pan, nyt cooking
+**Time:** 1 hr
+
+**Serves 4**
+
+**Rundown**
+- Vegetable oil, for frying
+- 1 onion, sliced
+- 7 to 8 oz yellow yam or pumpkin, peeled, seeded if needed and chopped
+- 2 tomatoes, chopped
+- 1 red bell pepper, sliced
+- 3 garlic cloves, crushed
+- 1 (1-inch) piece fresh ginger, finely grated
+- 1/2 tsp ground pimento (allspice)
+- 1/2 tsp ground cumin
+- 3 thyme sprigs, leaves only
+- 1 2/3 cups coconut milk
+- 2 bay leaves
+- 6 smoked mackerel fillets, skin removed, or 2 (3.5- to 5-ounce) tins smoked mackerel, drained
+- Salt (optional)
+
+**Green bananas** (optional)
+- 2 large green (unripe) bananas
+
+**Method**
+1. **Onion:** Heat about 1 tbsp oil in a large, deep lidded skillet over medium. Fry the onion, stirring occasionally, until it starts to soften, about 5 minutes.
+2. **Vegetables:** Add the yam, tomatoes, bell pepper, garlic, ginger, pimento, cumin and thyme and cook, stirring occasionally, 5 minutes more.
+3. **Coconut:** Stir in the coconut milk and bay leaves with a splash of water, cover and cook until the yam softens, 15 to 20 minutes.
+4. **Mackerel:** Uncover, stir in the mackerel and cook until the sauce thickens, about 10 minutes. Season with salt if needed.
+5. **Green bananas:** If using, trim the ends and cut each banana into 2 or 3 pieces. Boil in salted water until tender, about 10 minutes, then lift out and peel.
+6. **Serve:** Serve the rundown with the boiled green bananas.
+
+**Notes**
+- Recipe from Melissa Thompson, adapted by Ligaya Mishan for NYT Cooking.
+
+*Source: NYT Cooking (Melissa Thompson, adapted by Ligaya Mishan): https://cooking.nytimes.com/search?q=Smoked%20Mackerel%20Rundown*
+
+---
+
 ## Jerk Spiced Duck Tacos (Bon Appétit)
 
 Build-your-own tacos. Low and slow roast renders the fat and makes the meat fall-apart tender.
@@ -1867,6 +1945,96 @@ A simple skillet-roasted whole chicken basted with rosemary maple butter until g
 - By Colu Henry for NYT Cooking.
 
 *Source: NYT Cooking (Colu Henry): https://cooking.nytimes.com/search?q=Roast%20Chicken%20With%20Maple%20Butter%20and%20Rosemary*
+
+---
+
+## Peruvian Roasted Chicken With Spicy Cilantro Sauce
+
+Chicken marinated in garlic, soy, lime and Peruvian aji pastes, roasted at high heat until the skin is golden, and served with a creamy jalapeño, cilantro and feta sauce.
+
+**Image:** images/peruvian-roasted-chicken-with-spicy-cilantro-sauce.jpg
+**Tags:** peruvian, chicken, roast, spicy, weeknight, nyt cooking
+**Time:** 50 min (plus 2 to 12 hr marinating)
+
+**Serves 4**
+
+**Chicken**
+- 6 garlic cloves, finely grated or minced
+- 3 tbsp soy sauce
+- 1 tbsp aji amarillo paste, or another chile paste such as sriracha or sambal
+- 1 tbsp lime juice
+- 1 tsp aji panca paste or 1 tsp pasilla chile powder
+- 1 tsp Dijon mustard
+- 1 tsp ground cumin
+- 1 tsp freshly ground black pepper
+- 1/2 tsp fine sea salt
+- 1 (3 1/2- to 4 1/2-pound) chicken, halved (see notes), or 4 pounds bone-in, skin-on chicken parts
+- Extra-virgin olive oil, as needed
+
+**Spicy cilantro sauce**
+- 1 cup cilantro leaves and tender stems
+- 3 to 4 jalapeños, seeded and diced
+- 1/4 cup (1 oz) crumbled feta
+- 1 garlic clove, chopped
+- 1 1/2 tbsp lime juice, more to taste
+- 2 tsp chopped fresh oregano or basil
+- 3/4 tsp fine sea salt, more to taste
+- 1/2 tsp Dijon mustard
+- 1/2 tbsp aji amarillo or other chile paste
+- 1/2 tsp honey
+- 1/2 tsp ground cumin
+- 1/2 cup extra-virgin olive oil
+- Lime wedges, for serving
+
+**Method**
+1. **Marinade:** In a large bowl, whisk the garlic, soy sauce, aji amarillo, lime juice, aji panca, mustard, cumin, pepper and salt.
+2. **Marinate:** Turn the chicken in the marinade to coat, cover and refrigerate at least 2 hours and up to 12.
+3. **Heat:** Heat the oven to 450°F. Pat the chicken dry, set it skin side up on a rimmed baking sheet and drizzle with oil.
+4. **Roast:** Roast until the skin is golden and the chicken is cooked through, 35 to 45 minutes. If using parts, pull the breasts after 25 to 35 minutes. Rest 10 minutes, loosely tented with foil.
+5. **Sauce:** Meanwhile, blend the cilantro, jalapeños, feta, garlic, lime juice, oregano, salt, mustard, aji amarillo, honey and cumin until smooth. With the motor running, drizzle in the oil until emulsified. Adjust the salt and lime.
+6. **Serve:** Carve the chicken and serve with the sauce and lime wedges.
+
+**Notes**
+- By Melissa Clark for NYT Cooking.
+- To halve a chicken, cut lengthwise through the breastbone with poultry shears, then turn it over and cut along the backbone. Remove the backbone entirely if you like.
+
+*Source: NYT Cooking (Melissa Clark): https://cooking.nytimes.com/search?q=Peruvian%20Roasted%20Chicken%20With%20Spicy%20Cilantro%20Sauce*
+
+---
+
+## Peruvian Pork Stew With Chiles, Lime and Apples
+
+A largely hands-off stew of browned pork shoulder simmered with onions, apples, ancho chiles, bay and cloves, brightened with lime. Works on the stove or in a slow cooker.
+
+**Image:** images/peruvian-pork-stew-with-chiles-lime-and-apples.jpg
+**Tags:** peruvian, pork, stew, slow cooker, make-ahead, nyt cooking
+**Time:** about 1 1/2 hr (largely unattended)
+
+**Serves at least 8**
+
+**Ingredients**
+- 2 tbsp olive oil
+- 3 to 4 pounds trimmed boneless pork shoulder, cut into 2-inch pieces
+- 2 large white onions, chopped
+- 4 large apples, peeled, cored and roughly chopped
+- 3 ancho or other mild dried chiles, snipped and seeded
+- 3 bay leaves
+- Pinch of ground cloves
+- 1/4 cup fresh lime juice
+- 4 cups chicken stock
+- Steamed rice, for serving
+- 1/4 cup chopped cilantro
+
+**Method**
+1. **Brown:** Heat the oil in a skillet and brown the pork on all sides, in batches if needed. Meanwhile, sauté the onions and apples with the chiles, bay leaves and cloves until the onions are tender, about 10 minutes.
+2. **Combine:** Put everything, including the lime juice and stock, in a Dutch oven or slow cooker. Bring to a boil, then adjust to a steady but gentle bubble. (In a slow cooker, set it on high for 4 to 6 hours.)
+3. **Simmer:** Cook, stirring every 30 minutes or so, until the meat is very tender and nearly falling apart, at least 1 hour. Adjust the seasoning, then lower the heat; it holds well for at least an hour.
+4. **Serve:** Lift out the meat and reduce the broth as needed. Serve over steamed rice, topped with cilantro.
+
+**Notes**
+- By Mark Bittman for NYT Cooking.
+
+*Source: NYT Cooking (Mark Bittman): https://cooking.nytimes.com/search?q=Peruvian%20Pork%20Stew%20With%20Chiles%2C%20Lime%20and%20Apples*
 
 ---
 

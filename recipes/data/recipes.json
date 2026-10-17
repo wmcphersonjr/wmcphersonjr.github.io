@@ -2,7 +2,7 @@
  "format": "waynesdays-recipes",
  "version": 1,
  "title": "Waynesdays Recipe Book",
- "updatedAt": "2026-10-17T02:38:45.824Z",
+ "updatedAt": "2026-10-17T02:41:41.270Z",
  "recipes": [
   {
    "id": "freeman-house-chai-concentrate",
@@ -444,6 +444,68 @@
    ],
    "createdAt": "2026-10-17T02:36:49.843Z",
    "updatedAt": "2026-10-17T02:36:49.843Z"
+  },
+  {
+   "id": "coconut-hot-chocolate",
+   "title": "Coconut Hot Chocolate",
+   "description": "Dairy-free hot chocolate made with coconut milk, cocoa, bittersweet chocolate and brown sugar, crowned with a glossy whipped meringue.",
+   "category": "Drinks",
+   "tags": [
+    "chocolate",
+    "coconut",
+    "warm",
+    "dairy-free",
+    "winter",
+    "nyt cooking"
+   ],
+   "time": "",
+   "yield": "Serves 2",
+   "image": "images/coconut-hot-chocolate.jpg",
+   "ingredients": [
+    {
+     "name": "Hot chocolate",
+     "note": "",
+     "items": [
+      "2 tbsp unsweetened cocoa powder",
+      "1 (15-ounce) can coconut milk",
+      "1/4 cup dark brown sugar",
+      "Pinch of kosher salt",
+      "1 oz bittersweet chocolate, chopped (about 1/4 cup)",
+      "1 tsp vanilla extract"
+     ]
+    },
+    {
+     "name": "Meringue",
+     "note": "",
+     "items": [
+      "1 large egg white",
+      "3 tbsp superfine sugar"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Cocoa:** Whisk the cocoa into 1/3 cup boiling water.",
+      "**Hot chocolate:** In a saucepan, simmer the coconut milk, brown sugar and salt, stirring, until the sugar dissolves, about 2 minutes. Whisk in the hot cocoa and the chocolate until smooth, then stir in the vanilla.",
+      "**Meringue:** Beat the egg white on medium until foamy, about 1 minute. With the mixer running, add the superfine sugar a tablespoon at a time and beat until shiny soft peaks form, about 5 minutes.",
+      "**Serve:** Pour into mugs and dollop with the meringue."
+     ]
+    }
+   ],
+   "notes": [
+    "By Melissa Clark for NYT Cooking."
+   ],
+   "extras": [],
+   "sources": [
+    {
+     "label": "NYT Cooking (Melissa Clark)",
+     "url": "https://cooking.nytimes.com/search?q=Coconut%20Hot%20Chocolate"
+    }
+   ],
+   "createdAt": "2026-10-17T02:41:41.270Z",
+   "updatedAt": "2026-10-17T02:41:41.270Z"
   },
   {
    "id": "fluffy-pancakes",
@@ -1982,6 +2044,76 @@
    "updatedAt": "2026-10-17T02:38:45.824Z"
   },
   {
+   "id": "smoked-mackerel-rundown",
+   "title": "Smoked Mackerel Rundown",
+   "description": "Melissa Thompson's Jamaican rundown: smoked mackerel cooked down in spiced coconut milk with yam or pumpkin, tomatoes and peppers, served with boiled green bananas.",
+   "category": "Mains",
+   "tags": [
+    "jamaican",
+    "fish",
+    "coconut",
+    "one-pan",
+    "nyt cooking"
+   ],
+   "time": "1 hr",
+   "yield": "Serves 4",
+   "image": "images/smoked-mackerel-rundown.jpg",
+   "ingredients": [
+    {
+     "name": "Rundown",
+     "note": "",
+     "items": [
+      "Vegetable oil, for frying",
+      "1 onion, sliced",
+      "7 to 8 oz yellow yam or pumpkin, peeled, seeded if needed and chopped",
+      "2 tomatoes, chopped",
+      "1 red bell pepper, sliced",
+      "3 garlic cloves, crushed",
+      "1 (1-inch) piece fresh ginger, finely grated",
+      "1/2 tsp ground pimento (allspice)",
+      "1/2 tsp ground cumin",
+      "3 thyme sprigs, leaves only",
+      "1 2/3 cups coconut milk",
+      "2 bay leaves",
+      "6 smoked mackerel fillets, skin removed, or 2 (3.5- to 5-ounce) tins smoked mackerel, drained",
+      "Salt (optional)"
+     ]
+    },
+    {
+     "name": "Green bananas",
+     "note": "optional",
+     "items": [
+      "2 large green (unripe) bananas"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Onion:** Heat about 1 tbsp oil in a large, deep lidded skillet over medium. Fry the onion, stirring occasionally, until it starts to soften, about 5 minutes.",
+      "**Vegetables:** Add the yam, tomatoes, bell pepper, garlic, ginger, pimento, cumin and thyme and cook, stirring occasionally, 5 minutes more.",
+      "**Coconut:** Stir in the coconut milk and bay leaves with a splash of water, cover and cook until the yam softens, 15 to 20 minutes.",
+      "**Mackerel:** Uncover, stir in the mackerel and cook until the sauce thickens, about 10 minutes. Season with salt if needed.",
+      "**Green bananas:** If using, trim the ends and cut each banana into 2 or 3 pieces. Boil in salted water until tender, about 10 minutes, then lift out and peel.",
+      "**Serve:** Serve the rundown with the boiled green bananas."
+     ]
+    }
+   ],
+   "notes": [
+    "Recipe from Melissa Thompson, adapted by Ligaya Mishan for NYT Cooking."
+   ],
+   "extras": [],
+   "sources": [
+    {
+     "label": "NYT Cooking (Melissa Thompson, adapted by Ligaya Mishan)",
+     "url": "https://cooking.nytimes.com/search?q=Smoked%20Mackerel%20Rundown"
+    }
+   ],
+   "createdAt": "2026-10-17T02:41:41.270Z",
+   "updatedAt": "2026-10-17T02:41:41.270Z"
+  },
+  {
    "id": "jerk-spiced-duck-tacos",
    "title": "Jerk Spiced Duck Tacos (Bon Appétit)",
    "description": "Build-your-own tacos. Low and slow roast renders the fat and makes the meat fall-apart tender.",
@@ -3058,6 +3190,146 @@
    ],
    "createdAt": "2026-10-17T02:38:45.824Z",
    "updatedAt": "2026-10-17T02:38:45.824Z"
+  },
+  {
+   "id": "peruvian-roasted-chicken-with-spicy-cilantro-sauce",
+   "title": "Peruvian Roasted Chicken With Spicy Cilantro Sauce",
+   "description": "Chicken marinated in garlic, soy, lime and Peruvian aji pastes, roasted at high heat until the skin is golden, and served with a creamy jalapeño, cilantro and feta sauce.",
+   "category": "Mains",
+   "tags": [
+    "peruvian",
+    "chicken",
+    "roast",
+    "spicy",
+    "weeknight",
+    "nyt cooking"
+   ],
+   "time": "50 min (plus 2 to 12 hr marinating)",
+   "yield": "Serves 4",
+   "image": "images/peruvian-roasted-chicken-with-spicy-cilantro-sauce.jpg",
+   "ingredients": [
+    {
+     "name": "Chicken",
+     "note": "",
+     "items": [
+      "6 garlic cloves, finely grated or minced",
+      "3 tbsp soy sauce",
+      "1 tbsp aji amarillo paste, or another chile paste such as sriracha or sambal",
+      "1 tbsp lime juice",
+      "1 tsp aji panca paste or 1 tsp pasilla chile powder",
+      "1 tsp Dijon mustard",
+      "1 tsp ground cumin",
+      "1 tsp freshly ground black pepper",
+      "1/2 tsp fine sea salt",
+      "1 (3 1/2- to 4 1/2-pound) chicken, halved (see notes), or 4 pounds bone-in, skin-on chicken parts",
+      "Extra-virgin olive oil, as needed"
+     ]
+    },
+    {
+     "name": "Spicy cilantro sauce",
+     "note": "",
+     "items": [
+      "1 cup cilantro leaves and tender stems",
+      "3 to 4 jalapeños, seeded and diced",
+      "1/4 cup (1 oz) crumbled feta",
+      "1 garlic clove, chopped",
+      "1 1/2 tbsp lime juice, more to taste",
+      "2 tsp chopped fresh oregano or basil",
+      "3/4 tsp fine sea salt, more to taste",
+      "1/2 tsp Dijon mustard",
+      "1/2 tbsp aji amarillo or other chile paste",
+      "1/2 tsp honey",
+      "1/2 tsp ground cumin",
+      "1/2 cup extra-virgin olive oil",
+      "Lime wedges, for serving"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Marinade:** In a large bowl, whisk the garlic, soy sauce, aji amarillo, lime juice, aji panca, mustard, cumin, pepper and salt.",
+      "**Marinate:** Turn the chicken in the marinade to coat, cover and refrigerate at least 2 hours and up to 12.",
+      "**Heat:** Heat the oven to 450°F. Pat the chicken dry, set it skin side up on a rimmed baking sheet and drizzle with oil.",
+      "**Roast:** Roast until the skin is golden and the chicken is cooked through, 35 to 45 minutes. If using parts, pull the breasts after 25 to 35 minutes. Rest 10 minutes, loosely tented with foil.",
+      "**Sauce:** Meanwhile, blend the cilantro, jalapeños, feta, garlic, lime juice, oregano, salt, mustard, aji amarillo, honey and cumin until smooth. With the motor running, drizzle in the oil until emulsified. Adjust the salt and lime.",
+      "**Serve:** Carve the chicken and serve with the sauce and lime wedges."
+     ]
+    }
+   ],
+   "notes": [
+    "By Melissa Clark for NYT Cooking.",
+    "To halve a chicken, cut lengthwise through the breastbone with poultry shears, then turn it over and cut along the backbone. Remove the backbone entirely if you like."
+   ],
+   "extras": [],
+   "sources": [
+    {
+     "label": "NYT Cooking (Melissa Clark)",
+     "url": "https://cooking.nytimes.com/search?q=Peruvian%20Roasted%20Chicken%20With%20Spicy%20Cilantro%20Sauce"
+    }
+   ],
+   "createdAt": "2026-10-17T02:41:41.270Z",
+   "updatedAt": "2026-10-17T02:41:41.270Z"
+  },
+  {
+   "id": "peruvian-pork-stew-with-chiles-lime-and-apples",
+   "title": "Peruvian Pork Stew With Chiles, Lime and Apples",
+   "description": "A largely hands-off stew of browned pork shoulder simmered with onions, apples, ancho chiles, bay and cloves, brightened with lime. Works on the stove or in a slow cooker.",
+   "category": "Mains",
+   "tags": [
+    "peruvian",
+    "pork",
+    "stew",
+    "slow cooker",
+    "make-ahead",
+    "nyt cooking"
+   ],
+   "time": "about 1 1/2 hr (largely unattended)",
+   "yield": "Serves at least 8",
+   "image": "images/peruvian-pork-stew-with-chiles-lime-and-apples.jpg",
+   "ingredients": [
+    {
+     "name": "",
+     "note": "",
+     "items": [
+      "2 tbsp olive oil",
+      "3 to 4 pounds trimmed boneless pork shoulder, cut into 2-inch pieces",
+      "2 large white onions, chopped",
+      "4 large apples, peeled, cored and roughly chopped",
+      "3 ancho or other mild dried chiles, snipped and seeded",
+      "3 bay leaves",
+      "Pinch of ground cloves",
+      "1/4 cup fresh lime juice",
+      "4 cups chicken stock",
+      "Steamed rice, for serving",
+      "1/4 cup chopped cilantro"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Brown:** Heat the oil in a skillet and brown the pork on all sides, in batches if needed. Meanwhile, sauté the onions and apples with the chiles, bay leaves and cloves until the onions are tender, about 10 minutes.",
+      "**Combine:** Put everything, including the lime juice and stock, in a Dutch oven or slow cooker. Bring to a boil, then adjust to a steady but gentle bubble. (In a slow cooker, set it on high for 4 to 6 hours.)",
+      "**Simmer:** Cook, stirring every 30 minutes or so, until the meat is very tender and nearly falling apart, at least 1 hour. Adjust the seasoning, then lower the heat; it holds well for at least an hour.",
+      "**Serve:** Lift out the meat and reduce the broth as needed. Serve over steamed rice, topped with cilantro."
+     ]
+    }
+   ],
+   "notes": [
+    "By Mark Bittman for NYT Cooking."
+   ],
+   "extras": [],
+   "sources": [
+    {
+     "label": "NYT Cooking (Mark Bittman)",
+     "url": "https://cooking.nytimes.com/search?q=Peruvian%20Pork%20Stew%20With%20Chiles%2C%20Lime%20and%20Apples"
+    }
+   ],
+   "createdAt": "2026-10-17T02:41:41.270Z",
+   "updatedAt": "2026-10-17T02:41:41.270Z"
   },
   {
    "id": "roasted-dumpling-squash-with-sage-brown-butter",
