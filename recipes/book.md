@@ -1295,7 +1295,7 @@ Kevin Gillespie's re-creation of his great-grandmother's Thanksgiving banana pud
 
 Soft, crisp-edged fritters of mashed overripe bananas, brown sugar, nutmeg and cinnamon, pan-fried and sprinkled with sugar. No eggs, quick to mix, and best eaten warm.
 
-**Tags:** banana, fritters, jamaican, caribbean, snack, quick, cook like a jamaican
+**Tags:** banana, fritters, jamaican, caribbean, snack, quick
 
 **Fritters**
 - 1 2/3 cups mashed overripe bananas (about 3 to 5 medium bananas)
@@ -1316,7 +1316,6 @@ Soft, crisp-edged fritters of mashed overripe bananas, brown sugar, nutmeg and c
 5. **Serve:** Sprinkle with the granulated sugar and eat warm.
 
 **Notes**
-- From Cook Like a Jamaican.
 - Use really ripe, speckled bananas for the sweetest, softest fritters.
 - Never leave the pan of hot oil unattended. The author's after-school batch, left heating while she watched Love Connection, set the kitchen on fire.
 

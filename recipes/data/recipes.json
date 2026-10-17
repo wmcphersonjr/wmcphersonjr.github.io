@@ -2,7 +2,7 @@
  "format": "waynesdays-recipes",
  "version": 1,
  "title": "Waynesdays Recipe Book",
- "updatedAt": "2026-10-17T20:23:49.758Z",
+ "updatedAt": "2026-10-17T20:26:02.441Z",
  "recipes": [
   {
    "id": "freeman-house-chai-concentrate",
@@ -2140,8 +2140,7 @@
     "jamaican",
     "caribbean",
     "snack",
-    "quick",
-    "cook like a jamaican"
+    "quick"
    ],
    "time": "",
    "yield": "",
@@ -2176,7 +2175,6 @@
     }
    ],
    "notes": [
-    "From Cook Like a Jamaican.",
     "Use really ripe, speckled bananas for the sweetest, softest fritters.",
     "Never leave the pan of hot oil unattended. The author's after-school batch, left heating while she watched Love Connection, set the kitchen on fire."
    ],
@@ -2188,7 +2186,7 @@
     }
    ],
    "createdAt": "2026-10-17T20:23:38.609Z",
-   "updatedAt": "2026-10-17T20:23:49.758Z"
+   "updatedAt": "2026-10-17T20:26:02.441Z"
   },
   {
    "id": "jamaican-brown-stew-oxtail",
