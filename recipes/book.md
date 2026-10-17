@@ -8,13 +8,15 @@ Every recipe pulled from past chats, compiled in one place. Grouped by category.
 
 **Drinks:** Freeman House Chai Concentrate (Copycat) · Simple Chai Concentrate · Thai Milk Tea · Hot Toddy · Classic Spritz · Reed's Style Extra Strong Ginger Beer · Traditional Ginger Beer (Ginger Bug)
 
-**Breakfast:** Fluffy Pancakes · Buttermilk Cornbread Waffles · McDonald's Fruit and Maple Oatmeal (Copycat)
+**Breakfast:** Fluffy Pancakes · Buttermilk Cornbread Waffles · McDonald's Fruit and Maple Oatmeal (Copycat) · Golden Diner Pancakes
 
-**Baking and Sweets:** Sugar Moon Espresso Cornflake Cookies (Copycat) · Bakery Cookie Skillet · Soft and Chewy Oatmeal Chocolate Chip Cookies · Pan de Muerto · Latino Foodie Pan de Muerto
+**Baking and Sweets:** Sugar Moon Espresso Cornflake Cookies (Copycat) · Bakery Cookie Skillet · Soft and Chewy Oatmeal Chocolate Chip Cookies · Pan de Muerto · Latino Foodie Pan de Muerto · Gingerbread Latte Cookies · Chocolate Soufflés · Conchas
 
-**Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs · Creamy Lemon Pesto Pasta
+**Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs · Creamy Lemon Pesto Pasta · Oxtail and Butter Beans
 
 **Sides and Salads:** Roasted Dumpling Squash
+
+**Soups:** Split Pea Soup · Butternut Squash Congee With Chile Oil · Red Peas Soup · Soup Joumou
 
 **Sauces, Spices and Ferments:** Nonna's Sunday Sugo · Ponzu Sauce · Pumpkin Pie Spice Blend · Kimchi
 
@@ -314,6 +316,64 @@ A riff on Jeni's discontinued Johnny Cakes flavor, with toasted oat crumble and 
 
 ---
 
+## Golden Diner Pancakes
+
+Sam Yoo's tall, yeast-risen buttermilk pancakes from Golden Diner in Manhattan's Chinatown. They're cooked one per skillet for height, then drenched in maple-honey syrup and topped with berry compote and salted maple-honey butter.
+
+**Tags:** pancakes, brunch, weekend, project, nyt cooking
+**Time:** 1 hr 45 min
+
+**Makes 4 to 6 large pancakes (3 to 6 servings)**
+
+**Pancake batter**
+- 2 1/4 tsp (7 grams) active dry yeast (one 1/4-ounce packet)
+- 2 cups (260 grams) all-purpose flour, divided
+- 1 1/4 cups (300 grams) buttermilk
+- 2 tbsp sugar
+- 3/4 tsp baking soda
+- 1/2 tsp fine salt
+- 2 large eggs
+- 1/4 cup (60 grams) canola or other neutral oil
+
+**Maple-honey butter**
+- 1/2 cup (113 grams) unsalted butter, softened
+- 3 tbsp honey
+- 2 tbsp pure maple syrup
+- 3/4 tsp fine salt
+
+**Maple-honey syrup**
+- 1/2 cup (113 grams) unsalted butter
+- 1/3 cup (100 grams) honey
+- 1 1/2 tbsp maple syrup
+- 1 tsp soy sauce
+- 1/2 tsp fine salt
+
+**Berry compote**
+- 14 oz (400 grams) mixed berries, such as blueberries, raspberries and stemmed strawberries cut to the size of the small berries
+- 1/3 cup (67 grams) sugar
+- 1 1/2 tsp cornstarch
+- 1 lemon
+
+**Method**
+1. **Pre-ferment:** Whisk the yeast with 1 cup of the flour in a small bowl. Warm the buttermilk with 1/4 cup (60 grams) water over medium-low, stirring often, until lukewarm (about 100°F), about 5 minutes. Whisk it into the flour until smooth, cover and let sit 1 hour.
+2. **Maple-honey butter:** Whisk the softened butter, honey, maple syrup and salt until smooth. Keep at room temperature if using within a few hours, or refrigerate airtight up to 1 week (soften and rewhisk before serving).
+3. **Maple-honey syrup:** In a small saucepan over medium-low, heat the butter, honey, maple syrup, soy sauce and salt, whisking, until the butter melts. Whisk in 1 1/2 tbsp water until emulsified, then keep warm on the lowest heat.
+4. **Berry compote:** Toss the berries with the sugar and cornstarch. Heat a large, deep skillet over high until a drop of water sizzles away instantly. Add the berries and cook, stirring now and then, until the blueberries look ready to pop, about 2 minutes. Take off the heat.
+5. **Oven:** Heat the oven to 350°F with a rack in the center, and set a wire rack inside a sheet pan on it.
+6. **Batter:** Whisk the remaining 1 cup flour with the sugar, baking soda and salt. In a large bowl, whisk the eggs and oil, scrape in the pre-ferment, add the dry mix, and stir gently just until no dry spots remain. Lumps are fine.
+7. **Cook:** Heat one or two 7- to 8-inch nonstick skillets over medium until very hot; don't grease them. Fill with batter about 1/3 inch deep, smoothing it to the edges. Cook until the bottom is crisp and golden, 2 to 4 minutes, lowering the heat if it browns too fast. Flip and cook 1 to 3 minutes more, tucking in the edges to dome the pancake.
+8. **Finish in the oven:** Move each pancake to the rack in the oven until the center is cooked through, 2 to 5 minutes (check with a paring knife). Repeat with the remaining batter, reheating the pan between pancakes.
+9. **Serve:** Set one or two hot pancakes on each plate and drench with the warm syrup right away. Spoon on the berry compote, add a scoop of maple-honey butter and zest the lemon over everything.
+
+**Notes**
+- Recipe from Sam Yoo, chef and an owner of Golden Diner, adapted by Genevieve Ko for NYT Cooking.
+- Nonstick pans work best because they need no grease. Extremely well-seasoned cast iron also works.
+- At the restaurant, the butter is shaped into a football-shaped quenelle with two spoons.
+
+*Source: NYT Cooking (Sam Yoo, adapted by Genevieve Ko): https://cooking.nytimes.com/search?q=Golden%20Diner%20Pancakes*
+
+---
+
 # BAKING AND SWEETS
 
 ## Sugar Moon Espresso Cornflake Cookies (Copycat)
@@ -528,6 +588,156 @@ Art Rodriguez's pan de muerto from Latino Foodie: an anise and orange scented sw
 
 ---
 
+## Gingerbread Latte Cookies
+
+Espresso-spiked gingerbread cookies made with both fresh and ground ginger, rolled in espresso sugar for crisp edges and soft, pillowy centers.
+
+**Tags:** cookies, holiday, espresso, gingerbread, make-ahead, nyt cooking
+**Time:** 35 min (plus 2 hr chilling)
+
+**Makes about 18 cookies**
+
+**Cookies**
+- 3/4 cup (168 grams) unsalted butter
+- 1/4 cup (22 grams) espresso powder
+- 1 tbsp (17 grams) finely grated fresh ginger
+- 2 tsp ground ginger
+- 1 tsp ground cinnamon
+- 1/2 tsp ground nutmeg
+- 1/4 tsp ground clove
+- 1/2 cup (100 grams) granulated sugar
+- 1/2 cup (107 grams) dark brown sugar, packed
+- 1/4 cup (80 grams) unsulphured molasses
+- 1 tsp kosher salt
+- 1 large egg
+- 2 tsp vanilla extract
+- 1 tsp baking soda
+- 2 cups (252 grams) all-purpose flour
+
+**Coating**
+- 1/4 cup (50 grams) granulated sugar
+- 2 tsp espresso powder
+- 1/2 tsp ground ginger
+
+**Method**
+1. **Spiced butter:** Melt the butter in a medium saucepan over medium. When it foams, take it off the heat and whisk in the espresso powder, fresh ginger, ground ginger, cinnamon, nutmeg and clove. Scrape into a mixing bowl and cool about 5 minutes.
+2. **Batter:** Whisk in both sugars, the molasses and salt. Add the egg, vanilla and baking soda and whisk until smooth and the texture of thin pancake batter, about 2 minutes. Mix in the flour.
+3. **Chill:** Cover and refrigerate at least 2 hours and up to 2 days.
+4. **Heat:** Heat the oven to 375°F with racks in the upper and lower thirds. Line 2 baking sheets with parchment. Stir together the coating sugar, espresso powder and ginger.
+5. **Shape:** Scoop 2 tbsp (1 oz) portions, roll into walnut-size balls and toss in the coating.
+6. **Bake:** Space 2 inches apart and bake, rotating the sheets halfway, until spread slightly and craggy on top, about 10 minutes.
+7. **Cool:** Cool on the sheets 3 minutes, then move to a rack. They flatten as they cool.
+
+**Notes**
+- By Vaughn Vreeland for NYT Cooking.
+- Keep airtight at room temperature 4 to 5 days.
+- Freeze portioned dough balls, then coat and bake from frozen for about 13 minutes.
+
+*Source: NYT Cooking (Vaughn Vreeland): https://cooking.nytimes.com/search?q=Gingerbread%20Latte%20Cookies*
+
+---
+
+## Chocolate Soufflés
+
+Four tall chocolate soufflés: a cocoa, coffee and bittersweet chocolate base lightened with glossy beaten egg whites.
+
+**Tags:** dessert, chocolate, souffle, technique, date night, nyt cooking
+**Time:** 45 min
+
+**Serves 4**
+
+**Ingredients**
+- Unsalted butter, at room temperature, for the ramekins
+- 7 tbsp (87 grams) granulated sugar, plus more for sprinkling and the ramekins
+- 3 large egg yolks
+- 1/3 cup (80 grams) whole milk
+- 2 tbsp brewed coffee
+- 2 tbsp all-purpose flour
+- 2 tbsp Dutch-processed cocoa powder, sifted if lumpy
+- 4 oz (113 grams) bittersweet chocolate (70 percent cacao), coarsely chopped
+- 1 tsp vanilla extract
+- 5 large egg whites, at room temperature
+- 3/4 tsp kosher salt
+
+**Method**
+1. **Ramekins:** Heat the oven to 425°F with a rack in the center. Brush four 6-ounce ramekins with soft butter, using upward strokes up the sides all the way to the rim. Coat with sugar and tap out the excess.
+2. **Base:** Bring about 1 inch of water to a simmer in a medium saucepan. In a heatproof bowl, whisk 3 tbsp (37 grams) of the sugar with 2 of the yolks until pale, light and thick, about 1 minute. Slowly whisk in the milk, then the coffee, then the flour and cocoa until smooth.
+3. **Cook the base:** Set the bowl over the simmering water without touching it and whisk constantly until it's like thin pancake batter, faintly holds whisk marks and the foam has subsided, about 5 minutes. Remove from the heat.
+4. **Chocolate:** Whisk in the chopped chocolate, let it sit a few minutes to melt, then whisk smooth. Whisk in the remaining yolk and the vanilla. Let cool slightly, but not completely or the chocolate will set.
+5. **Whites:** In a clean metal or glass bowl (not plastic), beat the whites and salt on medium-low until frothy, about 20 seconds, then on medium-high until foamy and opaque, about 30 seconds. Stream in the remaining 4 tbsp (50 grams) sugar and beat just until dense, glossy and holding stiff peaks. Don't overbeat.
+6. **Fold:** Quickly whisk a third of the whites into the chocolate base, then fold in the rest in 2 additions with a large spatula until almost streak-free.
+7. **Fill:** Divide all the batter among the ramekins, filling them to the very top. Tap gently, then level each flush with the rim using an offset spatula or butter knife. Discard any small amount left over.
+8. **Prep the tops:** Sprinkle the tops with a thin, even layer of sugar. Run your thumb around the inside rim of each ramekin to clear a ring of batter so they rise straight up. Wipe the rims and outsides clean.
+9. **Bake:** Set the ramekins on a sheet pan, put them in the oven and immediately lower the heat to 375°F. Bake until risen, firm and springy on top with a slight wobble, 15 to 20 minutes. Serve immediately.
+
+**Notes**
+- By Claire Saffitz for NYT Cooking.
+- The keys: stable, glossy whites; working quickly; and thoroughly buttered ramekins so the batter can climb.
+
+*Source: NYT Cooking (Claire Saffitz): https://cooking.nytimes.com/search?q=Chocolate%20Souffl%C3%A9s*
+
+---
+
+## Conchas
+
+Soft, brioche-style Mexican sweet buns with a crumbly sugar topping scored like a seashell. Choose vanilla, café con leche or cocoa.
+
+**Tags:** mexican, bread, pan dulce, breakfast, project, nyt cooking
+**Time:** 1 1/2 hr (plus 4 to 24 hr chilled rise and 1 1/2 to 2 hr proof)
+
+**Makes 15 buns**
+
+**Dough**
+- 4 cups (520 grams) all-purpose flour (or bread flour), plus more for dusting
+- 7 tbsp (87 grams) granulated sugar
+- 2 tsp coarse kosher salt (Morton)
+- 1 tbsp instant yeast
+- 3/4 cup (175 grams) whole milk, at room temperature
+- 4 large eggs, at room temperature
+- 2 tsp vanilla extract
+- 13 tbsp (185 grams) unsalted butter, diced and at room temperature, plus more for greasing
+
+**Vanilla topping** (pick one topping; each covers all 15 buns)
+- 1 1/2 cups (180 grams) confectioners' sugar
+- 1 1/2 cups (184 grams) all-purpose flour, plus more as needed
+- 1 cup (180 grams) vegetable shortening
+- 1 tbsp vanilla extract
+
+**Café con leche topping** (or this one)
+- 1 1/2 cups (180 grams) confectioners' sugar
+- 1 1/2 cups (184 grams) all-purpose flour, plus more as needed
+- 1 cup (180 grams) vegetable shortening
+- 1 tsp vanilla extract
+- 2 tbsp instant espresso mixed with 2 tsp boiling water
+
+**Cocoa topping** (or this one)
+- 1 1/2 cups (180 grams) confectioners' sugar
+- 1 1/3 cups (170 grams) all-purpose flour, plus more as needed
+- 1 cup (180 grams) vegetable shortening
+- 1/4 cup (22 grams) cocoa powder mixed with 3 tbsp boiling water
+
+**Method**
+1. **Mix the dough:** In a stand mixer with the dough hook, whisk the flour, sugar, salt and yeast. Add the milk, eggs and vanilla and mix on the lowest speed about 20 seconds. Raise to medium-high and knead until the dough slaps the bowl and forms a smooth, elastic ball around the hook, 10 to 15 minutes. Stay close; the mixer will walk.
+2. **Add the butter:** On low, add the butter in 3 or 4 additions, then knead on medium-high until the dough is very soft, silky and shiny and hugs the hook again, 8 to 12 minutes.
+3. **Cold rise:** Move the dough to a buttered bowl. Stretch and fold: lift the dough and fold it over itself, rotate the bowl 90 degrees and repeat 3 more times. Cover and refrigerate 4 to 24 hours.
+4. **Shape:** Line three 13-by-18-inch sheet pans with parchment. On a lightly floured counter, cut the dough into 15 pieces (about 76 grams each). Pat each flat, gather the edges into the center and pinch, then flip and roll under a cupped hand into a neat ball. Place 5 on each sheet.
+5. **Topping:** Beat your chosen topping with the paddle on the lowest speed 20 to 30 seconds, then on medium until smooth and glossy, about 2 minutes.
+6. **Top the buns:** Divide the topping into 15 portions (about 30 grams each). With wet hands, roll each into a ball and pat into a 3 1/2-inch round. Lay it over a bun and press lightly around the edge, stopping at least 1/4 inch above the parchment.
+7. **Score:** Dip a concha mold or dinner knife in flour and press a shell pattern into the topping without cutting through to the dough.
+8. **Proof:** Cover with kitchen towels and let rise in a warm, draft-free spot until noticeably puffed, 1 1/2 to 2 hours. They don't need to double.
+9. **Bake:** Heat the oven to 375°F. Bake until golden and puffed, 20 to 22 minutes, baking the third sheet after the first two if needed.
+10. **Rest:** Let rest a few minutes before serving.
+
+**Notes**
+- By Pati Jinich for NYT Cooking.
+- Bread flour gives taller, chewier and slightly less sweet buns.
+- To try several flavors, make a half or third of each topping and mix it by hand or with a hand mixer.
+- Best the day they're baked. Keep airtight up to 4 days.
+
+*Source: NYT Cooking (Pati Jinich): https://cooking.nytimes.com/search?q=Conchas*
+
+---
+
 # MAINS
 
 ## Jamaican Brown Stew Oxtail (5 lb Practice Batch)
@@ -599,6 +809,52 @@ Presentation ideas for the same braise, from the competition plating chat.
 **Scaling note:** For big batches, braise in two pots rather than one giant one. Even consistency matters more than time saved.
 
 *Source: https://claude.ai/chat/99c35d72-1711-4c17-aaaf-e82250968e2d*
+
+---
+
+## Oxtail and Butter Beans
+
+Jamaican-style oxtail braised until it falls off the bone in a rich, full-bodied gravy, finished with butter beans.
+
+**Tags:** jamaican, oxtail, stew, braise, nyt cooking
+**Time:** about 3 1/2 hr
+
+**Serves 4**
+
+**Ingredients**
+- 4 pounds oxtails
+- 2 tsp coarse kosher salt
+- 2 tsp black pepper
+- 1/4 cup vegetable oil
+- 4 scallions, trimmed and chopped
+- 2 large yellow onions, chopped
+- 2 tbsp Worcestershire sauce
+- 2 tbsp Jamaican curry powder
+- 2 tsp smoked paprika
+- 12 whole pimento seeds (allspice berries)
+- 4 fresh thyme sprigs
+- 2 Scotch bonnet peppers, pierced with a paring knife
+- 2 tbsp chicken stock concentrate or 1 chicken bouillon cube
+- 2 tbsp tomato paste
+- 4 tsp browning sauce, preferably Grace
+- 4 large garlic cloves, grated
+- 1 tsp freshly grated ginger
+- 2 (15-ounce) cans butter beans, drained and rinsed
+
+**Method**
+1. **Season:** Season the oxtails with the salt and pepper.
+2. **Brown:** Heat the oil in a large pot over medium. Brown the oxtails in batches without crowding, scraping up the browned bits, about 3 minutes per side, until deeply crusted. Pour off all but about 2 tbsp oil and set the oxtails aside.
+3. **Aromatics:** Add the scallions, onions, Worcestershire, curry powder, paprika, pimento and thyme and sauté until the onions are translucent, about 5 minutes. Add the Scotch bonnets, bouillon, tomato paste and browning and stir 1 minute. Add the garlic and ginger and cook 30 seconds.
+4. **Braise:** Return the oxtails with enough liquid to cover them completely. Bring to a boil, then simmer, stirring occasionally, until tender, 2 to 3 hours.
+5. **Beans:** Add the butter beans and heat through, about 5 minutes, or 10 to 15 for softer beans.
+6. **Serve:** Remove the thyme, Scotch bonnets and any pimento seeds you see. Adjust the seasoning and serve hot with rice and peas and sweet plantains.
+
+**Notes**
+- By Millie Peartree for NYT Cooking.
+- A simpler one-pot cousin of the competition Jamaican Brown Stew Oxtail in this book.
+- The gravy is great sopped up with roti or naan, or over coconut rice and peas.
+
+*Source: NYT Cooking (Millie Peartree): https://cooking.nytimes.com/search?q=Oxtail%20and%20Butter%20Beans*
 
 ---
 
@@ -991,6 +1247,200 @@ Sweet dumpling squash has thin, edible skin, so there's no peeling. High-heat ro
 - Roast the seeds: rinse, dry, toss with oil and salt, and bake at 325°F for 15 to 20 minutes.
 - Miso swap: whisk 1 tsp white miso into the brown butter instead of the vinegar.
 - Good next to the jerk duck tacos, or on the Thanksgiving table.
+
+---
+
+# SOUPS
+
+## Split Pea Soup
+
+A customizable split pea soup: smoky with bacon or ham hock, or vegetarian with smoked paprika. Adding the peas in two batches gives every spoonful some texture.
+
+**Tags:** soup, split peas, make-ahead, vegetarian option, nyt cooking
+**Time:** 2 hr 20 min
+
+**Serves 4**
+
+**Ingredients**
+- 6 slices bacon, or 1 (1-pound) smoked ham hock, or 1 tsp smoked paprika
+- 2 tbsp extra-virgin olive oil, plus more as needed
+- 2 medium leeks, white and pale green parts, rinsed and thinly sliced (about 1 3/4 cups)
+- 4 garlic cloves, minced
+- 1 medium onion, diced (about 1 1/2 cups)
+- Salt and black pepper
+- 2 medium carrots, scrubbed and diced (about 1 1/2 cups)
+- 1 pound dried split green peas, divided
+- 2 fresh thyme sprigs
+- 8 to 12 cups chicken stock or water
+- Lemon wedges, for serving (optional)
+
+**Method**
+1. **Start the base:** With bacon, cook it in a large pot or Dutch oven over medium until crisp, 12 to 13 minutes, then set it aside to crumble later and keep the fat in the pot. With a ham hock, heat the oil over medium-high and brown the hock until golden, about 6 minutes. For vegetarian, just heat the oil over medium.
+2. **Vegetables:** Add the leeks, garlic and onion, season well with salt and pepper, and cook over medium, stirring, until tender, 5 to 8 minutes. Add a little oil if they look dry.
+3. **First simmer:** Stir in the carrots, paprika (if using), half the split peas, the thyme and 8 cups stock or water. Bring to a boil, then simmer partly covered, stirring now and then, until the peas are tender, about 45 minutes.
+4. **Mash:** Coarsely mash with a potato masher or a few pulses of an immersion blender, watching for the thyme sprigs. Blend longer for a smoother soup.
+5. **Second simmer:** Add the remaining split peas and simmer until soft, about 1 hour. Add stock or water if it gets too thick, or simmer uncovered to thicken.
+6. **Finish:** If using a ham hock, pull the meat off the bone, cube it and stir it in. Season with salt and pepper and serve with crumbled bacon and lemon wedges.
+
+**Notes**
+- By Ali Slagle for NYT Cooking.
+- Make up to 1 week ahead. Add stock when reheating if it has thickened.
+
+*Source: NYT Cooking (Ali Slagle): https://cooking.nytimes.com/search?q=Split%20Pea%20Soup*
+
+---
+
+## Butternut Squash Congee With Chile Oil
+
+A seasonal congee made quickly from leftover rice. Butternut squash melts into a creamy, golden porridge, finished with scallions and chile oil.
+
+**Tags:** congee, rice, vegetarian, leftovers, squash, fall, nyt cooking
+**Time:** 45 min
+
+**Serves 4 to 6**
+
+**Ingredients**
+- 2 tightly packed cups leftover medium- or long-grain rice, preferably refrigerated
+- 1 tbsp neutral oil, such as canola
+- 1 tsp kosher salt (such as Diamond Crystal), plus more to taste
+- 6 cups vegetable stock
+- 4 garlic cloves, peeled and crushed
+- 1 pound butternut squash (about 1/2 small), peeled, seeded and cut into 1-inch pieces
+- 1 small piece kombu (optional)
+- 2 scallions, finely sliced
+- Chile oil or chile crisp, for serving
+
+**Method**
+1. **Combine:** In a large pot, stir together the rice, oil and salt, breaking up any clumps. Add the stock, garlic, squash and kombu (if using) and bring to a boil over medium-high.
+2. **Simmer:** Reduce the heat to low, cover and simmer 30 minutes.
+3. **Break down:** Uncover, stir, raise the heat to medium and simmer 5 to 10 minutes more, until the rice has broken down.
+4. **Stir:** Turn off the heat and remove any large pieces of kombu (leaving some is fine). Stir vigorously with a wooden spoon to break up the rice, squash and garlic. Some squash stays in pieces; the rest turns the congee golden. Salt to taste.
+5. **Serve:** Top with scallions and a few drops of chile oil or chile crisp.
+
+**Notes**
+- By Hetty Lui McKinnon for NYT Cooking.
+- The vigorous final stir is what makes it creamy.
+- Easier squash prep: cut it into smaller pieces before peeling, or buy pre-cut cubes.
+
+*Source: NYT Cooking (Hetty Lui McKinnon): https://cooking.nytimes.com/search?q=Butternut%20Squash%20Congee%20With%20Chile%20Oil*
+
+---
+
+## Red Peas Soup
+
+Hearty Jamaican red kidney bean soup with smoked turkey, coconut milk and optional dumplings. It's thick and spicy enough to pass as a stew.
+
+**Tags:** jamaican, soup, beans, smoked turkey, nyt cooking
+**Time:** about 3 hr (plus overnight soaking)
+
+**Serves 6 generously**
+
+**Soup**
+- 2 cups dried red kidney beans
+- 1 pound smoked turkey necks
+- 8 cups water or low-sodium chicken stock
+- 1 (13.5-ounce) can coconut milk
+- 1 (1.75-ounce) package cock-flavored soup mix, such as Grace
+- 4 garlic cloves, chopped
+- 4 scallions, halved crosswise
+- 4 thyme sprigs
+- 1 medium onion, diced
+- 1 Scotch bonnet pepper, pierced (not sliced)
+- 1 standard chicken bouillon cube
+- 1 tsp ground allspice
+- 1 tsp black pepper
+- 1 medium sweet potato or yam, diced
+- 1 carrot, diced
+- Cooked white rice, for serving (optional)
+
+**Dumplings** (optional)
+- 2 cups self-rising flour
+- 1 tsp kosher salt
+
+**Method**
+1. **Soak:** Cover the beans with 4 to 6 cups water in a large bowl and soak overnight.
+2. **Turkey:** Put the smoked turkey in a large, heavy pot with enough water or stock to cover (about 8 cups). Boil over medium 30 minutes, skimming off the foam. Drain the beans and add them to the pot.
+3. **Simmer:** Add the coconut milk, soup mix, garlic, scallions, thyme, onion, Scotch bonnet, bouillon, allspice and black pepper. Simmer over medium until the beans are tender, 1 to 2 hours, adding water as needed.
+4. **Dumplings:** If using, mix the flour and salt, then stir in 1 cup water until shaggy and wet.
+5. **Vegetables:** Lift out the turkey, pull the meat from the bones and return it to the pot. Add the sweet potato and carrot, drop in spoonfuls of dumpling dough, and cook over medium, flipping the dumplings once or twice, until everything is tender, about 15 minutes.
+6. **Finish:** Discard the thyme, Scotch bonnet and scallions. Adjust the seasoning, thin with water if it's too thick, and serve hot, over rice if you like.
+
+**Notes**
+- By Millie Peartree for NYT Cooking.
+- Smoked turkey necks stand in for the salted pig tails some versions use; either brings deep smokiness.
+- Look for cock-flavored soup mix in the international aisle.
+
+*Source: NYT Cooking (Millie Peartree): https://cooking.nytimes.com/search?q=Red%20Peas%20Soup*
+
+---
+
+## Soup Joumou
+
+Haitian squash soup with epis-marinated beef, vegetables, vermicelli and dumplings. Haitians traditionally eat it on Jan. 1 to celebrate independence.
+
+**Tags:** haitian, soup, squash, beef, holiday, nyt cooking
+**Time:** 2 hr (plus marinating)
+
+**Makes about 20 cups (6 to 10 servings)**
+
+**Epis seasoning**
+- 1 large green bell pepper, stemmed and chopped
+- 1 medium red bell pepper, stemmed and chopped
+- 1/2 white onion, chopped
+- 1/4 cup white vinegar
+- 1/4 cup extra-virgin olive oil
+- 1 celery stalk, chopped
+- 2 scallions, trimmed and chopped
+- 1 fresh parsley sprig
+- 5 garlic cloves, peeled
+- 1 chicken bouillon cube
+- 1/2 tsp fresh or dried thyme leaves
+- 1 1/2 tsp kosher salt
+
+**Soup**
+- 1 pound boneless beef chuck, cut into 1/2-inch pieces
+- 1/2 cup fresh lime juice (from about 3 limes)
+- 5 tbsp epis seasoning
+- 2 pounds calabaza squash, peeled and roughly chopped
+- 1 tbsp extra-virgin olive oil
+- 2 tbsp tomato paste
+- 1 chicken bouillon cube
+- 5 medium Idaho or russet potatoes, peeled and cut into 3/4-inch cubes
+- 1/2 small head green cabbage, shredded (about 3 cups)
+- 4 medium carrots, peeled and sliced
+- 1 large white onion, finely chopped
+- 2 celery stalks, cut into 1/2-inch pieces
+- 2 scallions, trimmed and sliced
+- 3 fresh parsley sprigs
+- 1 Scotch bonnet pepper
+- 1/4 tsp fresh or dried thyme leaves
+- 2 tsp kosher salt
+- 1/4 tsp freshly ground black pepper
+- 1/2 cup vermicelli
+
+**Dumplings**
+- 1 1/4 cups all-purpose flour
+- 1 tsp extra-virgin olive oil
+- 1/4 tsp kosher salt
+- 1/4 tsp freshly ground black pepper
+
+**Method**
+1. **Epis:** Purée all the epis ingredients in a blender. Use now or refrigerate in a jar up to 6 weeks.
+2. **Marinate:** Rinse the beef in lukewarm water, then rub it all over with the lime juice. Toss with 5 tbsp epis, cover and refrigerate at least 30 minutes, ideally overnight.
+3. **Squash:** Purée the calabaza with 1 cup water in a blender and set aside.
+4. **Brown:** Heat the oil in a large pot over medium. Add the beef with its marinade, the tomato paste and the bouillon cube, crumbled. Cook, stirring occasionally, until it caramelizes and darkens, about 10 minutes. Move the meat to a bowl.
+5. **Build the soup:** Add 6 cups water to the pot and bring to a boil over high. Stir in the squash purée, potatoes, cabbage, carrots, onion, celery, scallions, parsley, Scotch bonnet, thyme, salt and pepper and return to a boil. Stir in the beef and its juices.
+6. **Simmer:** Once boiling, cover, reduce to low and simmer 30 minutes, stirring occasionally.
+7. **Vermicelli:** Carefully remove the Scotch bonnet without letting it burst. Stir in the vermicelli and cook 10 minutes, stirring occasionally.
+8. **Dumplings:** Meanwhile, stir the flour, oil, salt, pepper and 1/2 cup water into a dough, kneading lightly if needed. Roll 1-tablespoon pieces between your palms into logs about 4 inches long and drop them into the soup as you go. Cook on low, stirring now and then, until cooked through but still firm, 15 to 20 minutes.
+9. **Serve:** Thin with about 1 cup water if you like, then serve warm.
+
+**Notes**
+- From Cindy Similien's "Let's Speak Haitian Food," adapted by Priya Krishna for NYT Cooking.
+- Leftover epis keeps 6 weeks and works like sofrito: marinate beef, fish or chicken, or stir it into rice and soups.
+- If the Scotch bonnet bursts, the soup gets very spicy.
+
+*Source: NYT Cooking (Cindy Similien, adapted by Priya Krishna): https://cooking.nytimes.com/search?q=Soup%20Joumou*
 
 ---
 
