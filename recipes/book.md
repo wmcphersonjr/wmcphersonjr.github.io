@@ -10,11 +10,11 @@ Every recipe pulled from past chats, compiled in one place. Grouped by category.
 
 **Breakfast:** Fluffy Pancakes · Buttermilk Cornbread Waffles · McDonald's Fruit and Maple Oatmeal (Copycat) · Golden Diner Pancakes · Shakshuka With Feta · Waffles · Dutch Baby · Eggnog Overnight French Toast
 
-**Baking and Sweets:** Sugar Moon Espresso Cornflake Cookies (Copycat) · Bakery Cookie Skillet · Soft and Chewy Oatmeal Chocolate Chip Cookies · Pan de Muerto · Latino Foodie Pan de Muerto · Gingerbread Latte Cookies · Chocolate Soufflés · Conchas · Peach Cobbler · Warm Sweet Potato-Apple Pone · Strawberry Shortcake
+**Baking and Sweets:** Sugar Moon Espresso Cornflake Cookies (Copycat) · Bakery Cookie Skillet · Soft and Chewy Oatmeal Chocolate Chip Cookies · Pan de Muerto · Latino Foodie Pan de Muerto · Gingerbread Latte Cookies · Chocolate Soufflés · Conchas · Peach Cobbler · Warm Sweet Potato-Apple Pone · Strawberry Shortcake · London Fog Loaf Cake · Homemade Cinnamon Rolls
 
 **Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs · Creamy Lemon Pesto Pasta · Oxtail and Butter Beans · Birria de Res (Beef Birria) · Quesabirria Tacos · Stew Peas and Spinners · Spicy Red Pesto Pasta · Ricotta Pasta Alla Vodka · Pasta Alla Norma Sorta · Grilled Cheese With Apples and Apple Butter · Golden Krust Jamaican Oxtail Stew · Roast Chicken With Maple Butter and Rosemary · Smoked Mackerel Rundown · Peruvian Roasted Chicken With Spicy Cilantro Sauce · Peruvian Pork Stew With Chiles, Lime and Apples
 
-**Sides and Salads:** Roasted Dumpling Squash
+**Sides and Salads:** Roasted Dumpling Squash · Baked Garlic Rice · Buss Up Shut (Paratha-Style Roti)
 
 **Soups:** Split Pea Soup · Butternut Squash Congee With Chile Oil · Red Peas Soup · Soup Joumou · Sancocho · Best Black Bean Soup · Coconut Black Bean Soup · Lemony White Bean Soup With Turkey and Greens · Citrusy Lentil and Sweet Potato Soup · Pumpkin Soup · Thomas Keller's Butternut Squash Soup With Brown Butter · Sherried Lentil Soup With Sausage and Croutons
 
@@ -1079,6 +1079,116 @@ Jane Grigson's classic: tender cream biscuits baked in buttered stacks, split wh
 
 ---
 
+## London Fog Loaf Cake
+
+A tender loaf cake flavored like the café drink: butter steeped with Earl Grey and cardamom, orange zest and vanilla, under a dramatic layer of fluffy vanilla frosting.
+
+**Image:** images/london-fog-loaf-cake.jpg
+**Tags:** cake, tea, earl grey, make-ahead, nyt cooking
+**Time:** 1 hr 20 min
+
+**Makes 1 loaf cake**
+
+**Cake**
+- Nonstick cooking spray
+- 1/2 cup (113 grams) unsalted butter, melted and warm
+- 2 tbsp Earl Grey tea leaves (from about 2 bags)
+- 1 tsp ground cardamom
+- 1 cup granulated sugar
+- 3/4 cup (177 milliliters) whole milk, at room temperature
+- 2 large eggs, at room temperature
+- 1 tbsp freshly grated orange zest
+- 1 tsp pure vanilla extract
+- 1 1/2 cups (192 grams) all-purpose flour
+- 1/2 tsp baking powder
+- 1/2 tsp baking soda
+- 1/2 tsp kosher salt (such as Diamond Crystal)
+
+**Frosting**
+- 1 (16-ounce) box powdered sugar (about 4 cups)
+- 1/2 cup (113 grams) unsalted butter, softened
+- 1 tbsp pure vanilla extract
+- 1/4 tsp kosher salt (such as Diamond Crystal)
+- 2 tbsp whole milk
+
+**Method**
+1. **Pan:** Heat the oven to 350°F. Coat a 9-by-5-inch loaf pan with nonstick spray and line it with parchment on the long sides, leaving a 1-inch overhang for lifting out.
+2. **Steep:** In a large bowl, whisk the warm melted butter with the tea leaves and cardamom. Let steep 10 minutes.
+3. **Wet mix:** Whisk in the sugar, milk, eggs, orange zest and vanilla until smooth.
+4. **Dry mix:** In another bowl, whisk the flour, baking powder, baking soda and salt, then fold into the wet ingredients until just combined.
+5. **Bake:** Spread the batter in the pan and bake until a tester in the center comes out clean, 40 to 50 minutes. Cool in the pan about 10 minutes, then lift out onto a rack to cool completely.
+6. **Frosting:** Beat the powdered sugar, butter, vanilla, salt and milk on low about 1 minute, then until soft and fluffy, 1 to 2 minutes more.
+7. **Finish:** Swoop a thick layer of frosting over the cake, slice and serve.
+
+**Notes**
+- By Dan Pelosi for NYT Cooking.
+- For a less earthy tea flavor, strain the leaves out of the butter before adding the sugar and milk.
+- Keeps covered at room temperature up to 2 days, or refrigerated up to 4.
+
+*Source: NYT Cooking (Dan Pelosi): https://cooking.nytimes.com/search?q=London%20Fog%20Loaf%20Cake*
+
+---
+
+## Homemade Cinnamon Rolls
+
+Claire Saffitz's bakery-style cinnamon rolls: an ultra-soft tangzhong brioche dough, a speculoos cookie and Demerara cinnamon filling, and cream cheese icing. Mixed and chilled the day before, baked the next morning.
+
+**Image:** images/homemade-cinnamon-rolls.jpg
+**Tags:** breakfast, brunch, pastry, cinnamon, make-ahead, project, nyt cooking
+**Time:** 2 1/2 hr (plus about 10 hr chilling and resting)
+
+**Makes 15 buns**
+
+**Dough**
+- 1 cup (240 grams) whole milk
+- 1/4 cup (34 grams) plus 4 cups (540 grams) all-purpose flour
+- 1/4 cup (58 grams) ice-cold water
+- 3 large eggs (150 grams), cold from the fridge
+- 1 tsp active dry yeast
+- 1/4 cup (50 grams) granulated sugar
+- 1 1/2 tsp Diamond Crystal kosher salt (or 3/4 tsp Morton)
+- 8 tbsp (116 grams) unsalted butter, cut into 1-inch pieces, at cool room temperature, plus more for the bowl
+
+**Filling**
+- 4 oz (116 grams) speculoos cookies, such as Lotus (about 15), lightly crushed
+- 1/2 cup (100 grams) Demerara sugar
+- 1 tbsp ground cinnamon
+- 1 tsp Diamond Crystal kosher salt (or 1/2 tsp Morton)
+- 12 tbsp (170 grams) unsalted butter, at room temperature
+
+**Icing and assembly**
+- Room-temperature unsalted butter, for the pan
+- All-purpose flour, for rolling
+- 4 oz (113 grams) cream cheese, at room temperature
+- 1 cup (110 grams) confectioners' sugar
+- 1 tbsp vanilla extract
+- 6 tbsp (85 grams) unsalted butter, at room temperature
+
+**Method**
+1. **Scald the milk:** Heat the milk in a small saucepan over medium-high, swirling, until steaming with small bubbles at the edge and a skin on top, about 3 minutes. Lower the heat and keep it hot 1 minute without boiling. Pour 1/3 cup (80 grams) into a stand mixer bowl fitted with the dough hook.
+2. **Tangzhong:** Whisk 1/4 cup (34 grams) flour into the remaining milk in the saucepan until smooth. Cook over medium, whisking constantly and scraping the sides, until it looks like smooth mashed potatoes, about 1 minute. Scrape into the mixer bowl.
+3. **Mix:** Whisk in the cold water, then the eggs. If the bowl still feels warm, chill until room temperature. Add the yeast and remaining 4 cups (540 grams) flour and mix on low until coarse, about 5 minutes. Scrape down, cover and rest 5 minutes.
+4. **Knead:** Add the sugar and salt and mix on medium-low until very smooth and elastic and pulling away from the bowl, 15 to 20 minutes. Be patient; this dough needs a long mix.
+5. **Butter:** On low, add the butter one piece at a time, letting each absorb, until soft and supple, 10 to 15 minutes.
+6. **Rise and chill:** Shape into a ball in a buttered bowl, seam side down. Cover and let rise at room temperature until about 50 percent bigger, 1 to 1 1/2 hours, then refrigerate at least 8 and up to 24 hours.
+7. **Filling:** Next day, pulse the cookies, Demerara sugar, cinnamon and salt in a food processor into fine, dry crumbs, about 1 minute. Work the crumbs into the soft butter with a spatula to a smooth paste.
+8. **Pan:** Butter a metal 9-by-13-inch pan, line the bottom and long sides with parchment, and butter the parchment. Butter one side of a sheet of foil big enough to cover the pan.
+9. **Roll out:** On a floured surface, press out the cold dough and roll it into a 3/8-inch-thick rectangle about 20 by 12 inches, flouring as needed.
+10. **Fill and roll:** Spread the filling evenly to the long edge nearest you, leaving a 1/2-inch border on the other three sides. Roll up snugly from the near edge, rest it on the seam, then squeeze along its length to even it out to about 22 inches. If it feels slack, chill it on a parchment-lined sheet 10 to 15 minutes.
+11. **Cut and proof:** Use unflavored dental floss or baker's twine to trim 1 inch off each end, cut the log into thirds, then each third into 5 pieces. Arrange cut side up in a 3-by-5 grid, cover with the foil, buttered side down, and let rise until not quite doubled, 30 to 60 minutes.
+12. **Heat:** Meanwhile, heat the oven to 350°F with a rack in the center.
+13. **Bake:** Bake tightly covered 15 minutes, then remove the foil and bake until golden brown all over, 15 to 20 minutes more. Cool in the pan on a rack 15 minutes, loosen the short sides with a knife, lift out by the parchment and cool completely.
+14. **Ice:** Mash the cream cheese, confectioners' sugar and vanilla with a spatula until smooth, work in the butter, then whisk until light and thick. Spread over the cooled buns.
+
+**Notes**
+- By Claire Saffitz for NYT Cooking.
+- The tangzhong (cooked flour and milk paste) holds extra moisture, which keeps the buns soft for days.
+- Best within a day or two. Revive stale buns briefly in the microwave.
+
+*Source: NYT Cooking (Claire Saffitz): https://cooking.nytimes.com/search?q=Homemade%20Cinnamon%20Rolls%20Claire%20Saffitz*
+
+---
+
 # MAINS
 
 ## Jamaican Brown Stew Oxtail (5 lb Practice Batch)
@@ -2082,6 +2192,81 @@ Sweet dumpling squash has thin, edible skin, so there's no peeling. High-heat ro
 - Roast the seeds: rinse, dry, toss with oil and salt, and bake at 325°F for 15 to 20 minutes.
 - Miso swap: whisk 1 tsp white miso into the brown butter instead of the vinegar.
 - Good next to the jerk duck tacos, or on the Thanksgiving table.
+
+---
+
+## Baked Garlic Rice
+
+Yotam Ottolenghi's hands-off oven rice: fluffy basmati baked with butter, warm whole spices and lemon peel around whole roasted garlic heads, whose sweet cloves get squeezed in at the end.
+
+**Image:** images/baked-garlic-rice.jpg
+**Tags:** rice, side, garlic, vegetarian option, nyt cooking
+**Time:** 50 min
+
+**Serves 4**
+
+**Ingredients**
+- 2 cups basmati rice, washed and drained
+- 3 large heads of garlic
+- 1 tbsp olive oil
+- Fine sea salt and black pepper
+- 4 tbsp unsalted butter
+- 4 bay leaves
+- 10 whole cloves
+- 6 cardamom pods, bashed open
+- 1 lemon, zest shaved with a vegetable peeler into 4 strips
+- 3 1/2 cups chicken or vegetable stock (or water), boiling hot
+
+**Method**
+1. **Soak (optional):** If you have time, rinse the rice, then soak it in water 30 minutes (or even overnight) and drain. It cooks up fluffier.
+2. **Heat:** Heat the oven to 425°F.
+3. **Roast the garlic:** Cut the top 1/2 inch off each garlic head, drizzle the cut sides with the oil and season each with 1/8 tsp salt. Roast cut side down in a 3-quart ovenproof dish (such as 9-by-13-inch) for 15 minutes, then move the garlic to a plate.
+4. **Bake the rice:** Raise the oven to 475°F. Add the rice, butter, bay leaves, cloves, cardamom, lemon peel and boiling stock to the dish with 1/2 tsp salt and plenty of pepper. Stir, nestle the garlic back in cut side up, lay parchment directly on the rice, cover tightly with a lid or foil and bake 25 minutes.
+5. **Steam:** Let it stand, covered, 10 minutes.
+6. **Serve:** Fluff with a fork, squeeze the soft garlic cloves out of their skins, fold them through and serve.
+
+**Notes**
+- By Yotam Ottolenghi for NYT Cooking.
+- Use water or vegetable stock for a vegetarian version.
+
+*Source: NYT Cooking (Yotam Ottolenghi): https://cooking.nytimes.com/search?q=Baked%20Garlic%20Rice%20Ottolenghi*
+
+---
+
+## Buss Up Shut (Paratha-Style Roti)
+
+Peter Prime's Trinidadian buss up shut: flaky, buttery layered roti cooked on a hot skillet, then clapped and torn until it looks like a "burst-up shirt." Perfect for scooping curry.
+
+**Image:** images/buss-up-shut.jpg
+**Tags:** trinidadian, bread, roti, curry night, project, nyt cooking
+**Time:** 2 hr 50 min (includes 1 1/2 hr resting)
+
+**Makes 8 roti**
+
+**Ingredients**
+- 1 cup (228 grams) unsalted butter or ghee, warmed to soften
+- 4 cups (540 grams) all-purpose flour, plus more for rolling
+- 2 tsp baking powder
+- 1 tbsp light brown sugar
+- 2 tsp coarse kosher salt
+- 1/4 cup unrefined coconut oil, warmed to soften
+- Curry chana and beef curry, for serving (optional)
+
+**Method**
+1. **Dough:** Generously butter a small sheet pan or large plate. Whisk the flour, baking powder, sugar and salt in a large bowl and rub in 1 tbsp butter. Make a well, pour in 1 1/4 cups water and mix by hand into a shaggy dough, adding more water 2 tbsp at a time until it forms a slightly sticky ball (1 1/2 to 2 cups water total).
+2. **First rest:** Knead lightly on a floured surface 1 to 2 minutes. Cut into 8 pieces, roll into balls, set on the buttered pan, cover and rest 1 to 4 hours.
+3. **Butter mix:** Stir the remaining butter together with the coconut oil.
+4. **Laminate:** Roll a ball into a 5-inch round, cut one slit from the center to the edge, and spread very generously with the butter mixture, leaving a 1/2-inch rim. Starting at one side of the slit, roll the dough tightly around itself into a cone. Fold the wide end over and pinch to seal, set it seal side down, and push the tip in and down to flatten slightly. Brush with butter, cover and repeat. Rest 30 minutes.
+5. **Roll:** On a floured surface near the stove, roll a piece into a 9-inch round, turning it an inch after each roll to keep it round.
+6. **Cook:** Heat a 10- to 12-inch nonstick or seasoned steel skillet over medium and brush with the butter mixture. Cook the roti until it looks dull and starts to puff, 30 to 60 seconds. Brush, flip and cook 30 seconds. Brush and flip again until light golden spots appear, about 30 seconds. Brush once more and flip, pressing the edges against the pan to cook the rim, about 20 seconds.
+7. **Buss it up:** While it's still in the pan, clap and crush the roti between two spatulas until the layers break apart and it looks like a torn shirt. (Or shake it in a covered bowl or clap it in a towel.) Keep warm in a towel-lined dish.
+8. **Repeat:** Roll, cook and tear the rest, wiping out the skillet between each. Serve warm with curry.
+
+**Notes**
+- Recipe from Peter Prime, adapted by Yewande Komolafe for NYT Cooking.
+- Great with any curry in this book, or with the Jamaican stews for sopping up gravy.
+
+*Source: NYT Cooking (Peter Prime, adapted by Yewande Komolafe): https://cooking.nytimes.com/search?q=Buss%20Up%20Shut%20Paratha-Style%20Roti*
 
 ---
 
