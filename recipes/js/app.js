@@ -242,8 +242,8 @@
   function hydratePhotos(root) {
     $$('img[data-photo]', root || document).forEach(async (img) => {
       const u = await photos.url(img.dataset.photo, img.dataset.size || 'thumb');
-      if (u) { img.src = u; const box = img.closest('.card-art, .r-img'); if (box) box.classList.add('has-img'); }
-      else if (!img.getAttribute('src')) { const box = img.closest('.card-art'); if (box) box.classList.remove('has-img'); img.remove(); }
+      if (u) img.src = u;
+      else if (!img.getAttribute('src')) img.remove();
     });
   }
 
@@ -806,18 +806,12 @@
       <section class="lib wrap">
         <div class="lib-hero">
           <div>
-            <p class="eyebrow">${esc(store.book.title || 'Recipe Book')}</p>
+            <p class="eyebrow">Good ${new Date().getHours() < 12 ? 'morning' : new Date().getHours() < 17 ? 'afternoon' : 'evening'}</p>
             <h1>What are we cooking${new Date().getHours() < 11 ? ' this morning' : new Date().getHours() < 16 ? ' today' : ' tonight'}?</h1>
-            <p class="sub">${total} recipe${total === 1 ? '' : 's'} · ${cats.length} categor${cats.length === 1 ? 'y' : 'ies'}</p>
           </div>
-          <div class="hero-links">
-            ${todayHtml()}
-            ${useSoonHtml()}
-            <a class="btn small" href="#/pantry">${icon('i-basket')} What can I make?</a>
-            <a class="btn small ghost" href="#/plan">${icon('i-calendar')} Plan the week</a>
-          </div>
+          <p class="sub">${total} recipe${total === 1 ? '' : 's'} · ${cats.length} categor${cats.length === 1 ? 'y' : 'ies'}</p>
         </div>
-        ${collectionsStripHtml()}
+        ${todayPanelHtml()}
         <form class="searchbar" role="search" onsubmit="return false">
           ${icon('i-search', 'lead')}
           <input id="q" type="search" autocomplete="off" enterkeyhint="search" placeholder="Search recipes, ingredients, tags…" value="${esc(ui.q)}" aria-label="Search recipes">
@@ -911,11 +905,47 @@
     } else {
       html += `<div class="grid">${list.map(cardHtml).join('')}</div>`;
     }
+    if (!hasQ && !activeFilters) html = collectionsStripHtml() + html;
     el.innerHTML = html;
     hydratePhotos(el);
   }
 
   const starsHtml = (n) => `<span class="stars" aria-label="${n} of 5 stars">${'★'.repeat(n)}<i>${'★'.repeat(5 - n)}</i></span>`;
+  /** A designed title cover for recipes without a photo; photos sit on top of it when there is one. */
+  function tcover(r, size) {
+    const ck = catKey(r.category);
+    return `<span class="tcover ${size || ''}" style="--cat:var(--c-${ck})" aria-hidden="true"><span class="tc-frame">
+      ${icon('c-' + ck, 'tc-glyph')}<span class="tc-eyebrow">${esc(r.category || 'Recipe')}</span><span class="tc-title">${esc(r.title.replace(/\s*\(.*\)$/, ''))}</span></span></span>`;
+  }
+  const artHtml = (r, m, size) => tcover(r, size) + coverImg(r, m);
+  function todayPanelHtml() {
+    const now = new Date(), key = RK.dateKey(now);
+    const cards = [];
+    const plan = store.planDay(key).map((it) => store.byId(it.recipeId)).filter(Boolean);
+    const mini = (r, extra) => `<a class="td-dish" href="#/r/${encodeURIComponent(r.id)}"><span class="td-art">${artHtml(r, store.meta(r.id), 'mini')}</span><span class="td-name">${esc(r.title.replace(/\s*\(.*\)$/, ''))}</span>${extra ? `<small>${esc(extra)}</small>` : ''}</a>`;
+    if (plan.length) {
+      const cookable = plan.filter((r) => r.steps.length);
+      cards.push(`<div class="td-card td-menu"><p class="eyebrow">${icon('i-calendar')} Today’s menu</p>${plan.slice(0, 3).map((r) => mini(r)).join('')}
+        <div class="td-foot">${cookable.length > 1 ? `<a class="btn small primary" href="#/cook/${cookable.map((r) => encodeURIComponent(r.id)).join(',')}">${icon('i-play')} Cook together</a><button class="btn small ghost" data-act="plan-schedule" data-day="${key}">${icon('i-clock')} Timing</button>` : cookable.length ? `<a class="btn small primary" href="#/r/${encodeURIComponent(cookable[0].id)}/cook">${icon('i-play')} Start cooking</a>` : ''}</div></div>`);
+    } else {
+      cards.push(`<div class="td-card td-menu empty-card"><p class="eyebrow">${icon('i-calendar')} Today’s menu</p><p class="td-big">Nothing planned yet.</p><div class="td-foot"><button class="btn small" data-act="plan-pick" data-day="${key}">${icon('i-plus')} Plan today</button><a class="linkish" href="#/plan">This week</a></div></div>`);
+    }
+    const lc = LS.get('wrb.lastCook', null);
+    if (lc && !lc.done && Date.now() - Date.parse(lc.at) < 18 * 3600000) {
+      cards.push(`<div class="td-card td-resume"><p class="eyebrow">${icon('i-play')} Pick up where you left off</p><p class="td-big">${esc(lc.title)}</p><p class="muted small">${esc(lc.label)} · ${esc(relDays(lc.at))}</p>
+        <div class="td-foot"><a class="btn small primary" href="${esc(lc.hash)}">${icon('i-play')} Continue cooking</a><button class="linkish" data-act="resume-dismiss">Dismiss</button></div></div>`);
+    }
+    const soon = leftovers.list().filter((x) => leftovers.daysLeft(x) <= 2).sort((a, b) => leftovers.daysLeft(a) - leftovers.daysLeft(b));
+    if (soon.length) {
+      cards.push(`<div class="td-card td-soon"><p class="eyebrow">${icon('i-clock')} Use soon</p><ul>${soon.slice(0, 3).map((x) => `<li class="${leftovers.daysLeft(x) <= 0 ? 'urgent-txt' : ''}">${esc(x.text)} <small>${leftovers.label(x)}</small></li>`).join('')}</ul>
+        <div class="td-foot"><a class="btn small" href="#/pantry">${icon('i-sparkle')} Recipe ideas</a></div></div>`);
+    }
+    const recent = store.recipes.map((r) => ({ r, at: (store.meta(r.id).cooked || []).slice(-1)[0] })).filter((x) => x.at).sort((a, b) => b.at.localeCompare(a.at)).slice(0, 3);
+    if (recent.length) cards.push(`<div class="td-card td-recent"><p class="eyebrow">${icon('i-flame')} Recently cooked</p>${recent.map((x) => mini(x.r, relDays(x.at))).join('')}</div>`);
+    if (cards.length < 3) cards.push(`<a class="td-card td-link" href="#/pantry"><p class="eyebrow">${icon('i-basket')} What can I make?</p><p class="td-big">Cook from what’s in your kitchen.</p><span class="linkish">Start</span></a>`);
+    if (cards.length < 3) cards.push(`<a class="td-card td-link" href="#/collections"><p class="eyebrow">${icon('i-grid')} Collections</p><p class="td-big">Menus for every occasion, with timelines.</p><span class="linkish">Browse</span></a>`);
+    return `<section class="today" aria-label="Today"><div class="today-head"><h2>Today</h2><span>${esc(now.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' }))}</span></div><div class="today-grid">${cards.join('')}</div></section>`;
+  }
   function coverImg(r, m, size) {
     if (m.cover) return `<img data-photo="${esc(m.cover)}" data-size="${size || 'thumb'}" alt="" ${r.image ? `src="${esc(r.image)}" referrerpolicy="no-referrer"` : ''}>`;
     if (r.image) return `<img src="${esc(r.image)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">`;
@@ -930,8 +960,8 @@
     const cooked = (m.cooked || []).length;
     return `<article class="card" style="--cat:var(--c-${ck})">
       <a class="card-link" href="#/r/${encodeURIComponent(r.id)}" aria-label="${esc(r.title)}"></a>
-      <div class="card-art ${r.image || m.cover ? 'has-img' : ''}">
-        ${coverImg(r, m)}
+      <div class="card-art has-img">
+        ${artHtml(r, m)}
         <span class="card-glyph">${icon('c-' + ck)}</span>
       </div>
       <div class="card-body">
@@ -1011,6 +1041,13 @@
     return (b ? b[1] : 'Step ' + n) + ' · ' + r.title.replace(/\s*\(.*\)$/, '');
   };
 
+  let rTab = { id: '', tab: 'recipe' };
+  const actBtn = (act, ic, label, on, attrs) => `<button class="act ${on ? 'on' : ''}" data-act="${act}" ${attrs || ''}><span class="act-ic">${icon(ic)}</span><span class="act-lb">${esc(label)}</span></button>`;
+  function tasteHistoryHtml(m) {
+    const list = (m.taste || []).slice().reverse();
+    if (!list.length) return '';
+    return `<section class="panel taste-history"><h2>Taste notes</h2><ul>${list.slice(0, 8).map((t) => { const parts = tasteSummary(t); return `<li><small>${esc(fmtDate(t.at, { month: 'short', day: 'numeric', year: 'numeric' }))}</small><span>${parts.length ? parts.map(esc).join(' · ') : ''}${t.note ? `${parts.length ? ' — ' : ''}<em>“${esc(t.note)}”</em>` : ''}</span></li>`; }).join('')}</ul></section>`;
+  }
   function viewRecipe(main, id) {
     const r = store.byId(id);
     if (!r) {
@@ -1025,12 +1062,15 @@
     const nSteps = r.steps.reduce((a, g) => a + g.items.length, 0);
     let stepNo = 0;
     const cooked = m.cooked || [];
+    const tab = rTab.id === r.id ? rTab.tab : 'recipe';
+    rTab = { id: r.id, tab };
+    const yoursCount = (m.notes ? 1 : 0) + (m.photos || []).length + (hasStory(m) ? 1 : 0) + (m.runs || []).length + (m.taste || []).length;
     main.innerHTML = `
       <article class="recipe wrap" style="--cat:var(--c-${ck})">
         <nav class="crumbs no-print"><a href="#/" class="back">${icon('i-back')} All recipes</a>
           <a href="#/?cat=${encodeURIComponent(r.category || '')}" class="crumb-cat">${icon('c-' + ck)}${esc(r.category || 'Uncategorized')}</a></nav>
-        <header class="r-head ${r.image || m.cover ? 'with-img' : ''}">
-          ${r.image || m.cover ? `<div class="r-img">${m.cover ? coverImg(r, m, 'full') : `<img src="${esc(r.image)}" alt="" referrerpolicy="no-referrer" onerror="this.parentNode.remove()">`}</div>` : ''}
+        <header class="r-head with-img">
+          <div class="r-img">${tcover(r, 'hero')}${coverImg(r, m, 'full')}</div>
           <div class="r-titles">
             <h1>${esc(r.title)}</h1>
             ${r.description ? `<p class="lede">${inlineMd(r.description)}</p>` : ''}
@@ -1044,15 +1084,16 @@
             ${r.tags.length ? `<p class="tags">${r.tags.map((t) => `<a class="tag" href="#/?tag=${encodeURIComponent(t)}">#${esc(t)}</a>`).join('')}</p>` : ''}
           </div>
           <div class="r-actions no-print">
-            ${nSteps ? `<button class="btn primary big" data-act="cook">${icon('i-play')} Start cooking</button>` : ''}
-            <button class="btn ${m.fav ? 'on' : ''}" data-act="fav" data-id="${esc(r.id)}" aria-pressed="${!!m.fav}">${icon('i-heart')} ${m.fav ? 'Favorited' : 'Favorite'}</button>
-            <button class="btn" data-act="grocery-add">${icon('i-bag')} ${groceries.has(r.id) ? 'On list ✓' : 'Add to list'}</button>
-            <button class="btn" data-act="plan-recipe">${icon('i-calendar')} Plan</button>
-            <button class="btn" data-act="ask-claude">${icon('i-sparkle')} Ask Claude</button>
-            <button class="btn" data-act="share">${icon('i-share')} Share</button>
-            <a class="btn" href="#/edit/${encodeURIComponent(r.id)}">${icon('i-pencil')} Edit</a>
+            ${nSteps ? `<button class="btn primary big cook-cta" data-act="cook">${icon('i-play')} Start cooking</button>` : ''}
+            <div class="act-row">
+              ${actBtn('fav', 'i-heart', m.fav ? 'Saved' : 'Favorite', m.fav, `data-id="${esc(r.id)}" aria-pressed="${!!m.fav}"`)}
+              ${actBtn('grocery-add', 'i-bag', groceries.has(r.id) ? 'On list' : 'Groceries', groceries.has(r.id))}
+              ${actBtn('plan-recipe', 'i-calendar', 'Plan')}
+              ${actBtn('ask-claude', 'i-sparkle', 'Ask Claude')}
+              ${actBtn('share', 'i-share', 'Share')}
+              <a class="act" href="#/edit/${encodeURIComponent(r.id)}"><span class="act-ic">${icon('i-pencil')}</span><span class="act-lb">Edit</span></a>
             <details class="menu">
-              <summary class="btn icon-only" aria-label="More actions">${icon('i-more')}</summary>
+              <summary class="act" aria-label="More actions"><span class="act-ic">${icon('i-more')}</span><span class="act-lb">More</span></summary>
               <div class="menu-pop">
                 <button data-act="col-add">${icon('i-grid')} Add to collection…</button>
                 <button data-act="cook-with">${icon('i-play')} Cook with another dish…</button>
@@ -1064,8 +1105,14 @@
                 <button data-act="delete" class="danger">${icon('i-trash')} Delete</button>
               </div>
             </details>
+            </div>
           </div>
         </header>
+
+        <nav class="r-tabs no-print" role="tablist" aria-label="Recipe sections">
+          ${[['recipe', 'Recipe', ''], ['better', 'Make it better', ''], ['yours', 'Yours', yoursCount ? String(yoursCount) : '']].map(([k, l, n]) => `<button role="tab" id="tab-${k}" aria-controls="pane-${k}" aria-selected="${tab === k}" class="${tab === k ? 'on' : ''}" data-act="r-tab" data-tab="${k}">${l}${n ? `<i>${n}</i>` : ''}</button>`).join('')}
+        </nav>
+        <div class="r-pane" id="pane-recipe" role="tabpanel" aria-labelledby="tab-recipe" ${tab === 'recipe' ? '' : 'hidden'}>
 
         <div class="r-body ${r.ingredients.length ? '' : 'no-ing'}">
           ${r.ingredients.length ? `<aside class="ing-col">
@@ -1101,11 +1148,18 @@
             </section>` : ''}
             ${r.notes.length ? `<section class="panel notes"><h2>Notes</h2><ul>${r.notes.map((n) => `<li>${inlineMd(n)}</li>`).join('')}</ul></section>` : ''}
             ${r.extras.map((e) => `<section class="panel extra"><h2>${esc(e.title)}</h2>${blockMd(e.body)}</section>`).join('')}
-            ${chefNotesHtml(r)}
-            ${platingHtml(r, m)}
-            ${pairingHtml(r)}
-            ${storyHtml(r, m)}
-            ${practiceLogHtml(r, m)}
+            ${r.sources.length ? `<section class="sources"><h2>Sources</h2><ul>${r.sources.map((s) => `<li><a href="${esc(s.url)}" target="_blank" rel="noopener">${icon('i-link')}${esc(s.label || (/claude\.ai\/chat/.test(s.url) ? 'Original chat' : RB.hostLabel(s.url)))}</a></li>`).join('')}</ul></section>` : ''}
+            <p class="muted small stamp">Added ${esc(fmtDate(r.createdAt))}${r.updatedAt && fmtDate(r.updatedAt) !== fmtDate(r.createdAt) ? ' · edited ' + esc(fmtDate(r.updatedAt)) : ''}</p>
+            <button class="pane-next no-print" data-act="r-tab" data-tab="better">Make it better: chef’s notes, plating and drinks ${icon('i-right')}</button>
+          </div>
+        </div>
+        </div>
+        <div class="r-pane pane-narrow" id="pane-better" role="tabpanel" aria-labelledby="tab-better" ${tab === 'better' ? '' : 'hidden'}>
+          ${chefNotesHtml(r) || `<section class="panel chef-notes"><div class="panel-head"><h2>Chef’s notes</h2><a class="linkish" href="#/tips">All techniques</a></div><p class="muted small">No techniques matched this recipe yet. Browse the Chef’s Notebook, or add your own.</p></section>`}
+          ${platingHtml(r, m)}
+          ${pairingHtml(r)}
+        </div>
+        <div class="r-pane pane-narrow" id="pane-yours" role="tabpanel" aria-labelledby="tab-yours" ${tab === 'yours' ? '' : 'hidden'}>
             <section class="panel mine no-print">
               <div class="panel-head"><h2>My notes &amp; photos</h2><button class="btn small ghost" data-act="ask-claude">${icon('i-sparkle')} Ask Claude</button></div>
               <textarea id="my-notes" rows="3" placeholder="Tweaks, what worked, what to try next time…">${esc(m.notes || '')}</textarea>
@@ -1116,10 +1170,13 @@
               ${photosHtml(r, m)}
               ${cooked.length ? `<p class="cook-log">${icon('i-flame')} Cooked ${cooked.length}×: ${cooked.slice(-6).reverse().map((d) => esc(fmtDate(d))).join(' · ')}${cooked.length > 6 ? ' …' : ''} <button class="linkish" data-act="unmark-cooked">undo last</button></p>` : ''}
             </section>
-            ${r.sources.length ? `<section class="sources"><h2>Sources</h2><ul>${r.sources.map((s) => `<li><a href="${esc(s.url)}" target="_blank" rel="noopener">${icon('i-link')}${esc(s.label || (/claude\.ai\/chat/.test(s.url) ? 'Original chat' : RB.hostLabel(s.url)))}</a></li>`).join('')}</ul></section>` : ''}
-            <p class="muted small stamp">Added ${esc(fmtDate(r.createdAt))}${r.updatedAt && fmtDate(r.updatedAt) !== fmtDate(r.createdAt) ? ' · edited ' + esc(fmtDate(r.updatedAt)) : ''}</p>
-          </div>
+            ${tasteHistoryHtml(m)}
+            ${practiceLogHtml(r, m)}
+            ${storyHtml(r, m)}
         </div>
+        ${nSteps ? `<div class="cook-bar no-print"><button class="btn primary big" data-act="cook">${icon('i-play')} Start cooking</button>
+          <button class="icon-btn ${groceries.has(r.id) ? 'on' : ''}" data-act="grocery-add" aria-label="Add to groceries">${icon('i-bag')}</button>
+          <button class="icon-btn" data-act="ask-claude" aria-label="Ask Claude">${icon('i-sparkle')}</button></div>` : ''}
       </article>`;
     const notes = $('#my-notes');
     const saveNotes = debounce(() => { store.setMeta(r.id, { notes: notes.value }); $('#notes-status').textContent = 'Saved'; }, 500);
@@ -1494,6 +1551,9 @@ ${q}`;
       if (dir) stage.classList.add(dir > 0 ? 'in-right' : 'in-left');
       stage.scrollTop = 0;
       this.tickPractice();
+      if (st.kind !== 'prep') LS.set('wrb.lastCook', { hash: this.multi ? '#/cook/' + this.multi.sessions.map((x) => encodeURIComponent(x.r.id)).join(',') : '#/r/' + encodeURIComponent(r.id) + '/cook?step=' + s.i,
+        title: this.multi ? this.multi.sessions.map((x) => x.r.title.replace(/\s*\(.*\)$/, '')).join(' + ') : r.title, label: this.dishLabel(s), at: nowIso(),
+        done: st.kind === 'done' && (!this.multi || this.multi.sessions.every((x) => x.flat[x.i].kind === 'done')) });
       // header + progress
       const stepN = st.kind === 'step' ? st.n : st.kind === 'prep' ? 0 : s.total;
       $('.cook-count').textContent = st.kind === 'prep' ? 'Mise en place' : st.kind === 'done' ? 'Finished' : `Step ${st.n} of ${s.total}`;
@@ -1543,14 +1603,15 @@ One or two sentences about the dish.
 **Notes**
 - Tips, swaps, storage.`;
 
+  /** Shared page header: eyebrow, title, optional subtitle and actions. */
+  const pageHead = (eyebrow, title, sub, actions) => `<header class="page-head"><div>${eyebrow ? `<p class="eyebrow">${eyebrow}</p>` : ''}<h1>${title}</h1>${sub ? `<p class="sub">${sub}</p>` : ''}</div>${actions ? `<div class="row wrap-row">${actions}</div>` : ''}</header>`;
   function viewAdd(main, mode) {
     if (mode === 'voice') return viewAddVoice(main);
     if (mode === 'web') return viewAddWeb(main);
     if (mode === 'chat') return viewAddChat(main);
     main.innerHTML = `
       <section class="wrap narrow add-hub">
-        <h1>Add a recipe</h1>
-        <p class="sub">Pick whatever’s easiest. Every option ends in a quick review screen so you can fix anything before saving.</p>
+        ${pageHead('Add a recipe', 'Bring a recipe in', 'Pick whatever’s easiest. Every option ends in a quick review screen so you can fix anything before saving.')}
         <div class="add-grid">
           <a class="add-tile" href="#/add/voice"><span class="add-ic">${icon('i-mic')}</span><b>Say it</b><span>Dictate the recipe out loud. Great with messy hands.</span></a>
           <a class="add-tile" href="#/add/web"><span class="add-ic">${icon('i-link')}</span><b>From a website</b><span>Paste a link. We pull the ingredients and steps.</span></a>
@@ -1911,8 +1972,7 @@ One or two sentences about the dish.
     const recipesOnList = new Set(list.map((x) => x.recipeId).filter(Boolean)).size;
     main.innerHTML = `
       <section class="wrap narrow groceries">
-        <h1>Groceries</h1>
-        <p class="sub">${list.length ? `${left} to get${list.length - left ? ` · ${list.length - left} in the cart` : ''}${recipesOnList ? ` · from ${recipesOnList} recipe${recipesOnList === 1 ? '' : 's'}` : ''}` : 'Add a recipe’s ingredients from its page or the meal plan, or add items here.'}</p>
+        ${pageHead('Groceries', list.length ? `${left} to get` : 'Your list', list.length ? `${list.length - left ? `${list.length - left} in the cart · ` : ''}${recipesOnList ? `from ${recipesOnList} recipe${recipesOnList === 1 ? '' : 's'}` : 'your own items'}` : 'Add a recipe’s ingredients from its page or the meal plan, or add items here.')}
         <form class="add-item" data-form="grocery">
           <div class="with-mic"><input id="g-new" placeholder="Add an item…" enterkeyhint="done" aria-label="Add an item">${voice.supported ? `<button type="button" class="icon-btn mic" data-act="dictate" data-target="g-new" data-mode="text" aria-label="Dictate">${icon('i-mic')}</button>` : ''}</div>
           <button class="btn primary" type="submit">${icon('i-plus')} Add</button>
@@ -2121,7 +2181,7 @@ One or two sentences about the dish.
     const langs = [['en-US', 'English (US)'], ['en-GB', 'English (UK)'], ['es-ES', 'Español'], ['es-MX', 'Español (MX)'], ['fr-FR', 'Français'], ['it-IT', 'Italiano'], ['pt-BR', 'Português (BR)'], ['de-DE', 'Deutsch'], ['ja-JP', '日本語'], ['ko-KR', '한국어'], ['th-TH', 'ไทย']];
     main.innerHTML = `
       <section class="wrap narrow settings">
-        <h1>Settings</h1>
+        ${pageHead('Settings', 'Your kitchen', 'Appearance, units, Claude and syncing between devices.')}
         <div class="stats">
           <div><b>${total}</b><span>recipes</span></div>
           <div><b>${tagsInUse().length}</b><span>tags</span></div>
@@ -2212,13 +2272,7 @@ One or two sentences about the dish.
     items.sort((a, b) => MEALS.indexOf(a.meal) - MEALS.indexOf(b.meal));
     store.setPlanDay(day, items);
   }
-  function todayHtml() {
-    const items = store.planDay(RK.dateKey(new Date())).filter((it) => store.byId(it.recipeId));
-    if (!items.length) return '';
-    const rs = items.map((it) => store.byId(it.recipeId));
-    return `<p class="today-menu">${icon('i-calendar')} <span>On the menu today:</span> ${rs.map((r) => `<a href="#/r/${encodeURIComponent(r.id)}">${esc(r.title)}</a>`).join(', ')}
-      ${rs.length > 1 ? `<a class="linkish" href="#/cook/${rs.map((r) => encodeURIComponent(r.id)).join(',')}">Cook together</a>` : ''}</p>`;
-  }
+
   function viewPlan(main) {
     const w = parseInt(route.params.w, 10) || 0;
     const days = RK.weekDays(w);
@@ -2235,7 +2289,7 @@ One or two sentences about the dish.
       return `<section class="day ${key === todayKey ? 'today' : ''} ${key < todayKey ? 'past' : ''}">
         <header class="day-head"><span class="dow">${esc(d.toLocaleDateString(undefined, { weekday: 'short' }))}</span><b>${d.getDate()}</b>${key === todayKey ? '<span class="today-dot">Today</span>' : ''}</header>
         <ul class="day-items">${items.map((it) => { const r = store.byId(it.recipeId); const m = store.meta(r.id); return `<li class="plan-item" style="--cat:var(--c-${catKey(r.category)})">
-          <a href="#/r/${encodeURIComponent(r.id)}"><span class="pi-art">${coverImg(r, m) || icon('c-' + catKey(r.category))}</span><span class="pi-txt"><small>${esc(it.meal)}</small><b>${esc(r.title)}</b></span></a>
+          <a href="#/r/${encodeURIComponent(r.id)}"><span class="pi-art">${artHtml(r, m, 'mini')}</span><span class="pi-txt"><small>${esc(it.meal)}</small><b>${esc(r.title)}</b></span></a>
           <button class="icon-btn" data-act="plan-remove" data-day="${key}" data-pid="${esc(it.id)}" aria-label="Remove ${esc(r.title)}">${icon('i-x')}</button></li>`; }).join('')}</ul>
         ${sides.length ? `<div class="pairs"><span class="eyebrow">Pairs well</span>${sides.map((x) => `<button class="pair-chip" data-act="plan-add-direct" data-day="${key}" data-rid="${esc(x.id)}">${icon('i-plus')}${esc(x.title)}</button>`).join('')}</div>` : ''}
         <div class="day-foot"><button class="btn small ghost" data-act="plan-pick" data-day="${key}">${icon('i-plus')} Add</button>
@@ -2279,7 +2333,7 @@ One or two sentences about the dish.
         const mb = e.target.closest('[data-meal]');
         if (mb) { meal = mb.dataset.meal; $$('[data-meal]', el).forEach((b) => { b.classList.toggle('on', b === mb); b.setAttribute('aria-checked', b === mb); }); return; }
         const row = e.target.closest('.pick-row');
-        if (row) { planAdd(day, row.dataset.rid, meal); sheet.close(true); toast('Added to ' + dayLabel(day, { weekday: 'long' })); if (route.name === 'plan') viewPlan($('#main')); }
+        if (row) { planAdd(day, row.dataset.rid, meal); sheet.close(true); toast('Added to ' + dayLabel(day, { weekday: 'long' })); if (route.name === 'plan') viewPlan($('#main')); else if (route.name === 'book') viewBook($('#main')); }
       });
     } });
   }
@@ -2321,9 +2375,9 @@ One or two sentences about the dish.
   const colRecipes = (c) => c.recipeIds.map((id) => store.byId(id)).filter(Boolean);
   function colTileHtml(c) {
     const rs = colRecipes(c);
-    const imgs = rs.filter((r) => r.image).slice(0, 3);
+    const pick = rs.filter((r) => r.image).concat(rs.filter((r) => !r.image)).slice(0, 3);
     return `<a class="col-tile" href="#/c/${encodeURIComponent(c.id)}">
-      <span class="col-art n${imgs.length}">${imgs.map((r) => `<img src="${esc(r.image)}" alt="" loading="lazy">`).join('') || icon('i-grid')}</span>
+      <span class="col-art n${pick.length}">${pick.map((r) => `<span class="col-cell">${tcover(r, pick.length > 1 ? 'mini' : '')}${r.image ? `<img src="${esc(r.image)}" alt="" loading="lazy" onerror="this.remove()">` : ''}</span>`).join('') || icon('i-grid')}</span>
       <span class="col-body"><b>${esc(c.name)}</b><small>${rs.length} recipe${rs.length === 1 ? '' : 's'}</small></span></a>`;
   }
   function collectionsStripHtml() {
@@ -2458,7 +2512,7 @@ One or two sentences about the dish.
       ${have.length ? (results.length ? `<ol class="can-make">${results.map((x) => {
         const pct = Math.round((x.have.length / x.total) * 100);
         return `<li class="can-row" style="--cat:var(--c-${catKey(x.recipe.category)})">
-          <a class="can-main" href="#/r/${encodeURIComponent(x.recipe.id)}"><span class="can-art">${coverImg(x.recipe, store.meta(x.recipe.id)) || icon('c-' + catKey(x.recipe.category))}</span>
+          <a class="can-main" href="#/r/${encodeURIComponent(x.recipe.id)}"><span class="can-art">${artHtml(x.recipe, store.meta(x.recipe.id), 'mini')}</span>
             <span class="can-txt"><b>${esc(x.recipe.title)}</b>
             <span class="can-meter"><i style="width:${pct}%"></i></span>
             <small>${x.missing.length ? `Need ${x.missing.length}: ${esc(x.missing.slice(0, 6).join(', '))}${x.missing.length > 6 ? '…' : ''}` : 'You have everything!'}</small></span></a>
@@ -2478,7 +2532,7 @@ One or two sentences about the dish.
         <button class="btn" type="submit">${icon('i-plus')} Add</button></form>
       ${los.length ? `<ul class="lo-list">${los.map((x) => { const n = leftovers.daysLeft(x); return `<li class="${n < 0 ? 'past' : n <= 1 ? 'urgent' : ''}"><span>${esc(x.text)}</span><small>${leftovers.label(x)}</small><button class="icon-btn" data-act="lo-rm" data-id="${esc(x.id)}" aria-label="Used it">${icon('i-check')}</button></li>`; }).join('')}</ul>` : ''}
       ${ideas.length ? `<ol class="can-make">${ideas.map((x) => `<li class="can-row" style="--cat:var(--c-${catKey(x.recipe.category)})">
-          <a class="can-main" href="#/r/${encodeURIComponent(x.recipe.id)}"><span class="can-art">${coverImg(x.recipe, store.meta(x.recipe.id)) || icon('c-' + catKey(x.recipe.category))}</span>
+          <a class="can-main" href="#/r/${encodeURIComponent(x.recipe.id)}"><span class="can-art">${artHtml(x.recipe, store.meta(x.recipe.id), 'mini')}</span>
           <span class="can-txt"><b>${esc(x.recipe.title)}</b><small>Uses ${x.uses.map((u) => `<span class="${leftovers.daysLeft(u) <= 1 ? 'urgent-txt' : ''}">${esc(u.text)}</span>`).join(', ')}${x.missing.length ? ` · need ${x.missing.length} more` : ' · you have the rest'}</small></span></a></li>`).join('')}</ol>` : los.length ? '<p class="muted small">No recipes in your book use these yet.</p>' : ''}
     </section>`;
   }
@@ -3150,11 +3204,7 @@ ${RB.toMarkdown(r)}`;
     label(x) { const n = this.daysLeft(x); return n < 0 ? 'past due' : n === 0 ? 'today' : n === 1 ? 'tomorrow' : n + ' days'; },
     name(x) { return RK.parseIngredient(x.text).name || x.text.toLowerCase(); },
   };
-  function useSoonHtml() {
-    const soon = leftovers.list().filter((x) => leftovers.daysLeft(x) <= 1).sort((a, b) => leftovers.daysLeft(a) - leftovers.daysLeft(b));
-    if (!soon.length) return '';
-    return `<p class="today-menu use-soon">${icon('i-clock')} <span>Use soon:</span> ${soon.slice(0, 3).map((x) => `${esc(x.text)} <small>(${leftovers.label(x)})</small>`).join(', ')} <a class="linkish" href="#/pantry">Ideas</a></p>`;
-  }
+
   const LO_STOP = new Set('half quarter bunch bunches cup cups tbsp tsp leftover leftovers some piece pieces container bowl bag about little bit of the and with from cooked extra small large'.split(' '));
   const loWords = (x) => RK.normalizeName(x.text.replace(/^[\d\s/½¼¾⅓⅔.]+/, '')).split(/[^a-zñéíóú]+/).filter((w) => w.length > 3 && !LO_STOP.has(w)).map(RK.singular);
   /** Recipes that use up your leftovers, the ones about to turn first. */
@@ -3354,6 +3404,7 @@ ${RB.toMarkdown(r)}`;
         const on = store.meta(id).fav;
         el.classList.toggle('on', on); el.setAttribute('aria-pressed', on);
         if (el.classList.contains('btn')) el.innerHTML = icon('i-heart') + (on ? ' Favorited' : ' Favorite');
+        if (el.classList.contains('act')) $('.act-lb', el).textContent = on ? 'Saved' : 'Favorite';
         toast(on ? 'Added to favorites' : 'Removed from favorites');
         if (route.name === 'book' && ui.fav) renderResults();
         break;
@@ -3388,7 +3439,7 @@ ${RB.toMarkdown(r)}`;
       case 'timer-plus': timers.plus(el.dataset.tid, 60); break;
       case 'timer-remove': timers.remove(el.dataset.tid); break;
       case 'timer-dismiss': timers.remove(el.dataset.tid); break;
-      case 'grocery-add': if (r) { groceries.addRecipe(r, getScale(r.id)); toast(`Added ${r.ingredients.reduce((a, g) => a + g.items.length, 0)} items to groceries`, { label: 'View list', run: () => go('#/groceries') }); el.innerHTML = icon('i-bag') + ' On list ✓'; } break;
+      case 'grocery-add': if (r) { groceries.addRecipe(r, getScale(r.id)); toast(`Added ${r.ingredients.reduce((a, g) => a + g.items.length, 0)} items to groceries`, { label: 'View list', run: () => go('#/groceries') }); $$('[data-act="grocery-add"]').forEach((b) => { b.classList.add('on'); const lb = $('.act-lb', b); if (lb) lb.textContent = 'On list'; }); } break;
       case 'mark-cooked': {
         const id = cook.state ? cook.state.r.id : rid;
         const m = store.meta(id);
@@ -3400,6 +3451,13 @@ ${RB.toMarkdown(r)}`;
       }
       case 'unmark-cooked': { const m = store.meta(rid); store.setMeta(rid, { cooked: (m.cooked || []).slice(0, -1) }); viewRecipe($('#main'), rid); break; }
       case 'share': if (r) openShare(r); break;
+      case 'r-tab': {
+        const tab = el.dataset.tab; rTab = { id: rid, tab };
+        $$('.r-tabs [data-act="r-tab"]').forEach((b) => { const on = b.dataset.tab === tab; b.classList.toggle('on', on); b.setAttribute('aria-selected', on); });
+        $$('.r-pane').forEach((p) => { p.hidden = p.id !== 'pane-' + tab; });
+        const tabs = $('.r-tabs'); if (tabs && tabs.getBoundingClientRect().top < 0) tabs.scrollIntoView({ block: 'start', behavior: 'smooth' });
+        break;
+      }
       case 'versions': if (r) { el.closest('details').open = false; openVersions(r); } break;
       case 'plate-sketch': if (r) sketchPlating(r, el); break;
       case 'plate-ref': if (r) openPlatingRef(r); break;
@@ -3455,6 +3513,7 @@ ${RB.toMarkdown(r)}`;
       case 'cook-voice': cook.toggleVoice(); break;
       case 'cook-speak': settings.speak = !settings.speak; saveSettings(); cook.syncButtons(); if (settings.speak) cook.readCurrent(); else speech.stop(); break;
       case 'cook-dish': cook.switchDish(+el.dataset.k); break;
+      case 'resume-dismiss': LS.del('wrb.lastCook'); el.closest('.td-card').remove(); break;
       case 'cook-practice': cook.togglePractice(); break;
       case 'cook-practice-start': go('#/r/' + encodeURIComponent(rid) + '/cook'); setTimeout(() => { if (cook.state && !cook.state.practice) cook.togglePractice(); }, 120); break;
       case 'practice-save': {
@@ -3716,6 +3775,8 @@ ${RB.toMarkdown(r)}`;
   async function boot() {
     applyTheme();
     ai.init();
+    const topH = () => { const t = $('.topbar'); if (t) document.documentElement.style.setProperty('--topbar-h', t.offsetHeight + 'px'); };
+    topH(); window.addEventListener('resize', debounce(topH, 150));
     await initStore();
     // Share target / deep links: ?url=…&text=…&title=…
     const sp = new URLSearchParams(location.search);
