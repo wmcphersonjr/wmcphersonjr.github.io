@@ -8,7 +8,7 @@ Every recipe pulled from past chats, compiled in one place. Grouped by category.
 
 **Drinks:** Freeman House Chai Concentrate (Copycat) · Simple Chai Concentrate · Thai Milk Tea · Hot Toddy · Classic Spritz · Reed's Style Extra Strong Ginger Beer · Traditional Ginger Beer (Ginger Bug) · Rebekah Peppler's Hot Toddy · Coconut Hot Chocolate
 
-**Breakfast:** Fluffy Pancakes · Buttermilk Cornbread Waffles · McDonald's Fruit and Maple Oatmeal (Copycat) · Golden Diner Pancakes · Shakshuka With Feta · Waffles · Dutch Baby · Eggnog Overnight French Toast
+**Breakfast:** Fluffy Pancakes · Buttermilk Cornbread Waffles · McDonald's Fruit and Maple Oatmeal (Copycat) · Golden Diner Pancakes · Shakshuka With Feta · Waffles · Dutch Baby · Eggnog Overnight French Toast · Lula Cafe Buttermilk Pancakes
 
 **Baking and Sweets:** Sugar Moon Espresso Cornflake Cookies (Copycat) · Bakery Cookie Skillet · Soft and Chewy Oatmeal Chocolate Chip Cookies · Pan de Muerto · Latino Foodie Pan de Muerto · Gingerbread Latte Cookies · Chocolate Soufflés · Conchas · Peach Cobbler · Warm Sweet Potato-Apple Pone · Strawberry Shortcake · London Fog Loaf Cake · Homemade Cinnamon Rolls · Kevin Gillespie's Warm Banana Pudding with Meringue
 
@@ -581,6 +581,49 @@ A whole country loaf cut in a deep grid, soaked with an eggnog-style custard spi
 - By Jerrelle Guy for NYT Cooking.
 
 *Source: NYT Cooking (Jerrelle Guy): https://cooking.nytimes.com/search?q=Eggnog%20Overnight%20French%20Toast*
+
+---
+
+## Lula Cafe Buttermilk Pancakes
+
+The "blue jeans and white tee" of Lula Cafe's brunch menu in Chicago: a simple buttermilk pancake made rich with sour cream and melted butter, cooked in fresh cold butter and dusted with powdered sugar.
+
+**Image:** images/lula-cafe-buttermilk-pancakes.jpg
+**Tags:** pancakes, buttermilk, brunch, classic, lula cafe
+
+**Makes 8 to 10 pancakes**
+
+**Batter**
+- 1 3/4 cups (8 oz/225 g) all-purpose flour
+- 3 tbsp superfine (caster) sugar
+- 2 tbsp baking powder
+- 1/2 tsp salt
+- 1 cup (8 fl oz/250 ml) milk
+- 2 eggs
+- 1/4 cup (2 oz/60 g) butter, melted, plus cold butter for cooking
+- 2 tbsp buttermilk
+- 2 tbsp sour cream
+
+**To Serve**
+- Powdered (icing) sugar, to garnish
+- Real maple syrup, to serve
+- Whipped cultured butter, to serve
+
+**Method**
+1. **Dry:** In a large mixing bowl, whisk the dry ingredients together.
+2. **Wet:** In a separate bowl, whisk together the milk, eggs, melted butter, buttermilk and sour cream until smooth.
+3. **Fold:** Pour the wet mixture over the dry, then gently fold together with a spatula, taking care not to overwork the batter and develop too much gluten. Keep folding until only small lumps of flour remain.
+4. **Heat:** Heat a griddle or large skillet over medium heat until hot; a sprinkle of water should sizzle for a second and then evaporate. Add 1 tablespoon cold butter and let it melt.
+5. **Cook:** Drop 4-ounce (120-gram) dollops of batter directly into the pan, evenly spaced. Cook 1 to 2 minutes, until the underside is golden and the top is covered in tiny, mostly popped bubbles.
+6. **Flip:** Flip and cook 2 to 3 minutes more. Transfer to a plate and keep warm. Repeat with the remaining batter, adding cold butter to the pan as needed.
+7. **Serve:** Dust each pancake with powdered sugar and serve with maple syrup and cultured butter on the side.
+
+**Notes**
+- From the Lula Cafe cookbook (Chicago).
+- Don't overmix the batter, use fresh cold butter on the griddle, and dollop the batter with a quick, confident turn of the wrist: you want a round pancake, "not some kind of amoeba."
+- The fewer the ingredients, the more provenance matters. Lula uses local buttermilk, real maple syrup and Central Milling's "Beehive" all-purpose flour.
+
+*Source: Lula Cafe cookbook*
 
 ---
 

@@ -2,7 +2,7 @@
  "format": "waynesdays-recipes",
  "version": 1,
  "title": "Waynesdays Recipe Book",
- "updatedAt": "2026-10-17T19:38:03.596Z",
+ "updatedAt": "2026-10-17T20:20:40.510Z",
  "recipes": [
   {
    "id": "freeman-house-chai-concentrate",
@@ -1025,6 +1025,71 @@
    ],
    "createdAt": "2026-10-17T02:38:45.824Z",
    "updatedAt": "2026-10-17T02:38:45.824Z"
+  },
+  {
+   "id": "lula-cafe-buttermilk-pancakes",
+   "title": "Lula Cafe Buttermilk Pancakes",
+   "description": "The \"blue jeans and white tee\" of Lula Cafe's brunch menu in Chicago: a simple buttermilk pancake made rich with sour cream and melted butter, cooked in fresh cold butter and dusted with powdered sugar.",
+   "category": "Breakfast",
+   "tags": [
+    "pancakes",
+    "buttermilk",
+    "brunch",
+    "classic",
+    "lula cafe"
+   ],
+   "time": "",
+   "yield": "Makes 8 to 10 pancakes",
+   "image": "images/lula-cafe-buttermilk-pancakes.jpg",
+   "ingredients": [
+    {
+     "name": "Batter",
+     "note": "",
+     "items": [
+      "1 3/4 cups (8 oz/225 g) all-purpose flour",
+      "3 tbsp superfine (caster) sugar",
+      "2 tbsp baking powder",
+      "1/2 tsp salt",
+      "1 cup (8 fl oz/250 ml) milk",
+      "2 eggs",
+      "1/4 cup (2 oz/60 g) butter, melted, plus cold butter for cooking",
+      "2 tbsp buttermilk",
+      "2 tbsp sour cream"
+     ]
+    },
+    {
+     "name": "To Serve",
+     "note": "",
+     "items": [
+      "Powdered (icing) sugar, to garnish",
+      "Real maple syrup, to serve",
+      "Whipped cultured butter, to serve"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Dry:** In a large mixing bowl, whisk the dry ingredients together.",
+      "**Wet:** In a separate bowl, whisk together the milk, eggs, melted butter, buttermilk and sour cream until smooth.",
+      "**Fold:** Pour the wet mixture over the dry, then gently fold together with a spatula, taking care not to overwork the batter and develop too much gluten. Keep folding until only small lumps of flour remain.",
+      "**Heat:** Heat a griddle or large skillet over medium heat until hot; a sprinkle of water should sizzle for a second and then evaporate. Add 1 tablespoon cold butter and let it melt.",
+      "**Cook:** Drop 4-ounce (120-gram) dollops of batter directly into the pan, evenly spaced. Cook 1 to 2 minutes, until the underside is golden and the top is covered in tiny, mostly popped bubbles.",
+      "**Flip:** Flip and cook 2 to 3 minutes more. Transfer to a plate and keep warm. Repeat with the remaining batter, adding cold butter to the pan as needed.",
+      "**Serve:** Dust each pancake with powdered sugar and serve with maple syrup and cultured butter on the side."
+     ]
+    }
+   ],
+   "notes": [
+    "From the Lula Cafe cookbook (Chicago).",
+    "Don't overmix the batter, use fresh cold butter on the griddle, and dollop the batter with a quick, confident turn of the wrist: you want a round pancake, \"not some kind of amoeba.\"",
+    "The fewer the ingredients, the more provenance matters. Lula uses local buttermilk, real maple syrup and Central Milling's \"Beehive\" all-purpose flour."
+   ],
+   "extras": [],
+   "sources": [],
+   "createdAt": "2026-10-17T20:20:40.510Z",
+   "updatedAt": "2026-10-17T20:20:40.510Z"
   },
   {
    "id": "sugar-moon-espresso-cornflake-cookies",

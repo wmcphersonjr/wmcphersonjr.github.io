@@ -158,8 +158,10 @@
     m = t.match(/^\/\s*(\d+(?:\.\d+)?)\s*(grams?|g|milliliters?|ml)\b\s*/i);
     if (m) { if (/^g/i.test(m[2])) out.hintG = +m[1]; t = t.slice(m[0].length); }
     out.rest = t;
-    const hint = t.match(/\((?:about\s+)?(\d+(?:\.\d+)?)\s*(grams?|g)\b[^)]*\)/i);
+    const hint = t.match(/\((?:about\s+)?(\d+(?:\.\d+)?)\s*(grams?|g)\b[^)]*\)/i) || t.match(/\([^)]*?[/,]\s*(\d+(?:\.\d+)?)\s*(grams?|g)\s*\)/i);
     if (hint && out.hintG == null) out.hintG = +hint[1];
+    const hintMl = t.match(/\([^)]*?(\d+(?:\.\d+)?)\s*(?:ml|milliliters?)\s*\)/i);
+    if (hintMl) out.hintMl = +hintMl[1];
     t = t.replace(/^of\s+/i, '');
     const nx = normalizeNameEx(t);
     out.name = nx.name;
@@ -334,11 +336,13 @@
     if (!system || system === 'original') return scaled;
     const p = parseIngredient(text);
     if (p.qty == null || (p.fam !== 'vol' && p.fam !== 'wt')) return scaled;
-    const rest = String(p.rest || '').replace(/\s*\((?:about\s+)?\d+(?:\.\d+)?\s*(?:grams?|g|ml|milliliters?)\)/i, '').trim();
+    // drop the book's own conversion in brackets, e.g. "(125 grams)" or "(8 oz/225 g)", since we print our own
+    const rest = String(p.rest || '').replace(/\s*\((?:about\s+)?[^)]*?\d+(?:\.\d+)?\s*(?:grams?|g|ml|milliliters?)\s*\)/i, '').trim();
     const q = p.qty * factor, qMin = (p.qtyMin != null ? p.qtyMin : p.qty) * factor;
     let amt;
     if (system === 'metric') {
       if (p.hintG != null) amt = formatWeight(p.hintG * factor, 'metric');
+      else if (p.hintMl != null && p.fam === 'vol') amt = formatVolume(p.hintMl * factor, 'metric');
       else if (p.fam === 'wt') amt = formatWeight(q * UNITS[p.unit].g, 'metric');
       else if (p.unit === 'tsp' || p.unit === 'tbsp') return scaled; // spoons are universal
       else {
