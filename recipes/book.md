@@ -10,7 +10,7 @@ Every recipe pulled from past chats, compiled in one place. Grouped by category.
 
 **Breakfast:** Fluffy Pancakes · Buttermilk Cornbread Waffles · McDonald's Fruit and Maple Oatmeal (Copycat) · Golden Diner Pancakes · Shakshuka With Feta · Waffles · Dutch Baby · Eggnog Overnight French Toast
 
-**Baking and Sweets:** Sugar Moon Espresso Cornflake Cookies (Copycat) · Bakery Cookie Skillet · Soft and Chewy Oatmeal Chocolate Chip Cookies · Pan de Muerto · Latino Foodie Pan de Muerto · Gingerbread Latte Cookies · Chocolate Soufflés · Conchas · Peach Cobbler · Warm Sweet Potato-Apple Pone · Strawberry Shortcake · London Fog Loaf Cake · Homemade Cinnamon Rolls
+**Baking and Sweets:** Sugar Moon Espresso Cornflake Cookies (Copycat) · Bakery Cookie Skillet · Soft and Chewy Oatmeal Chocolate Chip Cookies · Pan de Muerto · Latino Foodie Pan de Muerto · Gingerbread Latte Cookies · Chocolate Soufflés · Conchas · Peach Cobbler · Warm Sweet Potato-Apple Pone · Strawberry Shortcake · London Fog Loaf Cake · Homemade Cinnamon Rolls · Kevin Gillespie's Warm Banana Pudding with Meringue
 
 **Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs · Creamy Lemon Pesto Pasta · Oxtail and Butter Beans · Birria de Res (Beef Birria) · Quesabirria Tacos · Stew Peas and Spinners · Spicy Red Pesto Pasta · Ricotta Pasta Alla Vodka · Pasta Alla Norma Sorta · Grilled Cheese With Apples and Apple Butter · Golden Krust Jamaican Oxtail Stew · Roast Chicken With Maple Butter and Rosemary · Smoked Mackerel Rundown · Peruvian Roasted Chicken With Spicy Cilantro Sauce · Peruvian Pork Stew With Chiles, Lime and Apples
 
@@ -1186,6 +1186,65 @@ Claire Saffitz's bakery-style cinnamon rolls: an ultra-soft tangzhong brioche do
 - Best within a day or two. Revive stale buns briefly in the microwave.
 
 *Source: NYT Cooking (Claire Saffitz): https://cooking.nytimes.com/search?q=Homemade%20Cinnamon%20Rolls%20Claire%20Saffitz*
+
+---
+
+## Kevin Gillespie's Warm Banana Pudding with Meringue
+
+Kevin Gillespie's re-creation of his great-grandmother's Thanksgiving banana pudding: a velvety vanilla-bean custard with a splash of coffee, layered with pound cake (not vanilla wafers) and bananas, then topped with meringue and served warm.
+
+**Image:** images/kevin-gillespie-s-warm-banana-pudding-with-meringue.jpg
+**Tags:** dessert, banana pudding, southern, meringue, thanksgiving, crowd, atlanta magazine
+
+**Makes 16 to 20 servings**
+
+**Custard**
+- 2 cups whole milk
+- 2 cups half-and-half
+- 1 whole vanilla bean, slit lengthwise
+- 8 large egg yolks
+- 2 cups granulated sugar
+- 1 cup all-purpose flour
+- 1 tsp kosher salt
+- 1/4 cup sour cream
+- 1/4 cup very strong black coffee
+- 2 tbsp salted butter, room temperature
+
+**Layers**
+- 1/2 to 3/4 of a 9 x 5-inch loaf pound cake (store-bought or homemade, about 10 ounces)
+- 8 to 10 ripe bananas
+
+**Meringue**
+- 8 large egg whites
+- 10 tbsp granulated sugar
+- 1/2 tsp cream of tartar
+- 1 tsp pure vanilla extract
+- 1 tsp almond extract
+
+**Method**
+1. **Scald:** In a 3-quart saucepan, combine the milk, half-and-half and vanilla bean. Scald over medium heat until bubbles just begin to appear around the rim, then pull it off the heat.
+2. **Base:** Meanwhile, in a large bowl, whisk the egg yolks and sugar until thoroughly blended. Add the flour and salt and whisk until it combines into a clump.
+3. **Temper:** Scrape the vanilla seeds into the milk mixture and remove the bean. Whisk about 1/4 cup of the milk mixture into the egg mixture to temper it. Keep adding the milk mixture in 1/4-cup increments until it's the consistency of pancake batter, then add the rest all at once.
+4. **Cook:** Cook and stir with a wooden spoon over medium heat, scraping the bottom and sides often, until the mixture resembles scrambled eggs. Take it off the heat and whisk vigorously; don't worry if some lumps remain. For a smoother texture, press it through a sieve.
+5. **Finish the custard:** Whisk in the sour cream and coffee, then blend in the butter.
+6. **Slice:** Cut the pound cake into 1/4-inch-thick slices. Peel and slice the bananas 1/8 inch thick.
+7. **Layer:** Pour a thin layer (about 3/4 cup) of pudding into a deep 4- to 5-quart casserole dish or Dutch oven (or two 2-quart dishes). Cover completely with pound cake slices, then with banana slices. Mash down with your hands to seal.
+8. **Layer again:** Add half the remaining pudding, then another layer of cake and another of bananas. Mash down again, and cover with the remaining pudding.
+9. **Meringue:** Heat the oven to 400°F. In an electric mixer, beat the egg whites with the sugar and cream of tartar until between soft and medium peaks. Fold in the vanilla and almond extracts.
+10. **Bake:** Cover the pudding with a thick layer of meringue and bake 8 to 12 minutes, until golden brown. Best served warm, but delicious cold too.
+
+**Notes**
+- By Susan Puckett for Atlanta Magazine (May 2011). Recipe by Kevin Gillespie.
+- "This recipe is full of steps that will make you think you've done something wrong," Gillespie says. "But if you follow the instructions, it will work just fine."
+- Easily halved for a smaller crowd.
+
+### Gillespie's Tips for Success
+1. The trickiest part is perfectly ripe bananas. Underripe tastes grassy; overripe goes mushy. Buy them slightly green three days ahead so they develop tiny black speckles.
+2. Scald the milk just below the boil: tiny bubbles should just begin forming around the inside of the pan.
+3. To scrape the vanilla bean into the pot, hold one end of the pod, push it against the side of the saucepan with the side of a fork, and scrape the seeds into the milk.
+4. Cornstarch gives a glossier pudding, but flour gives more structure and the velvety texture Gillespie prefers.
+
+*Source: Atlanta Magazine (Susan Puckett): https://www.atlantamagazine.com/recipes/kevin-gillespie-banana-pudding/*
 
 ---
 

@@ -2,7 +2,7 @@
  "format": "waynesdays-recipes",
  "version": 1,
  "title": "Waynesdays Recipe Book",
- "updatedAt": "2026-10-17T03:39:23.752Z",
+ "updatedAt": "2026-10-17T19:37:10.156Z",
  "recipes": [
   {
    "id": "freeman-house-chai-concentrate",
@@ -1972,6 +1972,97 @@
    ],
    "createdAt": "2026-10-17T02:58:23.850Z",
    "updatedAt": "2026-10-17T02:58:23.850Z"
+  },
+  {
+   "id": "kevin-gillespie-s-warm-banana-pudding-with-meringue",
+   "title": "Kevin Gillespie's Warm Banana Pudding with Meringue",
+   "description": "Kevin Gillespie's re-creation of his great-grandmother's Thanksgiving banana pudding: a velvety vanilla-bean custard with a splash of coffee, layered with pound cake (not vanilla wafers) and bananas, then topped with meringue and served warm.",
+   "category": "Baking and Sweets",
+   "tags": [
+    "dessert",
+    "banana pudding",
+    "southern",
+    "meringue",
+    "thanksgiving",
+    "crowd",
+    "atlanta magazine"
+   ],
+   "time": "",
+   "yield": "Makes 16 to 20 servings",
+   "image": "images/kevin-gillespie-s-warm-banana-pudding-with-meringue.jpg",
+   "ingredients": [
+    {
+     "name": "Custard",
+     "note": "",
+     "items": [
+      "2 cups whole milk",
+      "2 cups half-and-half",
+      "1 whole vanilla bean, slit lengthwise",
+      "8 large egg yolks",
+      "2 cups granulated sugar",
+      "1 cup all-purpose flour",
+      "1 tsp kosher salt",
+      "1/4 cup sour cream",
+      "1/4 cup very strong black coffee",
+      "2 tbsp salted butter, room temperature"
+     ]
+    },
+    {
+     "name": "Layers",
+     "note": "",
+     "items": [
+      "1/2 to 3/4 of a 9 x 5-inch loaf pound cake (store-bought or homemade, about 10 ounces)",
+      "8 to 10 ripe bananas"
+     ]
+    },
+    {
+     "name": "Meringue",
+     "note": "",
+     "items": [
+      "8 large egg whites",
+      "10 tbsp granulated sugar",
+      "1/2 tsp cream of tartar",
+      "1 tsp pure vanilla extract",
+      "1 tsp almond extract"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Scald:** In a 3-quart saucepan, combine the milk, half-and-half and vanilla bean. Scald over medium heat until bubbles just begin to appear around the rim, then pull it off the heat.",
+      "**Base:** Meanwhile, in a large bowl, whisk the egg yolks and sugar until thoroughly blended. Add the flour and salt and whisk until it combines into a clump.",
+      "**Temper:** Scrape the vanilla seeds into the milk mixture and remove the bean. Whisk about 1/4 cup of the milk mixture into the egg mixture to temper it. Keep adding the milk mixture in 1/4-cup increments until it's the consistency of pancake batter, then add the rest all at once.",
+      "**Cook:** Cook and stir with a wooden spoon over medium heat, scraping the bottom and sides often, until the mixture resembles scrambled eggs. Take it off the heat and whisk vigorously; don't worry if some lumps remain. For a smoother texture, press it through a sieve.",
+      "**Finish the custard:** Whisk in the sour cream and coffee, then blend in the butter.",
+      "**Slice:** Cut the pound cake into 1/4-inch-thick slices. Peel and slice the bananas 1/8 inch thick.",
+      "**Layer:** Pour a thin layer (about 3/4 cup) of pudding into a deep 4- to 5-quart casserole dish or Dutch oven (or two 2-quart dishes). Cover completely with pound cake slices, then with banana slices. Mash down with your hands to seal.",
+      "**Layer again:** Add half the remaining pudding, then another layer of cake and another of bananas. Mash down again, and cover with the remaining pudding.",
+      "**Meringue:** Heat the oven to 400°F. In an electric mixer, beat the egg whites with the sugar and cream of tartar until between soft and medium peaks. Fold in the vanilla and almond extracts.",
+      "**Bake:** Cover the pudding with a thick layer of meringue and bake 8 to 12 minutes, until golden brown. Best served warm, but delicious cold too."
+     ]
+    }
+   ],
+   "notes": [
+    "By Susan Puckett for Atlanta Magazine (May 2011). Recipe by Kevin Gillespie.",
+    "\"This recipe is full of steps that will make you think you've done something wrong,\" Gillespie says. \"But if you follow the instructions, it will work just fine.\"",
+    "Easily halved for a smaller crowd."
+   ],
+   "extras": [
+    {
+     "title": "Gillespie's Tips for Success",
+     "body": "1. The trickiest part is perfectly ripe bananas. Underripe tastes grassy; overripe goes mushy. Buy them slightly green three days ahead so they develop tiny black speckles.\n2. Scald the milk just below the boil: tiny bubbles should just begin forming around the inside of the pan.\n3. To scrape the vanilla bean into the pot, hold one end of the pod, push it against the side of the saucepan with the side of a fork, and scrape the seeds into the milk.\n4. Cornstarch gives a glossier pudding, but flour gives more structure and the velvety texture Gillespie prefers."
+    }
+   ],
+   "sources": [
+    {
+     "label": "Atlanta Magazine (Susan Puckett)",
+     "url": "https://www.atlantamagazine.com/recipes/kevin-gillespie-banana-pudding/"
+    }
+   ],
+   "createdAt": "2026-10-17T19:37:10.156Z",
+   "updatedAt": "2026-10-17T19:37:10.156Z"
   },
   {
    "id": "jamaican-brown-stew-oxtail",
