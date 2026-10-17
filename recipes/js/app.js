@@ -250,7 +250,7 @@
   // ======================================================================
   // Store
   // ======================================================================
-  const settings = Object.assign({ theme: 'auto', lang: navigator.language || 'en-US', cookSize: 1, speak: false, units: 'original', staples: null, claudeKey: '', gView: 'aisle',
+  const settings = Object.assign({ theme: 'auto', lang: navigator.language || 'en-US', cookSize: 1, speak: false, units: 'original', staples: null, claudeKey: '', gView: 'aisle', plates: '',
     gh: { token: '', repo: 'wmcphersonjr/wmcphersonjr.github.io', branch: 'master', path: 'recipes/data/recipes.json', auto: true, lastSync: '' } }, LS.get(K.settings, {}));
   settings.gh = Object.assign({ token: '', repo: 'wmcphersonjr/wmcphersonjr.github.io', branch: 'master', path: 'recipes/data/recipes.json', auto: true, lastSync: '' }, settings.gh || {});
   const saveSettings = () => LS.set(K.settings, settings);
@@ -1183,6 +1183,7 @@
     notes.addEventListener('input', () => { $('#notes-status').textContent = 'Saving…'; saveNotes(); });
     hydratePhotos(main);
     hydrateAudio(main);
+    initPlateDrag(main);
   }
 
   // ======================================================================
@@ -1541,6 +1542,7 @@ ${q}`;
             <label class="btn big">${icon('i-camera')} Add a photo<input type="file" accept="image/*" data-act="add-photo" data-id="${esc(r.id)}" hidden></label>
             <button class="btn big ghost" data-act="cook-close">${this.multi ? 'Finish cooking' : 'Back to recipe'}</button>
           </div>
+          ${plateItHtml(r)}
           ${this.practiceHtml(s)}
           ${this.tasteHtml(s)}
         </div>`;
@@ -2972,74 +2974,403 @@ ${r.sources.length ? `<p class="facts">Source: ${r.sources.map((x) => `<a href="
     </section>`;
   }
 
-  const PLATE_COLORS = ['#94713f', '#6c7f55', '#a3352b', '#e2b45a', '#4f4c45', '#9c6a72', '#5b7c7a'];
-  function plateSvg(p) {
-    const els = (p.elements || []).slice(0, 8);
-    const pos = (e) => {
-      const where = String(e.pos || 'center').toLowerCase();
-      if (/center|middle/.test(where)) return [150, 150, 0];
-      const h = parseInt(where, 10) || 12;
-      const a = ((h % 12) / 12) * Math.PI * 2 - Math.PI / 2;
-      return [150 + Math.cos(a) * 64, 150 + Math.sin(a) * 64, a];
-    };
-    const color = (e, i) => (/^#[0-9a-f]{3,8}$/i.test(e.color || '') ? e.color : PLATE_COLORS[i % PLATE_COLORS.length]);
-    const shapes = els.map((e, i) => {
-      const [x, y, a] = pos(e); const c = color(e, i);
-      const r = { s: 14, m: 22, l: 32 }[e.size] || 22;
-      const shape = String(e.shape || 'mound').toLowerCase();
-      const deg = (a * 180) / Math.PI;
-      if (/swoosh|smear|swipe/.test(shape)) {
-        const a0 = a - 0.7, a1 = a + 0.7, R = 78;
-        return `<path d="M${150 + Math.cos(a0) * R} ${150 + Math.sin(a0) * R} A${R} ${R} 0 0 1 ${150 + Math.cos(a1) * R} ${150 + Math.sin(a1) * R}" stroke="${c}" stroke-width="${r * 0.7}" fill="none" stroke-linecap="round" opacity=".85"/>`;
-      }
-      if (/dot/.test(shape)) return [-2, -1, 0, 1, 2].map((k) => { const b = a + k * 0.2; return `<circle cx="${150 + Math.cos(b) * 86}" cy="${150 + Math.sin(b) * 86}" r="${4 + (2 - Math.abs(k))}" fill="${c}"/>`; }).join('');
-      if (/quenelle|oval|egg/.test(shape)) return `<ellipse cx="${x}" cy="${y}" rx="${r}" ry="${r * 0.55}" fill="${c}" transform="rotate(${deg + 90} ${x} ${y})"/>`;
-      if (/scatter|crumb|sprinkle|herb|leaf/.test(shape)) return Array.from({ length: 9 }, (_, k) => { const b = k * 2.4 + i, d = 10 + ((k * 37) % 30); return `<circle cx="${x + Math.cos(b) * d}" cy="${y + Math.sin(b) * d}" r="${2 + (k % 3)}" fill="${c}"/>`; }).join('');
-      if (/drizzle|line|sauce/.test(shape)) return `<path d="M${x - 40} ${y + 10} q 13 -22 26 0 t 26 0 t 26 0" stroke="${c}" stroke-width="4" fill="none" stroke-linecap="round"/>`;
-      if (/slice|fan|shingle/.test(shape)) return [-1, 0, 1].map((k) => `<rect x="${x - r * 0.35}" y="${y - r}" width="${r * 0.7}" height="${r * 2}" rx="${r * 0.3}" fill="${c}" opacity="${0.75 + k * 0.08}" transform="rotate(${deg + 90 + k * 22} ${x} ${y + r})"/>`).join('');
-      return `<circle cx="${x}" cy="${y}" r="${r}" fill="${c}"/><circle cx="${x - r * 0.3}" cy="${y - r * 0.3}" r="${r * 0.35}" fill="#fff" opacity=".18"/>`;
-    }).join('');
-    return `<div class="plate-wrap">
-      <svg viewBox="0 0 300 300" class="plate-svg" role="img" aria-label="Plating sketch"><circle cx="150" cy="150" r="146" class="plate-rim"/><circle cx="150" cy="150" r="108" class="plate-well"/>${shapes}</svg>
-      <div class="plate-notes">
-        ${p.plate ? `<p class="eyebrow">${esc(p.plate)}</p>` : ''}
-        <ul class="plate-legend">${els.map((e, i) => `<li><i style="background:${color(e, i)}"></i><b>${esc(e.name)}</b> <span>${esc(/center|middle/i.test(e.pos || 'center') ? 'center' : (parseInt(e.pos, 10) || 12) + ' o’clock')}${e.shape ? ' · ' + esc(e.shape) : ''}</span></li>`).join('')}</ul>
-        ${(p.steps || []).length ? `<ol>${p.steps.slice(0, 6).map((x) => `<li>${esc(x)}</li>`).join('')}</ol>` : ''}
-        ${p.garnish ? `<p><b>Garnish:</b> ${esc(p.garnish)}</p>` : ''}
-        ${p.tip ? `<p class="tip-pro"><span class="eyebrow">Chef’s move</span>${esc(p.tip)}</p>` : ''}
-      </div></div>`;
+  // ======================================================================
+  // Plating studio: Claude designs concepts, we draw them like a chef's sketch
+  // ======================================================================
+  const PLATE_COLORS = ['#7a4a2a', '#6c7f55', '#a3352b', '#e2b45a', '#4f4c45', '#9c6a72', '#5b7c7a'];
+  const PLATE_STYLES = [
+    ['classic', 'Classic fine dining', 'Composed, centered, a sauce element and height'],
+    ['modern', 'Modern minimal', 'Off-center, lots of negative space, odd numbers'],
+    ['rustic', 'Rustic family-style', 'Generous, natural and abundant, made to share'],
+    ['competition', 'Competition showpiece', 'Precise, tall, every element earning its place'],
+    ['bistro', 'Bistro', 'Relaxed and confident, a little sauce swagger'],
+  ];
+  const SHAPES = 'mound|quenelle|swoosh|pool|dots|scatter|drizzle|slices|nest|stack|sprig|crumble|shard|wedge';
+  // tiny deterministic random so a sketch looks the same every time
+  const seeded = (str) => { let h = 2166136261; for (const ch of String(str)) { h ^= ch.charCodeAt(0); h = Math.imul(h, 16777619); } return () => { h += 0x6D2B79F5; let t = h; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; };
+  const hexRgb = (h) => { h = String(h).replace('#', ''); if (h.length === 3) h = h.split('').map((c) => c + c).join(''); const n = parseInt(h.slice(0, 6), 16); return isNaN(n) ? [120, 90, 60] : [(n >> 16) & 255, (n >> 8) & 255, n & 255]; };
+  const rgbHex = (a) => '#' + a.map((v) => Math.max(0, Math.min(255, Math.round(v))).toString(16).padStart(2, '0')).join('');
+  const shade = (h, k) => { const c = hexRgb(h); return rgbHex(c.map((v) => (k >= 0 ? v + (255 - v) * k : v * (1 + k)))); };
+  const lum = (h) => { const [r, g, b] = hexRgb(h); return (0.299 * r + 0.587 * g + 0.114 * b) / 255; };
+  const f1 = (n) => Math.round(n * 10) / 10;
+  /** Smooth closed path through points (Catmull-Rom → Bézier). */
+  function smoothPath(pts) {
+    const n = pts.length; let d = `M${f1(pts[0][0])} ${f1(pts[0][1])}`;
+    for (let i = 0; i < n; i++) {
+      const p0 = pts[(i - 1 + n) % n], p1 = pts[i], p2 = pts[(i + 1) % n], p3 = pts[(i + 2) % n];
+      d += ` C${f1(p1[0] + (p2[0] - p0[0]) / 6)} ${f1(p1[1] + (p2[1] - p0[1]) / 6)} ${f1(p2[0] - (p3[0] - p1[0]) / 6)} ${f1(p2[1] - (p3[1] - p1[1]) / 6)} ${f1(p2[0])} ${f1(p2[1])}`;
+    }
+    return d + 'Z';
   }
+  const blob = (cx, cy, rx, ry, irr, rnd, n) => { n = n || 12; const pts = []; for (let i = 0; i < n; i++) { const a = (i / n) * Math.PI * 2, k = 1 + (rnd() - 0.5) * irr; pts.push([cx + Math.cos(a) * rx * k, cy + Math.sin(a) * ry * k]); } return smoothPath(pts); };
+
+  /** Accept old (clock positions) and new (x/y concepts) shapes. */
+  function normalizePlating(p) {
+    if (!p) return null;
+    if (Array.isArray(p.concepts)) return p;
+    const els = (p.elements || []).map((e, i) => {
+      let x = 50, y = 50;
+      if (e.pos && !/center|middle/i.test(e.pos)) { const h = parseInt(e.pos, 10) || 12; const a = ((h % 12) / 12) * Math.PI * 2 - Math.PI / 2; x = 50 + Math.cos(a) * 24; y = 50 + Math.sin(a) * 24; }
+      return Object.assign({ id: 'e' + (i + 1), x, y }, e);
+    });
+    return { concepts: [{ name: 'Sketch', style: 'classic', plate: { type: 'round', color: '#f6f3ec', label: p.plate || '' }, elements: els, steps: (p.steps || []).map((t) => ({ text: t })), garnish: p.garnish, tip: p.tip }], active: 0, reviews: [] };
+  }
+
+  /** Draw one concept as SVG. opts: {labels, uid, highlight} */
+  function plateSvgString(c, opts) {
+    opts = opts || {};
+    const uidp = opts.uid || 'p';
+    const plate = c.plate || {};
+    const type = /slate|board|bowl|coupe/.test(plate.type) ? plate.type.match(/slate|board|bowl|coupe/)[0] : 'round';
+    const pc = /^#[0-9a-f]{3,8}$/i.test(plate.color || '') ? plate.color : type === 'slate' ? '#2c2e31' : type === 'board' ? '#b88a5a' : '#f6f3ec';
+    const dark = lum(pc) < 0.4;
+    const rect = type === 'slate' || type === 'board';
+    const map = (x, y) => (rect ? [20 + (x / 100) * 360, 60 + (y / 100) * 280] : [x * 4, y * 4]);
+    const defs = [];
+    defs.push(`<filter id="${uidp}-sh0" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="1" stdDeviation="1" flood-color="#000" flood-opacity=".18"/></filter>`);
+    defs.push(`<filter id="${uidp}-sh1" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="1" dy="3" stdDeviation="2.5" flood-color="#000" flood-opacity=".26"/></filter>`);
+    defs.push(`<filter id="${uidp}-sh2" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="3" dy="8" stdDeviation="5" flood-color="#000" flood-opacity=".32"/></filter>`);
+    defs.push(`<filter id="${uidp}-plate" x="-10%" y="-10%" width="120%" height="125%"><feDropShadow dx="0" dy="10" stdDeviation="9" flood-color="#000" flood-opacity=".22"/></filter>`);
+    let plateG;
+    if (type === 'slate' || type === 'board') {
+      defs.push(`<linearGradient id="${uidp}-pl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${shade(pc, 0.12)}"/><stop offset="1" stop-color="${shade(pc, -0.18)}"/></linearGradient>`);
+      const rnd = seeded('grain' + pc);
+      const grain = Array.from({ length: type === 'board' ? 14 : 22 }, (_, i) => { const y = 66 + i * (type === 'board' ? 20 : 12) + rnd() * 6; return `<path d="M24 ${f1(y)} C 120 ${f1(y + (rnd() - 0.5) * 10)}, 260 ${f1(y + (rnd() - 0.5) * 10)}, 376 ${f1(y + (rnd() - 0.5) * 6)}" stroke="${shade(pc, type === 'board' ? -0.22 : 0.12)}" stroke-opacity="${type === 'board' ? 0.35 : 0.18}" stroke-width="${f1(0.6 + rnd())}" fill="none"/>`; }).join('');
+      plateG = `<g filter="url(#${uidp}-plate)"><rect x="12" y="52" width="376" height="296" rx="${type === 'board' ? 22 : 10}" fill="url(#${uidp}-pl)"/></g>${grain}<rect x="12.5" y="52.5" width="375" height="295" rx="${type === 'board' ? 22 : 10}" fill="none" stroke="${shade(pc, 0.25)}" stroke-opacity=".4"/>`;
+    } else {
+      defs.push(`<radialGradient id="${uidp}-pl" cx="42%" cy="38%" r="70%"><stop offset="0" stop-color="${shade(pc, dark ? 0.12 : 0.6)}"/><stop offset=".75" stop-color="${pc}"/><stop offset="1" stop-color="${shade(pc, -0.12)}"/></radialGradient>`);
+      defs.push(`<radialGradient id="${uidp}-well" cx="46%" cy="42%" r="62%"><stop offset="0" stop-color="${shade(pc, dark ? 0.08 : 0.5)}"/><stop offset=".8" stop-color="${shade(pc, type === 'bowl' ? -0.1 : 0.05)}"/><stop offset="1" stop-color="${shade(pc, type === 'bowl' ? -0.22 : -0.06)}"/></radialGradient>`);
+      const wellR = type === 'coupe' ? 170 : type === 'bowl' ? 150 : 128;
+      plateG = `<g filter="url(#${uidp}-plate)"><circle cx="200" cy="200" r="190" fill="url(#${uidp}-pl)"/></g>
+        <circle cx="200" cy="200" r="189" fill="none" stroke="${shade(pc, -0.2)}" stroke-opacity=".35"/>
+        ${type === 'coupe' ? '' : `<circle cx="200" cy="200" r="${wellR}" fill="url(#${uidp}-well)"/><circle cx="200" cy="200" r="${wellR}" fill="none" stroke="${shade(pc, -0.25)}" stroke-opacity=".35"/><path d="M${200 - wellR + 6} ${200 - 40} A ${wellR} ${wellR} 0 0 1 ${200 - 40} ${200 - wellR + 6}" stroke="#fff" stroke-opacity="${dark ? 0.12 : 0.5}" stroke-width="2" fill="none"/>`}
+        <path d="M38 150 A 175 175 0 0 1 150 38" stroke="#fff" stroke-opacity="${dark ? 0.15 : 0.7}" stroke-width="3" fill="none" stroke-linecap="round"/>`;
+    }
+    const els = (c.elements || []).slice(0, 10);
+    const grad = (id, col, gloss) => { defs.push(`<radialGradient id="${id}" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="${shade(col, gloss ? 0.35 : 0.22)}"/><stop offset=".55" stop-color="${col}"/><stop offset="1" stop-color="${shade(col, -0.32)}"/></radialGradient>`); return `url(#${id})`; };
+    const spots = [];
+    const shapes = els.map((e, i) => {
+      const rnd = seeded((e.id || i) + e.name + e.shape);
+      const col = /^#[0-9a-f]{3,8}$/i.test(e.color || '') ? e.color : PLATE_COLORS[i % PLATE_COLORS.length];
+      const [cx, cy] = map(Math.max(4, Math.min(96, +e.x || 50)), Math.max(4, Math.min(96, +e.y || 50)));
+      const R = { s: 16, m: 27, l: 42 }[e.size] || 27;
+      const rot = +e.rotation || 0;
+      const shape = String(e.shape || 'mound').toLowerCase().match(new RegExp(SHAPES)) ? String(e.shape).toLowerCase().match(new RegExp(SHAPES))[0] : 'mound';
+      const gid = `${uidp}-g${i}`;
+      const glossy = /sauce|protein/.test(e.kind || '') || /pool|swoosh|quenelle|dots/.test(shape);
+      let body = '';
+      if (shape === 'mound') {
+        body = `<path d="${blob(cx, cy, R, R * 0.9, 0.22, rnd, 14)}" fill="${grad(gid, col, glossy)}"/>`;
+        if (/starch|grain|rice/.test((e.kind || '') + e.name.toLowerCase())) body += Array.from({ length: 26 }, () => { const a = rnd() * 6.28, d = rnd() * R * 0.8; return `<ellipse cx="${f1(cx + Math.cos(a) * d)}" cy="${f1(cy + Math.sin(a) * d)}" rx="2.6" ry="1.1" transform="rotate(${Math.round(rnd() * 180)} ${f1(cx + Math.cos(a) * d)} ${f1(cy + Math.sin(a) * d)})" fill="${shade(col, 0.35)}" opacity=".7"/>`; }).join('');
+        body += `<ellipse cx="${f1(cx - R * 0.3)}" cy="${f1(cy - R * 0.35)}" rx="${f1(R * 0.28)}" ry="${f1(R * 0.14)}" fill="#fff" opacity="${glossy ? 0.35 : 0.18}" transform="rotate(-25 ${f1(cx - R * 0.3)} ${f1(cy - R * 0.35)})"/>`;
+      } else if (shape === 'quenelle') {
+        const L = R * 1.15, W = R * 0.62;
+        body = `<g transform="rotate(${rot} ${cx} ${cy})"><path d="M${f1(cx - L)} ${cy} C ${f1(cx - L * 0.5)} ${f1(cy - W * 1.25)}, ${f1(cx + L * 0.5)} ${f1(cy - W * 1.25)}, ${f1(cx + L)} ${cy} C ${f1(cx + L * 0.5)} ${f1(cy + W * 1.2)}, ${f1(cx - L * 0.5)} ${f1(cy + W * 1.2)}, ${f1(cx - L)} ${cy}Z" fill="${grad(gid, col, true)}"/>
+          <path d="M${f1(cx - L * 0.8)} ${f1(cy - W * 0.1)} C ${f1(cx - L * 0.3)} ${f1(cy - W * 0.7)}, ${f1(cx + L * 0.3)} ${f1(cy - W * 0.7)}, ${f1(cx + L * 0.8)} ${f1(cy - W * 0.1)}" stroke="${shade(col, 0.4)}" stroke-width="1.6" fill="none" opacity=".8"/>
+          <path d="M${f1(cx - L * 0.7)} ${f1(cy + W * 0.25)} C ${f1(cx - L * 0.2)} ${f1(cy - W * 0.15)}, ${f1(cx + L * 0.2)} ${f1(cy - W * 0.15)}, ${f1(cx + L * 0.7)} ${f1(cy + W * 0.25)}" stroke="${shade(col, -0.3)}" stroke-width="1.2" fill="none" opacity=".5"/></g>`;
+      } else if (shape === 'swoosh') {
+        // tapered brush stroke along an arc
+        const span = 1.9, rad = R * 2.1, a0 = ((rot - 90) * Math.PI) / 180 - span / 2, ox = cx - Math.cos(a0 + span / 2) * rad, oy = cy - Math.sin(a0 + span / 2) * rad;
+        const left = [], right = [];
+        // a spoon swoosh: round drop at the start, tapering to a fine tail
+        const w0 = R * 0.46;
+        for (let k = 0; k <= 28; k++) { const t = k / 28, a = a0 + span * t, w = w0 * Math.pow(1 - t, 0.7) * (0.94 + rnd() * 0.12) + 0.5; const px = ox + Math.cos(a) * rad, py = oy + Math.sin(a) * rad; left.push([px + Math.cos(a) * w, py + Math.sin(a) * w]); right.unshift([px - Math.cos(a) * w, py - Math.sin(a) * w]); }
+        const pts = left.concat(right);
+        const hx = ox + Math.cos(a0) * rad, hy = oy + Math.sin(a0) * rad;
+        body = `<circle cx="${f1(hx)}" cy="${f1(hy)}" r="${f1(w0 * 1.02)}" fill="${col}" opacity=".94"/><path d="M${pts.map((p) => f1(p[0]) + ' ' + f1(p[1])).join(' L')}Z" fill="${col}" opacity=".94"/>
+          <path d="M${left.slice(3, 18).map((p, k) => { const a = a0 + span * ((k + 3) / 24); const px = ox + Math.cos(a) * (rad + R * 0.1), py = oy + Math.sin(a) * (rad + R * 0.1); return f1(px) + ' ' + f1(py); }).join(' L')}" stroke="${shade(col, 0.45)}" stroke-width="2" fill="none" opacity=".55" stroke-linecap="round"/>`;
+      } else if (shape === 'pool') {
+        body = `<path d="${blob(cx, cy, R * 1.25, R * 1.1, 0.12, rnd, 12)}" fill="${col}"/><path d="${blob(cx, cy, R * 1.05, R * 0.9, 0.1, rnd, 10)}" fill="${shade(col, 0.08)}"/>
+          <ellipse cx="${f1(cx - R * 0.35)}" cy="${f1(cy - R * 0.4)}" rx="${f1(R * 0.38)}" ry="${f1(R * 0.13)}" fill="#fff" opacity=".35" transform="rotate(-20 ${f1(cx - R * 0.35)} ${f1(cy - R * 0.4)})"/>`;
+      } else if (shape === 'dots') {
+        const a = (rot * Math.PI) / 180, n = 6;
+        body = Array.from({ length: n }, (_, k) => { const t = k - (n - 1) / 2, rr = R * (0.26 - Math.abs(t) * 0.035) + 1; const x = cx + Math.cos(a) * t * R * 0.55, y = cy + Math.sin(a) * t * R * 0.55; return `<circle cx="${f1(x)}" cy="${f1(y)}" r="${f1(rr)}" fill="${grad(gid + 'd' + k, col, true)}"/><circle cx="${f1(x - rr * 0.35)}" cy="${f1(y - rr * 0.35)}" r="${f1(rr * 0.28)}" fill="#fff" opacity=".5"/>`; }).join('');
+      } else if (shape === 'scatter' || shape === 'crumble') {
+        const n = shape === 'crumble' ? 16 : 11;
+        body = Array.from({ length: n }, () => { const a = rnd() * 6.28, d = Math.sqrt(rnd()) * R, s = R * (shape === 'crumble' ? 0.07 + rnd() * 0.08 : 0.1 + rnd() * 0.12); const x = cx + Math.cos(a) * d, y = cy + Math.sin(a) * d; return shape === 'crumble' ? `<path d="M${f1(x - s)} ${f1(y)} L${f1(x)} ${f1(y - s * (0.8 + rnd()))} L${f1(x + s)} ${f1(y + s * 0.3)} L${f1(x - s * 0.2)} ${f1(y + s)}Z" fill="${shade(col, (rnd() - 0.5) * 0.4)}"/>` : `<path d="${blob(x, y, s, s * 0.85, 0.3, rnd, 7)}" fill="${shade(col, (rnd() - 0.5) * 0.3)}"/>`; }).join('');
+      } else if (shape === 'drizzle') {
+        const a = (rot * Math.PI) / 180, L = R * 1.6; let d = '';
+        for (let k = 0; k <= 30; k++) { const t = (k / 30) * 2 - 1, x = t * L, y = Math.sin(t * 7 + rnd()) * R * 0.18; d += (k ? ' L' : 'M') + f1(cx + x * Math.cos(a) - y * Math.sin(a)) + ' ' + f1(cy + x * Math.sin(a) + y * Math.cos(a)); }
+        body = `<path d="${d}" stroke="${col}" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".92"/>`;
+      } else if (shape === 'slices') {
+        const n = 4, w = R * 0.62, h = R * 1.5;
+        body = `<g transform="rotate(${rot} ${cx} ${cy})">${Array.from({ length: n }, (_, k) => { const x = cx + (k - (n - 1) / 2) * R * 0.42; return `<rect x="${f1(x - w / 2)}" y="${f1(cy - h / 2)}" width="${f1(w)}" height="${f1(h)}" rx="${f1(w * 0.42)}" fill="${grad(gid + 's' + k, col, false)}" stroke="${shade(col, -0.35)}" stroke-width=".8"/><rect x="${f1(x - w * 0.25)}" y="${f1(cy - h * 0.38)}" width="${f1(w * 0.5)}" height="${f1(h * 0.76)}" rx="${f1(w * 0.25)}" fill="${shade(col, 0.28)}" opacity=".55"/>`; }).join('')}</g>`;
+      } else if (shape === 'nest') {
+        body = Array.from({ length: 14 }, (_, k) => { const rr = R * (0.35 + rnd() * 0.65), a = rnd() * 6.28, sw = 2.6 + rnd() * 1.6; return `<ellipse cx="${f1(cx + (rnd() - 0.5) * R * 0.3)}" cy="${f1(cy + (rnd() - 0.5) * R * 0.3)}" rx="${f1(rr)}" ry="${f1(rr * (0.7 + rnd() * 0.3))}" transform="rotate(${Math.round((a * 180) / Math.PI)} ${cx} ${cy})" fill="none" stroke="${shade(col, (k % 3 - 1) * 0.15)}" stroke-width="${f1(sw)}" stroke-dasharray="${Math.round(rr * 3)} ${Math.round(rr * 1.5)}" stroke-linecap="round"/>`; }).join('');
+      } else if (shape === 'stack') {
+        body = [1, 0.78, 0.56].map((k, j) => `<circle cx="${f1(cx - j * 1.5)}" cy="${f1(cy - j * 2.5)}" r="${f1(R * k)}" fill="${grad(gid + 'k' + j, shade(col, j * 0.08), j === 2)}" stroke="${shade(col, -0.3)}" stroke-width=".8"/>`).join('');
+      } else if (shape === 'sprig') {
+        body = Array.from({ length: 7 }, (_, k) => { const a = (k / 7) * 6.28 + rnd(), d = R * (0.15 + rnd() * 0.45), x = cx + Math.cos(a) * d, y = cy + Math.sin(a) * d, lr = R * (0.2 + rnd() * 0.12); return `<g transform="rotate(${Math.round((a * 180) / Math.PI)} ${f1(x)} ${f1(y)})"><path d="M${f1(x - lr)} ${f1(y)} Q ${f1(x)} ${f1(y - lr * 0.75)} ${f1(x + lr)} ${f1(y)} Q ${f1(x)} ${f1(y + lr * 0.75)} ${f1(x - lr)} ${f1(y)}Z" fill="${shade(col, (rnd() - 0.4) * 0.3)}"/><path d="M${f1(x - lr * 0.8)} ${f1(y)} L${f1(x + lr * 0.8)} ${f1(y)}" stroke="${shade(col, -0.35)}" stroke-width=".7"/></g>`; }).join('');
+      } else if (shape === 'shard') {
+        body = `<g transform="rotate(${rot} ${cx} ${cy})"><path d="M${f1(cx - R * 0.5)} ${f1(cy + R * 0.7)} L${f1(cx + R * 0.15)} ${f1(cy - R * 1.1)} L${f1(cx + R * 0.6)} ${f1(cy + R * 0.45)}Z" fill="${grad(gid, col, true)}" stroke="${shade(col, 0.4)}" stroke-width="1"/></g>`;
+      } else if (shape === 'wedge') {
+        const rr = R * 0.7;
+        body = `<g transform="rotate(${rot} ${cx} ${cy})"><path d="M${f1(cx - rr)} ${cy} A ${f1(rr)} ${f1(rr)} 0 0 0 ${f1(cx + rr)} ${cy} Z" fill="${shade(col, 0.3)}" stroke="${shade(col, -0.25)}" stroke-width="3"/>${[-0.6, -0.2, 0.2, 0.6].map((t) => `<path d="M${cx} ${cy} L${f1(cx + Math.sin(t * 1.4) * rr * 0.85)} ${f1(cy + Math.cos(t * 1.4) * rr * 0.85)}" stroke="${shade(col, 0.55)}" stroke-width="1.2"/>`).join('')}</g>`;
+      }
+      const h = e.height === 'tall' ? 2 : e.height === 'flat' ? 0 : /pool|swoosh|drizzle|dots/.test(shape) ? 0 : 1;
+      spots.push({ i, cx, cy, R: /swoosh/.test(shape) ? R * 1.2 : R });
+      return `<g class="pl-el" data-i="${i}" filter="url(#${uidp}-sh${h})"${opts.highlight != null && opts.highlight !== i ? ' opacity=".35"' : ''}>${body}<circle cx="${cx}" cy="${cy}" r="${R + 6}" fill="transparent"/></g>`;
+    }).join('');
+    // number labels: pushed outward from the plate center, nudged around until they don't collide
+    let labels = '';
+    if (opts.labels) {
+      const placed = [];
+      const ink = dark ? '#f6f3ec' : '#15140f';
+      spots.forEach((sp) => {
+        let a = Math.atan2(sp.cy - 200, sp.cx - 200);
+        if (Math.hypot(sp.cx - 200, sp.cy - 200) < 12) a = -Math.PI / 4;
+        let lx, ly;
+        for (let t = 0; t < 16; t++) {
+          const aa = a + (t % 2 ? 1 : -1) * Math.ceil(t / 2) * 0.38;
+          const d = sp.R + 14 + Math.floor(t / 8) * 10;
+          lx = sp.cx + Math.cos(aa) * d; ly = sp.cy + Math.sin(aa) * d;
+          lx = Math.max(12, Math.min(388, lx)); ly = Math.max(12, Math.min(388, ly));
+          const clear = placed.every((q) => Math.hypot(q[0] - lx, q[1] - ly) > 21) && spots.every((o) => o === sp || Math.hypot(o.cx - lx, o.cy - ly) > o.R * 0.75);
+          if (clear) break;
+        }
+        placed.push([lx, ly]);
+        const ang = Math.atan2(ly - sp.cy, lx - sp.cx);
+        const ex = sp.cx + Math.cos(ang) * sp.R * 0.7, ey = sp.cy + Math.sin(ang) * sp.R * 0.7;
+        labels += `<g class="pl-num" pointer-events="none"><path d="M${f1(ex)} ${f1(ey)} L${f1(lx - Math.cos(ang) * 9)} ${f1(ly - Math.sin(ang) * 9)}" stroke="${ink}" stroke-opacity=".45" stroke-width="1"/><circle cx="${f1(lx)}" cy="${f1(ly)}" r="9" fill="${ink}" opacity=".92"/><text x="${f1(lx)}" y="${f1(ly + 3.6)}" text-anchor="middle" font-size="10.5" font-family="system-ui, sans-serif" font-weight="600" fill="${dark ? '#15140f' : '#fff'}">${sp.i + 1}</text></g>`;
+      });
+    }
+    return `<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" class="plate-svg" role="img" aria-label="Plating sketch: ${esc(c.name || '')}"><defs>${defs.join('')}</defs>${plateG}${shapes}${labels}</svg>`;
+  }
+
   function platingHtml(r, m) {
     if (catKey(r.category) === 'drinks' || catKey(r.category) === 'sauces') return '';
-    const p = m.plating, ref = m.platingRef;
-    return `<section class="panel plating no-print">
-      <div class="panel-head"><h2>Plating</h2><div class="row"><button class="btn small ghost" data-act="plate-sketch">${icon('i-sparkle')} ${p ? 'New sketch' : 'Sketch with Claude'}</button><button class="btn small ghost" data-act="plate-ref">${icon('i-camera')} ${ref ? 'Change' : 'Reference'} photo</button></div></div>
+    const P = normalizePlating(m.plating), ref = m.platingRef;
+    const busy = platingBusy === r.id;
+    const head = `<div class="panel-head"><h2>Plating studio</h2><div class="row">
+        <button class="btn small ${P ? 'ghost' : 'primary'}" data-act="plate-sketch" ${busy ? 'disabled' : ''}>${icon('i-sparkle')} ${busy ? 'Designing…' : P ? 'New concepts' : 'Design with Claude'}</button>
+        <button class="btn small ghost" data-act="plate-ref">${icon('i-camera')} ${ref ? 'Change' : 'Reference'} photo</button></div></div>`;
+    if (!P) {
+      return `<section class="panel plating no-print">${head}
+        ${busy ? `<div class="plate-loading"><span class="plate-spinner"></span><p>Claude is designing three plating concepts…</p></div>` : `<div class="plate-empty"><svg viewBox="0 0 400 400" class="plate-svg ghost">${plateSvgString({ plate: { type: 'round' }, elements: [] }, { uid: 'ghost' }).replace(/^<svg[^>]*>|<\/svg>$/g, '')}</svg>
+          <div><p class="td-big">Get three restaurant-style ways to plate this dish.</p><p class="muted small">Pick the styles you like, use the plates you own, then build it step by step and check your plate against the sketch.</p></div></div>`}
+        ${ref ? `<figure class="plate-ref"><img data-photo="${esc(ref)}" data-size="full" alt="Your best plating"><figcaption>Your best plating, the one to match</figcaption></figure>` : ''}
+      </section>`;
+    }
+    const a = Math.min(P.active || 0, P.concepts.length - 1), c = P.concepts[a];
+    const review = (P.reviews || []).filter((x) => x.concept === a || x.concept == null).slice(-1)[0];
+    return `<section class="panel plating no-print" data-rid="${esc(r.id)}">${head}
+      ${P.concepts.length > 1 ? `<div class="plate-tabs" role="tablist">${P.concepts.map((x, i) => `<button role="tab" class="${i === a ? 'on' : ''}" aria-selected="${i === a}" data-act="plate-concept" data-i="${i}"><b>${esc(x.name || 'Concept ' + (i + 1))}</b><small>${esc((PLATE_STYLES.find((s) => s[0] === x.style) || [0, x.style || ''])[1])}</small></button>`).join('')}</div>` : ''}
+      <div class="plate-studio">
+        <div class="plate-stage ${platingEdit === r.id ? 'editing' : ''}">
+          ${plateSvgString(c, { labels: true, uid: 'pl' + a })}
+          <div class="plate-tools">
+            <button class="btn small" data-act="plate-build">${icon('i-play')} Build it</button>
+            <button class="btn small ghost ${platingEdit === r.id ? 'on' : ''}" data-act="plate-edit">${icon('i-pencil')} ${platingEdit === r.id ? 'Done adjusting' : 'Adjust'}</button>
+            <label class="btn small ghost">${icon('i-camera')} Check my plate<input type="file" accept="image/*" data-act="plate-check" hidden></label>
+            <button class="btn small ghost" data-act="plate-card">${icon('i-download')} Card</button>
+          </div>
+          ${platingEdit === r.id ? '<p class="muted small center">Drag any component to move it. Changes save automatically.</p>' : ''}
+        </div>
+        <div class="plate-notes">
+          <p class="eyebrow">${esc((c.plate && c.plate.label) || (c.plate && c.plate.type) || 'Plate')}</p>
+          ${c.why ? `<p class="plate-why">${esc(c.why)}</p>` : ''}
+          <ol class="plate-legend">${(c.elements || []).map((e, i) => `<li data-act="plate-focus" data-i="${i}"><i style="background:${/^#[0-9a-f]{3,8}$/i.test(e.color || '') ? e.color : PLATE_COLORS[i % PLATE_COLORS.length]}"></i><span><b>${esc(e.name)}</b>${e.note ? `<small>${esc(e.note)}</small>` : ''}</span><em>${esc(e.shape || '')}${e.height && e.height !== 'low' ? ' · ' + esc(e.height) : ''}</em></li>`).join('')}</ol>
+          ${(c.steps || []).length ? `<p class="eyebrow">Plate it</p><ol class="plate-steps">${c.steps.map((st, k) => `<li data-step="${k}" data-act="plate-focus" data-i="${(c.elements || []).findIndex((e) => e.id === st.el)}">${esc(st.text || st)}</li>`).join('')}</ol>` : ''}
+          ${c.garnish ? `<p><b>Garnish:</b> ${esc(c.garnish)}</p>` : ''}
+          ${c.tip ? `<p class="tip-pro"><span class="eyebrow">Chef’s move</span>${esc(c.tip)}</p>` : ''}
+        </div>
+      </div>
+      ${review ? plateReviewHtml(review, m) : ''}
       ${ref ? `<figure class="plate-ref"><img data-photo="${esc(ref)}" data-size="full" alt="Your best plating"><figcaption>Your best plating, the one to match</figcaption></figure>` : ''}
-      ${p ? plateSvg(p) : ''}
-      ${!p && !ref ? '<p class="muted small">Get a restaurant-style plating sketch for this dish, or save a photo of your best plate as the reference for next time.</p>' : ''}
     </section>`;
   }
-  async function sketchPlating(r, btn) {
+  function plateItHtml(r) {
+    const P = normalizePlating(store.meta(r.id).plating);
+    if (!P || !P.concepts.length) return '';
+    const c = P.concepts[P.active || 0];
+    return `<div class="plate-it"><p class="eyebrow">Plate it like this · ${esc(c.name || '')}</p><div class="plate-it-body">${plateSvgString(c, { labels: true, uid: 'pi' })}
+      <ol>${(c.steps || []).map((st) => `<li>${esc(st.text || st)}</li>`).join('')}</ol></div>
+      <label class="btn small">${icon('i-camera')} Check my plate<input type="file" accept="image/*" data-act="plate-check-cook" data-id="${esc(r.id)}" hidden></label></div>`;
+  }
+  function plateReviewHtml(rv, m) {
+    const runs = m.runs || [];
+    return `<div class="plate-review">
+      ${rv.photo ? `<img data-photo="${esc(rv.photo)}" alt="Your plate">` : ''}
+      <div>
+        <p class="eyebrow">Plate check · ${esc(fmtDate(rv.at, { month: 'short', day: 'numeric' }))}</p>
+        <p class="pr-score"><b>${esc(String(rv.score))}</b><span>/10</span></p>
+        ${rv.summary ? `<p>${esc(rv.summary)}</p>` : ''}
+        <div class="pr-cols">${(rv.good || []).length ? `<div><span class="eyebrow">Working</span><ul>${rv.good.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></div>` : ''}${(rv.fix || []).length ? `<div><span class="eyebrow">Next time</span><ul>${rv.fix.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></div>` : ''}</div>
+        <div class="row">${rv.photo ? `<button class="btn small ghost" data-act="plate-use-ref" data-pid="${esc(rv.photo)}">Make it my reference</button>` : ''}${runs.length ? `<button class="btn small ghost" data-act="plate-score-run" data-v="${esc(String(rv.score))}">Add to last practice run</button>` : ''}</div>
+      </div></div>`;
+  }
+  let platingBusy = '', platingEdit = '';
+  function openPlatingStudio(r) {
+    let picked = ['classic', 'modern', 'rustic'];
+    sheet.open({ title: 'Design the plate', wide: true, body: `
+      <p class="muted small">Pick up to three styles. Claude designs one concept for each, using the plates you own.</p>
+      <div class="style-pick">${PLATE_STYLES.map(([k, l, d]) => `<button type="button" class="style-opt ${picked.includes(k) ? 'on' : ''}" data-style="${k}"><b>${l}</b><span>${d}</span></button>`).join('')}</div>
+      <label class="field"><span>Your plates &amp; bowls <small>saved for next time</small></span><input id="my-plates" value="${esc(settings.plates || '')}" placeholder="11-inch white rimmed plates, shallow pasta bowls, black slate board"></label>
+      <label class="field"><span>Anything to aim for? <small>optional</small></span><input id="plate-goal" placeholder="e.g. more height for a competition, make it feel festive"></label>
+      <div class="sheet-foot"><span></span><button class="btn primary" data-go>${icon('i-sparkle')} Design concepts</button></div>`,
+    onMount: (el) => {
+      el.addEventListener('click', (e) => {
+        const b = e.target.closest('[data-style]');
+        if (b) {
+          const k = b.dataset.style;
+          picked = picked.includes(k) ? picked.filter((x) => x !== k) : picked.concat(k).slice(-3);
+          $$('[data-style]', el).forEach((x) => x.classList.toggle('on', picked.includes(x.dataset.style)));
+        }
+        if (e.target.closest('[data-go]')) {
+          if (!picked.length) { toast('Pick at least one style'); return; }
+          settings.plates = $('#my-plates', el).value.trim(); saveSettings();
+          const goal = $('#plate-goal', el).value.trim();
+          sheet.close(true); sketchPlating(r, picked, goal);
+        }
+      });
+    } });
+  }
+  async function sketchPlating(r, styles, goal) {
     await ai.init();
     if (!ai.available()) { sheet.open({ title: 'Plating with Claude', body: aiSetupHtml() }); return; }
-    if (btn) { btn.disabled = true; btn.innerHTML = icon('i-sparkle') + ' Sketching…'; }
-    const prompt = `You are a Michelin-trained chef. Design an elegant, achievable plating for this home recipe. Reply with ONLY JSON in this shape:
-{"plate":"plate type and color, one short phrase","elements":[{"name":"component","pos":"center or a clock position 1-12","shape":"mound|quenelle|swoosh|dots|scatter|drizzle|slice","size":"s|m|l","color":"#hex close to the food's real color"}],"steps":["3 to 5 short plating steps in order"],"garnish":"one line","tip":"one chef's trick for this dish"}
-Use 3 to 6 elements. Keep it true to the dish.
+    platingBusy = r.id; if (route.name === 'recipe') viewRecipe($('#main'), r.id);
+    const styleText = styles.map((k) => { const s = PLATE_STYLES.find((x) => x[0] === k); return `- "${k}": ${s[1]} (${s[2]})`; }).join('\n');
+    const prompt = `You are a Michelin-trained chef designing plating for a home cook. Create ${styles.length} distinct plating concept${styles.length > 1 ? 's' : ''} for the recipe below, one per style:
+${styleText}
+${settings.plates ? `Use only plates they own: ${settings.plates}.` : 'Choose a suitable plate for each.'}
+${goal ? `Their goal: ${goal}.` : ''}
+
+Reply with ONLY JSON:
+{"concepts":[{"name":"evocative 2-4 word name","style":"one of the style keys above","plate":{"type":"round|coupe|bowl|slate|board","color":"#hex of the plate","label":"plate description"},
+"why":"one sentence on the composition (focal point, height, negative space, color contrast)",
+"elements":[{"id":"e1","name":"component from the recipe","kind":"protein|starch|veg|sauce|garnish|crunch","shape":"${SHAPES}","x":0-100,"y":0-100,"size":"s|m|l","height":"flat|low|tall","rotation":0-359,"color":"#hex close to the food's real cooked color","note":"short how-to for this component"}],
+"steps":[{"text":"plating step in order","el":"element id it places"}],
+"garnish":"one line","tip":"one chef's trick specific to this dish"}]}
+
+Coordinates: x and y are percentages of the plate, 50,50 is the center. Keep food inside a radius of about 32 from center on round plates (the rim stays clean), and within 12-88 on slates and boards. Use 3 to 7 elements, odd numbers when it helps, real components only. Sauces are "swoosh", "pool", "dots" or "drizzle"; herbs are "sprig"; crunchy bits are "crumble" or "shard"; sliced proteins are "slices"; noodles and greens are "nest"; citrus wedges are "wedge". Make the concepts genuinely different.
 
 RECIPE
 ${RB.toMarkdown(r)}`;
     try {
       const text = await ai.ask(prompt, {});
-      const p = parseJsonLoose(text);
-      if (!p || !Array.isArray(p.elements)) throw new Error('Claude didn’t return a sketch. Try again.');
-      store.setMeta(r.id, { plating: p });
-      if (route.name === 'recipe') viewRecipe($('#main'), r.id);
-      toast('Plating sketch ready');
+      const j = parseJsonLoose(text);
+      const concepts = (j && (j.concepts || (Array.isArray(j) ? j : null))) || [];
+      if (!concepts.length || !concepts.every((c) => Array.isArray(c.elements))) throw new Error('Claude didn’t return a plating. Try again.');
+      concepts.forEach((c) => { c.elements.forEach((e, i) => { e.id = e.id || 'e' + (i + 1); e.x = +e.x; e.y = +e.y; }); c.steps = (c.steps || []).map((s) => (typeof s === 'string' ? { text: s } : s)); });
+      const old = normalizePlating(store.meta(r.id).plating);
+      store.setMeta(r.id, { plating: { concepts, active: 0, at: nowIso(), reviews: old ? old.reviews || [] : [] } });
+      toast(`${concepts.length} plating concept${concepts.length > 1 ? 's' : ''} ready`);
     } catch (e) {
-      toast(e.message === 'NO_KEY' ? 'Add an Anthropic API key in Settings' : e.message || 'Couldn’t sketch a plating');
-      if (btn) { btn.disabled = false; btn.innerHTML = icon('i-sparkle') + ' Sketch with Claude'; }
+      toast(e.message === 'NO_KEY' ? 'Add an Anthropic API key in Settings' : e.message || 'Couldn’t design a plating');
+    } finally {
+      platingBusy = '';
+      if (route.name === 'recipe' && route.params.id === r.id) viewRecipe($('#main'), r.id);
     }
+  }
+  function setPlating(rid, fn) {
+    const P = normalizePlating(store.meta(rid).plating); if (!P) return null;
+    fn(P); store.setMeta(rid, { plating: P }); return P;
+  }
+  /** Animate the components appearing in plating order. */
+  function buildPlate(sec) {
+    const svg = $('.plate-svg', sec); if (!svg) return;
+    const steps = $$('.plate-steps li', sec);
+    const els = $$('.pl-el', svg), nums = $$('.pl-num', svg);
+    const order = steps.length ? steps.map((li) => +li.dataset.i).filter((i) => i >= 0) : els.map((_, i) => i);
+    els.forEach((x, i) => { if (!order.includes(i)) order.push(i); });
+    els.concat(nums).forEach((x) => { x.style.transition = 'none'; x.style.opacity = '0'; });
+    let k = 0;
+    const next = () => {
+      if (k >= order.length) { steps.forEach((li) => li.classList.remove('now')); nums.forEach((n) => { n.style.transition = 'opacity .4s'; n.style.opacity = '1'; }); return; }
+      const i = order[k];
+      const el = els[i];
+      if (el) { el.style.transition = 'opacity .5s ease, transform .5s cubic-bezier(.2,.7,.2,1)'; el.style.transformOrigin = 'center'; el.style.transformBox = 'fill-box'; el.style.transform = 'scale(.6)'; requestAnimationFrame(() => { el.style.opacity = '1'; el.style.transform = 'scale(1)'; }); }
+      steps.forEach((li) => li.classList.toggle('now', +li.dataset.i === i));
+      k++; setTimeout(next, 1100);
+    };
+    setTimeout(next, 300);
+  }
+  function focusPlate(sec, i) {
+    $$('.pl-el', sec).forEach((x) => { x.style.transition = 'opacity .25s'; x.style.opacity = i < 0 || +x.dataset.i === i ? '1' : '.25'; });
+    $$('.plate-legend li', sec).forEach((li) => li.classList.toggle('now', +li.dataset.i === i));
+    clearTimeout(focusPlate.t); focusPlate.t = setTimeout(() => focusPlate(sec, -1), 2200);
+  }
+  /** Drag components around the plate in adjust mode. */
+  function initPlateDrag(root) {
+    const stage = $('.plate-stage.editing', root); if (!stage) return;
+    const sec = stage.closest('.plating'); const rid = sec.dataset.rid;
+    const svg = $('svg', stage);
+    let drag = null;
+    const toPct = (ev) => {
+      const pt = svg.createSVGPoint(); pt.x = ev.clientX; pt.y = ev.clientY;
+      const p = pt.matrixTransform(svg.getScreenCTM().inverse());
+      const P = normalizePlating(store.meta(rid).plating); const c = P.concepts[P.active || 0];
+      const rect = /slate|board/.test((c.plate || {}).type || '');
+      return rect ? [((p.x - 20) / 360) * 100, ((p.y - 60) / 280) * 100] : [p.x / 4, p.y / 4];
+    };
+    svg.addEventListener('pointerdown', (ev) => {
+      const g = ev.target.closest('.pl-el'); if (!g) return;
+      ev.preventDefault(); svg.setPointerCapture(ev.pointerId);
+      const [x0, y0] = toPct(ev);
+      const P = normalizePlating(store.meta(rid).plating); const e = P.concepts[P.active || 0].elements[+g.dataset.i];
+      drag = { g, i: +g.dataset.i, x0, y0, ex: +e.x, ey: +e.y, dx: 0, dy: 0, rect: /slate|board/.test((P.concepts[P.active || 0].plate || {}).type || '') };
+      g.classList.add('dragging');
+    });
+    svg.addEventListener('pointermove', (ev) => {
+      if (!drag) return;
+      const [x, y] = toPct(ev); drag.dx = x - drag.x0; drag.dy = y - drag.y0;
+      drag.g.setAttribute('transform', `translate(${drag.dx * (drag.rect ? 3.6 : 4)} ${drag.dy * (drag.rect ? 2.8 : 4)})`);
+    });
+    const end = () => {
+      if (!drag) return;
+      const d = drag; drag = null;
+      if (Math.abs(d.dx) + Math.abs(d.dy) < 0.5) { d.g.removeAttribute('transform'); d.g.classList.remove('dragging'); return; }
+      setPlating(rid, (P) => { const e = P.concepts[P.active || 0].elements[d.i]; e.x = Math.max(4, Math.min(96, d.ex + d.dx)); e.y = Math.max(4, Math.min(96, d.ey + d.dy)); });
+      viewRecipe($('#main'), rid);
+    };
+    svg.addEventListener('pointerup', end); svg.addEventListener('pointercancel', end);
+  }
+  async function checkPlate(r, file) {
+    await ai.init();
+    if (!(await ai.imagesOk())) { toast('Checking photos needs Claude. Add an API key in Settings.'); return; }
+    const P = normalizePlating(store.meta(r.id).plating);
+    const c = P ? P.concepts[P.active || 0] : null;
+    const sec = $('.plating'); if (sec) { const t = document.createElement('div'); t.className = 'plate-loading'; t.innerHTML = '<span class="plate-spinner"></span><p>Claude is looking at your plate…</p>'; sec.appendChild(t); t.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+    try {
+      const [pid, img] = await Promise.all([photos.put(file), resizeImage(file, 1568, 0.85)]);
+      const prompt = `You are a supportive Michelin-level chef judging a home cook's plating of "${r.title}" from a photo.
+${c ? `They were aiming for this concept: ${JSON.stringify({ name: c.name, plate: c.plate, why: c.why, elements: c.elements.map((e) => ({ name: e.name, shape: e.shape, x: e.x, y: e.y, size: e.size, height: e.height })) })}` : ''}
+Judge composition, height, color contrast, cleanliness of the rim, portion and how close it is to the concept. Reply with ONLY JSON:
+{"score": 1-10, "summary": "one encouraging sentence", "good": ["2-3 specific things working"], "fix": ["2-3 specific, practical changes for next time"]}`;
+      const text = await ai.ask(prompt, { images: [img] });
+      const j = parseJsonLoose(text);
+      if (!j || j.score == null) throw new Error('Couldn’t read the plate. Try a brighter photo from above.');
+      const m = store.meta(r.id);
+      const review = { at: nowIso(), score: Math.max(1, Math.min(10, Math.round(+j.score))), summary: String(j.summary || ''), good: (j.good || []).slice(0, 3).map(String), fix: (j.fix || []).slice(0, 3).map(String), photo: pid, concept: P ? P.active || 0 : null };
+      const patch = { photos: (m.photos || []).concat(pid) };
+      if (P) { P.reviews = (P.reviews || []).concat(review).slice(-6); patch.plating = P; } else patch.plating = { concepts: [], active: 0, reviews: [review] };
+      store.setMeta(r.id, patch);
+      toast(`Plate check: ${review.score}/10`);
+      if (cook.state) { $$('.plate-loading').forEach((x) => x.remove()); sheet.open({ title: 'Plate check', wide: true, body: plateReviewHtml(review, store.meta(r.id)).replace(/<div class="row">[\s\S]*?<\/div>\s*<\/div><\/div>$/, '</div></div>'), onMount: (el) => hydratePhotos(el) }); return; }
+    } catch (e) { toast(e.message === 'NO_KEY' ? 'Add an API key in Settings' : e.message || 'Couldn’t check the plate'); }
+    if (route.name === 'recipe') viewRecipe($('#main'), r.id);
+  }
+  /** Export a plating card (PNG) with the sketch, components and steps. */
+  async function plateCard(r) {
+    const P = normalizePlating(store.meta(r.id).plating); if (!P) return;
+    const c = P.concepts[P.active || 0];
+    const svg = plateSvgString(c, { labels: true, uid: 'card' });
+    const img = await new Promise((res, rej) => { const im = new Image(); im.onload = () => res(im); im.onerror = rej; im.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg); });
+    const W = 1080, H = 1500, cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+    const x = cv.getContext('2d');
+    const serif = '"Bodoni Moda", Didot, Georgia, serif', sans = 'Jost, "Avenir Next", system-ui, sans-serif';
+    x.fillStyle = '#f8f7f4'; x.fillRect(0, 0, W, H);
+    x.fillStyle = '#94713f'; x.font = `500 24px ${sans}`; x.fillText(('PLATING · ' + (c.name || '')).toUpperCase(), 80, 96);
+    x.fillStyle = '#15140f'; x.font = `500 58px ${serif}`; x.fillText(r.title.replace(/\s*\(.*\)$/, '').slice(0, 34), 80, 166);
+    x.drawImage(img, 140, 200, 800, 800);
+    let y = 1060; x.font = `400 26px ${sans}`;
+    (c.elements || []).forEach((e, i) => { const col = i % 2, row = Math.floor(i / 2); x.fillStyle = e.color || PLATE_COLORS[i % 7]; x.beginPath(); x.arc(92 + col * 470, y + row * 44 - 9, 9, 0, 6.3); x.fill(); x.fillStyle = '#15140f'; x.fillText(`${i + 1}. ${e.name}`.slice(0, 30), 112 + col * 470, y + row * 44); });
+    y += Math.ceil((c.elements || []).length / 2) * 44 + 30;
+    x.fillStyle = '#4f4c45'; x.font = `400 23px ${sans}`;
+    (c.steps || []).slice(0, 6).forEach((s, k) => { if (y < H - 90) { x.fillText(`${k + 1}  ${String(s.text || s).slice(0, 78)}`, 80, y); y += 36; } });
+    x.fillStyle = '#94713f'; x.font = `500 20px ${sans}`; x.fillText('WAYNESDAYS RECIPE BOOK', 80, H - 50);
+    const blob = await new Promise((res) => cv.toBlob(res, 'image/png'));
+    saveFile(blob, RB.slugify(r.title) + '-plating.png', { share: true, title: r.title });
   }
   function openPlatingRef(r) {
     const m = store.meta(r.id);
@@ -3459,7 +3790,18 @@ ${RB.toMarkdown(r)}`;
         break;
       }
       case 'versions': if (r) { el.closest('details').open = false; openVersions(r); } break;
-      case 'plate-sketch': if (r) sketchPlating(r, el); break;
+      case 'plate-sketch': if (r) openPlatingStudio(r); break;
+      case 'plate-concept': setPlating(rid, (P) => { P.active = +el.dataset.i; }); platingEdit = ''; viewRecipe($('#main'), rid); break;
+      case 'plate-build': buildPlate(el.closest('.plating')); break;
+      case 'plate-edit': platingEdit = platingEdit === rid ? '' : rid; viewRecipe($('#main'), rid); break;
+      case 'plate-focus': if (+el.dataset.i >= 0) focusPlate(el.closest('.plating'), +el.dataset.i); break;
+      case 'plate-card': if (r) plateCard(r).catch(() => toast('Couldn’t make the card')); break;
+      case 'plate-use-ref': store.setMeta(rid, { platingRef: el.dataset.pid }); toast('Saved as your reference plate'); viewRecipe($('#main'), rid); break;
+      case 'plate-score-run': {
+        const m = store.meta(rid); const runs = (m.runs || []).slice(); if (!runs.length) break;
+        runs[runs.length - 1] = Object.assign({}, runs[runs.length - 1], { scores: Object.assign({}, runs[runs.length - 1].scores, { plating: +el.dataset.v }) });
+        store.setMeta(rid, { runs }); toast('Plating score added to your last practice run'); viewRecipe($('#main'), rid); break;
+      }
       case 'plate-ref': if (r) openPlatingRef(r); break;
       case 'pair-ask': if (r) openAsk(r, 'What should I drink with this? Give one wine or beer, one cocktail and one zero-proof option, and say briefly why each works with this dish.'); break;
       case 'story-edit': if (r) openStoryEditor(r); break;
@@ -3696,6 +4038,8 @@ ${RB.toMarkdown(r)}`;
     if (el.matches('[data-act="import-file"]') && el.files && el.files[0]) { importFile(el.files[0]); el.value = ''; }
     if (el.matches('[data-act="add-photo"]') && el.files && el.files.length) { addPhotos(el.dataset.id || route.params.id, Array.from(el.files)); el.value = ''; }
     if (el.matches('[data-act="photo-recipe"]') && el.files && el.files.length) { photoToRecipe(Array.from(el.files).slice(0, 4)); el.value = ''; }
+    if (el.matches('[data-act="plate-check-cook"]') && el.files && el.files[0]) { const rr = store.byId(el.dataset.id); if (rr) checkPlate(rr, el.files[0]); el.value = ''; }
+    if (el.matches('[data-act="plate-check"]') && el.files && el.files[0]) { const rr = store.byId(route.params.id); if (rr) checkPlate(rr, el.files[0]); el.value = ''; }
     if (el.matches('[data-act="pantry-photo"]') && el.files && el.files.length) { pantryPhoto(Array.from(el.files).slice(0, 3)); el.value = ''; }
     if (el.matches('[data-act="plate-ref-upload"]') && el.files && el.files[0]) {
       const rid = el.dataset.id; const f = el.files[0]; el.value = '';

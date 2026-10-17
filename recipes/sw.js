@@ -1,5 +1,5 @@
 /* Offline support: app shell cache-first, recipe data network-first. */
-const VERSION = 'wrb-v6';
+const VERSION = 'wrb-v7';
 const SHELL = ['./', 'index.html', 'app.css', 'js/parse.js', 'js/kitchen.js', 'js/tips.js', 'js/app.js', 'icon.svg', 'icon-192.png', 'manifest.webmanifest', 'data/recipes.json'];
 
 self.addEventListener('install', (e) => {
