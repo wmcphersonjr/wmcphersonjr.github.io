@@ -42,6 +42,12 @@ A static web app for the recipe book, published at **https://wmcphersonjr.github
 - **Pantry from a photo.** Snap your fridge or pantry, and Claude adds the ingredients to "What can I make?". Clearing checked groceries also adds them to your pantry.
 - **Drink pairing.** Each dish gets a wine or beer, a cocktail and a zero-proof match, plus drinks from your own book when one fits. Collections show the whole menu with drinks.
 - **Family stories.** Record someone telling the recipe's story, add "As told by", and keep both with the recipe. While recording, their words are transcribed into the story. A "Family stories" filter is in the library.
+- **Search everything.** Press `/` or ⌘K, or tap the search icon, to find recipes, techniques, collections, ingredients and actions such as "plan tonight" or "groceries", all from the keyboard. With nothing typed, it shows recently viewed recipes.
+- **Countertop view.** A full-screen kitchen layout with large text, ingredients beside the steps, and the ingredients for the current step highlighted. The screen stays awake, and you tap a step, use the arrow keys or press Next to advance. On wide screens (an iPad in landscape or larger), the recipe page also shows your library alongside it.
+- **Ingredients and steps linked.** Each step lists the ingredients it uses. Hover over an ingredient to light up its steps, or over a step to light up its ingredients; on touch screens, tap a step.
+- **Home rows.** Curated rows ("Your favorites", "Weeknight, 45 minutes or less", "Island & Latin flavors", "Ready for a revisit", "Recently added" and "Not cooked yet") appear above the full library.
+- **One Filter button.** Favorites, 30 min or less, family stories, tags and sort live in one sheet, and active filters show as chips you can remove.
+- **Polish.** Pages cross-fade, and a recipe photo carries from its card into the recipe page. One text-size control covers every page, contrast is higher in dark mode, and motion is reduced when you ask for it. Photos fade in from a soft blur. There's a short tour and "new" dots on the nav, and Settings has a jump-to bar with a Kitchen section.
 - **Sync across devices (optional).** Paste a fine-grained GitHub token (Contents: read & write on this repo) in Settings. The app then merges and saves `recipes/data/recipes.json`, and the newest edit wins per recipe. Without a token, everything is stored in the browser, and you can export JSON or Markdown backups.
 
 ## Files

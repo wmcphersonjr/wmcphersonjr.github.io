@@ -239,7 +239,10 @@
     },
   };
   /** Fill <img data-photo="id"> tags from IndexedDB after a render. */
+  function markLoaded(root) { $$('.card-art img, .r-img img, .col-cell img, .td-art img, .pi-art img, .can-art img, .shelf-art img, .pal-art img', root || document).forEach((i) => { if (i.complete && i.naturalWidth) i.classList.add('ld'); }); }
+  document.addEventListener('load', (e) => { if (e.target.tagName === 'IMG') e.target.classList.add('ld'); }, true);
   function hydratePhotos(root) {
+    requestAnimationFrame(() => markLoaded(root));
     $$('img[data-photo]', root || document).forEach(async (img) => {
       const u = await photos.url(img.dataset.photo, img.dataset.size || 'thumb');
       if (u) img.src = u;
@@ -250,7 +253,7 @@
   // ======================================================================
   // Store
   // ======================================================================
-  const settings = Object.assign({ theme: 'auto', lang: navigator.language || 'en-US', cookSize: 1, speak: false, units: 'original', staples: null, claudeKey: '', gView: 'aisle', plates: '',
+  const settings = Object.assign({ theme: 'auto', lang: navigator.language || 'en-US', cookSize: 1, speak: false, units: 'original', staples: null, claudeKey: '', gView: 'aisle', plates: '', textSize: 1,
     gh: { token: '', repo: 'wmcphersonjr/wmcphersonjr.github.io', branch: 'master', path: 'recipes/data/recipes.json', auto: true, lastSync: '' } }, LS.get(K.settings, {}));
   settings.gh = Object.assign({ token: '', repo: 'wmcphersonjr/wmcphersonjr.github.io', branch: 'master', path: 'recipes/data/recipes.json', auto: true, lastSync: '' }, settings.gh || {});
   const saveSettings = () => LS.set(K.settings, settings);
@@ -719,7 +722,7 @@
     const q = new URLSearchParams(query || '');
     const p = path.split('/').filter(Boolean);
     if (!p.length) return { name: 'book', params: { tag: q.get('tag'), cat: q.get('cat'), q: q.get('q') } };
-    if (p[0] === 'r' && p[1]) return { name: p[2] === 'cook' ? 'cook' : 'recipe', params: { id: p[1], step: q.get('step') } };
+    if (p[0] === 'r' && p[1]) return { name: p[2] === 'cook' ? 'cook' : p[2] === 'counter' ? 'counter' : 'recipe', params: { id: p[1], step: q.get('step') } };
     if (p[0] === 'edit' && p[1]) return { name: 'edit', params: { id: p[1] } };
     if (p[0] === 'new') return { name: 'edit', params: { id: null } };
     if (p[0] === 'add') return { name: 'add', params: { mode: p[1] || '' } };
@@ -743,9 +746,11 @@
     const main = $('#main');
     const key = route.name + ':' + (route.params.id || route.params.mode || '');
     if (route.name !== 'cook' && route.name !== 'cookmulti') cook.close(true);
+    if (route.name !== 'counter') counterWake(false);
     sheet.close(true);
     voice.stop();
     $$('[data-nav]').forEach((a) => a.classList.toggle('active', a.dataset.nav === navFor(route.name)));
+    updateNewDots();
     document.body.dataset.view = route.name;
     switch (route.name) {
       case 'book': viewBook(main); break;
@@ -758,6 +763,7 @@
       case 'settings': viewSettings(main); break;
       case 'tips': viewTips(main); break;
       case 'plan': viewPlan(main); break;
+      case 'counter': viewCounter(main, route.params.id); break;
       case 'collections': viewCollections(main); break;
       case 'collection': viewCollection(main, route.params.cid); break;
       case 'pantry': viewPantry(main); break;
@@ -774,7 +780,34 @@
     if (route.name !== 'cook' && route.name !== 'cookmulti') lastHash = location.hash || '#/';
   }
   let lastHash = '';
-  const navFor = (n) => ({ book: 'book', recipe: 'book', cook: 'book', cookmulti: 'plan', edit: 'add', add: 'add', import: 'add', groceries: 'groceries', settings: 'settings', tips: 'tips',
+  /** Route changes cross-fade; a recipe photo carries from its card into the recipe page and back. */
+  let heroId = '';
+  function navigate() {
+    const next = parseRoute();
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!document.startViewTransition || reduce || cook.state || next.name === 'cook' || next.name === 'cookmulti' || next.name === route.name && next.params.id === route.params.id) { render(); return; }
+    // name the outgoing hero
+    const fromRecipe = route.name === 'recipe' ? route.params.id : '';
+    if (next.name === 'recipe') {
+      const art = $(`.card-link[href="#/r/${CSS.escape(encodeURIComponent(next.params.id))}"]`);
+      const box = art && art.parentNode.querySelector('.card-art, .shelf-art');
+      if (box) box.style.viewTransitionName = 'recipe-hero';
+      const sh = !box && $(`.shelf-card[href="#/r/${CSS.escape(encodeURIComponent(next.params.id))}"] .shelf-art`); if (sh) sh.style.viewTransitionName = 'recipe-hero';
+      heroId = next.params.id;
+    } else if (fromRecipe) { const r = $('.r-img'); if (r) r.style.viewTransitionName = 'recipe-hero'; heroId = fromRecipe; }
+    else heroId = '';
+    const vt = document.startViewTransition(() => {
+      $$('[style*="view-transition-name"]').forEach((x) => { x.style.viewTransitionName = ''; });
+      render();
+      if (heroId) {
+        const target = next.name === 'recipe' ? $('.r-img') : $(`.card-link[href="#/r/${CSS.escape(encodeURIComponent(heroId))}"]`);
+        const box = target && (target.classList.contains('r-img') ? target : target.parentNode.querySelector('.card-art'));
+        if (box && box.getBoundingClientRect().bottom > 0 && box.getBoundingClientRect().top < innerHeight) box.style.viewTransitionName = 'recipe-hero';
+      }
+    });
+    vt.finished.finally(() => $$('[style*="view-transition-name"]').forEach((x) => { x.style.viewTransitionName = ''; }));
+  }
+  const navFor = (n) => ({ book: 'book', recipe: 'book', counter: 'book', cook: 'book', cookmulti: 'plan', edit: 'add', add: 'add', import: 'add', groceries: 'groceries', settings: 'settings', tips: 'tips',
     plan: 'plan', collections: 'collections', collection: 'collections', pantry: 'book' }[n]);
   let bookScroll = 0;
   window.addEventListener('scroll', () => { if (route.name === 'book') bookScroll = window.scrollY; }, { passive: true });
@@ -821,31 +854,60 @@
           <button class="chip ${!ui.cat ? 'on' : ''}" data-act="cat" data-cat="">All <small>${total}</small></button>
           ${cats.map((c) => `<button class="chip cat-chip ${ui.cat === c.name ? 'on' : ''}" data-act="cat" data-cat="${esc(c.name)}" style="--cat:var(--c-${catKey(c.name)})">${icon('c-' + catKey(c.name))}${esc(c.name)} <small>${c.count}</small></button>`).join('')}
         </div>
-        <div class="filterbar">
-          <button class="chip ghost ${ui.fav ? 'on' : ''}" data-act="toggle-fav-filter">${icon('i-heart')} Favorites</button>
-          <button class="chip ghost ${ui.quick ? 'on' : ''}" data-act="toggle-quick">${icon('i-clock')} 30 min or less</button>
-          <button class="chip ghost ${ui.story ? 'on' : ''}" data-act="toggle-story">${icon('i-quote')} Family stories</button>
-          <button class="chip ghost ${ui.showTags || ui.tags.length ? 'on' : ''}" data-act="toggle-tags" aria-expanded="${ui.showTags}"># Tags${ui.tags.length ? ' · ' + ui.tags.length : ''}</button>
-          <label class="sort">Sort
-            <select id="sort">
-              ${[['book', 'Book order'], ['az', 'A–Z'], ['recent', 'Newest'], ['rated', 'Top rated'], ['cooked', 'Most cooked'], ['time', 'Quickest']].map(([v, l]) => `<option value="${v}" ${ui.sort === v ? 'selected' : ''}>${l}</option>`).join('')}
-            </select>
-          </label>
-        </div>
-        <div class="tagcloud" id="tagcloud" ${ui.showTags ? '' : 'hidden'}>
-          ${tagsInUse().map(([t, n]) => `<button class="tag ${ui.tags.includes(t) ? 'on' : ''}" data-act="tag-filter" data-tag="${esc(t)}">#${esc(t)} <small>${n}</small></button>`).join('')}
-        </div>
-        ${showTip && total ? `<div class="tip">
+        ${filterbarHtml()}
+        ${showTip && total ? `<div class="tip tour-tip">
           ${icon('i-sparkle')}
-          <p><b>Tips:</b> open any recipe and hit <b>Start cooking</b> for a hands-free, step-by-step mode with timers. Add recipes by <a href="#/add/voice">voice</a>, <a href="#/add/web">link</a> or <a href="#/add/chat">chat paste</a>.<span class="kbd-hint"> Press <kbd>/</kbd> to search.</span></p>
-          <button class="icon-btn" data-act="hide-tip" aria-label="Dismiss tip">${icon('i-x')}</button>
+          <p><b>New here, or back after a while?</b> Take the one-minute tour of planning, the pantry, practice runs and the plating studio.<span class="kbd-hint"> Press <kbd>/</kbd> or <kbd>⌘K</kbd> to search everything.</span></p>
+          <button class="btn small" data-act="tour">Take the tour</button>
+          <button class="icon-btn" data-act="hide-tip" aria-label="Dismiss">${icon('i-x')}</button>
         </div>` : ''}
         <div id="results" aria-live="polite"></div>
       </section>`;
     renderResults();
     const q = $('#q');
     q.addEventListener('input', debounce(() => { ui.q = q.value; renderResults(); }, 90));
-    $('#sort').addEventListener('change', (e) => { ui.sort = e.target.value; saveUi(); renderResults(); });
+  }
+  const SORTS = [['book', 'Book order'], ['az', 'A–Z'], ['recent', 'Newest'], ['rated', 'Top rated'], ['cooked', 'Most cooked'], ['time', 'Quickest']];
+  const activeFilterCount = () => [ui.fav, ui.quick, ui.story].filter(Boolean).length + ui.tags.length;
+  function filterbarHtml() {
+    const n = activeFilterCount();
+    const chip = (act, on, label) => (on ? `<button class="chip ghost on removable" data-act="${act}" aria-label="Remove filter: ${esc(label)}">${label} ${icon('i-x')}</button>` : '');
+    return `<div class="filterbar">
+      <button class="chip ghost filter-btn ${n ? 'on' : ''}" data-act="filters" aria-haspopup="dialog">${icon('i-sliders')} Filter${n ? ` <small>${n}</small>` : ''}</button>
+      ${chip('toggle-fav-filter', ui.fav, 'Favorites')}${chip('toggle-quick', ui.quick, '30 min or less')}${chip('toggle-story', ui.story, 'Family stories')}
+      ${ui.tags.map((t) => `<button class="chip ghost on removable" data-act="tag-filter" data-tag="${esc(t)}" aria-label="Remove tag ${esc(t)}">#${esc(t)} ${icon('i-x')}</button>`).join('')}
+      ${n > 1 ? '<button class="linkish" data-act="clear-filters">Clear</button>' : ''}
+      <span class="sort-label">${esc((SORTS.find((x) => x[0] === ui.sort) || SORTS[0])[1])}</span>
+    </div>`;
+  }
+  function refreshFilters() {
+    const fb = $('.filterbar'); if (fb) fb.outerHTML = filterbarHtml();
+    renderResults();
+    if (sheet.el && sheet.el.classList.contains('filter-sheet')) {
+      $$('[data-act="toggle-fav-filter"], [data-act="toggle-quick"], [data-act="toggle-story"]', sheet.el).forEach((b) => { const on = { 'toggle-fav-filter': ui.fav, 'toggle-quick': ui.quick, 'toggle-story': ui.story }[b.dataset.act]; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
+      $$('[data-act="tag-filter"]', sheet.el).forEach((b) => b.classList.toggle('on', ui.tags.includes(b.dataset.tag)));
+      const done = $('[data-done]', sheet.el); if (done) done.textContent = `Show ${filteredRecipes().length} recipe${filteredRecipes().length === 1 ? '' : 's'}`;
+    }
+  }
+  function openFilters() {
+    sheet.open({ title: 'Filter & sort', cls: 'filter-sheet', body: `
+      <p class="eyebrow">Show</p>
+      <div class="filter-toggles">
+        <button class="ftog ${ui.fav ? 'on' : ''}" aria-pressed="${ui.fav}" data-act="toggle-fav-filter">${icon('i-heart')}<span>Favorites</span></button>
+        <button class="ftog ${ui.quick ? 'on' : ''}" aria-pressed="${ui.quick}" data-act="toggle-quick">${icon('i-clock')}<span>30 min or less</span></button>
+        <button class="ftog ${ui.story ? 'on' : ''}" aria-pressed="${ui.story}" data-act="toggle-story">${icon('i-quote')}<span>Family stories</span></button>
+      </div>
+      <p class="eyebrow">Sort by</p>
+      <div class="seg sort-seg" role="radiogroup">${SORTS.map(([v, l]) => `<button role="radio" aria-checked="${ui.sort === v}" class="${ui.sort === v ? 'on' : ''}" data-sort="${v}">${l}</button>`).join('')}</div>
+      <p class="eyebrow">Tags</p>
+      <div class="tagcloud">${tagsInUse().map(([t, n]) => `<button class="tag ${ui.tags.includes(t) ? 'on' : ''}" data-act="tag-filter" data-tag="${esc(t)}">#${esc(t)} <small>${n}</small></button>`).join('')}</div>
+      <div class="sheet-foot"><button class="btn ghost" data-act="clear-filters">Clear all</button><span></span><button class="btn primary" data-done data-act="sheet-close">Show ${filteredRecipes().length} recipes</button></div>`,
+    onMount: (el) => el.addEventListener('click', (e) => {
+      const b = e.target.closest('[data-sort]'); if (!b) return;
+      ui.sort = b.dataset.sort; saveUi();
+      $$('[data-sort]', el).forEach((x) => { x.classList.toggle('on', x === b); x.setAttribute('aria-checked', x === b); });
+      refreshFilters();
+    }) });
   }
 
   function filteredRecipes() {
@@ -881,9 +943,6 @@
     const hasQ = ui.q.trim().length > 0;
     const activeFilters = [ui.cat, ui.fav, ui.quick, ui.story].filter(Boolean).length + ui.tags.length;
     let html = '';
-    if (ui.tags.length) {
-      html += `<div class="active-tags">${ui.tags.map((t) => `<button class="tag on" data-act="tag-filter" data-tag="${esc(t)}">#${esc(t)} ${icon('i-x')}</button>`).join('')}</div>`;
-    }
     if (!list.length) {
       html += `<div class="empty">
         <p class="empty-title">${store.recipes.length ? 'No recipes match that.' : 'Your recipe book is empty.'}</p>
@@ -897,6 +956,7 @@
     if (hasQ) {
       html += `<p class="result-count">${list.length} result${list.length === 1 ? '' : 's'} for “${esc(ui.q)}”</p><div class="grid">${list.map(cardHtml).join('')}</div>`;
     } else if (ui.sort === 'book' && !ui.cat) {
+      if (!activeFilters) html += shelvesHtml() + '<h2 class="all-head">All recipes</h2>';
       const groups = [];
       list.forEach((x) => { const c = x.r.category || 'Uncategorized'; let g = groups.find((y) => y.c === c); if (!g) groups.push(g = { c, items: [] }); g.items.push(x); });
       html += groups.map((g) => `<section class="cat-section" style="--cat:var(--c-${catKey(g.c)})">
@@ -908,6 +968,23 @@
     if (!hasQ && !activeFilters) html = collectionsStripHtml() + html;
     el.innerHTML = html;
     hydratePhotos(el);
+  }
+
+  /** Curated rows above the full library. */
+  function shelvesHtml() {
+    const all = store.recipes;
+    const last = (r) => (store.meta(r.id).cooked || []).slice(-1)[0];
+    const days = (iso) => (Date.now() - Date.parse(iso)) / 86400000;
+    const shelves = [
+      ['Your favorites', all.filter((r) => store.meta(r.id).fav)],
+      ['Weeknight, 45 minutes or less', all.filter((r) => { const m = parseMinutes(r.time); return m && m <= 45 && /Mains|Soups|Sides/.test(r.category); })],
+      ['Island & Latin flavors', all.filter((r) => r.tags.some((t) => /jamaica|trinidad|caribbean|haiti|puerto|dominican|mexic|peru|latin|cuban/.test(t)))],
+      ['Ready for a revisit', all.filter((r) => last(r) && days(last(r)) > 30).sort((a, b) => last(a).localeCompare(last(b)))],
+      ['Recently added', all.slice().sort((a, b) => (b.createdAt || '').localeCompare(a.createdAt || '')).slice(0, 12)],
+      ['Not cooked yet', all.filter((r) => !last(r) && r.steps.length).sort((a, b) => (store.meta(b.id).rating || 0) - (store.meta(a.id).rating || 0) || (b.image ? 1 : 0) - (a.image ? 1 : 0)).slice(0, 14)],
+    ].filter(([, list]) => list.length >= 3).slice(0, 4);
+    return shelves.map(([title, list]) => `<section class="shelf" aria-label="${esc(title)}"><div class="strip-head"><h2>${esc(title)}</h2><small class="muted">${list.length}</small></div>
+      <div class="shelf-scroll">${list.slice(0, 14).map((r) => `<a class="shelf-card" href="#/r/${encodeURIComponent(r.id)}" style="--cat:var(--c-${catKey(r.category)})"><span class="shelf-art">${artHtml(r, store.meta(r.id))}</span><b>${esc(r.title.replace(/\s*\(.*\)$/, ''))}</b><small>${esc([r.time && r.time.replace(/\s*\(.*\)$/, ''), r.category].filter(Boolean).join(' · '))}</small></a>`).join('')}</div></section>`).join('');
   }
 
   const starsHtml = (n) => `<span class="stars" aria-label="${n} of 5 stars">${'★'.repeat(n)}<i>${'★'.repeat(5 - n)}</i></span>`;
@@ -1042,6 +1119,76 @@
   };
 
   let rTab = { id: '', tab: 'recipe' };
+  /** Library list beside the recipe on wide screens (tablets in landscape, desktops). */
+  function sideListHtml(id) {
+    const list = filteredRecipes().map((x) => x.r);
+    const label = ui.q.trim() ? `“${ui.q.trim()}”` : ui.cat || (activeFilterCount() ? 'Filtered recipes' : 'All recipes');
+    return `<aside class="side-list no-print" aria-label="Library"><div class="sl-head"><a href="#/" class="back">${icon('i-back')} Library</a><small>${esc(label)} · ${list.length}</small></div>
+      <nav>${list.map((r) => `<a class="sl-item ${r.id === id ? 'on' : ''}" href="#/r/${encodeURIComponent(r.id)}" ${r.id === id ? 'aria-current="page"' : ''}><span class="sl-art">${artHtml(r, store.meta(r.id), 'mini')}</span><span>${esc(r.title.replace(/\s*\(.*\)$/, ''))}</span></a>`).join('')}</nav></aside>`;
+  }
+  /** Light up the steps that use an ingredient, or the ingredients a step uses. */
+  function linkHighlight(root, ingKeys, stepEls) {
+    $$('.ing-list li.linked, .steps li.linked', root).forEach((x) => x.classList.remove('linked'));
+    if (!ingKeys) return;
+    ingKeys.forEach((k) => { const li = $(`.ing-col .ing-list li[data-k="${k}"]`, root); if (li) li.classList.add('linked'); });
+    (stepEls || []).forEach((x) => x.classList.add('linked'));
+  }
+  document.addEventListener('mouseover', (e) => {
+    if (route.name !== 'recipe' || matchMedia('(hover: none)').matches) return;
+    const ing = e.target.closest('.ing-col .ing-list li[data-k]');
+    const st = e.target.closest('.steps li[data-ing]');
+    if (ing) { const k = ing.dataset.k; linkHighlight(document, [k], $$('.steps li[data-ing]').filter((x) => x.dataset.ing.split(' ').includes(k))); }
+    else if (st) linkHighlight(document, st.dataset.ing.split(' ').filter(Boolean), [st]);
+    else if (!e.target.closest('.ing-col, .steps')) linkHighlight(document, null);
+  });
+
+  // ======================================================================
+  // Countertop view: big type, ingredients beside steps, screen stays on
+  // ======================================================================
+  const counter = { id: '', i: 0, wake: null };
+  async function counterWake(on) {
+    try {
+      if (on && !counter.wake && 'wakeLock' in navigator) counter.wake = await navigator.wakeLock.request('screen');
+      if (!on && counter.wake) { counter.wake.release(); counter.wake = null; }
+    } catch (e) { /* not allowed */ }
+  }
+  function viewCounter(main, id) {
+    const r = store.byId(id);
+    if (!r) { go('#/'); return; }
+    if (counter.id !== id) { counter.id = id; counter.i = 0; }
+    const f = getScale(r.id), cs = checkSet(r.id);
+    const steps = [];
+    r.steps.forEach((g) => g.items.forEach((t) => steps.push({ t, group: g.name })));
+    counter.i = Math.max(0, Math.min(steps.length - 1, counter.i));
+    const cur = steps[counter.i];
+    const hl = new Set(cur ? RB.ingredientsForStep(cur.t, r.ingredients).map((u) => u.g + ':' + u.i) : []);
+    let lastGroup = null;
+    main.innerHTML = `<div class="counter" style="--cat:var(--c-${catKey(r.category)}); --ct-size:${settings.counterSize || 1}">
+      <header class="ct-top">
+        <a class="icon-btn" href="#/r/${encodeURIComponent(r.id)}" aria-label="Leave countertop view">${icon('i-x')}</a>
+        <div class="ct-title"><b>${esc(r.title)}</b><small>Countertop view · screen stays on</small></div>
+        <div class="ct-tools">${unitsSeg()}<button class="icon-btn txt" data-act="ct-size" data-d="-1" aria-label="Smaller text">A−</button><button class="icon-btn txt" data-act="ct-size" data-d="1" aria-label="Bigger text">A+</button>
+          <a class="btn small" href="#/r/${encodeURIComponent(r.id)}/cook">${icon('i-play')} Cooking mode</a></div>
+      </header>
+      <div class="ct-body">
+        <aside class="ct-ing"><h2>Ingredients</h2>
+          ${r.ingredients.map((g, gi) => `${g.name ? `<h3 class="group">${esc(g.name)}</h3>` : ''}<ul class="ing-list">${g.items.map((it, ii) => `<li class="${hl.has(gi + ':' + ii) ? 'hl' : ''}"><label class="check ${cs.has(gi + ':' + ii) ? 'on' : ''}"><input type="checkbox" data-act="ing-check" data-k="${gi}:${ii}" ${cs.has(gi + ':' + ii) ? 'checked' : ''}><span class="box">${icon('i-check')}</span><span>${qtyHtml(ingText(it, f))}</span></label></li>`).join('')}</ul>`).join('')}
+        </aside>
+        <ol class="ct-steps">${steps.map((st, k) => { const head = st.group && st.group !== lastGroup ? `<li class="ct-group" aria-hidden="true">${esc(st.group)}</li>` : ''; lastGroup = st.group; return `${head}<li class="ct-step ${k < counter.i ? 'done' : ''} ${k === counter.i ? 'now' : ''}" data-act="ct-step" data-k="${k}" ${k === counter.i ? 'aria-current="step"' : ''}><span class="num">${k + 1}</span><div>${stepHtml(stepText(st.t), stepLabel(r, st.t, k + 1))}</div></li>`; }).join('')}</ol>
+      </div>
+      <footer class="ct-nav"><button class="btn big ghost" data-act="ct-move" data-d="-1" ${counter.i === 0 ? 'disabled' : ''}>${icon('i-left')} Back</button><span>Step ${counter.i + 1} of ${steps.length}</span><button class="btn big primary" data-act="ct-move" data-d="1">${counter.i === steps.length - 1 ? 'Done' : 'Next'} ${icon('i-right')}</button></footer>
+    </div>`;
+    counterWake(true);
+    const now = $('.ct-step.now', main);
+    if (now) now.scrollIntoView({ block: 'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  }
+  function counterMove(d) {
+    const r = store.byId(counter.id); if (!r) return;
+    const n = r.steps.reduce((a, g) => a + g.items.length, 0);
+    if (d > 0 && counter.i === n - 1) { toast('That’s the last step. Enjoy!', { label: 'Log as cooked', run: () => { const m = store.meta(r.id); store.setMeta(r.id, { cooked: (m.cooked || []).concat(nowIso()) }); toast('Logged as cooked today'); } }); return; }
+    counter.i = Math.max(0, Math.min(n - 1, counter.i + d));
+    viewCounter($('#main'), r.id);
+  }
   const actBtn = (act, ic, label, on, attrs) => `<button class="act ${on ? 'on' : ''}" data-act="${act}" ${attrs || ''}><span class="act-ic">${icon(ic)}</span><span class="act-lb">${esc(label)}</span></button>`;
   function tasteHistoryHtml(m) {
     const list = (m.taste || []).slice().reverse();
@@ -1063,9 +1210,10 @@
     let stepNo = 0;
     const cooked = m.cooked || [];
     const tab = rTab.id === r.id ? rTab.tab : 'recipe';
+    LS.set('wrb.recent', [r.id].concat(LS.get('wrb.recent', []).filter((x) => x !== r.id)).slice(0, 8));
     rTab = { id: r.id, tab };
     const yoursCount = (m.notes ? 1 : 0) + (m.photos || []).length + (hasStory(m) ? 1 : 0) + (m.runs || []).length + (m.taste || []).length;
-    main.innerHTML = `
+    main.innerHTML = `<div class="r-split">${sideListHtml(r.id)}
       <article class="recipe wrap" style="--cat:var(--c-${ck})">
         <nav class="crumbs no-print"><a href="#/" class="back">${icon('i-back')} All recipes</a>
           <a href="#/?cat=${encodeURIComponent(r.category || '')}" class="crumb-cat">${icon('c-' + ck)}${esc(r.category || 'Uncategorized')}</a></nav>
@@ -1089,6 +1237,7 @@
               ${actBtn('fav', 'i-heart', m.fav ? 'Saved' : 'Favorite', m.fav, `data-id="${esc(r.id)}" aria-pressed="${!!m.fav}"`)}
               ${actBtn('grocery-add', 'i-bag', groceries.has(r.id) ? 'On list' : 'Groceries', groceries.has(r.id))}
               ${actBtn('plan-recipe', 'i-calendar', 'Plan')}
+              ${nSteps ? `<a class="act" href="#/r/${encodeURIComponent(r.id)}/counter" title="Countertop view: big type, screen stays on"><span class="act-ic">${icon('i-tablet')}</span><span class="act-lb">Counter</span></a>` : ''}
               ${actBtn('ask-claude', 'i-sparkle', 'Ask Claude')}
               ${actBtn('share', 'i-share', 'Share')}
               <a class="act" href="#/edit/${encodeURIComponent(r.id)}"><span class="act-ic">${icon('i-pencil')}</span><span class="act-lb">Edit</span></a>
@@ -1130,7 +1279,7 @@
               ${r.ingredients.map((g, gi) => `
                 ${g.name || g.note ? `<h3 class="group">${esc(g.name || '')}${g.note ? ` <small>${esc(g.note)}</small>` : ''}</h3>` : ''}
                 <ul class="ing-list">
-                  ${g.items.map((it, ii) => `<li><label class="check ${cs.has(gi + ':' + ii) ? 'on' : ''}"><input type="checkbox" data-act="ing-check" data-k="${gi}:${ii}" ${cs.has(gi + ':' + ii) ? 'checked' : ''}><span class="box">${icon('i-check')}</span><span>${qtyHtml(ingText(it, f))}</span></label></li>`).join('')}
+                  ${g.items.map((it, ii) => `<li data-k="${gi}:${ii}"><label class="check ${cs.has(gi + ':' + ii) ? 'on' : ''}"><input type="checkbox" data-act="ing-check" data-k="${gi}:${ii}" ${cs.has(gi + ':' + ii) ? 'checked' : ''}><span class="box">${icon('i-check')}</span><span>${qtyHtml(ingText(it, f))}</span></label></li>`).join('')}
                 </ul>`).join('')}
               ${cs.size ? `<button class="linkish no-print" data-act="ing-reset">Uncheck all</button>` : ''}
             </div>
@@ -1143,7 +1292,7 @@
               ${r.steps.map((g, gi) => `
                 ${g.name ? `<h3 class="group">${esc(g.name)}</h3>` : ''}
                 <ol class="steps">
-                  ${g.items.map((s, si) => { stepNo++; const k = gi + ':' + si; return `<li class="${ds.has(k) ? 'done' : ''}" data-act="step-done" data-k="${k}"><span class="num">${stepNo}</span><div>${stepHtml(stepText(s), stepLabel(r, s, stepNo))}</div></li>`; }).join('')}
+                  ${g.items.map((s, si) => { stepNo++; const k = gi + ':' + si; const uses = RB.ingredientsForStep(s, r.ingredients); return `<li class="${ds.has(k) ? 'done' : ''}" data-act="step-done" data-k="${k}" data-ing="${uses.map((u) => u.g + ':' + u.i).join(' ')}"><span class="num">${stepNo}</span><div>${stepHtml(stepText(s), stepLabel(r, s, stepNo))}${uses.length ? `<p class="step-uses">${uses.slice(0, 6).map((u) => esc(RB.stripMd(ingText(u.item, f)).split(/,|\(/)[0].trim())).join('<i>·</i>')}${uses.length > 6 ? '<i>·</i>…' : ''}</p>` : ''}</div></li>`; }).join('')}
                 </ol>`).join('')}
             </section>` : ''}
             ${r.notes.length ? `<section class="panel notes"><h2>Notes</h2><ul>${r.notes.map((n) => `<li>${inlineMd(n)}</li>`).join('')}</ul></section>` : ''}
@@ -1177,7 +1326,7 @@
         ${nSteps ? `<div class="cook-bar no-print"><button class="btn primary big" data-act="cook">${icon('i-play')} Start cooking</button>
           <button class="icon-btn ${groceries.has(r.id) ? 'on' : ''}" data-act="grocery-add" aria-label="Add to groceries">${icon('i-bag')}</button>
           <button class="icon-btn" data-act="ask-claude" aria-label="Ask Claude">${icon('i-sparkle')}</button></div>` : ''}
-      </article>`;
+      </article></div>`;
     const notes = $('#my-notes');
     const saveNotes = debounce(() => { store.setMeta(r.id, { notes: notes.value }); $('#notes-status').textContent = 'Saved'; }, 500);
     notes.addEventListener('input', () => { $('#notes-status').textContent = 'Saving…'; saveNotes(); });
@@ -2191,17 +2340,28 @@ One or two sentences about the dish.
           <div><b>${cooked}</b><span>times cooked</span></div>
         </div>
 
-        <section class="panel">
+        <nav class="set-nav" aria-label="Settings sections">${[['appearance', 'Appearance'], ['kitchen', 'Kitchen'], ['claude', 'Claude'], ['sync', 'Sync'], ['backup', 'Backup'], ['reset', 'Reset']].map(([k, l]) => `<a href="#/settings" data-act="set-jump" data-k="${k}">${l}</a>`).join('')}</nav>
+
+        <section class="panel" id="set-appearance">
           <h2>Appearance &amp; voice</h2>
+          <div class="field"><span>Text size <small>for every page</small></span>
+            <div class="seg ts-seg" role="radiogroup">${[[0.9, 'Small'], [1, 'Default'], [1.12, 'Large'], [1.25, 'Extra large']].map(([v, l]) => `<button role="radio" aria-checked="${settings.textSize === v}" class="${settings.textSize === v ? 'on' : ''}" data-act="text-size" data-v="${v}">${l}</button>`).join('')}</div></div>
           <div class="field"><span>Theme</span>
             <div class="seg" role="radiogroup">${['auto', 'light', 'dark'].map((t) => `<button role="radio" aria-checked="${settings.theme === t}" class="${settings.theme === t ? 'on' : ''}" data-act="theme" data-theme="${t}">${t[0].toUpperCase() + t.slice(1)}</button>`).join('')}</div></div>
           <label class="field"><span>Voice language <small>for dictation, voice search and read-aloud</small></span>
             <select id="lang">${langs.map(([v, l]) => `<option value="${v}" ${settings.lang === v ? 'selected' : ''}>${l}</option>`).join('')}${langs.some(([v]) => v === settings.lang) ? '' : `<option selected value="${esc(settings.lang)}">${esc(settings.lang)}</option>`}</select></label>
           ${voice.supported ? '' : '<p class="muted small">Voice input isn’t available in this browser. Chrome, Edge and Safari support it.</p>'}
-          <div class="field"><span>Units <small>for ingredients, oven temperatures and the grocery list</small></span>${unitsSeg()}</div>
         </section>
 
-        <section class="panel">
+        <section class="panel" id="set-kitchen">
+          <h2>Kitchen</h2>
+          <div class="field"><span>Units <small>for ingredients, oven temperatures and the grocery list</small></span>${unitsSeg()}</div>
+          <label class="field"><span>Pantry staples <small>always on hand; tucked away on the grocery list</small></span><textarea id="staples" rows="2">${esc(staplesList().join(', '))}</textarea></label>
+          <label class="field"><span>Your plates &amp; bowls <small>the plating studio designs with these</small></span><input id="set-plates" value="${esc(settings.plates || '')}" placeholder="11-inch white rimmed plates, shallow pasta bowls, black slate board"></label>
+          <div class="row end"><button class="btn small" data-act="kitchen-save">Save kitchen settings</button></div>
+        </section>
+
+        <section class="panel" id="set-claude">
           <h2>${icon('i-sparkle')} Claude</h2>
           <p class="small">Powers <b>Ask Claude</b> on every recipe and <b>Snap a photo</b> in Add a recipe. Inside the Claude app it works with no setup. On your own site, paste an Anthropic API key; it stays on this device and is sent only to Anthropic.</p>
           <form data-form="ai" class="gh-form">
@@ -2210,7 +2370,7 @@ One or two sentences about the dish.
           </form>
         </section>
 
-        <section class="panel">
+        <section class="panel" id="set-sync">
           <h2>${icon('i-cloud')} Sync across devices</h2>
           <p class="small">Recipes are saved on this device automatically. To keep your phone, tablet and computer in sync, connect GitHub: the app saves the book to <code>${esc(gh.path)}</code> in your site’s repo, and every device pulls from it. The same file is the book everyone sees on your site.</p>
           <form data-form="gh" class="gh-form">
@@ -2235,7 +2395,7 @@ One or two sentences about the dish.
           </form>
         </section>
 
-        <section class="panel">
+        <section class="panel" id="set-backup">
           <h2>Backup &amp; export</h2>
           <div class="row wrap-row">
             <button class="btn" data-act="export-json">${icon('i-download')} Backup (.json)</button>
@@ -2250,7 +2410,7 @@ One or two sentences about the dish.
           <p class="small"><b>iPhone:</b> open in Safari → Share → <b>Add to Home Screen</b>. <b>Android:</b> Chrome menu → <b>Install app</b>. It opens full-screen, works offline, and (on Android) shows up in the Share menu so you can send recipe links straight to it.</p>
         </section>
 
-        <section class="panel danger-zone">
+        <section class="panel danger-zone" id="set-reset">
           <h2>Reset</h2>
           <div class="row wrap-row">
             <button class="btn" data-act="restore-seed">${icon('i-refresh')} Restore original recipes</button>
@@ -3609,6 +3769,101 @@ Judge composition, height, color contrast, cleanliness of the rim, portion and h
   }
 
   // ======================================================================
+  // Search everything (⌘K / "/")
+  // ======================================================================
+  const recentViewed = () => LS.get('wrb.recent', []).filter((id) => store.byId(id));
+  function paletteItems(q) {
+    const t = norm(q).trim();
+    const today = RK.dateKey(new Date());
+    const lc = LS.get('wrb.lastCook', null);
+    const actions = [
+      ['Plan tonight’s dinner', 'i-calendar', () => openPlanPicker(today), 'plan meal today dinner'],
+      ['This week’s meal plan', 'i-calendar', () => go('#/plan'), 'plan week calendar'],
+      ['Groceries', 'i-bag', () => go('#/groceries'), 'shopping list grocery'],
+      ['What can I make?', 'i-basket', () => go('#/pantry'), 'pantry fridge ingredients have'],
+      ['Leftovers to use up', 'i-clock', () => go('#/pantry'), 'leftovers use soon'],
+      ['Collections', 'i-grid', () => go('#/collections'), 'menus occasion'],
+      ['Techniques & tips', 'i-chef', () => go('#/tips'), 'notebook chef tips cheat codes'],
+      ['Add a recipe', 'i-plus', () => go('#/add'), 'new import link voice photo chat'],
+      ['Settings', 'i-gear', () => go('#/settings'), 'preferences sync units text size theme'],
+      ['Text size & display', 'i-gear', () => { go('#/settings'); setTimeout(() => { const a = document.getElementById('set-appearance'); if (a) a.scrollIntoView({ behavior: 'smooth' }); }, 80); }, 'font accessibility bigger larger dark mode theme'],
+      ['Take the tour', 'i-sparkle', () => openTour(), 'help tour features new'],
+    ];
+    if (lc && !lc.done) actions.unshift(['Continue cooking: ' + lc.title, 'i-play', () => go(lc.hash), 'resume continue cooking']);
+    const out = [];
+    const acts = t ? actions.filter((a) => norm(a[0] + ' ' + a[3]).includes(t)) : actions.slice(0, 6);
+    acts.forEach((a) => out.push({ group: 'Go to', label: a[0], icon: a[1], run: a[2] }));
+    const recipes = t ? search(q).slice(0, 8).map((x) => x.r) : recentViewed().map((id) => store.byId(id)).slice(0, 6);
+    recipes.forEach((r) => out.push({ group: t ? 'Recipes' : 'Recently viewed', label: r.title, sub: [r.category, r.time && r.time.replace(/\s*\(.*\)$/, '')].filter(Boolean).join(' · '), art: r, run: () => go('#/r/' + encodeURIComponent(r.id)) }));
+    if (t) {
+      store.book.collections.filter((c) => norm(c.name + ' ' + c.description).includes(t)).slice(0, 3)
+        .forEach((c) => out.push({ group: 'Collections', label: c.name, sub: colRecipes(c).length + ' recipes', icon: 'i-grid', run: () => go('#/c/' + encodeURIComponent(c.id)) }));
+      allTips().filter((x) => norm(x.title + ' ' + x.rule).includes(t)).slice(0, 4)
+        .forEach((x) => out.push({ group: 'Techniques', label: x.title, sub: x.rule, icon: 'i-chef', run: () => go('#/tips?t=' + encodeURIComponent(x.id)) }));
+      out.push({ group: 'Search', label: `Every recipe that mentions “${q.trim()}”`, icon: 'i-search', run: () => { ui.q = q.trim(); go('#/'); setTimeout(() => { const i = $('#q'); if (i) i.value = ui.q; renderResults(); }, 30); } });
+    }
+    return out;
+  }
+  function openPalette() {
+    if (sheet.el && sheet.el.classList.contains('palette')) return;
+    let items = [], sel = 0;
+    sheet.open({ title: 'Search everything', cls: 'palette', body: `
+      <div class="searchbar pal-search">${icon('i-search', 'lead')}<input id="pal-q" type="search" placeholder="Recipes, ingredients, techniques, actions…" autocomplete="off" aria-label="Search everything" autofocus></div>
+      <div class="pal-list" role="listbox" aria-label="Results"></div>
+      <p class="pal-hint muted small"><kbd>↑</kbd> <kbd>↓</kbd> to move · <kbd>Enter</kbd> to open · <kbd>Esc</kbd> to close</p>`,
+    onMount: (el) => {
+      const inp = $('#pal-q', el), list = $('.pal-list', el);
+      const draw = () => {
+        items = paletteItems(inp.value); sel = Math.min(sel, Math.max(0, items.length - 1));
+        let lastGroup = '';
+        list.innerHTML = items.map((it, i) => { const head = it.group !== lastGroup ? `<p class="pal-group">${esc(it.group)}</p>` : ''; lastGroup = it.group;
+          return head + `<button class="pal-item ${i === sel ? 'on' : ''}" role="option" aria-selected="${i === sel}" data-i="${i}">${it.art ? `<span class="pal-art">${artHtml(it.art, store.meta(it.art.id), 'mini')}</span>` : `<span class="pal-ic">${icon(it.icon || 'i-search')}</span>`}<span class="pal-txt"><b>${esc(it.label)}</b>${it.sub ? `<small>${esc(it.sub)}</small>` : ''}</span></button>`; }).join('') || '<p class="muted small pal-empty">Nothing found. Try an ingredient, a dish or a technique.</p>';
+        hydratePhotos(list);
+      };
+      const run = (i) => { const it = items[i]; if (!it) return; sheet.close(true); it.run(); };
+      inp.addEventListener('input', () => { sel = 0; draw(); });
+      inp.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowDown') { e.preventDefault(); sel = Math.min(items.length - 1, sel + 1); draw(); const b = $('.pal-item.on', list); if (b) b.scrollIntoView({ block: 'nearest' }); }
+        else if (e.key === 'ArrowUp') { e.preventDefault(); sel = Math.max(0, sel - 1); draw(); const b = $('.pal-item.on', list); if (b) b.scrollIntoView({ block: 'nearest' }); }
+        else if (e.key === 'Enter') { e.preventDefault(); run(sel); }
+      });
+      list.addEventListener('click', (e) => { const b = e.target.closest('.pal-item'); if (b) run(+b.dataset.i); });
+      draw();
+      inp.focus(); setTimeout(() => inp.focus(), 30);
+    } });
+  }
+
+  // ======================================================================
+  // Tour + "new" dots
+  // ======================================================================
+  const TOUR = [
+    ['i-search', 'Search everything', 'Press / or ⌘K, or tap the search icon, to jump to any recipe, technique, collection or action.'],
+    ['i-calendar', 'Plan the week', 'Drop dishes on days, get pairing ideas, see a timing plan that works back from dinner time, and send the week to groceries.'],
+    ['i-basket', 'What can I make?', 'List what you have, or snap your fridge. Log leftovers and get recipes that use them before they turn.'],
+    ['i-stopwatch', 'Practice runs', 'Time every step in cooking mode, score taste, plating and timing, and watch your runs get faster.'],
+    ['i-sparkle', 'Plating studio', 'Claude designs plating concepts for any dish. Build it step by step, then check your plate against the sketch.'],
+    ['i-tablet', 'Countertop view', 'Big type, ingredients beside steps and the screen kept on. Open it from any recipe’s action row.'],
+  ];
+  function openTour() {
+    let k = 0;
+    const body = () => `<div class="tour"><div class="tour-ic">${icon(TOUR[k][0])}</div><p class="eyebrow">${k + 1} of ${TOUR.length}</p><h3>${esc(TOUR[k][1])}</h3><p>${esc(TOUR[k][2])}</p>
+      <div class="tour-dots">${TOUR.map((_, i) => `<i class="${i === k ? 'on' : ''}"></i>`).join('')}</div>
+      <div class="sheet-foot"><button class="btn ghost" data-t="skip">${k ? 'Back' : 'Skip'}</button><span></span><button class="btn primary" data-t="next">${k === TOUR.length - 1 ? 'Start cooking' : 'Next'}</button></div></div>`;
+    sheet.open({ title: 'What’s here', cls: 'tour-sheet', body: body(), onMount: (el) => el.addEventListener('click', (e) => {
+      const b = e.target.closest('[data-t]'); if (!b) return;
+      if (b.dataset.t === 'next') { if (k === TOUR.length - 1) { sheet.close(true); LS.set(K.tips, true); const tip = $('.tour-tip'); if (tip) tip.remove(); return; } k++; }
+      else if (k) k--; else { sheet.close(true); return; }
+      $('.sheet-content', el).innerHTML = body();
+    }) });
+  }
+  const NEW_NAV = ['plan', 'collections', 'tips'];
+  function updateNewDots() {
+    const seen = LS.get('wrb.seen', {});
+    if (NEW_NAV.includes(navFor(route.name)) && !seen[navFor(route.name)]) { seen[navFor(route.name)] = true; LS.set('wrb.seen', seen); }
+    $$('[data-nav]').forEach((a) => a.classList.toggle('has-new', NEW_NAV.includes(a.dataset.nav) && !seen[a.dataset.nav]));
+  }
+
+  // ======================================================================
   // GitHub sync
   // ======================================================================
   const b64encode = (str) => { const bytes = new TextEncoder().encode(str); let bin = ''; for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000)); return btoa(bin); };
@@ -3707,18 +3962,17 @@ Judge composition, height, color contrast, cleanliness of the rim, portion and h
     switch (act) {
       // library
       case 'cat': ui.cat = el.dataset.cat; saveUi(); $$('.cats .chip').forEach((c) => c.classList.toggle('on', c === el)); renderResults(); break;
-      case 'toggle-fav-filter': ui.fav = !ui.fav; saveUi(); el.classList.toggle('on', ui.fav); renderResults(); break;
-      case 'toggle-quick': ui.quick = !ui.quick; saveUi(); el.classList.toggle('on', ui.quick); renderResults(); break;
-      case 'toggle-tags': ui.showTags = !ui.showTags; saveUi(); $('#tagcloud').hidden = !ui.showTags; el.setAttribute('aria-expanded', ui.showTags); el.classList.toggle('on', ui.showTags || ui.tags.length > 0); break;
+      case 'filters': openFilters(); break;
+      case 'toggle-fav-filter': ui.fav = !ui.fav; saveUi(); refreshFilters(); break;
+      case 'toggle-quick': ui.quick = !ui.quick; saveUi(); refreshFilters(); break;
       case 'tag-filter': {
         const t = el.dataset.tag;
         ui.tags = ui.tags.includes(t) ? ui.tags.filter((x) => x !== t) : ui.tags.concat(t); saveUi();
-        $$('#tagcloud .tag').forEach((b) => b.classList.toggle('on', ui.tags.includes(b.dataset.tag)));
-        const tb = $('[data-act="toggle-tags"]'); if (tb) tb.innerHTML = '# Tags' + (ui.tags.length ? ' · ' + ui.tags.length : '');
-        renderResults(); break;
+        if (route.name !== 'book') { go('#/'); break; }
+        refreshFilters(); break;
       }
-      case 'toggle-story': ui.story = !ui.story; saveUi(); el.classList.toggle('on', ui.story); renderResults(); break;
-      case 'clear-filters': ui.q = ''; ui.cat = ''; ui.tags = []; ui.fav = false; ui.quick = false; ui.story = false; saveUi(); viewBook($('#main')); break;
+      case 'toggle-story': ui.story = !ui.story; saveUi(); refreshFilters(); break;
+      case 'clear-filters': ui.tags = []; ui.fav = false; ui.quick = false; ui.story = false; if (!sheet.el) { ui.q = ''; ui.cat = ''; } saveUi(); if (sheet.el) refreshFilters(); else viewBook($('#main')); break;
       case 'hide-tip': LS.set(K.tips, true); el.closest('.tip').remove(); break;
       case 'voice-search': {
         const q = $('#q');
@@ -3763,9 +4017,16 @@ Judge composition, height, color contrast, cleanliness of the rim, portion and h
         if (e.target.closest('a, button')) break;
         const set = doneSet(rid); const k = el.dataset.k;
         if (set.has(k)) set.delete(k); else set.add(k);
-        el.classList.toggle('done', set.has(k)); break;
+        el.classList.toggle('done', set.has(k));
+        if (el.dataset.ing) { linkHighlight(document, el.dataset.ing.split(' ').filter(Boolean), [el]); clearTimeout(linkHighlight.t); linkHighlight.t = setTimeout(() => linkHighlight(document, null), 2600); }
+        break;
       }
-      case 'timer': e.stopPropagation(); timers.add(+el.dataset.secs, el.dataset.label || 'Timer', rid); break;
+      case 'timer': {
+        e.stopPropagation(); timers.add(+el.dataset.secs, el.dataset.label || 'Timer', rid);
+        const ct = route.name === 'counter' && el.closest('.ct-step');
+        if (ct && +ct.dataset.k !== counter.i) { counter.i = +ct.dataset.k; viewCounter($('#main'), counter.id); }
+        break;
+      }
       case 'timer-toggle': timers.toggle(el.dataset.tid); break;
       case 'timer-plus': timers.plus(el.dataset.tid, 60); break;
       case 'timer-remove': timers.remove(el.dataset.tid); break;
@@ -3822,7 +4083,7 @@ Judge composition, height, color contrast, cleanliness of the rim, portion and h
       case 'units': {
         settings.units = el.dataset.u; saveSettings();
         $$('.seg.units button').forEach((b) => { const on = b.dataset.u === settings.units; b.classList.toggle('on', on); b.setAttribute('aria-checked', on); });
-        if (cook.state) { cook.renderSheet(); cook.renderStage(0); } else if (route.name === 'recipe') viewRecipe($('#main'), rid);
+        if (cook.state) { cook.renderSheet(); cook.renderStage(0); } else if (route.name === 'recipe') viewRecipe($('#main'), rid); else if (route.name === 'counter') viewCounter($('#main'), rid);
         break;
       }
       case 'photo-view': openPhoto(el.dataset.pid); break;
@@ -3890,6 +4151,11 @@ Judge composition, height, color contrast, cleanliness of the rim, portion and h
         break;
       }
       case 'sheet-close': sheet.close(); break;
+      case 'palette': openPalette(); break;
+      case 'ct-step': if (!e.target.closest('a, button')) { counter.i = +el.dataset.k; viewCounter($('#main'), counter.id); } break;
+      case 'ct-move': counterMove(+el.dataset.d); break;
+      case 'ct-size': settings.counterSize = Math.max(0.8, Math.min(1.7, Math.round(((settings.counterSize || 1) + (+el.dataset.d) * 0.12) * 100) / 100)); saveSettings(); $('.counter').style.setProperty('--ct-size', settings.counterSize); break;
+      case 'tour': openTour(); break;
       case 'cook-size': settings.cookSize = Math.max(0.8, Math.min(1.8, Math.round((settings.cookSize + (+el.dataset.d) * 0.15) * 100) / 100)); saveSettings(); $('.cook').style.setProperty('--cook-size', settings.cookSize); break;
       // add flows
       case 'new-blank': if (draft) { e.preventDefault(); if (await ask('Start a blank recipe? Your unsaved draft will be discarded.', { ok: 'Start blank' })) { draft = null; LS.del(K.draft); go('#/new'); } } break;
@@ -3955,6 +4221,9 @@ Judge composition, height, color contrast, cleanliness of the rim, portion and h
       }
       case 'g-view': settings.gView = el.dataset.v; saveSettings(); viewGroceries($('#main')); break;
       case 'staples-save': settings.staples = $('#staples').value.split(/[,\n]/).map((x) => x.trim().toLowerCase()).filter(Boolean); saveSettings(); pantryCommon = null; toast('Pantry staples saved'); viewGroceries($('#main')); break;
+      case 'kitchen-save': settings.staples = $('#staples').value.split(/[,\n]/).map((x) => x.trim().toLowerCase()).filter(Boolean); settings.plates = $('#set-plates').value.trim(); saveSettings(); pantryCommon = null; toast('Kitchen settings saved'); break;
+      case 'set-jump': { e.preventDefault(); const t = document.getElementById('set-' + el.dataset.k); if (t) t.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' }); break; }
+      case 'text-size': settings.textSize = +el.dataset.v; saveSettings(); applyTheme(); $$('.ts-seg button').forEach((b) => { const on = +b.dataset.v === settings.textSize; b.classList.toggle('on', on); b.setAttribute('aria-checked', on); }); break;
       case 'staples-reset': settings.staples = null; saveSettings(); pantryCommon = null; viewGroceries($('#main')); break;
       // meal plan
       case 'plan-pick': openPlanPicker(el.dataset.day); break;
@@ -4100,17 +4369,21 @@ Judge composition, height, color contrast, cleanliness of the rim, portion and h
   });
 
   document.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); if (!cook.state) openPalette(); return; }
     if (e.key === 'Escape' && !$('#sheet-root').hidden) { e.preventDefault(); e.stopImmediatePropagation(); sheet.close(); return; }
+    if (!$('#sheet-root').hidden) return; // page shortcuts stay quiet while a sheet is open
     if (cook.state) return;
     if (e.target.matches('input, textarea, select, [contenteditable]')) { if (e.key === 'Escape') e.target.blur(); return; }
     if (e.metaKey || e.ctrlKey || e.altKey) return;
-    if (e.key === '/') { e.preventDefault(); if (route.name !== 'book') { go('#/'); setTimeout(() => $('#q') && $('#q').focus(), 50); } else $('#q').focus(); }
+    if (route.name === 'counter' && (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'ArrowLeft')) { e.preventDefault(); counterMove(e.key === 'ArrowLeft' ? -1 : 1); return; }
+    if (e.key === '/') { e.preventDefault(); openPalette(); }
     else if (e.key === 'n') go('#/add');
     else if (e.key === 'c' && route.name === 'recipe') go('#/r/' + encodeURIComponent(route.params.id) + '/cook');
   });
 
   function applyTheme() {
     if (settings.theme === 'auto') delete document.documentElement.dataset.theme; else document.documentElement.dataset.theme = settings.theme;
+    document.documentElement.style.setProperty('--ts', settings.textSize || 1);
   }
 
   // ======================================================================
@@ -4132,7 +4405,7 @@ Judge composition, height, color contrast, cleanliness of the rim, portion and h
       if (sharedUrl && (!sharedText || sharedText.trim().length < 300)) { viewAddWeb($('#main'), sharedUrl); }
       else { viewAddChat($('#main'), sharedText); handleParsed(RB.parseText(sharedText)); }
     } else render();
-    window.addEventListener('hashchange', render);
+    window.addEventListener('hashchange', navigate);
     updateBadges();
     timers.renderTray(); if (timers.list.length) { timers.loop(); timers.checkRing(); }
     if (sync.enabled()) sync.run(true);
