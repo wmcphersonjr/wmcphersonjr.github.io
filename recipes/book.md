@@ -12,7 +12,7 @@ Every recipe pulled from past chats, compiled in one place. Grouped by category.
 
 **Baking and Sweets:** Sugar Moon Espresso Cornflake Cookies (Copycat) · Bakery Cookie Skillet · Soft and Chewy Oatmeal Chocolate Chip Cookies · Pan de Muerto · Latino Foodie Pan de Muerto · Gingerbread Latte Cookies · Chocolate Soufflés · Conchas · Peach Cobbler · Warm Sweet Potato-Apple Pone · Strawberry Shortcake · London Fog Loaf Cake · Homemade Cinnamon Rolls · Kevin Gillespie's Warm Banana Pudding with Meringue
 
-**Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs · Creamy Lemon Pesto Pasta · Oxtail and Butter Beans · Birria de Res (Beef Birria) · Quesabirria Tacos · Stew Peas and Spinners · Spicy Red Pesto Pasta · Ricotta Pasta Alla Vodka · Pasta Alla Norma Sorta · Grilled Cheese With Apples and Apple Butter · Golden Krust Jamaican Oxtail Stew · Roast Chicken With Maple Butter and Rosemary · Smoked Mackerel Rundown · Peruvian Roasted Chicken With Spicy Cilantro Sauce · Peruvian Pork Stew With Chiles, Lime and Apples
+**Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs · Creamy Lemon Pesto Pasta · Oxtail and Butter Beans · Birria de Res (Beef Birria) · Quesabirria Tacos · Stew Peas and Spinners · Spicy Red Pesto Pasta · Ricotta Pasta Alla Vodka · Pasta Alla Norma Sorta · Grilled Cheese With Apples and Apple Butter · Golden Krust Jamaican Oxtail Stew · Roast Chicken With Maple Butter and Rosemary · Smoked Mackerel Rundown · Peruvian Roasted Chicken With Spicy Cilantro Sauce · Peruvian Pork Stew With Chiles, Lime and Apples · Closed On Sunday Chicken Sandwich
 
 **Sides and Salads:** Roasted Dumpling Squash · Baked Garlic Rice · Buss Up Shut (Paratha-Style Roti)
 
@@ -2204,6 +2204,61 @@ A largely hands-off stew of browned pork shoulder simmered with onions, apples, 
 - By Mark Bittman for NYT Cooking.
 
 *Source: NYT Cooking (Mark Bittman): https://cooking.nytimes.com/search?q=Peruvian%20Pork%20Stew%20With%20Chiles%2C%20Lime%20and%20Apples*
+
+---
+
+## Closed On Sunday Chicken Sandwich
+
+Kevin Gillespie's take on the Chick-fil-A classic: chicken breasts brined in pickle juice and ranch seasoning, double-dredged and fried golden, on honey-butter toasted rolls with a fiery homemade spicy pickle mayonnaise.
+
+**Tags:** chicken sandwich, fried chicken, copycat, pickles, munchies
+**Time:** 4 hr (30 min prep)
+
+**Serves 4**
+
+**Spicy Pickle Mayonnaise**
+- 2 large egg yolks
+- 1 garlic clove
+- 1/4 cup (68 grams) Frank's Red Hot Xtra Hot cayenne pepper sauce
+- 1/4 tsp kosher salt
+- 1/2 cup (83 grams) dill pickle chips, patted dry and packed firmly
+- 1 1/2 cups (375 ml) grapeseed oil
+
+**Chicken Sandwich**
+- 4 boneless skinless chicken breasts
+- 1 jar pickles
+- 5 (1-ounce) packets Hidden Valley Ranch original dry salad dressing mix
+- 1/4 cup (105 grams) granulated sugar
+- 3 tbsp (30 grams) kosher salt
+- Canola oil, for frying
+- 1 cup (132 grams) all-purpose flour
+- 1 tbsp Espelette pepper
+- 1 tsp freshly ground black pepper
+- 4 tbsp (59 grams) unsalted butter
+- 2 tbsp (43 grams) honey
+- 8 King's Hawaiian sandwich buns or brioche rolls
+- 1 cup spicy pickle mayonnaise (above)
+
+**Method**
+1. **Mayonnaise base:** Put the egg yolks in a small food processor fitted with the metal blade. Add the garlic and hot sauce and process until fluffy, about 30 seconds. Add the salt and all but 2 tablespoons of the pickles and process another 30 seconds.
+2. **Emulsify:** With the processor running, add 1 tablespoon of the oil drop by drop to establish the emulsion. Keep drizzling in the oil very slowly until the processor makes a gurgling sound, then a quieter, choppy sound as the oil is incorporated and the mayonnaise thickens.
+3. **Finish the mayo:** Turn off the processor, add the rest of the pickles and pulse just to combine. Taste and adjust with more salt or hot sauce, or thin with a little water. If you add anything, process a final 10 seconds. Covered, it keeps in the fridge up to 1 week.
+4. **Prep the chicken:** Trim the connective tissue from the chicken breasts. Lightly pound the thickest end to match the rest of the breast; even thickness means even cooking. Don't worry if they look thin and larger than the buns; they shrink and puff as they cook.
+5. **Brine:** Strain the pickles over a large bowl, keeping the pickles and juice separately; you should have about 1 cup of juice. Whisk 2 cups (500 ml) water, 4 packets of the ranch mix, the sugar and 1 tablespoon of the salt into the pickle juice. Pour into a large zip-top bag with the chicken, press out the air, seal and refrigerate at least 1 hour or up to 3 hours. Don't go past 3 hours; too long in the brine toughens the chicken.
+6. **Heat the oil:** Heat the oil in a deep fryer to 350°F. The fairly low temperature lets the chicken cook through before the crust gets too dark. Line a baking sheet with paper towels and set a cooling rack on top.
+7. **Seasoned flour:** In a medium bowl, whisk together the flour, the remaining packet of ranch mix, the remaining 2 tablespoons salt, the Espelette pepper and the black pepper.
+8. **Dredge twice:** One at a time, pull the chicken from the brine and, while still wet, dredge in the flour; shake off the excess and set on the rack. Let rest until the flour absorbs the brine and the breading turns a little sticky, about 5 minutes. Then toss each piece back in the flour and shake off the excess.
+9. **Fry:** Deep-fry until cooked through and golden brown and delicious, about 8 minutes. Meanwhile, wash and dry the cooling rack and set it over a clean baking sheet. Transfer the chicken to the rack to drain.
+10. **Honey butter:** Heat a large skillet or flat-top griddle over medium. Melt the butter in a small saucepan, whisk in the honey, bring to a simmer and take off the heat.
+11. **Toast:** Split the rolls, brush both cut sides with the honey butter and toast cut side down until golden brown, about 1 minute.
+12. **Build:** Spread a thin layer of spicy pickle mayonnaise on the bottom half of each roll and top with a chicken breast. Spread a little more mayonnaise on the chicken and close with the top of the roll.
+
+**Notes**
+- By Kevin Gillespie for Munchies (Vice), October 2017.
+- Save the strained pickles from the jar for serving on the sandwiches.
+- The recipe makes 4 breasts but calls for 8 rolls: split larger breasts in half, or keep the extra rolls for seconds.
+
+*Source: Vice Munchies (Kevin Gillespie): https://www.vice.com/en/article/chick-fil-a-chicken-sandwich-recipe/*
 
 ---
 

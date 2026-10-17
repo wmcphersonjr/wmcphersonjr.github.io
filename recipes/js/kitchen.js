@@ -480,6 +480,9 @@
     (recipe.ingredients || []).forEach((g) => g.items.forEach((text) => {
       const p = parseIngredient(text);
       if (!p.name || p.name === 'water' || /to taste|for serving|for garnish|for frying|for greasing|for dusting|as needed/i.test(p.raw)) return;
+      // a component made earlier in the same recipe ("1 cup spicy pickle mayonnaise (above)") is already counted
+      if (/\((?:from )?above\)|\bsee above\b|\(recipe (?:above|follows)\)/i.test(p.raw)) return;
+      if ((recipe.ingredients || []).some((g2) => g2.name && !g2.items.includes(text) && normalizeName(g2.name) === p.name)) return;
       considered++;
       let e = nutrEntry(p.name);
       if (!e) { missed.push(p.raw); return; }
