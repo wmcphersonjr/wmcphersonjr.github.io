@@ -12,7 +12,7 @@ Every recipe pulled from past chats, compiled in one place. Grouped by category.
 
 **Baking and Sweets:** Sugar Moon Espresso Cornflake Cookies (Copycat) · Bakery Cookie Skillet · Soft and Chewy Oatmeal Chocolate Chip Cookies · Pan de Muerto · Latino Foodie Pan de Muerto · Gingerbread Latte Cookies · Chocolate Soufflés · Conchas · Peach Cobbler · Warm Sweet Potato-Apple Pone · Strawberry Shortcake · London Fog Loaf Cake · Homemade Cinnamon Rolls · Kevin Gillespie's Warm Banana Pudding with Meringue · Jamaican Banana Fritters
 
-**Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs · Creamy Lemon Pesto Pasta · Oxtail and Butter Beans · Birria de Res (Beef Birria) · Quesabirria Tacos · Stew Peas and Spinners · Spicy Red Pesto Pasta · Ricotta Pasta Alla Vodka · Pasta Alla Norma Sorta · Grilled Cheese With Apples and Apple Butter · Golden Krust Jamaican Oxtail Stew · Roast Chicken With Maple Butter and Rosemary · Smoked Mackerel Rundown · Peruvian Roasted Chicken With Spicy Cilantro Sauce · Peruvian Pork Stew With Chiles, Lime and Apples · Closed On Sunday Chicken Sandwich · Crack Fried Rice · Brown Stew Chicken
+**Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs · Creamy Lemon Pesto Pasta · Oxtail and Butter Beans · Birria de Res (Beef Birria) · Quesabirria Tacos · Stew Peas and Spinners · Spicy Red Pesto Pasta · Ricotta Pasta Alla Vodka · Pasta Alla Norma Sorta · Grilled Cheese With Apples and Apple Butter · Golden Krust Jamaican Oxtail Stew · Roast Chicken With Maple Butter and Rosemary · Smoked Mackerel Rundown · Peruvian Roasted Chicken With Spicy Cilantro Sauce · Peruvian Pork Stew With Chiles, Lime and Apples · Closed On Sunday Chicken Sandwich · Crack Fried Rice · Brown Stew Chicken · Gochujang Chicken and Rice
 
 **Sides and Salads:** Roasted Dumpling Squash · Baked Garlic Rice · Buss Up Shut (Paratha-Style Roti)
 
@@ -2443,6 +2443,53 @@ Chicken thighs and drumsticks marinated in green seasoning, spices and browning,
 **Notes**
 - From an Instagram post (the account name is cut off in the screenshot): "This was too good… Are you picking this or oxtail?"
 - Pairs with rice and peas.
+
+---
+
+## Gochujang Chicken and Rice
+
+Crisp, soy-honey glazed chicken thighs sliced over rice in a creamy gochujang and coconut broth, finished with fried onions and curled green onions.
+
+**Tags:** korean-inspired, gochujang, chicken, rice, coconut, weeknight
+**Yield:** Serves 2
+**Image:** images/gochujang-chicken-and-rice.jpg
+
+**Gochujang broth**
+- 2 tbsp gochujang
+- 300 ml coconut milk
+- 2 garlic cloves
+- 1/2 chicken stock cube
+- 1 tsp smoked paprika powder
+- 2 tsp brown sugar
+- Small knob of butter (for heating)
+
+**Chicken**
+- 2 large chicken thighs
+- Salt and pepper
+- 4 tbsp soy sauce
+- 2 tbsp water
+- 1 tbsp mirin
+- 2 tbsp honey
+- 1 tbsp brown sugar
+
+**To serve**
+- Rice
+- Green onions
+- Fried onions
+
+**Method**
+1. **Sear:** Season the chicken thighs with salt and pepper and fry over medium heat until a nice crust has formed.
+2. **Glaze:** Add the soy sauce, water, mirin, honey and brown sugar to the pan. Let it reduce and coat the chicken in a sticky glaze.
+3. **Rest:** Take the chicken out of the pan and let it rest before slicing.
+4. **Blend:** Put all the gochujang broth ingredients in a bowl or blender and blend until smooth.
+5. **Heat:** Warm the broth in a saucepan with a small knob of butter until hot, but not too hot to eat.
+6. **Assemble:** Serve the rice in a bowl, lay the sliced chicken on top and spoon the broth around it.
+7. **Garnish:** Finish with fried onions and curled green onions.
+
+**Notes**
+- For curled green onions, slice them very thinly lengthwise and put them in ice water for 10 minutes so they curl up.
+
+*Source: Instagram (@basbites_): https://www.instagram.com/basbites_/*
 
 ---
 

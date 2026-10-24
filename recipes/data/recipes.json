@@ -2,7 +2,7 @@
  "format": "waynesdays-recipes",
  "version": 1,
  "title": "Waynesdays Recipe Book",
- "updatedAt": "2026-10-24T14:39:48.485Z",
+ "updatedAt": "2026-10-24T15:36:05.158Z",
  "recipes": [
   {
    "id": "freeman-house-chai-concentrate",
@@ -3978,6 +3978,86 @@
    "sources": [],
    "createdAt": "2026-10-24T14:39:48.485Z",
    "updatedAt": "2026-10-24T14:39:48.485Z"
+  },
+  {
+   "id": "gochujang-chicken-and-rice",
+   "title": "Gochujang Chicken and Rice",
+   "description": "Crisp, soy-honey glazed chicken thighs sliced over rice in a creamy gochujang and coconut broth, finished with fried onions and curled green onions.",
+   "category": "Mains",
+   "tags": [
+    "korean-inspired",
+    "gochujang",
+    "chicken",
+    "rice",
+    "coconut",
+    "weeknight"
+   ],
+   "time": "",
+   "yield": "Serves 2",
+   "image": "images/gochujang-chicken-and-rice.jpg",
+   "ingredients": [
+    {
+     "name": "Gochujang broth",
+     "note": "",
+     "items": [
+      "2 tbsp gochujang",
+      "300 ml coconut milk",
+      "2 garlic cloves",
+      "1/2 chicken stock cube",
+      "1 tsp smoked paprika powder",
+      "2 tsp brown sugar",
+      "Small knob of butter (for heating)"
+     ]
+    },
+    {
+     "name": "Chicken",
+     "note": "",
+     "items": [
+      "2 large chicken thighs",
+      "Salt and pepper",
+      "4 tbsp soy sauce",
+      "2 tbsp water",
+      "1 tbsp mirin",
+      "2 tbsp honey",
+      "1 tbsp brown sugar"
+     ]
+    },
+    {
+     "name": "To serve",
+     "note": "",
+     "items": [
+      "Rice",
+      "Green onions",
+      "Fried onions"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Sear:** Season the chicken thighs with salt and pepper and fry over medium heat until a nice crust has formed.",
+      "**Glaze:** Add the soy sauce, water, mirin, honey and brown sugar to the pan. Let it reduce and coat the chicken in a sticky glaze.",
+      "**Rest:** Take the chicken out of the pan and let it rest before slicing.",
+      "**Blend:** Put all the gochujang broth ingredients in a bowl or blender and blend until smooth.",
+      "**Heat:** Warm the broth in a saucepan with a small knob of butter until hot, but not too hot to eat.",
+      "**Assemble:** Serve the rice in a bowl, lay the sliced chicken on top and spoon the broth around it.",
+      "**Garnish:** Finish with fried onions and curled green onions."
+     ]
+    }
+   ],
+   "notes": [
+    "For curled green onions, slice them very thinly lengthwise and put them in ice water for 10 minutes so they curl up."
+   ],
+   "extras": [],
+   "sources": [
+    {
+     "label": "Instagram (@basbites_)",
+     "url": "https://www.instagram.com/basbites_/"
+    }
+   ],
+   "createdAt": "2026-10-24T15:36:05.158Z",
+   "updatedAt": "2026-10-24T15:36:05.158Z"
   },
   {
    "id": "roasted-dumpling-squash-with-sage-brown-butter",
