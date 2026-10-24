@@ -12,7 +12,7 @@ Every recipe pulled from past chats, compiled in one place. Grouped by category.
 
 **Baking and Sweets:** Sugar Moon Espresso Cornflake Cookies (Copycat) · Bakery Cookie Skillet · Soft and Chewy Oatmeal Chocolate Chip Cookies · Pan de Muerto · Latino Foodie Pan de Muerto · Gingerbread Latte Cookies · Chocolate Soufflés · Conchas · Peach Cobbler · Warm Sweet Potato-Apple Pone · Strawberry Shortcake · London Fog Loaf Cake · Homemade Cinnamon Rolls · Kevin Gillespie's Warm Banana Pudding with Meringue · Jamaican Banana Fritters
 
-**Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs · Creamy Lemon Pesto Pasta · Oxtail and Butter Beans · Birria de Res (Beef Birria) · Quesabirria Tacos · Stew Peas and Spinners · Spicy Red Pesto Pasta · Ricotta Pasta Alla Vodka · Pasta Alla Norma Sorta · Grilled Cheese With Apples and Apple Butter · Golden Krust Jamaican Oxtail Stew · Roast Chicken With Maple Butter and Rosemary · Smoked Mackerel Rundown · Peruvian Roasted Chicken With Spicy Cilantro Sauce · Peruvian Pork Stew With Chiles, Lime and Apples · Closed On Sunday Chicken Sandwich · Crack Fried Rice
+**Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs · Creamy Lemon Pesto Pasta · Oxtail and Butter Beans · Birria de Res (Beef Birria) · Quesabirria Tacos · Stew Peas and Spinners · Spicy Red Pesto Pasta · Ricotta Pasta Alla Vodka · Pasta Alla Norma Sorta · Grilled Cheese With Apples and Apple Butter · Golden Krust Jamaican Oxtail Stew · Roast Chicken With Maple Butter and Rosemary · Smoked Mackerel Rundown · Peruvian Roasted Chicken With Spicy Cilantro Sauce · Peruvian Pork Stew With Chiles, Lime and Apples · Closed On Sunday Chicken Sandwich · Crack Fried Rice · Brown Stew Chicken
 
 **Sides and Salads:** Roasted Dumpling Squash · Baked Garlic Rice · Buss Up Shut (Paratha-Style Roti)
 
@@ -2390,6 +2390,59 @@ Day-old rice fried hard in a wok with shallot, garlic, chili and egg, then folde
 - Bonus points if you use a wok.
 
 *Source: Instagram (@broccoliraab): https://www.instagram.com/broccoliraab/*
+
+---
+
+## Brown Stew Chicken
+
+Chicken thighs and drumsticks marinated in green seasoning, spices and browning, seared in caramelised brown sugar, then simmered with scotch bonnet and thyme until the gravy is thick. Serve with rice, plantain and coleslaw.
+
+**Tags:** jamaican, caribbean, chicken, stew, braise, make-ahead
+
+**Chicken and vegetables**
+- 1 to 1.5 kg chicken (thighs and drumsticks)
+- 1 onion
+- 2 spring onions
+- 1 bell pepper (half red, half green)
+- 1 1/2 scotch bonnets (half of one for the marinade)
+- 3 to 5 cloves garlic
+- 4 cm piece of ginger (about the same amount as the garlic)
+- 4 to 5 sprigs thyme
+- 2 bay leaves
+
+**Seasoning**
+- 1/2 tbsp salt
+- 1/2 tbsp black pepper
+- 1/2 tbsp all-purpose seasoning
+- 1/2 tbsp onion powder
+- 1/2 tbsp garlic powder
+- 1/2 tbsp allspice powder (or pimento seeds)
+- 1 to 2 tbsp browning
+- 2 tbsp green seasoning
+
+**Stew**
+- Oil
+- 1 to 2 tbsp brown sugar
+- 600 to 800 ml water (to cover the chicken)
+- 2 tbsp ketchup
+
+**Method**
+1. **Clean:** Thoroughly clean the chicken with lemon and vinegar.
+2. **Prep:** Dice the onion and pepper, chop the spring onions and the half scotch bonnet, and mince the garlic and ginger.
+3. **Season:** In a bowl, season the chicken with the salt, pepper, all-purpose seasoning, onion powder, garlic powder and allspice, either brown sugar or browning, and the green seasoning.
+4. **Combine:** Add all the vegetables and the fresh thyme to the bowl and mix well with the chicken.
+5. **Marinate:** Leave to marinate for 1 hour, ideally up to 6 hours or overnight.
+6. **Caramelise:** In a large pot, heat some oil with the brown sugar until it turns liquid and caramelised.
+7. **Brown:** Brown the chicken in batches, 10 to 15 minutes or until well browned.
+8. **Vegetables:** Put all the chicken back in the pot with the vegetables from the marinade and stir for about 5 minutes.
+9. **Simmer:** Pour in hot water until the chicken is completely covered and simmer for 45 minutes to 1 hour, adding the bay leaves and a whole scotch bonnet while it simmers.
+10. **Ketchup:** After 35 to 40 minutes, stir in the ketchup.
+11. **Thicken:** Simmer for another 15 minutes, until the stew is thick enough.
+12. **Serve:** Serve with rice, and plantain and coleslaw if you like.
+
+**Notes**
+- From an Instagram post (the account name is cut off in the screenshot): "This was too good… Are you picking this or oxtail?"
+- Pairs with rice and peas.
 
 ---
 

@@ -2,7 +2,7 @@
  "format": "waynesdays-recipes",
  "version": 1,
  "title": "Waynesdays Recipe Book",
- "updatedAt": "2026-10-24T13:10:03.159Z",
+ "updatedAt": "2026-10-24T14:39:48.485Z",
  "recipes": [
   {
    "id": "freeman-house-chai-concentrate",
@@ -3893,6 +3893,91 @@
    ],
    "createdAt": "2026-10-24T13:10:03.159Z",
    "updatedAt": "2026-10-24T13:10:03.159Z"
+  },
+  {
+   "id": "brown-stew-chicken",
+   "title": "Brown Stew Chicken",
+   "description": "Chicken thighs and drumsticks marinated in green seasoning, spices and browning, seared in caramelised brown sugar, then simmered with scotch bonnet and thyme until the gravy is thick. Serve with rice, plantain and coleslaw.",
+   "category": "Mains",
+   "tags": [
+    "jamaican",
+    "caribbean",
+    "chicken",
+    "stew",
+    "braise",
+    "make-ahead"
+   ],
+   "time": "",
+   "yield": "",
+   "image": "",
+   "ingredients": [
+    {
+     "name": "Chicken and vegetables",
+     "note": "",
+     "items": [
+      "1 to 1.5 kg chicken (thighs and drumsticks)",
+      "1 onion",
+      "2 spring onions",
+      "1 bell pepper (half red, half green)",
+      "1 1/2 scotch bonnets (half of one for the marinade)",
+      "3 to 5 cloves garlic",
+      "4 cm piece of ginger (about the same amount as the garlic)",
+      "4 to 5 sprigs thyme",
+      "2 bay leaves"
+     ]
+    },
+    {
+     "name": "Seasoning",
+     "note": "",
+     "items": [
+      "1/2 tbsp salt",
+      "1/2 tbsp black pepper",
+      "1/2 tbsp all-purpose seasoning",
+      "1/2 tbsp onion powder",
+      "1/2 tbsp garlic powder",
+      "1/2 tbsp allspice powder (or pimento seeds)",
+      "1 to 2 tbsp browning",
+      "2 tbsp green seasoning"
+     ]
+    },
+    {
+     "name": "Stew",
+     "note": "",
+     "items": [
+      "Oil",
+      "1 to 2 tbsp brown sugar",
+      "600 to 800 ml water (to cover the chicken)",
+      "2 tbsp ketchup"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Clean:** Thoroughly clean the chicken with lemon and vinegar.",
+      "**Prep:** Dice the onion and pepper, chop the spring onions and the half scotch bonnet, and mince the garlic and ginger.",
+      "**Season:** In a bowl, season the chicken with the salt, pepper, all-purpose seasoning, onion powder, garlic powder and allspice, either brown sugar or browning, and the green seasoning.",
+      "**Combine:** Add all the vegetables and the fresh thyme to the bowl and mix well with the chicken.",
+      "**Marinate:** Leave to marinate for 1 hour, ideally up to 6 hours or overnight.",
+      "**Caramelise:** In a large pot, heat some oil with the brown sugar until it turns liquid and caramelised.",
+      "**Brown:** Brown the chicken in batches, 10 to 15 minutes or until well browned.",
+      "**Vegetables:** Put all the chicken back in the pot with the vegetables from the marinade and stir for about 5 minutes.",
+      "**Simmer:** Pour in hot water until the chicken is completely covered and simmer for 45 minutes to 1 hour, adding the bay leaves and a whole scotch bonnet while it simmers.",
+      "**Ketchup:** After 35 to 40 minutes, stir in the ketchup.",
+      "**Thicken:** Simmer for another 15 minutes, until the stew is thick enough.",
+      "**Serve:** Serve with rice, and plantain and coleslaw if you like."
+     ]
+    }
+   ],
+   "notes": [
+    "From an Instagram post (the account name is cut off in the screenshot): \"This was too good… Are you picking this or oxtail?\"",
+    "Pairs with rice and peas."
+   ],
+   "extras": [],
+   "sources": [],
+   "createdAt": "2026-10-24T14:39:48.485Z",
+   "updatedAt": "2026-10-24T14:39:48.485Z"
   },
   {
    "id": "roasted-dumpling-squash-with-sage-brown-butter",
