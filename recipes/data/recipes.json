@@ -2,7 +2,7 @@
  "format": "waynesdays-recipes",
  "version": 1,
  "title": "Waynesdays Recipe Book",
- "updatedAt": "2026-10-17T20:26:02.441Z",
+ "updatedAt": "2026-10-24T13:10:03.159Z",
  "recipes": [
   {
    "id": "freeman-house-chai-concentrate",
@@ -3795,6 +3795,104 @@
    ],
    "createdAt": "2026-10-17T19:38:03.596Z",
    "updatedAt": "2026-10-17T19:38:03.596Z"
+  },
+  {
+   "id": "crack-fried-rice",
+   "title": "Crack Fried Rice",
+   "description": "Day-old rice fried hard in a wok with shallot, garlic, chili and egg, then folded with jumbo lump crab and loaded with chili crisp, soy, white pepper, chicken powder and MSG. All the umami you could ask for.",
+   "category": "Mains",
+   "tags": [
+    "fried rice",
+    "crab",
+    "wok",
+    "chili crisp",
+    "seafood",
+    "quick"
+   ],
+   "time": "",
+   "yield": "",
+   "image": "images/crack-fried-rice.jpg",
+   "ingredients": [
+    {
+     "name": "Aromatics",
+     "note": "",
+     "items": [
+      "Vegetable or canola oil",
+      "Finely diced shallot",
+      "Minced garlic",
+      "Finely diced red chili",
+      "Finely sliced scallion (whites)"
+     ]
+    },
+    {
+     "name": "Fried rice",
+     "note": "",
+     "items": [
+      "Eggs",
+      "White rice (leftover, day-old)",
+      "Jumbo lump crab (or shrimp)"
+     ]
+    },
+    {
+     "name": "Seasoning",
+     "note": "",
+     "items": [
+      "Soy sauce (sweet variety preferred, or regular)",
+      "Chili crisp or sambal (about 1/2 jar)",
+      "White pepper",
+      "Chicken powder or chicken bouillon",
+      "MSG",
+      "Sesame oil"
+     ]
+    },
+    {
+     "name": "To finish",
+     "note": "",
+     "items": [
+      "Scallion greens",
+      "Cilantro leaves"
+     ]
+    },
+    {
+     "name": "Garnish",
+     "note": "",
+     "items": [
+      "Chili crisp",
+      "Fried shallots or onions",
+      "Scallion (threads or sliced)",
+      "Cilantro"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Aromatics:** Heat a wok (or regular pan) on super high heat. Add oil, then the shallot, garlic, red chili and scallion whites. Cook until they take a little color, then shove to the side.",
+      "**Eggs:** Add a little more oil, crack in the eggs and scramble, then push to the side.",
+      "**Rice:** Add a little more oil and the rice. Mix in the aromatics and egg and let it cook for a few minutes to crisp up.",
+      "**Crab:** Add the crab.",
+      "**Season:** Turn the heat down to medium, then add the soy sauce, chili crisp, white pepper, chicken powder, MSG and sesame oil. Mix so you get both the crisp and the oil through the rice.",
+      "**Finish:** Turn off the heat and fold in the scallion greens and cilantro.",
+      "**Serve:** Garnish with more chili crisp, fried shallots, scallion and cilantro."
+     ]
+    }
+   ],
+   "notes": [
+    "Use day-old rice: it's drier, so it absorbs more flavor and sauce.",
+    "Buy plump, fat pieces of jumbo lump crab so they don't break down. Look for a container at the seafood counter (the author gets theirs at Citarella), or use shrimp.",
+    "The chili crisp is the flavor bomb. Lao Gan Ma is the favorite brand. Use a lot, about half the jar, so the rice turns really red and flavorful.",
+    "Bonus points if you use a wok."
+   ],
+   "extras": [],
+   "sources": [
+    {
+     "label": "Instagram (@broccoliraab)",
+     "url": "https://www.instagram.com/broccoliraab/"
+    }
+   ],
+   "createdAt": "2026-10-24T13:10:03.159Z",
+   "updatedAt": "2026-10-24T13:10:03.159Z"
   },
   {
    "id": "roasted-dumpling-squash-with-sage-brown-butter",

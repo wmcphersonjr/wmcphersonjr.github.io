@@ -12,7 +12,7 @@ Every recipe pulled from past chats, compiled in one place. Grouped by category.
 
 **Baking and Sweets:** Sugar Moon Espresso Cornflake Cookies (Copycat) · Bakery Cookie Skillet · Soft and Chewy Oatmeal Chocolate Chip Cookies · Pan de Muerto · Latino Foodie Pan de Muerto · Gingerbread Latte Cookies · Chocolate Soufflés · Conchas · Peach Cobbler · Warm Sweet Potato-Apple Pone · Strawberry Shortcake · London Fog Loaf Cake · Homemade Cinnamon Rolls · Kevin Gillespie's Warm Banana Pudding with Meringue · Jamaican Banana Fritters
 
-**Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs · Creamy Lemon Pesto Pasta · Oxtail and Butter Beans · Birria de Res (Beef Birria) · Quesabirria Tacos · Stew Peas and Spinners · Spicy Red Pesto Pasta · Ricotta Pasta Alla Vodka · Pasta Alla Norma Sorta · Grilled Cheese With Apples and Apple Butter · Golden Krust Jamaican Oxtail Stew · Roast Chicken With Maple Butter and Rosemary · Smoked Mackerel Rundown · Peruvian Roasted Chicken With Spicy Cilantro Sauce · Peruvian Pork Stew With Chiles, Lime and Apples · Closed On Sunday Chicken Sandwich
+**Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs · Creamy Lemon Pesto Pasta · Oxtail and Butter Beans · Birria de Res (Beef Birria) · Quesabirria Tacos · Stew Peas and Spinners · Spicy Red Pesto Pasta · Ricotta Pasta Alla Vodka · Pasta Alla Norma Sorta · Grilled Cheese With Apples and Apple Butter · Golden Krust Jamaican Oxtail Stew · Roast Chicken With Maple Butter and Rosemary · Smoked Mackerel Rundown · Peruvian Roasted Chicken With Spicy Cilantro Sauce · Peruvian Pork Stew With Chiles, Lime and Apples · Closed On Sunday Chicken Sandwich · Crack Fried Rice
 
 **Sides and Salads:** Roasted Dumpling Squash · Baked Garlic Rice · Buss Up Shut (Paratha-Style Roti)
 
@@ -2334,6 +2334,62 @@ Kevin Gillespie's take on the Chick-fil-A classic: chicken breasts brined in pic
 - The recipe makes 4 breasts but calls for 8 rolls: split larger breasts in half, or keep the extra rolls for seconds.
 
 *Source: Vice Munchies (Kevin Gillespie): https://www.vice.com/en/article/chick-fil-a-chicken-sandwich-recipe/*
+
+---
+
+## Crack Fried Rice
+
+Day-old rice fried hard in a wok with shallot, garlic, chili and egg, then folded with jumbo lump crab and loaded with chili crisp, soy, white pepper, chicken powder and MSG. All the umami you could ask for.
+
+**Tags:** fried rice, crab, wok, chili crisp, seafood, quick
+**Image:** images/crack-fried-rice.jpg
+
+**Aromatics**
+- Vegetable or canola oil
+- Finely diced shallot
+- Minced garlic
+- Finely diced red chili
+- Finely sliced scallion (whites)
+
+**Fried rice**
+- Eggs
+- White rice (leftover, day-old)
+- Jumbo lump crab (or shrimp)
+
+**Seasoning**
+- Soy sauce (sweet variety preferred, or regular)
+- Chili crisp or sambal (about 1/2 jar)
+- White pepper
+- Chicken powder or chicken bouillon
+- MSG
+- Sesame oil
+
+**To finish**
+- Scallion greens
+- Cilantro leaves
+
+**Garnish**
+- Chili crisp
+- Fried shallots or onions
+- Scallion (threads or sliced)
+- Cilantro
+
+**Method**
+1. **Aromatics:** Heat a wok (or regular pan) on super high heat. Add oil, then the shallot, garlic, red chili and scallion whites. Cook until they take a little color, then shove to the side.
+2. **Eggs:** Add a little more oil, crack in the eggs and scramble, then push to the side.
+3. **Rice:** Add a little more oil and the rice. Mix in the aromatics and egg and let it cook for a few minutes to crisp up.
+4. **Crab:** Add the crab.
+5. **Season:** Turn the heat down to medium, then add the soy sauce, chili crisp, white pepper, chicken powder, MSG and sesame oil. Mix so you get both the crisp and the oil through the rice.
+6. **Finish:** Turn off the heat and fold in the scallion greens and cilantro.
+7. **Serve:** Garnish with more chili crisp, fried shallots, scallion and cilantro.
+
+**Notes**
+- Use day-old rice: it's drier, so it absorbs more flavor and sauce.
+- Buy plump, fat pieces of jumbo lump crab so they don't break down. Look for a container at the seafood counter (the author gets theirs at Citarella), or use shrimp.
+- The chili crisp is the flavor bomb. Lao Gan Ma is the favorite brand. Use a lot, about half the jar, so the rice turns really red and flavorful.
+- Bonus points if you use a wok.
+
+*Source: Instagram (@broccoliraab): https://www.instagram.com/broccoliraab/*
 
 ---
 
