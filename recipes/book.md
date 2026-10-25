@@ -16,7 +16,7 @@ Every recipe pulled from past chats, compiled in one place. Grouped by category.
 
 **Sides and Salads:** Roasted Dumpling Squash · Baked Garlic Rice · Buss Up Shut (Paratha-Style Roti)
 
-**Soups:** Split Pea Soup · Butternut Squash Congee With Chile Oil · Red Peas Soup · Soup Joumou · Sancocho · Best Black Bean Soup · Coconut Black Bean Soup · Lemony White Bean Soup With Turkey and Greens · Citrusy Lentil and Sweet Potato Soup · Pumpkin Soup · Thomas Keller's Butternut Squash Soup With Brown Butter · Sherried Lentil Soup With Sausage and Croutons
+**Soups:** Split Pea Soup · Butternut Squash Congee With Chile Oil · Red Peas Soup · Soup Joumou · Sancocho · Best Black Bean Soup · Coconut Black Bean Soup · Lemony White Bean Soup With Turkey and Greens · Citrusy Lentil and Sweet Potato Soup · Pumpkin Soup · Thomas Keller's Butternut Squash Soup With Brown Butter · Sherried Lentil Soup With Sausage and Croutons · Sweet Potato Miso Soup
 
 **Sauces, Spices and Ferments:** Nonna's Sunday Sugo · Ponzu Sauce · Pumpkin Pie Spice Blend · Kimchi
 
@@ -3165,6 +3165,75 @@ A rustic, partly puréed French lentil soup finished with amontillado sherry and
 - By Florence Fabricant for NYT Cooking.
 
 *Source: NYT Cooking (Florence Fabricant): https://cooking.nytimes.com/search?q=Sherried%20Lentil%20Soup%20With%20Sausage%20and%20Croutons*
+
+---
+
+## Sweet Potato Miso Soup
+
+A wintry sweet potato and apple bisque from Lula Cafe. The red miso caramelizes in browning butter instead of being stirred in at the end, so everything turns deeper, darker and almost moody. Topped with roasted lobster mushrooms, grated pecans and olive oil.
+
+**Image:** images/sweet-potato-miso-soup.jpg
+**Tags:** soup, sweet potato, miso, vegetarian, lula cafe, project
+**Time:** 4 hr 20 min (25 min prep, including homemade stock)
+**Yield:** Serves 4
+
+**Vegetable stock**
+- 2 medium onions, unpeeled, halved through the root
+- 1 tbsp oil
+- 1 medium carrot, unpeeled, chopped
+- 1 celery stalk, chopped
+- 1 head garlic, halved
+- 1 leek top
+- 1/2 head fennel, chopped
+- 1 bay leaf
+- 1/2 cup dried mushrooms
+- 16 cups cold filtered water
+- 2 parsley sprigs
+- 1 thyme sprig
+- 1 tbsp freshly ground black pepper
+- Two 4-by-4-inch pieces kombu
+
+**Sweet potato miso soup**
+- 4 tbsp high-fat cultured butter
+- 8 1/2 oz onion, sliced
+- 6 oz apples, peeled, cored and sliced
+- 1 cup mushroom stems
+- 1/8 cup red miso
+- 1/4 tsp dark chili powder
+- 1/4 tsp black peppercorns
+- Scant 1 cup brut cider
+- 8 cups vegetable stock
+- 1 lb 15 oz sweet potato, peeled and cubed
+- 1 tsp apple cider vinegar
+- 1/2 tsp Worcestershire sauce
+- Scant 1 cup heavy cream
+- Kosher salt, to taste
+
+**Roasted mushrooms**
+- 2 large lobster mushrooms
+- 2 tbsp butter, melted
+- 1 tsp kosher salt
+
+**To serve**
+- 1/4 cup toasted pecans
+- Olive oil, for drizzling
+
+**Method**
+1. **Roast the onions:** Heat the oven to 350°F. Toss the stock onions in the oil and roast on a baking sheet for 30 minutes, until slightly caramelized around the edges.
+2. **Simmer the stock:** Put the onions, carrot, celery, garlic, leek, fennel, bay leaf and dried mushrooms in a stockpot with 16 cups cold filtered water. Bring to a boil, then reduce the heat and simmer for 1 hour.
+3. **Steep:** Add the parsley, thyme, black pepper and kombu. Take off the heat and steep for 30 minutes. Strain and cool.
+4. **Caramelize:** Melt the butter in a large heavy-bottomed stockpot over medium heat. As soon as it foams, add the onions and apples and sauté 5 to 7 minutes, until lightly caramelized. Add the mushroom stems, red miso, chili powder and peppercorns and let it sizzle in the butter 3 to 5 minutes, until deeply golden. Brown it without burning; control the heat accordingly.
+5. **Simmer:** Deglaze with the cider, scraping up the browned bits, and simmer about 3 minutes to cook off the alcohol. Add the vegetable stock and sweet potatoes and simmer for 1 hour, until the potatoes are completely mushy. Add the cider vinegar and Worcestershire sauce.
+6. **Blend:** Working in batches, blend on the highest speed for 15 to 20 seconds per batch until smooth and velvety. Stir in the cream, season with salt, and add a little water if it's too thick.
+7. **Roast the mushrooms:** Heat the oven to 350°F. Toss the mushrooms with the melted butter and salt, put them on a small baking tray or in an ovenproof sauté pan, and roast 20 to 25 minutes, until tender but still firm. Cool, then slice.
+8. **Serve:** Warm four soup bowls. Gently reheat the soup over medium-low if needed and ladle it into the bowls. Top with the sliced mushrooms, grate the pecans over and finish with a drizzle of olive oil.
+
+**Notes**
+- From Jason Hammel's The Lula Cafe Cookbook (Phaidon, 2023), via PureWow.
+- To save time, use store-bought vegetable stock instead of the homemade one. The homemade stock is packed with umami from the kombu and dried mushrooms.
+- About 690 calories per serving (PureWow's estimate).
+
+*Source: PureWow (Jason Hammel, The Lula Cafe Cookbook): https://www.purewow.com/recipes/sweet-potato-miso-soup*
 
 ---
 
