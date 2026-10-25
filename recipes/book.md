@@ -2808,6 +2808,8 @@ Haitian squash soup with epis-marinated beef, vegetables, vermicelli and dumplin
 - From Cindy Similien's "Let's Speak Haitian Food," adapted by Priya Krishna for NYT Cooking.
 - Leftover epis keeps 6 weeks and works like sofrito: marinate beef, fish or chicken, or stir it into rice and soups.
 - If the Scotch bonnet bursts, the soup gets very spicy.
+- For Haitians, soup joumou is synonymous with freedom. Under French colonial rule, enslaved Africans were forced to grow squash for this dish but weren't allowed to eat it; when Haiti won independence on Jan. 1, 1804, they ate soup joumou to celebrate.
+- Recipes vary from family to family. The vermicelli and dumplings add a springy bite and thicken the broth.
 
 *Source: NYT Cooking (Cindy Similien, adapted by Priya Krishna): https://cooking.nytimes.com/search?q=Soup%20Joumou*
 
