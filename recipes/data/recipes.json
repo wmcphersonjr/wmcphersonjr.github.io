@@ -2,7 +2,7 @@
  "format": "waynesdays-recipes",
  "version": 1,
  "title": "Waynesdays Recipe Book",
- "updatedAt": "2026-10-25T16:39:48.525Z",
+ "updatedAt": "2026-10-25T18:48:24.286Z",
  "recipes": [
   {
    "id": "freeman-house-chai-concentrate",
@@ -4058,6 +4058,150 @@
    ],
    "createdAt": "2026-10-24T15:36:05.158Z",
    "updatedAt": "2026-10-24T15:36:05.158Z"
+  },
+  {
+   "id": "brown-rice-and-kabocha-squash-bowl",
+   "title": "Brown Rice and Kabocha Squash Bowl (Lula Cafe Style)",
+   "description": "Crispy brown rice, caramelized kabocha wedges, roasted Four Star mushrooms, savory apple soffritto, sorrel, preserved Meyer lemon aioli, puffed rice crunch and a sunny side egg. Earthy and savory first, with the aioli as a bright supporting note.",
+   "category": "Mains",
+   "tags": [
+    "lula cafe",
+    "rice bowl",
+    "kabocha",
+    "squash",
+    "mushrooms",
+    "egg",
+    "vegetarian",
+    "project",
+    "make-ahead"
+   ],
+   "time": "about 2 hours active, plus overnight chill for the rice",
+   "yield": "Serves 4",
+   "image": "images/brown-rice-and-kabocha-squash-bowl.jpg",
+   "ingredients": [
+    {
+     "name": "Crispy brown rice",
+     "note": "",
+     "items": [
+      "1 1/2 cups short grain brown rice, uncooked",
+      "3 cups water",
+      "2 tsp kosher salt, divided",
+      "3 tbsp neutral oil"
+     ]
+    },
+    {
+     "name": "Puffed rice crunch",
+     "note": "",
+     "items": [
+      "1/2 cup cooked brown rice (reserved from above)",
+      "1 cup neutral oil, for frying",
+      "Pinch of salt"
+     ]
+    },
+    {
+     "name": "Kabocha squash",
+     "note": "",
+     "items": [
+      "1 small kabocha squash, seeded, cut into 1-inch wedges, skin on",
+      "2 tbsp olive oil",
+      "1 tbsp maple syrup",
+      "1/4 tsp chili flake",
+      "1 tsp kosher salt"
+     ]
+    },
+    {
+     "name": "Roasted mushrooms",
+     "note": "",
+     "items": [
+      "12 oz Four Star mushrooms (maitake and blue or black oyster), torn into clusters",
+      "3 tbsp olive oil",
+      "2 tbsp unsalted butter",
+      "4 thyme sprigs",
+      "1 tsp sherry vinegar",
+      "Kosher salt"
+     ]
+    },
+    {
+     "name": "Apple soffritto",
+     "note": "",
+     "items": [
+      "1/2 cup olive oil",
+      "1 shallot, minced",
+      "1 celery stalk, minced",
+      "1/2 fennel bulb, minced (save the fronds for garnish)",
+      "2 garlic cloves, minced",
+      "1 tart apple (Honeycrisp or Pink Lady), finely diced",
+      "2 tsp apple cider vinegar",
+      "Pinch of salt"
+     ]
+    },
+    {
+     "name": "Preserved Meyer lemon aioli (makes about 1 cup)",
+     "note": "",
+     "items": [
+      "2 large egg yolks, room temperature",
+      "1/2 preserved Meyer lemon, pulp removed, rind minced to a paste",
+      "1 tsp preserved lemon brine",
+      "1 garlic clove, grated",
+      "1 tsp Dijon mustard",
+      "1/2 cup neutral oil (grapeseed or canola)",
+      "1/4 cup mild extra-virgin olive oil",
+      "1 tbsp fresh Meyer lemon juice",
+      "1/2 tsp Meyer lemon zest",
+      "Cold water, as needed"
+     ]
+    },
+    {
+     "name": "To finish",
+     "note": "",
+     "items": [
+      "2 cups sorrel, stems removed, torn",
+      "4 large eggs",
+      "2 tbsp unsalted butter",
+      "Fennel fronds",
+      "Flaky salt and black pepper"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "Day before",
+     "items": [
+      "**Cook the rice:** Rinse the rice, then simmer covered with the water and 1 tsp salt until tender, about 45 minutes. Rest 10 minutes. Spread on a sheet pan, pull out 1/2 cup for the crunch, and chill the rest uncovered overnight.",
+      "**Dry the rice for crunch:** Spread the reserved 1/2 cup thin on a parchment-lined tray. Bake at 250°F until completely dry and glassy, about 1 hour. Store airtight.",
+      "**Make the aioli:** Rinse the preserved lemon briefly, scrape out the pulp, and mince the rind to a paste. Set a bowl on a damp towel and whisk the yolks, lemon rind, brine, garlic and Dijon. Add the neutral oil a few drops at a time until it thickens, then stream it in thin. Finish with the olive oil. Whisk in the lemon juice and zest. Taste before salting. Loosen with a teaspoon of cold water if needed. Chill.",
+      "**Make the soffritto:** Combine the olive oil, shallot, celery, fennel and garlic in a small pot over low heat. Cook gently without browning until soft, about 20 minutes. Add the apple and a pinch of salt and cook 8 more minutes, until softened but holding shape. Stir in the cider vinegar. Keep it loose and oily. Chill."
+     ]
+    },
+    {
+     "name": "Day of",
+     "items": [
+      "**Roast the squash:** Heat the oven to 425°F. Toss the wedges with the olive oil, maple, chili flake and salt. Roast in a single layer, flipping once, until deeply caramelized, about 30 minutes.",
+      "**Roast the mushrooms:** Toss with the olive oil and a big pinch of salt. Roast on a separate tray at 425°F, untouched, until browned and crisp at the edges, about 20 minutes. Move to a hot skillet with the butter and thyme, baste 2 minutes, then finish with the sherry vinegar.",
+      "**Puff the rice:** Heat the frying oil to 400°F. Fry the dried rice in small batches for 5 to 10 seconds, until puffed. Drain on paper towels and salt right away. Lightly crush half.",
+      "**Crisp the rice:** Heat the neutral oil in a large cast-iron or nonstick skillet over medium-high. Press in the chilled rice and leave it alone until golden and crackly underneath, 6 to 8 minutes. Break into chunks, flip and crisp briefly. Stir in a few spoonfuls of soffritto oil and the remaining 1 tsp salt.",
+      "**Fry the eggs:** Melt the butter in a nonstick pan over medium-low. Cook the eggs until the whites are set and the yolks are runny, about 4 minutes, basting the whites."
+     ]
+    },
+    {
+     "name": "Assemble",
+     "items": [
+      "**Build the bowls:** Swipe aioli across the bottom of each bowl. Add crispy rice, tuck in squash wedges and mushrooms, and fold in sorrel so it just wilts. Spoon soffritto and its oil over the top. Add an egg, then scatter puffed rice and fennel fronds. Finish with flaky salt and pepper."
+     ]
+    }
+   ],
+   "notes": [
+    "A home version of Lula Cafe's brown rice and kabocha squash bowl (four star mushrooms, apple soffritto, sorrel, preserved Meyer lemon aioli, sunny side egg).",
+    "Mushrooms: Four Star Mushrooms is a Chicago grower, not a variety. Mariano's carries them. King trumpet coins work if you want more chew.",
+    "Aioli shortcut: use an immersion blender in a narrow jar. Add everything except the oils, pour the oils on top, and blend slowly from the bottom up.",
+    "Broken aioli: whisk a fresh yolk in a clean bowl and slowly whisk the broken aioli into it.",
+    "Preserved Meyer lemons: look in specialty or Middle Eastern markets. Homemade takes 3 to 4 weeks.",
+    "Make ahead: the rice, dried rice, soffritto and aioli all hold in the fridge. The aioli keeps up to 3 days."
+   ],
+   "extras": [],
+   "sources": [],
+   "createdAt": "2026-10-25T18:48:24.286Z",
+   "updatedAt": "2026-10-25T18:48:24.286Z"
   },
   {
    "id": "roasted-dumpling-squash-with-sage-brown-butter",

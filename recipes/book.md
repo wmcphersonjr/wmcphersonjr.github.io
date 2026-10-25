@@ -12,7 +12,7 @@ Every recipe pulled from past chats, compiled in one place. Grouped by category.
 
 **Baking and Sweets:** Sugar Moon Espresso Cornflake Cookies (Copycat) · Bakery Cookie Skillet · Soft and Chewy Oatmeal Chocolate Chip Cookies · Pan de Muerto · Latino Foodie Pan de Muerto · Gingerbread Latte Cookies · Chocolate Soufflés · Conchas · Peach Cobbler · Warm Sweet Potato-Apple Pone · Strawberry Shortcake · London Fog Loaf Cake · Homemade Cinnamon Rolls · Kevin Gillespie's Warm Banana Pudding with Meringue · Jamaican Banana Fritters
 
-**Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs · Creamy Lemon Pesto Pasta · Oxtail and Butter Beans · Birria de Res (Beef Birria) · Quesabirria Tacos · Stew Peas and Spinners · Spicy Red Pesto Pasta · Ricotta Pasta Alla Vodka · Pasta Alla Norma Sorta · Grilled Cheese With Apples and Apple Butter · Golden Krust Jamaican Oxtail Stew · Roast Chicken With Maple Butter and Rosemary · Smoked Mackerel Rundown · Peruvian Roasted Chicken With Spicy Cilantro Sauce · Peruvian Pork Stew With Chiles, Lime and Apples · Closed On Sunday Chicken Sandwich · Crack Fried Rice · Brown Stew Chicken · Gochujang Chicken and Rice
+**Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs · Creamy Lemon Pesto Pasta · Oxtail and Butter Beans · Birria de Res (Beef Birria) · Quesabirria Tacos · Stew Peas and Spinners · Spicy Red Pesto Pasta · Ricotta Pasta Alla Vodka · Pasta Alla Norma Sorta · Grilled Cheese With Apples and Apple Butter · Golden Krust Jamaican Oxtail Stew · Roast Chicken With Maple Butter and Rosemary · Smoked Mackerel Rundown · Peruvian Roasted Chicken With Spicy Cilantro Sauce · Peruvian Pork Stew With Chiles, Lime and Apples · Closed On Sunday Chicken Sandwich · Crack Fried Rice · Brown Stew Chicken · Gochujang Chicken and Rice · Brown Rice and Kabocha Squash Bowl (Lula Cafe Style)
 
 **Sides and Salads:** Roasted Dumpling Squash · Baked Garlic Rice · Buss Up Shut (Paratha-Style Roti)
 
@@ -2490,6 +2490,96 @@ Crisp, soy-honey glazed chicken thighs sliced over rice in a creamy gochujang an
 - For curled green onions, slice them very thinly lengthwise and put them in ice water for 10 minutes so they curl up.
 
 *Source: Instagram (@basbites_): https://www.instagram.com/basbites_/*
+
+---
+
+## Brown Rice and Kabocha Squash Bowl (Lula Cafe Style)
+
+Crispy brown rice, caramelized kabocha wedges, roasted Four Star mushrooms, savory apple soffritto, sorrel, preserved Meyer lemon aioli, puffed rice crunch and a sunny side egg. Earthy and savory first, with the aioli as a bright supporting note.
+
+**Image:** images/brown-rice-and-kabocha-squash-bowl.jpg
+**Tags:** lula cafe, rice bowl, kabocha, squash, mushrooms, egg, vegetarian, project, make-ahead
+**Time:** about 2 hours active, plus overnight chill for the rice
+**Yield:** Serves 4
+
+**Crispy brown rice**
+- 1 1/2 cups short grain brown rice, uncooked
+- 3 cups water
+- 2 tsp kosher salt, divided
+- 3 tbsp neutral oil
+
+**Puffed rice crunch**
+- 1/2 cup cooked brown rice (reserved from above)
+- 1 cup neutral oil, for frying
+- Pinch of salt
+
+**Kabocha squash**
+- 1 small kabocha squash, seeded, cut into 1-inch wedges, skin on
+- 2 tbsp olive oil
+- 1 tbsp maple syrup
+- 1/4 tsp chili flake
+- 1 tsp kosher salt
+
+**Roasted mushrooms**
+- 12 oz Four Star mushrooms (maitake and blue or black oyster), torn into clusters
+- 3 tbsp olive oil
+- 2 tbsp unsalted butter
+- 4 thyme sprigs
+- 1 tsp sherry vinegar
+- Kosher salt
+
+**Apple soffritto**
+- 1/2 cup olive oil
+- 1 shallot, minced
+- 1 celery stalk, minced
+- 1/2 fennel bulb, minced (save the fronds for garnish)
+- 2 garlic cloves, minced
+- 1 tart apple (Honeycrisp or Pink Lady), finely diced
+- 2 tsp apple cider vinegar
+- Pinch of salt
+
+**Preserved Meyer lemon aioli (makes about 1 cup)**
+- 2 large egg yolks, room temperature
+- 1/2 preserved Meyer lemon, pulp removed, rind minced to a paste
+- 1 tsp preserved lemon brine
+- 1 garlic clove, grated
+- 1 tsp Dijon mustard
+- 1/2 cup neutral oil (grapeseed or canola)
+- 1/4 cup mild extra-virgin olive oil
+- 1 tbsp fresh Meyer lemon juice
+- 1/2 tsp Meyer lemon zest
+- Cold water, as needed
+
+**To finish**
+- 2 cups sorrel, stems removed, torn
+- 4 large eggs
+- 2 tbsp unsalted butter
+- Fennel fronds
+- Flaky salt and black pepper
+
+**Method: Day before**
+1. **Cook the rice:** Rinse the rice, then simmer covered with the water and 1 tsp salt until tender, about 45 minutes. Rest 10 minutes. Spread on a sheet pan, pull out 1/2 cup for the crunch, and chill the rest uncovered overnight.
+2. **Dry the rice for crunch:** Spread the reserved 1/2 cup thin on a parchment-lined tray. Bake at 250°F until completely dry and glassy, about 1 hour. Store airtight.
+3. **Make the aioli:** Rinse the preserved lemon briefly, scrape out the pulp, and mince the rind to a paste. Set a bowl on a damp towel and whisk the yolks, lemon rind, brine, garlic and Dijon. Add the neutral oil a few drops at a time until it thickens, then stream it in thin. Finish with the olive oil. Whisk in the lemon juice and zest. Taste before salting. Loosen with a teaspoon of cold water if needed. Chill.
+4. **Make the soffritto:** Combine the olive oil, shallot, celery, fennel and garlic in a small pot over low heat. Cook gently without browning until soft, about 20 minutes. Add the apple and a pinch of salt and cook 8 more minutes, until softened but holding shape. Stir in the cider vinegar. Keep it loose and oily. Chill.
+
+**Method: Day of**
+5. **Roast the squash:** Heat the oven to 425°F. Toss the wedges with the olive oil, maple, chili flake and salt. Roast in a single layer, flipping once, until deeply caramelized, about 30 minutes.
+6. **Roast the mushrooms:** Toss with the olive oil and a big pinch of salt. Roast on a separate tray at 425°F, untouched, until browned and crisp at the edges, about 20 minutes. Move to a hot skillet with the butter and thyme, baste 2 minutes, then finish with the sherry vinegar.
+7. **Puff the rice:** Heat the frying oil to 400°F. Fry the dried rice in small batches for 5 to 10 seconds, until puffed. Drain on paper towels and salt right away. Lightly crush half.
+8. **Crisp the rice:** Heat the neutral oil in a large cast-iron or nonstick skillet over medium-high. Press in the chilled rice and leave it alone until golden and crackly underneath, 6 to 8 minutes. Break into chunks, flip and crisp briefly. Stir in a few spoonfuls of soffritto oil and the remaining 1 tsp salt.
+9. **Fry the eggs:** Melt the butter in a nonstick pan over medium-low. Cook the eggs until the whites are set and the yolks are runny, about 4 minutes, basting the whites.
+
+**Method: Assemble**
+10. **Build the bowls:** Swipe aioli across the bottom of each bowl. Add crispy rice, tuck in squash wedges and mushrooms, and fold in sorrel so it just wilts. Spoon soffritto and its oil over the top. Add an egg, then scatter puffed rice and fennel fronds. Finish with flaky salt and pepper.
+
+**Notes**
+- A home version of Lula Cafe's brown rice and kabocha squash bowl (four star mushrooms, apple soffritto, sorrel, preserved Meyer lemon aioli, sunny side egg).
+- Mushrooms: Four Star Mushrooms is a Chicago grower, not a variety. Mariano's carries them. King trumpet coins work if you want more chew.
+- Aioli shortcut: use an immersion blender in a narrow jar. Add everything except the oils, pour the oils on top, and blend slowly from the bottom up.
+- Broken aioli: whisk a fresh yolk in a clean bowl and slowly whisk the broken aioli into it.
+- Preserved Meyer lemons: look in specialty or Middle Eastern markets. Homemade takes 3 to 4 weeks.
+- Make ahead: the rice, dried rice, soffritto and aioli all hold in the fridge. The aioli keeps up to 3 days.
 
 ---
 
