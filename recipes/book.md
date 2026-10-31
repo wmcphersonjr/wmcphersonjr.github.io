@@ -10,7 +10,7 @@ Every recipe pulled from past chats, compiled in one place. Grouped by category.
 
 **Breakfast:** Fluffy Pancakes · Buttermilk Cornbread Waffles · McDonald's Fruit and Maple Oatmeal (Copycat) · Golden Diner Pancakes · Shakshuka With Feta · Waffles · Dutch Baby · Eggnog Overnight French Toast · Lula Cafe Buttermilk Pancakes
 
-**Baking and Sweets:** Sugar Moon Espresso Cornflake Cookies (Copycat) · Bakery Cookie Skillet · Soft and Chewy Oatmeal Chocolate Chip Cookies · Pan de Muerto · Latino Foodie Pan de Muerto · Gingerbread Latte Cookies · Chocolate Soufflés · Conchas · Peach Cobbler · Warm Sweet Potato-Apple Pone · Strawberry Shortcake · London Fog Loaf Cake · Homemade Cinnamon Rolls · Kevin Gillespie's Warm Banana Pudding with Meringue · Jamaican Banana Fritters
+**Baking and Sweets:** Sugar Moon Espresso Cornflake Cookies (Copycat) · Bakery Cookie Skillet · Soft and Chewy Oatmeal Chocolate Chip Cookies · Pan de Muerto · Latino Foodie Pan de Muerto · Gingerbread Latte Cookies · Chocolate Soufflés · Conchas · Peach Cobbler · Warm Sweet Potato-Apple Pone · Strawberry Shortcake · London Fog Loaf Cake · Homemade Cinnamon Rolls · Kevin Gillespie's Warm Banana Pudding with Meringue · Jamaican Banana Fritters · Jamaican Sweet Potato Pudding
 
 **Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs · Creamy Lemon Pesto Pasta · Oxtail and Butter Beans · Birria de Res (Beef Birria) · Quesabirria Tacos · Stew Peas and Spinners · Spicy Red Pesto Pasta · Ricotta Pasta Alla Vodka · Pasta Alla Norma Sorta · Grilled Cheese With Apples and Apple Butter · Golden Krust Jamaican Oxtail Stew · Roast Chicken With Maple Butter and Rosemary · Smoked Mackerel Rundown · Peruvian Roasted Chicken With Spicy Cilantro Sauce · Peruvian Pork Stew With Chiles, Lime and Apples · Closed On Sunday Chicken Sandwich · Crack Fried Rice · Brown Stew Chicken · Gochujang Chicken and Rice · Brown Rice and Kabocha Squash Bowl (Lula Cafe Style)
 
@@ -1320,6 +1320,47 @@ Soft, crisp-edged fritters of mashed overripe bananas, brown sugar, nutmeg and c
 - Never leave the pan of hot oil unattended. The author's after-school batch, left heating while she watched Love Connection, set the kitchen on fire.
 
 *Source: Cook Like a Jamaican: https://cooklikeajamaican.com/new-recipe-banana-fritters/*
+
+---
+
+## Jamaican Sweet Potato Pudding
+
+A dense, spiced, coconut-rich pudding with a caramelized top, a Jamaican holiday and Sunday-dinner staple.
+
+**Tags:** jamaican, caribbean, sweet potato, coconut, pudding, holiday, make-ahead
+**Time:** about 2 hr (1 hr 15 min baking, 30 min cooling)
+
+**Pudding**
+- 4 cups grated sweet potato (about 2 lbs, peeled)
+- 1/4 lb yellow yam
+- 3 cups coconut milk (or 1 can, for blending)
+- 1 cup packed brown sugar
+- 1/2 cup all-purpose flour
+- 1/4 cup cornmeal
+- 1/2 cup raisins or blended fruits
+- 1/4 cup melted butter
+- 1/4 tsp rose water
+- 1 tsp ground cinnamon
+- 1 tsp ground nutmeg
+- 1/2 tsp ground allspice
+- 1 tsp vanilla extract
+- 1/4 tsp salt
+- 1 tbsp dark rum or browning (optional)
+
+**Method**
+1. **Prep:** Heat the oven to 350°F (175°C). Grease a 9-by-13-inch baking dish. Peel and finely grate the sweet potatoes.
+2. **Wet ingredients:** In a large bowl, whisk the coconut milk with the brown sugar, melted butter, vanilla and the rum or browning, if using, until the sugar mostly dissolves.
+3. **Dry ingredients:** Stir in the flour, cinnamon, nutmeg, allspice and salt, then fold in the grated sweet potato and raisins until evenly combined.
+4. **Bake:** Pour the batter into the dish and bake until the top is dark and set and a knife comes out mostly clean, 1 hr 15 min.
+5. **Cool:** Let the pudding cool completely in the dish, about 30 minutes; it firms up as it cools. Slice into squares to serve.
+
+**Notes**
+- The ingredient list includes yellow yam, cornmeal and rose water, but the steps don't say when to add them. They most likely go in with the sweet potato (yam), the flour (cornmeal) and the vanilla (rose water).
+- Use Jamaican yellow or white-fleshed sweet potato if you can find it for the traditional texture.
+- For a richer pudding, use full-fat coconut milk.
+- Some cooks add a pinch of ground ginger, or soak the raisins in a splash of the rum ahead of time.
+- Keeps 4 to 5 days refrigerated and tastes even better the next day.
+- From an Instagram post (the author's name isn't in the screenshot).
 
 ---
 

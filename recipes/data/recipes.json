@@ -2,7 +2,7 @@
  "format": "waynesdays-recipes",
  "version": 1,
  "title": "Waynesdays Recipe Book",
- "updatedAt": "2026-10-25T18:48:24.286Z",
+ "updatedAt": "2026-10-31T17:25:36.073Z",
  "recipes": [
   {
    "id": "freeman-house-chai-concentrate",
@@ -2187,6 +2187,71 @@
    ],
    "createdAt": "2026-10-17T20:23:38.609Z",
    "updatedAt": "2026-10-17T20:26:02.441Z"
+  },
+  {
+   "id": "jamaican-sweet-potato-pudding",
+   "title": "Jamaican Sweet Potato Pudding",
+   "description": "A dense, spiced, coconut-rich pudding with a caramelized top, a Jamaican holiday and Sunday-dinner staple.",
+   "category": "Baking and Sweets",
+   "tags": [
+    "jamaican",
+    "caribbean",
+    "sweet potato",
+    "coconut",
+    "pudding",
+    "holiday",
+    "make-ahead"
+   ],
+   "time": "about 2 hr (1 hr 15 min baking, 30 min cooling)",
+   "yield": "",
+   "image": "",
+   "ingredients": [
+    {
+     "name": "Pudding",
+     "note": "",
+     "items": [
+      "4 cups grated sweet potato (about 2 lbs, peeled)",
+      "1/4 lb yellow yam",
+      "3 cups coconut milk (or 1 can, for blending)",
+      "1 cup packed brown sugar",
+      "1/2 cup all-purpose flour",
+      "1/4 cup cornmeal",
+      "1/2 cup raisins or blended fruits",
+      "1/4 cup melted butter",
+      "1/4 tsp rose water",
+      "1 tsp ground cinnamon",
+      "1 tsp ground nutmeg",
+      "1/2 tsp ground allspice",
+      "1 tsp vanilla extract",
+      "1/4 tsp salt",
+      "1 tbsp dark rum or browning (optional)"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Prep:** Heat the oven to 350°F (175°C). Grease a 9-by-13-inch baking dish. Peel and finely grate the sweet potatoes.",
+      "**Wet ingredients:** In a large bowl, whisk the coconut milk with the brown sugar, melted butter, vanilla and the rum or browning, if using, until the sugar mostly dissolves.",
+      "**Dry ingredients:** Stir in the flour, cinnamon, nutmeg, allspice and salt, then fold in the grated sweet potato and raisins until evenly combined.",
+      "**Bake:** Pour the batter into the dish and bake until the top is dark and set and a knife comes out mostly clean, 1 hr 15 min.",
+      "**Cool:** Let the pudding cool completely in the dish, about 30 minutes; it firms up as it cools. Slice into squares to serve."
+     ]
+    }
+   ],
+   "notes": [
+    "The ingredient list includes yellow yam, cornmeal and rose water, but the steps don't say when to add them. They most likely go in with the sweet potato (yam), the flour (cornmeal) and the vanilla (rose water).",
+    "Use Jamaican yellow or white-fleshed sweet potato if you can find it for the traditional texture.",
+    "For a richer pudding, use full-fat coconut milk.",
+    "Some cooks add a pinch of ground ginger, or soak the raisins in a splash of the rum ahead of time.",
+    "Keeps 4 to 5 days refrigerated and tastes even better the next day.",
+    "From an Instagram post (the author's name isn't in the screenshot)."
+   ],
+   "extras": [],
+   "sources": [],
+   "createdAt": "2026-10-31T17:25:36.073Z",
+   "updatedAt": "2026-10-31T17:25:36.073Z"
   },
   {
    "id": "jamaican-brown-stew-oxtail",
