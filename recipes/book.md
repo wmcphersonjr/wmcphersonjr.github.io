@@ -10,15 +10,15 @@ Every recipe pulled from past chats, compiled in one place. Grouped by category.
 
 **Breakfast:** Fluffy Pancakes · Buttermilk Cornbread Waffles · McDonald's Fruit and Maple Oatmeal (Copycat) · Golden Diner Pancakes · Shakshuka With Feta · Waffles · Dutch Baby · Eggnog Overnight French Toast · Lula Cafe Buttermilk Pancakes
 
-**Baking and Sweets:** Sugar Moon Espresso Cornflake Cookies (Copycat) · Bakery Cookie Skillet · Soft and Chewy Oatmeal Chocolate Chip Cookies · Pan de Muerto · Latino Foodie Pan de Muerto · Gingerbread Latte Cookies · Chocolate Soufflés · Conchas · Peach Cobbler · Warm Sweet Potato-Apple Pone · Strawberry Shortcake · London Fog Loaf Cake · Homemade Cinnamon Rolls · Kevin Gillespie's Warm Banana Pudding with Meringue · Jamaican Banana Fritters · Jamaican Sweet Potato Pudding
+**Baking and Sweets:** Sugar Moon Espresso Cornflake Cookies (Copycat) · Bakery Cookie Skillet · Soft and Chewy Oatmeal Chocolate Chip Cookies · Pan de Muerto · Latino Foodie Pan de Muerto · Gingerbread Latte Cookies · Chocolate Soufflés · Conchas · Peach Cobbler · Warm Sweet Potato-Apple Pone · Strawberry Shortcake · London Fog Loaf Cake · Homemade Cinnamon Rolls · Kevin Gillespie's Warm Banana Pudding with Meringue · Jamaican Banana Fritters · Jamaican Sweet Potato Pudding · Mango Sticky Rice (Khao Neaw Ma-Muang)
 
-**Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs · Creamy Lemon Pesto Pasta · Oxtail and Butter Beans · Birria de Res (Beef Birria) · Quesabirria Tacos · Stew Peas and Spinners · Spicy Red Pesto Pasta · Ricotta Pasta Alla Vodka · Pasta Alla Norma Sorta · Grilled Cheese With Apples and Apple Butter · Golden Krust Jamaican Oxtail Stew · Roast Chicken With Maple Butter and Rosemary · Smoked Mackerel Rundown · Peruvian Roasted Chicken With Spicy Cilantro Sauce · Peruvian Pork Stew With Chiles, Lime and Apples · Closed On Sunday Chicken Sandwich · Crack Fried Rice · Brown Stew Chicken · Gochujang Chicken and Rice · Brown Rice and Kabocha Squash Bowl (Lula Cafe Style)
+**Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs · Creamy Lemon Pesto Pasta · Oxtail and Butter Beans · Birria de Res (Beef Birria) · Quesabirria Tacos · Stew Peas and Spinners · Spicy Red Pesto Pasta · Ricotta Pasta Alla Vodka · Pasta Alla Norma Sorta · Grilled Cheese With Apples and Apple Butter · Golden Krust Jamaican Oxtail Stew · Roast Chicken With Maple Butter and Rosemary · Smoked Mackerel Rundown · Peruvian Roasted Chicken With Spicy Cilantro Sauce · Peruvian Pork Stew With Chiles, Lime and Apples · Closed On Sunday Chicken Sandwich · Crack Fried Rice · Brown Stew Chicken · Gochujang Chicken and Rice · Brown Rice and Kabocha Squash Bowl (Lula Cafe Style) · Panang Curry with Chicken (Gaeng Panang Gai) · Pineapple Fried Rice (Khao Pad Sapparot) · Stir-Fried Chicken with Hot Basil (Gai Pad Ka Prao)
 
 **Sides and Salads:** Roasted Dumpling Squash · Baked Garlic Rice · Buss Up Shut (Paratha-Style Roti)
 
-**Soups:** Split Pea Soup · Butternut Squash Congee With Chile Oil · Red Peas Soup · Soup Joumou · Sancocho · Best Black Bean Soup · Coconut Black Bean Soup · Lemony White Bean Soup With Turkey and Greens · Citrusy Lentil and Sweet Potato Soup · Pumpkin Soup · Thomas Keller's Butternut Squash Soup With Brown Butter · Sherried Lentil Soup With Sausage and Croutons · Sweet Potato Miso Soup · Jamaican Chicken and Pumpkin Soup
+**Soups:** Split Pea Soup · Butternut Squash Congee With Chile Oil · Red Peas Soup · Soup Joumou · Sancocho · Best Black Bean Soup · Coconut Black Bean Soup · Lemony White Bean Soup With Turkey and Greens · Citrusy Lentil and Sweet Potato Soup · Pumpkin Soup · Thomas Keller's Butternut Squash Soup With Brown Butter · Sherried Lentil Soup With Sausage and Croutons · Sweet Potato Miso Soup · Jamaican Chicken and Pumpkin Soup · Tom Kha Gai (Chicken in Coconut Milk)
 
-**Sauces, Spices and Ferments:** Nonna's Sunday Sugo · Ponzu Sauce · Pumpkin Pie Spice Blend · Kimchi
+**Sauces, Spices and Ferments:** Nonna's Sunday Sugo · Ponzu Sauce · Pumpkin Pie Spice Blend · Kimchi · Panang Curry Paste (Nam Prik Gaeng Panang)
 
 **Basics and Technique:** Fresh Pasta Dough · Basic Risotto
 
@@ -1364,6 +1364,35 @@ A dense, spiced, coconut-rich pudding with a caramelized top, a Jamaican holiday
 
 ---
 
+## Mango Sticky Rice (Khao Neaw Ma-Muang)
+
+Sticky rice soaked in warm sweetened, salted coconut milk, served with ripe chilled mango.
+
+**Tags:** thai, dessert, mango, sticky rice, coconut, cooking class
+**Yield:** Serves 1 to 2
+
+**Sticky rice**
+- 1 cup sticky rice, cooked
+- 1/4 cup sugar
+- 1/4 tsp salt
+- 1/2 cup coconut milk
+- 1/2 cup coconut cream
+- 1 to 2 pandanus (pandan) leaves
+- 1 ripe mango, peeled and chilled
+
+**Method**
+1. **Warm:** Warm the coconut milk, stirring constantly, and let it simmer.
+2. **Sweeten:** Add the sugar and salt, stirring constantly.
+3. **Soak:** Take off the heat and pour over the sticky rice. Let the rice absorb the coconut milk for 15 minutes.
+4. **Serve:** Serve with sliced chilled mango.
+
+**Notes**
+- From a Phuket Thai Cooking Academy class (Cook'N Thai).
+- The handout lists coconut cream and pandan leaves but the steps don't use them. Traditionally the pandan simmers in the coconut milk and the cream is spooned over the rice to serve.
+- With all Thai meals, always taste before serving and adjust the flavor to your preference.
+
+---
+
 # MAINS
 
 ## Jamaican Brown Stew Oxtail (5 lb Practice Batch)
@@ -2624,6 +2653,126 @@ Crispy brown rice, caramelized kabocha wedges, roasted Four Star mushrooms, savo
 
 ---
 
+## Panang Curry with Chicken (Gaeng Panang Gai)
+
+Thick, rich red curry: panang paste fried in oil, cooked down in coconut cream until the fat separates, then simmered with chicken, pea eggplants and shredded kaffir lime leaves, seasoned with palm sugar and fish sauce.
+
+**Tags:** thai, curry, chicken, coconut, panang, cooking class
+
+**Curry**
+- 50 g chicken breast, sliced
+- 1 to 2 tbsp panang curry paste
+- 2 kaffir lime leaves, shredded
+- 5 to 8 pea eggplants
+- Red chilies, sliced, as needed
+- 1 cup coconut cream
+- 1/2 cup coconut milk
+- 1 to 2 tbsp cooking oil
+
+**Seasoning**
+- 1/2 tbsp palm sugar
+- 1 tbsp fish sauce
+
+**Method**
+1. **Paste:** Heat the oil in a wok, add the panang curry paste and stir vigorously until fragrant.
+2. **Coconut cream:** Add the coconut cream and combine. Heat until the fat separates and oil shows on top.
+3. **Chicken:** Add the chicken and stir-fry it in the paste until nearly cooked, then add the coconut milk and bring to a boil.
+4. **Season:** Add the kaffir lime leaves and pea eggplants, and season with the palm sugar and fish sauce.
+5. **Cook:** Stir constantly until the chicken and eggplants are cooked.
+6. **Serve:** Transfer to a serving bowl and garnish with sliced red chilies and kaffir lime leaf.
+
+**Notes**
+- From a Phuket Thai Cooking Academy class (Cook'N Thai).
+- Make the paste from scratch with the Panang Curry Paste recipe, or use store-bought.
+- Amounts are the class's single-cook portion (50 g chicken); scale up for more people.
+- The handout's step 4 says to add the coconut milk again; it only goes in once, in step 3.
+
+*Source: Phuket Thai Cooking Academy (class handout): http://www.phuketthaicookingacademy.com*
+
+---
+
+## Pineapple Fried Rice (Khao Pad Sapparot)
+
+Curry-scented fried rice with chicken, pineapple, tomato, raisins and fried cashews, seasoned with soy, oyster sauce and a little sugar, finished with coriander and spring onion.
+
+**Tags:** thai, fried rice, pineapple, chicken, cashews, cooking class
+
+**Fried rice**
+- 1/4 cup chicken, sliced and fried
+- 1 tbsp raisins
+- 1/2 cup pineapple, cut into medium cubes
+- 1 white onion, cut into medium cubes
+- 1/4 cup tomato, sliced
+- 1 tbsp cashew nuts, fried
+- 1 tsp curry powder
+- 2 cloves garlic, peeled and chopped
+- 1 tbsp cooking oil or butter
+- 1 cup cooked rice
+
+**Seasoning**
+- Salt, as needed
+- 1 tsp soy sauce
+- Oyster sauce
+- 1/2 tsp sugar
+
+**To finish**
+- 1 stalk coriander leaf
+- 1 stalk spring onion, sliced into 1/2-inch lengths
+
+**Method**
+1. **Aromatics:** Heat the oil in a wok over medium-low. Add the curry powder, garlic and onion, stirring constantly.
+2. **Chicken:** Add the chicken and stir-fry until nearly cooked.
+3. **Rice:** Add the cooked rice and keep stirring, then add the raisins, pineapple, cashews and tomato. Mix thoroughly and add the salt, soy sauce, oyster sauce and sugar. Stir to combine on high heat.
+4. **Serve:** Transfer to a serving dish and sprinkle with coriander leaf and spring onion.
+
+**Notes**
+- From a Phuket Thai Cooking Academy class (Cook'N Thai).
+- The handout's pork sausage (1 slice) is crossed out, so it's left out here.
+- Oyster sauce is in the steps but not the ingredient list, so there's no amount; add to taste.
+- The class served it in a hollowed-out pineapple half.
+
+*Source: Phuket Thai Cooking Academy (class handout): http://www.phuketthaicookingacademy.com*
+
+---
+
+## Stir-Fried Chicken with Hot Basil (Gai Pad Ka Prao)
+
+Chicken stir-fried hard with garlic and chilies, long beans, baby corn and onion, glossed with soy and oyster sauce and finished with a handful of hot basil.
+
+**Tags:** thai, stir-fry, chicken, basil, spicy, quick, cooking class
+
+**Stir-fry**
+- 50 g minced or sliced chicken
+- 1 to 2 cloves garlic, chopped
+- 1/4 white onion, thinly sliced
+- 1 red or yellow spur chili
+- 1 to 3 bird's eye chilies, chopped
+- 7 to 10 hot basil leaves
+- 1 long bean, sliced into 1-inch lengths
+- 1 baby corn, sliced
+- 2 tbsp vegetable oil
+- 1/4 cup chicken stock
+
+**Seasoning**
+- 1 tsp soy sauce
+- 1 tbsp oyster sauce
+- 1 tsp sugar
+- 1/4 tsp dark soy sauce (for color)
+
+**Method**
+1. **Aromatics:** Heat the oil in a wok with the garlic and chilies and stir-fry until you have a great spicy fragrance.
+2. **Chicken:** Add the chicken and keep going until it turns white and is cooked.
+3. **Vegetables:** Add the long beans, baby corn, onion and chicken stock and stir until tender.
+4. **Finish:** Add all the seasoning ingredients, then add the basil leaves at the end.
+
+**Notes**
+- From a Phuket Thai Cooking Academy class (Cook'N Thai).
+- Amounts are the class's single-cook portion (50 g chicken); scale up for more people.
+
+*Source: Phuket Thai Cooking Academy (class handout): http://www.phuketthaicookingacademy.com*
+
+---
+
 # SIDES AND SALADS
 
 ## Roasted Dumpling Squash with Sage Brown Butter
@@ -3427,6 +3576,47 @@ Hearty Jamaican pumpkin soup made with chicken: bone-in pieces simmered with pum
 
 ---
 
+## Tom Kha Gai (Chicken in Coconut Milk)
+
+Chicken and mushrooms simmered in coconut milk and cream fragrant with galangal, lemongrass, kaffir lime leaves and coriander root, finished with lime juice and drops of chili oil.
+
+**Tags:** thai, soup, chicken, coconut, galangal, lemongrass, cooking class
+
+**Soup**
+- 50 g chicken, sliced
+- 2 to 3 mushrooms, cut into quarters
+- 2 stalks lemongrass, cut into 1-inch lengths at an angle and crushed
+- 5 slices galangal, finely sliced
+- 1 to 2 kaffir lime leaves, torn
+- 1 coriander root, crushed
+- 1/2 tsp bird's eye chilies, finely sliced
+- 1 clove shallot
+- 1/2 cup coconut milk
+- 1/2 cup coconut cream
+- Juice of 1/2 lime
+- 1 tsp fish sauce
+- 1 tbsp sugar
+
+**To finish**
+- Coriander leaves
+- Chili oil
+
+**Method**
+1. **Aromatics:** Heat the coconut milk. Once it's foaming hot, add the galangal, lemongrass, coriander root, shallot and kaffir lime leaves. Simmer 5 minutes, until fragrant.
+2. **Chicken:** Add the chicken and cook until nearly done.
+3. **Cream:** Add the coconut cream and bring to a boil.
+4. **Mushrooms:** Add the mushrooms, chilies and the rest of the kaffir lime leaves.
+5. **Season:** Season with the sugar and fish sauce, turn off the heat and add the lime juice.
+6. **Serve:** Transfer to a serving bowl and garnish with coriander leaves and drops of chili oil.
+
+**Notes**
+- From a Phuket Thai Cooking Academy class (Cook'N Thai).
+- Amounts are the class's single-cook portion (50 g chicken); scale up for more people.
+
+*Source: Phuket Thai Cooking Academy (class handout): http://www.phuketthaicookingacademy.com*
+
+---
+
 # SAUCES, SPICES AND FERMENTS
 
 ## Nonna's Sunday Sugo (2 Can Version)
@@ -3543,6 +3733,42 @@ Hearty Jamaican pumpkin soup made with chicken: bone-in pieces simmered with pum
 **Notes:** Use real gochugaru; generic chili flakes won't give the right flavor or color. The rice flour porridge feeds the bacteria for a stronger ferment. Flavor keeps developing in the fridge for weeks.
 
 *Source: https://claude.ai/chat/bebb2037-54fe-458a-a5f2-1aae2ad41c8d*
+
+---
+
+## Panang Curry Paste (Nam Prik Gaeng Panang)
+
+Pounded in a mortar from dried chilies, white peppercorns, lemongrass, galangal, kaffir lime zest, coriander root, garlic, shallot, shrimp paste and roasted peanuts. The base for Panang Curry with Chicken.
+
+**Tags:** thai, curry paste, panang, mortar and pestle, cooking class
+
+**Paste**
+- 2 tbsp dried chilies, soaked in water and sliced
+- 1 stalk lemongrass, cut at an angle into about 1/2-inch lengths
+- 1 slice galangal, finely sliced
+- 1 tsp shallots, finely chopped
+- 1 slice kaffir lime zest, finely sliced
+- 1 clove garlic, sliced
+- 1 coriander root, chopped
+- 1 tsp white peppercorns
+- 1/4 tsp salt
+- 1/4 tsp shrimp paste
+- 1 tbsp roasted ground peanuts
+
+**Method**
+1. **Pepper and chili:** Pound the white peppercorns in a mortar and pestle. Add the dried chili and salt and pound together.
+2. **Lemongrass:** Add the lemongrass and galangal and pound.
+3. **Lime and coriander:** Add the kaffir lime zest and coriander root and pound.
+4. **Garlic:** Add the garlic and shallot and pound until it becomes a fine paste.
+5. **Finish:** Add the ground peanuts and shrimp paste and keep pounding.
+
+**Notes**
+- From a Phuket Thai Cooking Academy class (Cook'N Thai).
+- Simple version: put everything in the mortar and pound until you have a fine paste.
+- A food processor works, but the mortar and pestle is preferred.
+- The paste lasts at least a month in the refrigerator if you stir-fry it in oil first.
+
+*Source: Phuket Thai Cooking Academy (class handout): http://www.phuketthaicookingacademy.com*
 
 ---
 

@@ -2,7 +2,7 @@
  "format": "waynesdays-recipes",
  "version": 1,
  "title": "Waynesdays Recipe Book",
- "updatedAt": "2026-10-31T17:43:19.214Z",
+ "updatedAt": "2026-10-31T18:15:36.361Z",
  "recipes": [
   {
    "id": "freeman-house-chai-concentrate",
@@ -2254,6 +2254,58 @@
    "updatedAt": "2026-10-31T17:25:36.073Z"
   },
   {
+   "id": "mango-sticky-rice",
+   "title": "Mango Sticky Rice (Khao Neaw Ma-Muang)",
+   "description": "Sticky rice soaked in warm sweetened, salted coconut milk, served with ripe chilled mango.",
+   "category": "Baking and Sweets",
+   "tags": [
+    "thai",
+    "dessert",
+    "mango",
+    "sticky rice",
+    "coconut",
+    "cooking class"
+   ],
+   "time": "",
+   "yield": "Serves 1 to 2",
+   "image": "",
+   "ingredients": [
+    {
+     "name": "Sticky rice",
+     "note": "",
+     "items": [
+      "1 cup sticky rice, cooked",
+      "1/4 cup sugar",
+      "1/4 tsp salt",
+      "1/2 cup coconut milk",
+      "1/2 cup coconut cream",
+      "1 to 2 pandanus (pandan) leaves",
+      "1 ripe mango, peeled and chilled"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Warm:** Warm the coconut milk, stirring constantly, and let it simmer.",
+      "**Sweeten:** Add the sugar and salt, stirring constantly.",
+      "**Soak:** Take off the heat and pour over the sticky rice. Let the rice absorb the coconut milk for 15 minutes.",
+      "**Serve:** Serve with sliced chilled mango."
+     ]
+    }
+   ],
+   "notes": [
+    "From a Phuket Thai Cooking Academy class (Cook'N Thai).",
+    "The handout lists coconut cream and pandan leaves but the steps don't use them. Traditionally the pandan simmers in the coconut milk and the cream is spooned over the rice to serve.",
+    "With all Thai meals, always taste before serving and adjust the flavor to your preference."
+   ],
+   "extras": [],
+   "sources": [],
+   "createdAt": "2026-10-31T18:15:36.361Z",
+   "updatedAt": "2026-10-31T18:15:36.361Z"
+  },
+  {
    "id": "jamaican-brown-stew-oxtail",
    "title": "Jamaican Brown Stew Oxtail (5 lb Practice Batch)",
    "description": "From the Oxtail Off competition prep. This is the home scale practice version. The full 28 lb competition recipe, shopping list, and day-of timeline live in the source chat.",
@@ -4269,6 +4321,224 @@
    "updatedAt": "2026-10-25T18:48:24.286Z"
   },
   {
+   "id": "panang-curry-with-chicken",
+   "title": "Panang Curry with Chicken (Gaeng Panang Gai)",
+   "description": "Thick, rich red curry: panang paste fried in oil, cooked down in coconut cream until the fat separates, then simmered with chicken, pea eggplants and shredded kaffir lime leaves, seasoned with palm sugar and fish sauce.",
+   "category": "Mains",
+   "tags": [
+    "thai",
+    "curry",
+    "chicken",
+    "coconut",
+    "panang",
+    "cooking class"
+   ],
+   "time": "",
+   "yield": "",
+   "image": "",
+   "ingredients": [
+    {
+     "name": "Curry",
+     "note": "",
+     "items": [
+      "50 g chicken breast, sliced",
+      "1 to 2 tbsp panang curry paste",
+      "2 kaffir lime leaves, shredded",
+      "5 to 8 pea eggplants",
+      "Red chilies, sliced, as needed",
+      "1 cup coconut cream",
+      "1/2 cup coconut milk",
+      "1 to 2 tbsp cooking oil"
+     ]
+    },
+    {
+     "name": "Seasoning",
+     "note": "",
+     "items": [
+      "1/2 tbsp palm sugar",
+      "1 tbsp fish sauce"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Paste:** Heat the oil in a wok, add the panang curry paste and stir vigorously until fragrant.",
+      "**Coconut cream:** Add the coconut cream and combine. Heat until the fat separates and oil shows on top.",
+      "**Chicken:** Add the chicken and stir-fry it in the paste until nearly cooked, then add the coconut milk and bring to a boil.",
+      "**Season:** Add the kaffir lime leaves and pea eggplants, and season with the palm sugar and fish sauce.",
+      "**Cook:** Stir constantly until the chicken and eggplants are cooked.",
+      "**Serve:** Transfer to a serving bowl and garnish with sliced red chilies and kaffir lime leaf."
+     ]
+    }
+   ],
+   "notes": [
+    "From a Phuket Thai Cooking Academy class (Cook'N Thai).",
+    "Make the paste from scratch with the Panang Curry Paste recipe, or use store-bought.",
+    "Amounts are the class's single-cook portion (50 g chicken); scale up for more people.",
+    "The handout's step 4 says to add the coconut milk again; it only goes in once, in step 3."
+   ],
+   "extras": [],
+   "sources": [
+    {
+     "label": "Phuket Thai Cooking Academy (class handout)",
+     "url": "http://www.phuketthaicookingacademy.com"
+    }
+   ],
+   "createdAt": "2026-10-31T18:15:36.361Z",
+   "updatedAt": "2026-10-31T18:15:36.361Z"
+  },
+  {
+   "id": "pineapple-fried-rice",
+   "title": "Pineapple Fried Rice (Khao Pad Sapparot)",
+   "description": "Curry-scented fried rice with chicken, pineapple, tomato, raisins and fried cashews, seasoned with soy, oyster sauce and a little sugar, finished with coriander and spring onion.",
+   "category": "Mains",
+   "tags": [
+    "thai",
+    "fried rice",
+    "pineapple",
+    "chicken",
+    "cashews",
+    "cooking class"
+   ],
+   "time": "",
+   "yield": "",
+   "image": "",
+   "ingredients": [
+    {
+     "name": "Fried rice",
+     "note": "",
+     "items": [
+      "1/4 cup chicken, sliced and fried",
+      "1 tbsp raisins",
+      "1/2 cup pineapple, cut into medium cubes",
+      "1 white onion, cut into medium cubes",
+      "1/4 cup tomato, sliced",
+      "1 tbsp cashew nuts, fried",
+      "1 tsp curry powder",
+      "2 cloves garlic, peeled and chopped",
+      "1 tbsp cooking oil or butter",
+      "1 cup cooked rice"
+     ]
+    },
+    {
+     "name": "Seasoning",
+     "note": "",
+     "items": [
+      "Salt, as needed",
+      "1 tsp soy sauce",
+      "Oyster sauce",
+      "1/2 tsp sugar"
+     ]
+    },
+    {
+     "name": "To finish",
+     "note": "",
+     "items": [
+      "1 stalk coriander leaf",
+      "1 stalk spring onion, sliced into 1/2-inch lengths"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Aromatics:** Heat the oil in a wok over medium-low. Add the curry powder, garlic and onion, stirring constantly.",
+      "**Chicken:** Add the chicken and stir-fry until nearly cooked.",
+      "**Rice:** Add the cooked rice and keep stirring, then add the raisins, pineapple, cashews and tomato. Mix thoroughly and add the salt, soy sauce, oyster sauce and sugar. Stir to combine on high heat.",
+      "**Serve:** Transfer to a serving dish and sprinkle with coriander leaf and spring onion."
+     ]
+    }
+   ],
+   "notes": [
+    "From a Phuket Thai Cooking Academy class (Cook'N Thai).",
+    "The handout's pork sausage (1 slice) is crossed out, so it's left out here.",
+    "Oyster sauce is in the steps but not the ingredient list, so there's no amount; add to taste.",
+    "The class served it in a hollowed-out pineapple half."
+   ],
+   "extras": [],
+   "sources": [
+    {
+     "label": "Phuket Thai Cooking Academy (class handout)",
+     "url": "http://www.phuketthaicookingacademy.com"
+    }
+   ],
+   "createdAt": "2026-10-31T18:15:36.361Z",
+   "updatedAt": "2026-10-31T18:15:36.361Z"
+  },
+  {
+   "id": "stir-fried-chicken-with-hot-basil",
+   "title": "Stir-Fried Chicken with Hot Basil (Gai Pad Ka Prao)",
+   "description": "Chicken stir-fried hard with garlic and chilies, long beans, baby corn and onion, glossed with soy and oyster sauce and finished with a handful of hot basil.",
+   "category": "Mains",
+   "tags": [
+    "thai",
+    "stir-fry",
+    "chicken",
+    "basil",
+    "spicy",
+    "quick",
+    "cooking class"
+   ],
+   "time": "",
+   "yield": "",
+   "image": "",
+   "ingredients": [
+    {
+     "name": "Stir-fry",
+     "note": "",
+     "items": [
+      "50 g minced or sliced chicken",
+      "1 to 2 cloves garlic, chopped",
+      "1/4 white onion, thinly sliced",
+      "1 red or yellow spur chili",
+      "1 to 3 bird's eye chilies, chopped",
+      "7 to 10 hot basil leaves",
+      "1 long bean, sliced into 1-inch lengths",
+      "1 baby corn, sliced",
+      "2 tbsp vegetable oil",
+      "1/4 cup chicken stock"
+     ]
+    },
+    {
+     "name": "Seasoning",
+     "note": "",
+     "items": [
+      "1 tsp soy sauce",
+      "1 tbsp oyster sauce",
+      "1 tsp sugar",
+      "1/4 tsp dark soy sauce (for color)"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Aromatics:** Heat the oil in a wok with the garlic and chilies and stir-fry until you have a great spicy fragrance.",
+      "**Chicken:** Add the chicken and keep going until it turns white and is cooked.",
+      "**Vegetables:** Add the long beans, baby corn, onion and chicken stock and stir until tender.",
+      "**Finish:** Add all the seasoning ingredients, then add the basil leaves at the end."
+     ]
+    }
+   ],
+   "notes": [
+    "From a Phuket Thai Cooking Academy class (Cook'N Thai).",
+    "Amounts are the class's single-cook portion (50 g chicken); scale up for more people."
+   ],
+   "extras": [],
+   "sources": [
+    {
+     "label": "Phuket Thai Cooking Academy (class handout)",
+     "url": "http://www.phuketthaicookingacademy.com"
+    }
+   ],
+   "createdAt": "2026-10-31T18:15:36.361Z",
+   "updatedAt": "2026-10-31T18:15:36.361Z"
+  },
+  {
    "id": "roasted-dumpling-squash-with-sage-brown-butter",
    "title": "Roasted Dumpling Squash with Sage Brown Butter",
    "description": "Sweet dumpling squash has thin, edible skin, so there's no peeling. High-heat roasting caramelizes the edges, then a maple sage brown butter goes on top.",
@@ -5510,6 +5780,79 @@
    "updatedAt": "2026-10-31T17:43:19.214Z"
   },
   {
+   "id": "tom-kha-gai",
+   "title": "Tom Kha Gai (Chicken in Coconut Milk)",
+   "description": "Chicken and mushrooms simmered in coconut milk and cream fragrant with galangal, lemongrass, kaffir lime leaves and coriander root, finished with lime juice and drops of chili oil.",
+   "category": "Soups",
+   "tags": [
+    "thai",
+    "soup",
+    "chicken",
+    "coconut",
+    "galangal",
+    "lemongrass",
+    "cooking class"
+   ],
+   "time": "",
+   "yield": "",
+   "image": "",
+   "ingredients": [
+    {
+     "name": "Soup",
+     "note": "",
+     "items": [
+      "50 g chicken, sliced",
+      "2 to 3 mushrooms, cut into quarters",
+      "2 stalks lemongrass, cut into 1-inch lengths at an angle and crushed",
+      "5 slices galangal, finely sliced",
+      "1 to 2 kaffir lime leaves, torn",
+      "1 coriander root, crushed",
+      "1/2 tsp bird's eye chilies, finely sliced",
+      "1 clove shallot",
+      "1/2 cup coconut milk",
+      "1/2 cup coconut cream",
+      "Juice of 1/2 lime",
+      "1 tsp fish sauce",
+      "1 tbsp sugar"
+     ]
+    },
+    {
+     "name": "To finish",
+     "note": "",
+     "items": [
+      "Coriander leaves",
+      "Chili oil"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Aromatics:** Heat the coconut milk. Once it's foaming hot, add the galangal, lemongrass, coriander root, shallot and kaffir lime leaves. Simmer 5 minutes, until fragrant.",
+      "**Chicken:** Add the chicken and cook until nearly done.",
+      "**Cream:** Add the coconut cream and bring to a boil.",
+      "**Mushrooms:** Add the mushrooms, chilies and the rest of the kaffir lime leaves.",
+      "**Season:** Season with the sugar and fish sauce, turn off the heat and add the lime juice.",
+      "**Serve:** Transfer to a serving bowl and garnish with coriander leaves and drops of chili oil."
+     ]
+    }
+   ],
+   "notes": [
+    "From a Phuket Thai Cooking Academy class (Cook'N Thai).",
+    "Amounts are the class's single-cook portion (50 g chicken); scale up for more people."
+   ],
+   "extras": [],
+   "sources": [
+    {
+     "label": "Phuket Thai Cooking Academy (class handout)",
+     "url": "http://www.phuketthaicookingacademy.com"
+    }
+   ],
+   "createdAt": "2026-10-31T18:15:36.361Z",
+   "updatedAt": "2026-10-31T18:15:36.361Z"
+  },
+  {
    "id": "nonna-s-sunday-sugo",
    "title": "Nonna's Sunday Sugo (2 Can Version)",
    "description": "",
@@ -5733,6 +6076,68 @@
    ],
    "createdAt": "2026-09-26T11:57:00.000Z",
    "updatedAt": "2026-09-26T12:00:00.000Z"
+  },
+  {
+   "id": "panang-curry-paste",
+   "title": "Panang Curry Paste (Nam Prik Gaeng Panang)",
+   "description": "Pounded in a mortar from dried chilies, white peppercorns, lemongrass, galangal, kaffir lime zest, coriander root, garlic, shallot, shrimp paste and roasted peanuts. The base for Panang Curry with Chicken.",
+   "category": "Sauces, Spices and Ferments",
+   "tags": [
+    "thai",
+    "curry paste",
+    "panang",
+    "mortar and pestle",
+    "cooking class"
+   ],
+   "time": "",
+   "yield": "",
+   "image": "",
+   "ingredients": [
+    {
+     "name": "Paste",
+     "note": "",
+     "items": [
+      "2 tbsp dried chilies, soaked in water and sliced",
+      "1 stalk lemongrass, cut at an angle into about 1/2-inch lengths",
+      "1 slice galangal, finely sliced",
+      "1 tsp shallots, finely chopped",
+      "1 slice kaffir lime zest, finely sliced",
+      "1 clove garlic, sliced",
+      "1 coriander root, chopped",
+      "1 tsp white peppercorns",
+      "1/4 tsp salt",
+      "1/4 tsp shrimp paste",
+      "1 tbsp roasted ground peanuts"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Pepper and chili:** Pound the white peppercorns in a mortar and pestle. Add the dried chili and salt and pound together.",
+      "**Lemongrass:** Add the lemongrass and galangal and pound.",
+      "**Lime and coriander:** Add the kaffir lime zest and coriander root and pound.",
+      "**Garlic:** Add the garlic and shallot and pound until it becomes a fine paste.",
+      "**Finish:** Add the ground peanuts and shrimp paste and keep pounding."
+     ]
+    }
+   ],
+   "notes": [
+    "From a Phuket Thai Cooking Academy class (Cook'N Thai).",
+    "Simple version: put everything in the mortar and pound until you have a fine paste.",
+    "A food processor works, but the mortar and pestle is preferred.",
+    "The paste lasts at least a month in the refrigerator if you stir-fry it in oil first."
+   ],
+   "extras": [],
+   "sources": [
+    {
+     "label": "Phuket Thai Cooking Academy (class handout)",
+     "url": "http://www.phuketthaicookingacademy.com"
+    }
+   ],
+   "createdAt": "2026-10-31T18:15:36.361Z",
+   "updatedAt": "2026-10-31T18:15:36.361Z"
   },
   {
    "id": "fresh-pasta-dough",
