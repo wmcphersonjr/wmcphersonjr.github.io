@@ -16,7 +16,7 @@ Every recipe pulled from past chats, compiled in one place. Grouped by category.
 
 **Sides and Salads:** Roasted Dumpling Squash · Baked Garlic Rice · Buss Up Shut (Paratha-Style Roti)
 
-**Soups:** Split Pea Soup · Butternut Squash Congee With Chile Oil · Red Peas Soup · Soup Joumou · Sancocho · Best Black Bean Soup · Coconut Black Bean Soup · Lemony White Bean Soup With Turkey and Greens · Citrusy Lentil and Sweet Potato Soup · Pumpkin Soup · Thomas Keller's Butternut Squash Soup With Brown Butter · Sherried Lentil Soup With Sausage and Croutons · Sweet Potato Miso Soup
+**Soups:** Split Pea Soup · Butternut Squash Congee With Chile Oil · Red Peas Soup · Soup Joumou · Sancocho · Best Black Bean Soup · Coconut Black Bean Soup · Lemony White Bean Soup With Turkey and Greens · Citrusy Lentil and Sweet Potato Soup · Pumpkin Soup · Thomas Keller's Butternut Squash Soup With Brown Butter · Sherried Lentil Soup With Sausage and Croutons · Sweet Potato Miso Soup · Jamaican Chicken and Pumpkin Soup
 
 **Sauces, Spices and Ferments:** Nonna's Sunday Sugo · Ponzu Sauce · Pumpkin Pie Spice Blend · Kimchi
 
@@ -3365,6 +3365,65 @@ A wintry sweet potato and apple bisque from Lula Cafe. The red miso caramelizes 
 - About 690 calories per serving (PureWow's estimate).
 
 *Source: PureWow (Jason Hammel, The Lula Cafe Cookbook): https://www.purewow.com/recipes/sweet-potato-miso-soup*
+
+---
+
+## Jamaican Chicken and Pumpkin Soup
+
+Hearty Jamaican pumpkin soup made with chicken: bone-in pieces simmered with pumpkin until it melts into an orange broth, then loaded with corn, yam, chocho, carrot and flour dumplings, finished with coconut milk, thyme and a whole Scotch bonnet.
+
+**Tags:** jamaican, caribbean, soup, chicken, pumpkin, dumplings, coconut, comfort
+**Time:** about 1 hr 15 min
+**Yield:** Serves 6
+
+**Soup**
+- 2 lb bone-in chicken pieces (thighs, drumsticks or wings), skin removed, cut into pieces
+- Juice of 1 lime, for cleaning the chicken (optional)
+- 10 cups water
+- 6 cloves garlic, crushed
+- 6 to 8 whole pimento seeds (allspice berries)
+- 1 medium pumpkin, peeled, seeded and cut into chunks
+- 1 to 2 ears corn, cut into 4
+- 1 large carrot, sliced
+- 2 slices yellow yam, 2 inches thick, cut into 4 chunks
+- 1 medium chocho (chayote), peeled and sliced
+- 1 medium turnip, cut into small chunks
+- 2 stalks celery
+- 1 small onion, cut into wedges
+- 6 to 8 sprigs thyme
+- 2 stalks escallion (green onion), crushed
+- 6 flour dumplings (below)
+- 1 whole Scotch bonnet pepper (optional)
+- 1 to 2 chicken bouillon cubes, to taste
+- 2 tsp seasoned salt, more or less as needed
+- 1 tsp black pepper, to taste
+- 1 cup full-fat coconut milk
+
+**Flour dumplings**
+- 1 cup all-purpose flour
+- 1/2 cup water
+- 1/4 tsp salt
+
+**Method: Dumplings**
+1. **Dough:** In a medium bowl, mix the flour and salt, then gradually add the water, kneading by hand into a soft dough that isn't sticky or wet.
+2. **Shape:** Pinch or cut off 6 equal pieces. Roll each into a ball in your palm, flatten slightly, and fold the edges into the center to make small round wheels. Set aside.
+
+**Method: Soup**
+3. **Chicken:** Rinse the chicken (with the lime juice, if you like). In a large stockpot, bring the 10 cups water to a rapid boil with the garlic and pimento. Add the chicken, skim off any foam, and simmer 15 minutes.
+4. **Pumpkin:** Add the pumpkin and corn and cook 15 to 20 minutes, until the pumpkin is soft and melting into the soup and the water has turned orange.
+5. **Vegetables:** Add the carrot, yam, chocho, turnip, celery, onion, thyme, escallion, dumplings and the whole Scotch bonnet. Boil 15 minutes.
+6. **Coconut:** Reduce the heat to medium and stir in the coconut milk, then the bouillon, seasoned salt and black pepper. Taste and adjust, then simmer 20 minutes more, until the chicken is tender.
+7. **Serve:** Remove the Scotch bonnet (without bursting it) and the thyme sprigs. Serve hot.
+
+**Notes**
+- Adapted from Taneisha Morris's vegan Jamaican Pumpkin Soup on The Seasoned Skillet. Changes: chicken added (simmered first so it's tender by the end), and chicken bouillon instead of vegetable.
+- Use canned full-fat coconut milk, not the kind in a carton, for creaminess.
+- Thyme, scallion, Scotch bonnet and allspice are the key Jamaican seasonings.
+- Swap or add other ground provisions: yam, potatoes, sweet potatoes, dasheen, eddo or cassava.
+- For deeper flavor, roast the pumpkin cubes first.
+- Garnish with fresh herbs if you like.
+
+*Source: The Seasoned Skillet (Taneisha Morris): https://seasonedskilletblog.com/wprm_print/jamaican-pumpkin-soup*
 
 ---
 

@@ -2,7 +2,7 @@
  "format": "waynesdays-recipes",
  "version": 1,
  "title": "Waynesdays Recipe Book",
- "updatedAt": "2026-10-31T17:25:36.073Z",
+ "updatedAt": "2026-10-31T17:43:19.214Z",
  "recipes": [
   {
    "id": "freeman-house-chai-concentrate",
@@ -5415,6 +5415,99 @@
    ],
    "createdAt": "2026-10-25T16:39:48.525Z",
    "updatedAt": "2026-10-25T16:39:48.525Z"
+  },
+  {
+   "id": "jamaican-chicken-and-pumpkin-soup",
+   "title": "Jamaican Chicken and Pumpkin Soup",
+   "description": "Hearty Jamaican pumpkin soup made with chicken: bone-in pieces simmered with pumpkin until it melts into an orange broth, then loaded with corn, yam, chocho, carrot and flour dumplings, finished with coconut milk, thyme and a whole Scotch bonnet.",
+   "category": "Soups",
+   "tags": [
+    "jamaican",
+    "caribbean",
+    "soup",
+    "chicken",
+    "pumpkin",
+    "dumplings",
+    "coconut",
+    "comfort"
+   ],
+   "time": "about 1 hr 15 min",
+   "yield": "Serves 6",
+   "image": "",
+   "ingredients": [
+    {
+     "name": "Soup",
+     "note": "",
+     "items": [
+      "2 lb bone-in chicken pieces (thighs, drumsticks or wings), skin removed, cut into pieces",
+      "Juice of 1 lime, for cleaning the chicken (optional)",
+      "10 cups water",
+      "6 cloves garlic, crushed",
+      "6 to 8 whole pimento seeds (allspice berries)",
+      "1 medium pumpkin, peeled, seeded and cut into chunks",
+      "1 to 2 ears corn, cut into 4",
+      "1 large carrot, sliced",
+      "2 slices yellow yam, 2 inches thick, cut into 4 chunks",
+      "1 medium chocho (chayote), peeled and sliced",
+      "1 medium turnip, cut into small chunks",
+      "2 stalks celery",
+      "1 small onion, cut into wedges",
+      "6 to 8 sprigs thyme",
+      "2 stalks escallion (green onion), crushed",
+      "6 flour dumplings (below)",
+      "1 whole Scotch bonnet pepper (optional)",
+      "1 to 2 chicken bouillon cubes, to taste",
+      "2 tsp seasoned salt, more or less as needed",
+      "1 tsp black pepper, to taste",
+      "1 cup full-fat coconut milk"
+     ]
+    },
+    {
+     "name": "Flour dumplings",
+     "note": "",
+     "items": [
+      "1 cup all-purpose flour",
+      "1/2 cup water",
+      "1/4 tsp salt"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "Dumplings",
+     "items": [
+      "**Dough:** In a medium bowl, mix the flour and salt, then gradually add the water, kneading by hand into a soft dough that isn't sticky or wet.",
+      "**Shape:** Pinch or cut off 6 equal pieces. Roll each into a ball in your palm, flatten slightly, and fold the edges into the center to make small round wheels. Set aside."
+     ]
+    },
+    {
+     "name": "Soup",
+     "items": [
+      "**Chicken:** Rinse the chicken (with the lime juice, if you like). In a large stockpot, bring the 10 cups water to a rapid boil with the garlic and pimento. Add the chicken, skim off any foam, and simmer 15 minutes.",
+      "**Pumpkin:** Add the pumpkin and corn and cook 15 to 20 minutes, until the pumpkin is soft and melting into the soup and the water has turned orange.",
+      "**Vegetables:** Add the carrot, yam, chocho, turnip, celery, onion, thyme, escallion, dumplings and the whole Scotch bonnet. Boil 15 minutes.",
+      "**Coconut:** Reduce the heat to medium and stir in the coconut milk, then the bouillon, seasoned salt and black pepper. Taste and adjust, then simmer 20 minutes more, until the chicken is tender.",
+      "**Serve:** Remove the Scotch bonnet (without bursting it) and the thyme sprigs. Serve hot."
+     ]
+    }
+   ],
+   "notes": [
+    "Adapted from Taneisha Morris's vegan Jamaican Pumpkin Soup on The Seasoned Skillet. Changes: chicken added (simmered first so it's tender by the end), and chicken bouillon instead of vegetable.",
+    "Use canned full-fat coconut milk, not the kind in a carton, for creaminess.",
+    "Thyme, scallion, Scotch bonnet and allspice are the key Jamaican seasonings.",
+    "Swap or add other ground provisions: yam, potatoes, sweet potatoes, dasheen, eddo or cassava.",
+    "For deeper flavor, roast the pumpkin cubes first.",
+    "Garnish with fresh herbs if you like."
+   ],
+   "extras": [],
+   "sources": [
+    {
+     "label": "The Seasoned Skillet (Taneisha Morris)",
+     "url": "https://seasonedskilletblog.com/wprm_print/jamaican-pumpkin-soup"
+    }
+   ],
+   "createdAt": "2026-10-31T17:43:09.461Z",
+   "updatedAt": "2026-10-31T17:43:19.214Z"
   },
   {
    "id": "nonna-s-sunday-sugo",
