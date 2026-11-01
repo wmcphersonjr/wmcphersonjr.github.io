@@ -12,7 +12,7 @@ Every recipe pulled from past chats, compiled in one place. Grouped by category.
 
 **Baking and Sweets:** Sugar Moon Espresso Cornflake Cookies (Copycat) · Bakery Cookie Skillet · Soft and Chewy Oatmeal Chocolate Chip Cookies · Pan de Muerto · Latino Foodie Pan de Muerto · Gingerbread Latte Cookies · Chocolate Soufflés · Conchas · Peach Cobbler · Warm Sweet Potato-Apple Pone · Strawberry Shortcake · London Fog Loaf Cake · Homemade Cinnamon Rolls · Kevin Gillespie's Warm Banana Pudding with Meringue · Jamaican Banana Fritters · Jamaican Sweet Potato Pudding · Mango Sticky Rice (Khao Neaw Ma-Muang)
 
-**Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs · Creamy Lemon Pesto Pasta · Oxtail and Butter Beans · Birria de Res (Beef Birria) · Quesabirria Tacos · Stew Peas and Spinners · Spicy Red Pesto Pasta · Ricotta Pasta Alla Vodka · Pasta Alla Norma Sorta · Grilled Cheese With Apples and Apple Butter · Golden Krust Jamaican Oxtail Stew · Roast Chicken With Maple Butter and Rosemary · Smoked Mackerel Rundown · Peruvian Roasted Chicken With Spicy Cilantro Sauce · Peruvian Pork Stew With Chiles, Lime and Apples · Closed On Sunday Chicken Sandwich · Crack Fried Rice · Brown Stew Chicken · Gochujang Chicken and Rice · Brown Rice and Kabocha Squash Bowl (Lula Cafe Style) · Panang Curry with Chicken (Gaeng Panang Gai) · Pineapple Fried Rice (Khao Pad Sapparot) · Stir-Fried Chicken with Hot Basil (Gai Pad Ka Prao)
+**Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs · Creamy Lemon Pesto Pasta · Oxtail and Butter Beans · Birria de Res (Beef Birria) · Quesabirria Tacos · Stew Peas and Spinners · Spicy Red Pesto Pasta · Ricotta Pasta Alla Vodka · Pasta Alla Norma Sorta · Grilled Cheese With Apples and Apple Butter · Golden Krust Jamaican Oxtail Stew · Roast Chicken With Maple Butter and Rosemary · Smoked Mackerel Rundown · Peruvian Roasted Chicken With Spicy Cilantro Sauce · Peruvian Pork Stew With Chiles, Lime and Apples · Closed On Sunday Chicken Sandwich · Crack Fried Rice · Brown Stew Chicken · Gochujang Chicken and Rice · Brown Rice and Kabocha Squash Bowl (Lula Cafe Style) · Panang Curry with Chicken (Gaeng Panang Gai) · Pineapple Fried Rice (Khao Pad Sapparot) · Stir-Fried Chicken with Hot Basil (Gai Pad Ka Prao) · Butter Chicken
 
 **Sides and Salads:** Roasted Dumpling Squash · Baked Garlic Rice · Buss Up Shut (Paratha-Style Roti)
 
@@ -2770,6 +2770,64 @@ Chicken stir-fried hard with garlic and chilies, long beans, baby corn and onion
 - Amounts are the class's single-cook portion (50 g chicken); scale up for more people.
 
 *Source: Phuket Thai Cooking Academy (class handout): http://www.phuketthaicookingacademy.com*
+
+---
+
+## Butter Chicken
+
+Creamy, rich and packed with flavour, but made with less butter, cream and cashews than a traditional butter chicken. Spiced yoghurt-marinated chicken, charred in a pan, then simmered in a blended tomato, onion and cashew sauce with kasuri methi.
+
+**Image:** images/butter-chicken.jpg
+**Tags:** indian, curry, chicken, butter chicken, weeknight, make-ahead
+
+**Chicken marinade**
+- 1 kg boneless chicken, cubed
+- 1/2 cup yoghurt
+- 1 tbsp ginger paste
+- 1 tbsp garlic paste
+- 2 tbsp lemon juice
+- 1 tsp salt
+- 1 tsp red chilli powder
+- 1 tsp black pepper
+- 1 tsp cumin powder
+- 1 tsp coriander powder
+- 1 tsp garam masala
+- 1/2 tsp turmeric
+- 2 tbsp oil, for cooking the chicken
+
+**Sauce**
+- 2 tbsp oil
+- 3 tbsp butter
+- 2 onions, finely chopped
+- 1 tbsp finely chopped garlic
+- 2 tomatoes, chopped
+- Handful of cashews
+- 2 tbsp tomato paste
+- 1 tsp salt
+- 1 tsp cumin powder
+- 1 tsp coriander powder
+- 1 tsp paprika
+- 1 tsp Kashmiri chilli powder
+- 1 tsp kasuri methi
+- 2 tbsp sugar
+- 2 tbsp double cream
+- Fresh coriander and extra cream, to garnish
+
+**Method**
+1. **Marinate:** Mix the chicken with all the marinade ingredients and marinate for at least 10 minutes (overnight is even better).
+2. **Char the chicken:** Heat 2 tbsp oil in a pan and cook the marinated chicken over medium-high heat for 10 to 12 minutes, until lightly charred. Remove and set aside.
+3. **Onions:** In the same pan, add the 2 tbsp oil and 3 tbsp butter. Once melted, sauté the onions for 7 to 8 minutes, until golden.
+4. **Garlic:** Add the garlic and cook for 1 minute.
+5. **Tomatoes:** Stir in the tomatoes, tomato paste, cashews, salt, cumin, coriander, paprika and Kashmiri chilli powder. Cook for 5 to 10 minutes, until softened.
+6. **Blend:** Add a splash of water and blend until smooth. For an extra silky sauce, pass it through a sieve.
+7. **Simmer:** Return the sauce to the pan and add the cooked chicken, kasuri methi, sugar and double cream. Simmer on low heat for 10 minutes.
+8. **Finish:** Finish with fresh coriander and a drizzle of cream.
+
+**Notes**
+- Serve with fluffy basmati rice or warm naan.
+- The post uses 2 tbsp oil for the chicken and another 2 tbsp with the butter for the sauce, but only lists the sauce oil; both are listed here.
+
+*Source: Instagram (@sheerabites): https://www.instagram.com/sheerabites/*
 
 ---
 
