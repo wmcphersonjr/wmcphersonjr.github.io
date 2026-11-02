@@ -12,7 +12,7 @@ Every recipe pulled from past chats, compiled in one place. Grouped by category.
 
 **Baking and Sweets:** Sugar Moon Espresso Cornflake Cookies (Copycat) · Bakery Cookie Skillet · Soft and Chewy Oatmeal Chocolate Chip Cookies · Pan de Muerto · Latino Foodie Pan de Muerto · Gingerbread Latte Cookies · Chocolate Soufflés · Conchas · Peach Cobbler · Warm Sweet Potato-Apple Pone · Strawberry Shortcake · London Fog Loaf Cake · Homemade Cinnamon Rolls · Kevin Gillespie's Warm Banana Pudding with Meringue · Jamaican Banana Fritters · Jamaican Sweet Potato Pudding · Mango Sticky Rice (Khao Neaw Ma-Muang)
 
-**Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs · Creamy Lemon Pesto Pasta · Oxtail and Butter Beans · Birria de Res (Beef Birria) · Quesabirria Tacos · Stew Peas and Spinners · Spicy Red Pesto Pasta · Ricotta Pasta Alla Vodka · Pasta Alla Norma Sorta · Grilled Cheese With Apples and Apple Butter · Golden Krust Jamaican Oxtail Stew · Roast Chicken With Maple Butter and Rosemary · Smoked Mackerel Rundown · Peruvian Roasted Chicken With Spicy Cilantro Sauce · Peruvian Pork Stew With Chiles, Lime and Apples · Closed On Sunday Chicken Sandwich · Crack Fried Rice · Brown Stew Chicken · Gochujang Chicken and Rice · Brown Rice and Kabocha Squash Bowl (Lula Cafe Style) · Panang Curry with Chicken (Gaeng Panang Gai) · Pineapple Fried Rice (Khao Pad Sapparot) · Stir-Fried Chicken with Hot Basil (Gai Pad Ka Prao) · Butter Chicken
+**Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs · Creamy Lemon Pesto Pasta · Oxtail and Butter Beans · Birria de Res (Beef Birria) · Quesabirria Tacos · Stew Peas and Spinners · Spicy Red Pesto Pasta · Ricotta Pasta Alla Vodka · Pasta Alla Norma Sorta · Grilled Cheese With Apples and Apple Butter · Golden Krust Jamaican Oxtail Stew · Roast Chicken With Maple Butter and Rosemary · Smoked Mackerel Rundown · Peruvian Roasted Chicken With Spicy Cilantro Sauce · Peruvian Pork Stew With Chiles, Lime and Apples · Closed On Sunday Chicken Sandwich · Crack Fried Rice · Brown Stew Chicken · Gochujang Chicken and Rice · Brown Rice and Kabocha Squash Bowl (Lula Cafe Style) · Panang Curry with Chicken (Gaeng Panang Gai) · Pineapple Fried Rice (Khao Pad Sapparot) · Stir-Fried Chicken with Hot Basil (Gai Pad Ka Prao) · Butter Chicken · Cajun Honey Butter Chicken with Crispy Smashed Potatoes
 
 **Sides and Salads:** Roasted Dumpling Squash · Baked Garlic Rice · Buss Up Shut (Paratha-Style Roti)
 
@@ -2828,6 +2828,58 @@ Creamy, rich and packed with flavour, but made with less butter, cream and cashe
 - The post uses 2 tbsp oil for the chicken and another 2 tbsp with the butter for the sauce, but only lists the sauce oil; both are listed here.
 
 *Source: Instagram (@sheerabites): https://www.instagram.com/sheerabites/*
+
+---
+
+## Cajun Honey Butter Chicken with Crispy Smashed Potatoes
+
+Cajun-rubbed spatchcock chicken roasted on a rack over crispy smashed baby potatoes and lemon slices that turn sweet and tart in the oven, then brushed and drizzled with a garlicky Cajun honey butter.
+
+**Image:** images/cajun-honey-butter-chicken-with-crispy-smashed-potatoes.jpg
+**Tags:** chicken, cajun, roast chicken, spatchcock, potatoes, sheet pan, honey
+**Yield:** Serves 2 to 3
+
+**Chicken**
+- 1 spatchcock chicken, patted dry
+- 1 1/2 tbsp olive oil (20 g)
+- 2 tsp Cajun seasoning (5 g)
+- 1 tsp garlic powder (3 g)
+- 1 tsp onion powder (3 g)
+- 1 tsp paprika (2 g)
+- 1/2 tsp black pepper (1 g)
+- 1/2 to 3/4 tsp salt (3 to 4 g), depending on your Cajun seasoning
+
+**Crispy smashed potatoes**
+- 1 1/2 to 2 lb baby yellow potatoes (680 to 900 g)
+- 2 1/2 tbsp olive oil (35 g)
+- 1 tsp garlic powder (3 g)
+- 1/2 tsp onion powder (1.5 g)
+- 1/2 tsp Cajun seasoning (1 to 2 g)
+- Salt and black pepper, to taste
+- Fresh parsley, for finishing
+- Lemon slices, scattered around the tray
+
+**Cajun honey butter**
+- 5 tbsp unsalted butter (70 g)
+- 1/2 cup honey
+- 3 to 4 garlic cloves, finely grated (12 g)
+- 1 tsp Cajun seasoning (2 to 3 g)
+- 1 tsp red pepper flakes
+- 3 tbsp chicken broth (45 ml)
+- 1 tbsp fresh lemon juice or apple cider vinegar (15 ml)
+- Freshly cracked black pepper
+
+**Method**
+1. **Season:** Pat the chicken very dry. Coat with the olive oil and seasonings and let it marinate in the fridge for 30 to 45 minutes.
+2. **Potatoes:** Boil the baby potatoes whole in salted water until fork-tender, about 12 to 18 minutes. Drain and steam-dry for a few minutes. Arrange on a baking sheet, gently smash to about 1/2 inch thick, and drizzle with the olive oil and seasonings. Scatter the lemon slices around the tray.
+3. **Roast:** Heat the oven to 425°F. Set the chicken skin-side up on a rack over the baking sheet and roast for 40 to 45 minutes, until deeply golden and cooked through. A meat thermometer is ideal to prevent overcooking. Broil for 1 to 2 minutes at the end for extra crispy skin.
+4. **Honey butter:** Melt the butter over medium-low heat. Add the garlic and sauté for 30 seconds. Stir in the honey, Cajun seasoning, red pepper flakes, chicken broth and black pepper. Simmer gently for 2 to 4 minutes, until glossy and slightly thickened. Finish with the lemon juice or vinegar.
+5. **Serve:** Brush the roasted chicken with the Cajun honey butter, then drizzle more over the chicken and smashed potatoes. Finish with parsley and serve.
+
+**Notes**
+- The potatoes and lemon slices roast on the sheet under the rack, catching the chicken drippings.
+
+*Source: Instagram (@marisakapeal): https://www.instagram.com/marisakapeal/*
 
 ---
 

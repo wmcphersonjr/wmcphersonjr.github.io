@@ -2,7 +2,7 @@
  "format": "waynesdays-recipes",
  "version": 1,
  "title": "Waynesdays Recipe Book",
- "updatedAt": "2026-11-01T23:49:45.494Z",
+ "updatedAt": "2026-11-02T00:01:25.712Z",
  "recipes": [
   {
    "id": "freeman-house-chai-concentrate",
@@ -4625,6 +4625,92 @@
    ],
    "createdAt": "2026-11-01T23:49:45.494Z",
    "updatedAt": "2026-11-01T23:49:45.494Z"
+  },
+  {
+   "id": "cajun-honey-butter-chicken-with-crispy-smashed-potatoes",
+   "title": "Cajun Honey Butter Chicken with Crispy Smashed Potatoes",
+   "description": "Cajun-rubbed spatchcock chicken roasted on a rack over crispy smashed baby potatoes and lemon slices that turn sweet and tart in the oven, then brushed and drizzled with a garlicky Cajun honey butter.",
+   "category": "Mains",
+   "tags": [
+    "chicken",
+    "cajun",
+    "roast chicken",
+    "spatchcock",
+    "potatoes",
+    "sheet pan",
+    "honey"
+   ],
+   "time": "",
+   "yield": "Serves 2 to 3",
+   "image": "images/cajun-honey-butter-chicken-with-crispy-smashed-potatoes.jpg",
+   "ingredients": [
+    {
+     "name": "Chicken",
+     "note": "",
+     "items": [
+      "1 spatchcock chicken, patted dry",
+      "1 1/2 tbsp olive oil (20 g)",
+      "2 tsp Cajun seasoning (5 g)",
+      "1 tsp garlic powder (3 g)",
+      "1 tsp onion powder (3 g)",
+      "1 tsp paprika (2 g)",
+      "1/2 tsp black pepper (1 g)",
+      "1/2 to 3/4 tsp salt (3 to 4 g), depending on your Cajun seasoning"
+     ]
+    },
+    {
+     "name": "Crispy smashed potatoes",
+     "note": "",
+     "items": [
+      "1 1/2 to 2 lb baby yellow potatoes (680 to 900 g)",
+      "2 1/2 tbsp olive oil (35 g)",
+      "1 tsp garlic powder (3 g)",
+      "1/2 tsp onion powder (1.5 g)",
+      "1/2 tsp Cajun seasoning (1 to 2 g)",
+      "Salt and black pepper, to taste",
+      "Fresh parsley, for finishing",
+      "Lemon slices, scattered around the tray"
+     ]
+    },
+    {
+     "name": "Cajun honey butter",
+     "note": "",
+     "items": [
+      "5 tbsp unsalted butter (70 g)",
+      "1/2 cup honey",
+      "3 to 4 garlic cloves, finely grated (12 g)",
+      "1 tsp Cajun seasoning (2 to 3 g)",
+      "1 tsp red pepper flakes",
+      "3 tbsp chicken broth (45 ml)",
+      "1 tbsp fresh lemon juice or apple cider vinegar (15 ml)",
+      "Freshly cracked black pepper"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Season:** Pat the chicken very dry. Coat with the olive oil and seasonings and let it marinate in the fridge for 30 to 45 minutes.",
+      "**Potatoes:** Boil the baby potatoes whole in salted water until fork-tender, about 12 to 18 minutes. Drain and steam-dry for a few minutes. Arrange on a baking sheet, gently smash to about 1/2 inch thick, and drizzle with the olive oil and seasonings. Scatter the lemon slices around the tray.",
+      "**Roast:** Heat the oven to 425°F. Set the chicken skin-side up on a rack over the baking sheet and roast for 40 to 45 minutes, until deeply golden and cooked through. A meat thermometer is ideal to prevent overcooking. Broil for 1 to 2 minutes at the end for extra crispy skin.",
+      "**Honey butter:** Melt the butter over medium-low heat. Add the garlic and sauté for 30 seconds. Stir in the honey, Cajun seasoning, red pepper flakes, chicken broth and black pepper. Simmer gently for 2 to 4 minutes, until glossy and slightly thickened. Finish with the lemon juice or vinegar.",
+      "**Serve:** Brush the roasted chicken with the Cajun honey butter, then drizzle more over the chicken and smashed potatoes. Finish with parsley and serve."
+     ]
+    }
+   ],
+   "notes": [
+    "The potatoes and lemon slices roast on the sheet under the rack, catching the chicken drippings."
+   ],
+   "extras": [],
+   "sources": [
+    {
+     "label": "Instagram (@marisakapeal)",
+     "url": "https://www.instagram.com/marisakapeal/"
+    }
+   ],
+   "createdAt": "2026-11-02T00:01:25.712Z",
+   "updatedAt": "2026-11-02T00:01:25.712Z"
   },
   {
    "id": "roasted-dumpling-squash-with-sage-brown-butter",
