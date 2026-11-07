@@ -12,7 +12,7 @@ Every recipe pulled from past chats, compiled in one place. Grouped by category.
 
 **Baking and Sweets:** Sugar Moon Espresso Cornflake Cookies (Copycat) · Bakery Cookie Skillet · Soft and Chewy Oatmeal Chocolate Chip Cookies · Pan de Muerto · Latino Foodie Pan de Muerto · Gingerbread Latte Cookies · Chocolate Soufflés · Conchas · Peach Cobbler · Warm Sweet Potato-Apple Pone · Strawberry Shortcake · London Fog Loaf Cake · Homemade Cinnamon Rolls · Kevin Gillespie's Warm Banana Pudding with Meringue · Jamaican Banana Fritters · Jamaican Sweet Potato Pudding · Mango Sticky Rice (Khao Neaw Ma-Muang)
 
-**Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs · Creamy Lemon Pesto Pasta · Oxtail and Butter Beans · Birria de Res (Beef Birria) · Quesabirria Tacos · Stew Peas and Spinners · Spicy Red Pesto Pasta · Ricotta Pasta Alla Vodka · Pasta Alla Norma Sorta · Grilled Cheese With Apples and Apple Butter · Golden Krust Jamaican Oxtail Stew · Roast Chicken With Maple Butter and Rosemary · Smoked Mackerel Rundown · Peruvian Roasted Chicken With Spicy Cilantro Sauce · Peruvian Pork Stew With Chiles, Lime and Apples · Closed On Sunday Chicken Sandwich · Crack Fried Rice · Brown Stew Chicken · Gochujang Chicken and Rice · Brown Rice and Kabocha Squash Bowl (Lula Cafe Style) · Panang Curry with Chicken (Gaeng Panang Gai) · Pineapple Fried Rice (Khao Pad Sapparot) · Stir-Fried Chicken with Hot Basil (Gai Pad Ka Prao) · Butter Chicken · Cajun Honey Butter Chicken with Crispy Smashed Potatoes
+**Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs · Creamy Lemon Pesto Pasta · Oxtail and Butter Beans · Birria de Res (Beef Birria) · Quesabirria Tacos · Stew Peas and Spinners · Spicy Red Pesto Pasta · Ricotta Pasta Alla Vodka · Pasta Alla Norma Sorta · Grilled Cheese With Apples and Apple Butter · Golden Krust Jamaican Oxtail Stew · Roast Chicken With Maple Butter and Rosemary · Smoked Mackerel Rundown · Peruvian Roasted Chicken With Spicy Cilantro Sauce · Peruvian Pork Stew With Chiles, Lime and Apples · Closed On Sunday Chicken Sandwich · Crack Fried Rice · Brown Stew Chicken · Gochujang Chicken and Rice · Brown Rice and Kabocha Squash Bowl (Lula Cafe Style) · Panang Curry with Chicken (Gaeng Panang Gai) · Pineapple Fried Rice (Khao Pad Sapparot) · Stir-Fried Chicken with Hot Basil (Gai Pad Ka Prao) · Butter Chicken · Cajun Honey Butter Chicken with Crispy Smashed Potatoes · Thai Lemongrass Chicken with Coconut Curry and Crispy Egg
 
 **Sides and Salads:** Roasted Dumpling Squash · Baked Garlic Rice · Buss Up Shut (Paratha-Style Roti) · Frijoles Negros (Mexican-Style Black Beans)
 
@@ -2880,6 +2880,52 @@ Cajun-rubbed spatchcock chicken roasted on a rack over crispy smashed baby potat
 - The potatoes and lemon slices roast on the sheet under the rack, catching the chicken drippings.
 
 *Source: Instagram (@marisakapeal): https://www.instagram.com/marisakapeal/*
+
+---
+
+## Thai Lemongrass Chicken with Coconut Curry and Crispy Egg
+
+Crispy golden chicken thighs marinated in soy, oyster and fish sauce with lemongrass, ginger and lime, over steamed rice with a quick red curry coconut sauce and a crispy fried egg with a runny yolk. Sweet, salty and spicy: the ultimate rice bowl.
+
+**Image:** images/thai-lemongrass-chicken-with-coconut-curry-and-crispy-egg.jpg
+**Tags:** thai, chicken, lemongrass, coconut, curry, rice bowl, fried egg, weeknight
+
+**Chicken marinade**
+- 600 g skin-on, bone-in chicken thighs
+- 1 1/2 tbsp light soy sauce
+- 1 1/2 tbsp oyster sauce
+- 1 1/2 tbsp fish sauce
+- 1 tbsp dark soy sauce
+- 1 tsp sugar
+- 3 garlic cloves, minced
+- 1 knob ginger, grated
+- Zest and juice of 1 lime
+- 1 stalk lemongrass, finely chopped
+
+**Coconut curry sauce**
+- 1 tbsp oil
+- 2 to 3 Thai chillies
+- 1 tbsp Thai red curry paste
+- 1/2 cup coconut milk
+- 2 to 3 kaffir lime leaves (optional)
+- Thai basil
+
+**To serve**
+- Steamed rice
+- Eggs, one per bowl, for frying
+
+**Method**
+1. **Marinate:** Debone the chicken thighs, combine with the marinade ingredients and leave for at least 30 minutes.
+2. **Sear:** Sear the chicken skin-side down over medium-low heat until golden and crispy.
+3. **Cook through:** Flip and cook through, about 6 to 8 minutes per side depending on thickness. Rest before slicing.
+4. **Curry base:** In the same pan, sauté the Thai chillies and red curry paste until fragrant.
+5. **Sauce:** Add the coconut milk, kaffir lime leaves and Thai basil. Simmer until slightly thickened.
+6. **Eggs:** Fry the eggs in hot oil until the edges are crisp and lacy and the yolks still runny.
+7. **Serve:** Serve over steamed rice with the coconut curry sauce, the sliced lemongrass chicken and a crispy fried egg on top.
+
+**Notes**
+- From an Instagram post (the author's name wasn't in the screenshot).
+- The post doesn't say how to fry the eggs, so step 6 is added.
 
 ---
 

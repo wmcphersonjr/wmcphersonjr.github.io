@@ -2,7 +2,7 @@
  "format": "waynesdays-recipes",
  "version": 1,
  "title": "Waynesdays Recipe Book",
- "updatedAt": "2026-11-07T19:25:11.015Z",
+ "updatedAt": "2026-11-07T22:56:18.301Z",
  "recipes": [
   {
    "id": "freeman-house-chai-concentrate",
@@ -4711,6 +4711,85 @@
    ],
    "createdAt": "2026-11-02T00:01:25.712Z",
    "updatedAt": "2026-11-02T00:01:25.712Z"
+  },
+  {
+   "id": "thai-lemongrass-chicken-with-coconut-curry-and-crispy-egg",
+   "title": "Thai Lemongrass Chicken with Coconut Curry and Crispy Egg",
+   "description": "Crispy golden chicken thighs marinated in soy, oyster and fish sauce with lemongrass, ginger and lime, over steamed rice with a quick red curry coconut sauce and a crispy fried egg with a runny yolk. Sweet, salty and spicy: the ultimate rice bowl.",
+   "category": "Mains",
+   "tags": [
+    "thai",
+    "chicken",
+    "lemongrass",
+    "coconut",
+    "curry",
+    "rice bowl",
+    "fried egg",
+    "weeknight"
+   ],
+   "time": "",
+   "yield": "",
+   "image": "images/thai-lemongrass-chicken-with-coconut-curry-and-crispy-egg.jpg",
+   "ingredients": [
+    {
+     "name": "Chicken marinade",
+     "note": "",
+     "items": [
+      "600 g skin-on, bone-in chicken thighs",
+      "1 1/2 tbsp light soy sauce",
+      "1 1/2 tbsp oyster sauce",
+      "1 1/2 tbsp fish sauce",
+      "1 tbsp dark soy sauce",
+      "1 tsp sugar",
+      "3 garlic cloves, minced",
+      "1 knob ginger, grated",
+      "Zest and juice of 1 lime",
+      "1 stalk lemongrass, finely chopped"
+     ]
+    },
+    {
+     "name": "Coconut curry sauce",
+     "note": "",
+     "items": [
+      "1 tbsp oil",
+      "2 to 3 Thai chillies",
+      "1 tbsp Thai red curry paste",
+      "1/2 cup coconut milk",
+      "2 to 3 kaffir lime leaves (optional)",
+      "Thai basil"
+     ]
+    },
+    {
+     "name": "To serve",
+     "note": "",
+     "items": [
+      "Steamed rice",
+      "Eggs, one per bowl, for frying"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "name": "",
+     "items": [
+      "**Marinate:** Debone the chicken thighs, combine with the marinade ingredients and leave for at least 30 minutes.",
+      "**Sear:** Sear the chicken skin-side down over medium-low heat until golden and crispy.",
+      "**Cook through:** Flip and cook through, about 6 to 8 minutes per side depending on thickness. Rest before slicing.",
+      "**Curry base:** In the same pan, sauté the Thai chillies and red curry paste until fragrant.",
+      "**Sauce:** Add the coconut milk, kaffir lime leaves and Thai basil. Simmer until slightly thickened.",
+      "**Eggs:** Fry the eggs in hot oil until the edges are crisp and lacy and the yolks still runny.",
+      "**Serve:** Serve over steamed rice with the coconut curry sauce, the sliced lemongrass chicken and a crispy fried egg on top."
+     ]
+    }
+   ],
+   "notes": [
+    "From an Instagram post (the author's name wasn't in the screenshot).",
+    "The post doesn't say how to fry the eggs, so step 6 is added."
+   ],
+   "extras": [],
+   "sources": [],
+   "createdAt": "2026-11-07T22:56:18.301Z",
+   "updatedAt": "2026-11-07T22:56:18.301Z"
   },
   {
    "id": "roasted-dumpling-squash-with-sage-brown-butter",
