@@ -14,7 +14,7 @@ Every recipe pulled from past chats, compiled in one place. Grouped by category.
 
 **Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs · Creamy Lemon Pesto Pasta · Oxtail and Butter Beans · Birria de Res (Beef Birria) · Quesabirria Tacos · Stew Peas and Spinners · Spicy Red Pesto Pasta · Ricotta Pasta Alla Vodka · Pasta Alla Norma Sorta · Grilled Cheese With Apples and Apple Butter · Golden Krust Jamaican Oxtail Stew · Roast Chicken With Maple Butter and Rosemary · Smoked Mackerel Rundown · Peruvian Roasted Chicken With Spicy Cilantro Sauce · Peruvian Pork Stew With Chiles, Lime and Apples · Closed On Sunday Chicken Sandwich · Crack Fried Rice · Brown Stew Chicken · Gochujang Chicken and Rice · Brown Rice and Kabocha Squash Bowl (Lula Cafe Style) · Panang Curry with Chicken (Gaeng Panang Gai) · Pineapple Fried Rice (Khao Pad Sapparot) · Stir-Fried Chicken with Hot Basil (Gai Pad Ka Prao) · Butter Chicken · Cajun Honey Butter Chicken with Crispy Smashed Potatoes
 
-**Sides and Salads:** Roasted Dumpling Squash · Baked Garlic Rice · Buss Up Shut (Paratha-Style Roti)
+**Sides and Salads:** Roasted Dumpling Squash · Baked Garlic Rice · Buss Up Shut (Paratha-Style Roti) · Frijoles Negros (Mexican-Style Black Beans)
 
 **Soups:** Split Pea Soup · Butternut Squash Congee With Chile Oil · Red Peas Soup · Soup Joumou · Sancocho · Best Black Bean Soup · Coconut Black Bean Soup · Lemony White Bean Soup With Turkey and Greens · Citrusy Lentil and Sweet Potato Soup · Pumpkin Soup · Thomas Keller's Butternut Squash Soup With Brown Butter · Sherried Lentil Soup With Sausage and Croutons · Sweet Potato Miso Soup · Jamaican Chicken and Pumpkin Soup · Tom Kha Gai (Chicken in Coconut Milk)
 
@@ -3002,6 +3002,58 @@ Peter Prime's Trinidadian buss up shut: flaky, buttery layered roti cooked on a 
 - Great with any curry in this book, or with the Jamaican stews for sopping up gravy.
 
 *Source: NYT Cooking (Peter Prime, adapted by Yewande Komolafe): https://cooking.nytimes.com/search?q=Buss%20Up%20Shut%20Paratha-Style%20Roti*
+
+---
+
+## Frijoles Negros (Mexican-Style Black Beans)
+
+Classic Mexican pot black beans: dried beans simmered low and slow with onion, garlic and epazote until creamy, then finished in a sizzling lard sofrito of onion, garlic and chile and mashed just enough to make their own silky broth. Great as a side, in tacos and burritos, or refried the next day.
+
+**Tags:** mexican, beans, black beans, side, vegetarian option, make-ahead, meal prep
+**Time:** about 2 1/2 hr (mostly hands-off), plus optional overnight soak
+**Yield:** Serves 6 to 8 (about 7 cups)
+
+**Beans**
+- 1 lb (450 g) dried black beans, picked over and rinsed
+- 1/2 white onion, in one piece
+- 4 garlic cloves, smashed
+- 2 sprigs fresh epazote (or 1 tbsp dried), or 2 bay leaves
+- 1 tbsp lard or neutral oil
+- 10 to 12 cups water
+- 2 to 2 1/2 tsp kosher salt, to taste
+
+**Sofrito**
+- 3 tbsp lard, bacon fat or neutral oil
+- 1/2 white onion, finely diced
+- 3 garlic cloves, minced
+- 1 to 2 serrano or jalapeño chiles, finely chopped (seeded for less heat)
+- 1 chipotle in adobo, minced, plus 1 tsp adobo sauce (optional, for smoke)
+- 1/2 tsp ground cumin (optional)
+- 1/2 tsp dried Mexican oregano
+
+**To serve**
+- Crumbled cotija or queso fresco
+- Mexican crema or sour cream
+- Chopped cilantro and white onion
+- Lime wedges
+
+**Method**
+1. **Soak (optional):** Cover the beans with cold water by 3 inches and soak overnight; drain. Soaking isn't required, it just shortens the cooking by about 30 minutes.
+2. **Start the pot:** Put the beans, onion half, smashed garlic, epazote and 1 tbsp lard in a large heavy pot. Add water to cover by about 2 inches (10 to 12 cups). Bring to a boil and boil hard for 10 minutes.
+3. **Simmer:** Lower to the gentlest simmer, partly covered, and cook until the beans are completely creamy inside, 1 1/2 to 2 1/2 hours. Stir now and then and keep them covered by an inch of liquid, adding hot water as needed.
+4. **Salt:** Once the beans are tender, stir in 2 tsp salt and simmer 15 minutes more so it soaks in. Fish out the onion and epazote.
+5. **Sofrito:** In a large skillet, heat the 3 tbsp lard over medium-high. Add the diced onion and cook until golden at the edges, 6 to 8 minutes. Add the garlic, chiles, chipotle and adobo, cumin and oregano and cook 1 minute, until fragrant.
+6. **Fry the beans:** Ladle about 2 cups of beans with some liquid into the skillet (it will sizzle), mash them roughly with a bean masher or spoon, then scrape everything back into the pot.
+7. **Finish:** Simmer uncovered 10 to 15 minutes, until the broth turns thick and glossy. Taste and adjust the salt; a squeeze of lime brightens it.
+8. **Serve:** Spoon into bowls with their broth and top with cotija, crema, cilantro, onion and lime.
+
+**Notes**
+- Salting once the beans are tender makes it easy to judge, since the broth reduces as it cooks. Salting from the start works too and seasons the beans more deeply; just go lighter.
+- Old beans take much longer to soften. Buy from a store with high turnover, and check one every 20 minutes after the first hour; they're done when they mash easily against the roof of your mouth.
+- Refried beans (frijoles refritos): heat 3 tbsp lard in a skillet, add 3 cups drained beans and a splash of broth, and mash until thick and creamy, 8 to 10 minutes.
+- Vegetarian or vegan: use oil instead of lard and skip the dairy.
+- Keeps 5 days refrigerated and freezes well in its broth. The flavor improves overnight.
+- A Claude recipe written for this book.
 
 ---
 
