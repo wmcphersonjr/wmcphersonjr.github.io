@@ -12,7 +12,7 @@ Every recipe pulled from past chats, compiled in one place. Grouped by category.
 
 **Baking and Sweets:** Sugar Moon Espresso Cornflake Cookies (Copycat) · Bakery Cookie Skillet · Soft and Chewy Oatmeal Chocolate Chip Cookies · Pan de Muerto · Latino Foodie Pan de Muerto · Gingerbread Latte Cookies · Chocolate Soufflés · Conchas · Peach Cobbler · Warm Sweet Potato-Apple Pone · Strawberry Shortcake · London Fog Loaf Cake · Homemade Cinnamon Rolls · Kevin Gillespie's Warm Banana Pudding with Meringue · Jamaican Banana Fritters · Jamaican Sweet Potato Pudding · Mango Sticky Rice (Khao Neaw Ma-Muang)
 
-**Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs · Creamy Lemon Pesto Pasta · Oxtail and Butter Beans · Birria de Res (Beef Birria) · Quesabirria Tacos · Stew Peas and Spinners · Spicy Red Pesto Pasta · Ricotta Pasta Alla Vodka · Pasta Alla Norma Sorta · Grilled Cheese With Apples and Apple Butter · Golden Krust Jamaican Oxtail Stew · Roast Chicken With Maple Butter and Rosemary · Smoked Mackerel Rundown · Peruvian Roasted Chicken With Spicy Cilantro Sauce · Peruvian Pork Stew With Chiles, Lime and Apples · Closed On Sunday Chicken Sandwich · Crack Fried Rice · Brown Stew Chicken · Gochujang Chicken and Rice · Brown Rice and Kabocha Squash Bowl (Lula Cafe Style) · Panang Curry with Chicken (Gaeng Panang Gai) · Pineapple Fried Rice (Khao Pad Sapparot) · Stir-Fried Chicken with Hot Basil (Gai Pad Ka Prao) · Butter Chicken · Cajun Honey Butter Chicken with Crispy Smashed Potatoes · Thai Lemongrass Chicken with Coconut Curry and Crispy Egg
+**Mains:** Jamaican Brown Stew Oxtail (5 lb Practice Batch + Competition Plating) · Jerk Spiced Duck Tacos (Bon Appétit) · Mexican Style Flank Steak Tacos · Short Rib Bulgogi · Thai Red Curry with Chicken · Thai Green Curry with Chicken · Khao Pad (Thai Fried Rice) · Nigerian Red Stew · Nonna Style Turkey Meatballs · Creamy Lemon Pesto Pasta · Oxtail and Butter Beans · Birria de Res (Beef Birria) · Quesabirria Tacos · Stew Peas and Spinners · Spicy Red Pesto Pasta · Ricotta Pasta Alla Vodka · Pasta Alla Norma Sorta · Grilled Cheese With Apples and Apple Butter · Golden Krust Jamaican Oxtail Stew · Roast Chicken With Maple Butter and Rosemary · Smoked Mackerel Rundown · Peruvian Roasted Chicken With Spicy Cilantro Sauce · Peruvian Pork Stew With Chiles, Lime and Apples · Closed On Sunday Chicken Sandwich · Crack Fried Rice · Brown Stew Chicken · Gochujang Chicken and Rice · Brown Rice and Kabocha Squash Bowl (Lula Cafe Style) · Panang Curry with Chicken (Gaeng Panang Gai) · Pineapple Fried Rice (Khao Pad Sapparot) · Stir-Fried Chicken with Hot Basil (Gai Pad Ka Prao) · Butter Chicken · Cajun Honey Butter Chicken with Crispy Smashed Potatoes · Thai Lemongrass Chicken with Coconut Curry and Crispy Egg · Duck Confit Congee
 
 **Sides and Salads:** Roasted Dumpling Squash · Baked Garlic Rice · Buss Up Shut (Paratha-Style Roti) · Frijoles Negros (Mexican-Style Black Beans)
 
@@ -2926,6 +2926,94 @@ Crispy golden chicken thighs marinated in soy, oyster and fish sauce with lemong
 **Notes**
 - From an Instagram post (the author's name wasn't in the screenshot).
 - The post doesn't say how to fry the eggs, so step 6 is added.
+
+---
+
+## Duck Confit Congee
+
+Silky savory rice porridge cooked in a housemade chicken and duck bone broth, topped with crisp shredded duck confit, a poached egg, salted ginger, scallions and chili oil. A restaurant-style bowl that's mostly make-ahead.
+
+**Tags:** congee, rice porridge, duck, duck confit, chicken, broth, egg, chili oil, project, make-ahead
+**Time:** about 6 hr active over 2 days, plus 12 to 24 hr curing the duck
+**Yield:** Serves 4 to 6
+
+**Chicken and duck bone broth (about 3 quarts)**
+- 2 lb chicken backs, necks or wings
+- 1 1/2 to 2 lb duck bones (a duck frame, necks or wings)
+- 1 yellow onion, halved
+- 4-inch piece ginger, sliced
+- 6 scallions, halved
+- 6 garlic cloves, smashed
+- 2 tbsp Shaoxing wine (optional)
+- 4 1/2 quarts cold water
+
+**Duck confit**
+- 4 duck legs
+- 2 tbsp kosher salt
+- 1 tsp sugar
+- 1/2 tsp five-spice powder
+- 4 slices ginger, smashed
+- 3 garlic cloves, smashed
+- 2 star anise
+- About 4 cups duck fat, melted
+
+**Congee**
+- 1 cup jasmine rice
+- 1 tbsp neutral oil
+- 1/2 tsp kosher salt, plus more to taste
+- 12 cups chicken and duck bone broth
+- Ground white pepper
+- Fish sauce or light soy sauce, to taste
+
+**Salted ginger**
+- 3-inch piece ginger, peeled and cut into fine matchsticks
+- 1 tsp kosher salt
+- 1 tsp rice vinegar
+
+**Chili oil**
+- 3 tbsp Sichuan chili flakes (or Korean gochugaru)
+- 1 tsp toasted sesame seeds
+- 1/2 tsp kosher salt
+- 1/2 tsp sugar
+- 1/2 cup neutral oil
+- 1 star anise
+- 1 small piece cinnamon stick
+- 2 slices ginger
+
+**To finish**
+- 4 to 6 eggs
+- 1 tbsp white vinegar, for poaching
+- 4 scallions, thinly sliced
+- Toasted sesame oil
+- Cilantro sprigs (optional)
+
+**Method: Day before**
+1. **Cure the duck:** Mix the salt, sugar and five-spice and rub it all over the duck legs. Tuck the ginger, garlic and star anise around them, cover and refrigerate 12 to 24 hours.
+2. **Roast the bones:** Heat the oven to 425°F. Spread the chicken and duck bones on a sheet pan and roast until deeply browned, about 40 minutes.
+3. **Simmer the broth:** Put the bones in a large stockpot with the onion, ginger, scallions, garlic and wine. Deglaze the sheet pan with a splash of water and add it too. Cover with the cold water, bring just to a simmer and skim off the foam. Cook at a bare simmer, uncovered, for 4 to 5 hours, skimming now and then.
+4. **Strain:** Strain through a fine sieve, cool, and refrigerate. Lift off the fat once chilled and save it for the confit or for frying.
+
+**Method: Day of**
+5. **Confit the duck:** Heat the oven to 275°F. Rinse the cure off the duck legs and pat them very dry. Nestle them skin-side up in a snug ovenproof pot, cover with the melted duck fat, and cook until a skewer slides through with no resistance, 2 1/2 to 3 hours.
+6. **Soak the rice:** Rinse the rice until the water runs clear, drain well, and toss with the oil and 1/2 tsp salt. Let it sit 30 minutes.
+7. **Cook the congee:** Bring the broth to a boil in a large heavy pot. Add the rice, return to a boil, then lower to a steady simmer, partly covered. Cook 1 1/4 to 1 1/2 hours, stirring every 10 minutes and scraping the bottom, until the grains break down into a silky porridge. Thin with broth or hot water to the consistency you like.
+8. **Salted ginger:** Toss the ginger matchsticks with the salt and let sit 15 minutes. Squeeze out the liquid and toss with the rice vinegar.
+9. **Chili oil:** Put the chili flakes, sesame seeds, salt and sugar in a heatproof bowl. Heat the oil with the star anise, cinnamon and ginger over medium-low until the spices sizzle and smell toasty, about 5 minutes (around 250°F). Strain the hot oil over the chili flakes and stir.
+10. **Crisp the duck:** Lift the duck legs from the fat. Sear skin-side down in a hot skillet with a spoonful of the fat until crackly, 3 to 4 minutes. Pull the meat and skin from the bones in large shreds.
+11. **Poach the eggs:** Bring a wide pan of water to a gentle simmer with the vinegar. Crack each egg into a cup, slide it in and poach 3 minutes, until the white is set and the yolk runny. Lift out with a slotted spoon.
+12. **Season:** Season the congee with salt, white pepper and a splash of fish sauce or soy.
+
+**Method: Assemble**
+13. **Build the bowls:** Ladle the congee into warm bowls. Top with the shredded duck confit, a poached egg, a pinch of salted ginger and plenty of scallions. Finish with a spoonful of chili oil, a few drops of sesame oil, white pepper and cilantro, if you like.
+
+**Notes**
+- A home version of a restaurant congee: savory rice porridge with housemade chicken and duck bone broth, duck confit, poached egg, salted ginger, scallions and chili oil.
+- Shortcuts: use store-bought duck confit legs and a good low-sodium chicken stock simmered for an hour with roasted duck wings, ginger and scallion.
+- The oil and salt on the rinsed rice is a Cantonese trick that helps the grains break down into a silkier congee.
+- Freezing the rinsed, drained rice overnight cracks the grains and cuts the cooking time by about a third.
+- Make ahead: the broth keeps 4 days in the fridge or 3 months frozen. The confit keeps 2 weeks covered in its fat in the fridge. Chili oil keeps a month at room temperature. Congee thickens as it sits; loosen it with broth when reheating.
+- Strain and save the duck fat after confiting; it can be reused several times.
+- A Claude recipe written for this book.
 
 ---
 
